@@ -14,6 +14,6 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:adjustViewBounds="false"
-        android:src="@drawable/introfootball"/>
+        android:src="@drawable/footballintro"/>
 
 </RelativeLayout>
