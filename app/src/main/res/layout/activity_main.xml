@@ -11,24 +11,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/background_pp"
+        android:src="@drawable/background_menu_principal"
         tools:layout_editor_absoluteX="27dp"
         tools:layout_editor_absoluteY="-175dp" />
 
     <ImageButton
-        android:id="@+id/ImageButtonStart"
-        android:layout_width="265dp"
-        android:layout_height="147dp"
+        android:id="@+id/btn_start_button"
+        android:layout_width="179dp"
+        android:layout_height="103dp"
         android:background="@mipmap/image_button_start_2"
         android:onClick="AudioMediaPlayer"
         app:layout_constraintBottom_toBottomOf="@+id/background_menu_pp"
         app:layout_constraintEnd_toEndOf="@+id/background_menu_pp"
         app:layout_constraintStart_toStartOf="@+id/background_menu_pp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.448" />
+        app:layout_constraintVertical_bias="0.485" />
 
     <ImageButton
-        android:id="@+id/ImageButtonSettings"
+        android:id="@+id/btn_settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -50,17 +50,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/background_menu_pp"
         app:layout_constraintVertical_bias="0.976" />
-
-    <Button
-        android:id="@+id/btn_settings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_settings"
-        app:layout_constraintBottom_toBottomOf="@+id/background_menu_pp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.178" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
