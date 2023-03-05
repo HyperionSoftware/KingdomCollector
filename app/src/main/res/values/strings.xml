@@ -1,3 +1,81 @@
 <resources>
     <string name="app_name">KingdomCollector</string>
+    <string name="button_start">START</string>
+    <string name="title_activity_terms_and_conditions">TermsAndConditions</string>
+    <string name="large_text">
+        "Hyperion Mobile App Terms and Conditions of Use"
+
+        "Welcome to the Hyperion mobile application (hereinafter, the &quot;Application&quot;).
+        These terms and conditions (hereinafter, the &quot;Terms&quot;)
+        establish the conditions of use of the Application. By using the Application,
+        you agree to these Terms in their entirety. If you do not agree to these Terms,
+        please do not use the Application.
+
+        Application Object The Application is a service of [description of the service offered by
+        the application].
+        The Hyperion company owns the Application and reserves all rights to the Application.
+        Terms of use By using the Application, you agree to the following conditions:
+
+        A. You are responsible for your use of the Application.
+        You may not use the Application for illegal or unauthorized purposes.
+
+        B. You may not use the Application in any way that could damage, disable, overburden,
+        or impair the Application or interfere with its use by other users.
+
+        C. You may not use the Application to send junk mail, spam or any other type of unsolicited
+        communication. d. You may not copy, modify, or distribute content from the Application
+        without the express permission of Hyperion.
+
+        Intellectual property The Application and all its content, including but not limited to text,
+        graphics, images, videos, logos and software, are protected by intellectual property laws.
+
+        The Hyperion company owns all intellectual property rights in the Application.
+        Privacy Hyperion respects your privacy and complies with all applicable data protection laws.
+        The personal information that you provide to the Application will be used only for the
+        purposes provided in the Privacy Policy of the Application.
+
+        By using the Application, you agree to our Privacy Policy.
+        Limitation of Liability Hyperion shall not be liable for any direct, indirect, incidental,
+        special, or consequential damages, including, but not limited to, damages for lost profits,
+        business interruption, loss of information, or other pecuniary damages, resulting from the
+        use or inability to use of the Application.
+
+        Changes to the Terms Hyperion reserves the right to modify these Terms at any time.
+        If we change these Terms, we will notify you through the Application or by email.
+        If you do not agree to the modified Terms, you must stop using the Application.
+        Governing Law and Jurisdiction These Terms shall be governed by and construed in accordance
+        with the laws of [country where the Hyperion company is registered].
+        Any dispute arising in connection with these Terms shall be subject to the exclusive
+        jurisdiction of the courts of [city where Hyperion company is registered].
+        By using the Application, you agree to submit to the exclusive jurisdiction of the courts of
+        [city where Hyperion company is registered] for any disputes arising in connection with
+        these Terms.
+
+        Termination Hyperion reserves the right to terminate your access to the Application at
+        any time and without notice if you breach these Terms.
+
+        General disposition If any provision of these Terms is held invalid or unenforceable,
+        that provision will be construed in accordance with applicable law to reflect,
+        to the extent possible, the original intent of the parties and the other provisions will
+        remain valid and enforceable. Hyperion's waiver of any provision of these Terms shall not be
+        deemed a further or continuing waiver of that provision or any other provision.
+        These Terms constitute the entire agreement between you and Hyperion in relation to
+        the Application and supersede all prior or contemporaneous agreements between you and
+        Hyperion in relation to the Application.
+
+        If you have any questions or concerns about these Terms, please contact us via
+        [email or Application contact form]. Effective Date: [effective date of the Terms].
+
+        Thank you for using the Hyperion Application."
+ "
+    </string>
+    <string name="action_settings">Settings</string>
+    <string name="aboutPage">About_us</string>
+    <string name="authors">authors</string>
+    <string name="version">version</string>
+    <string name="versionReal">versionReal</string>
+    <string name="AboutUs">About us</string>
+    <string name="btn_settings"><![CDATA[Term&Cond]]></string>
+    />
+    />
 </resources>
