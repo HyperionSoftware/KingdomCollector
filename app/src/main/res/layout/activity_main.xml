@@ -16,19 +16,19 @@
         tools:layout_editor_absoluteY="-175dp" />
 
     <ImageButton
-        android:id="@+id/ImageButtonStart"
-        android:layout_width="265dp"
-        android:layout_height="147dp"
+        android:id="@+id/btn_start_button"
+        android:layout_width="179dp"
+        android:layout_height="103dp"
         android:background="@mipmap/image_button_start_2"
         android:onClick="AudioMediaPlayer"
         app:layout_constraintBottom_toBottomOf="@+id/background_menu_pp"
         app:layout_constraintEnd_toEndOf="@+id/background_menu_pp"
         app:layout_constraintStart_toStartOf="@+id/background_menu_pp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.448" />
+        app:layout_constraintVertical_bias="0.485" />
 
     <ImageButton
-        android:id="@+id/ImageButtonSettings"
+        android:id="@+id/btn_settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

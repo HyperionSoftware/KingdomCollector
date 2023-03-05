@@ -74,6 +74,8 @@
     <string name="authors">authors</string>
     <string name="version">version</string>
     <string name="versionReal">versionReal</string>
-    <string name="AboutUs">About us</string> />
+    <string name="AboutUs">About us</string>
+    <string name="btn_settings"><![CDATA[Term&Cond]]></string>
+    />
     />
 </resources>

@@ -15,12 +15,9 @@ import android.widget.ImageButton;
 public class MainActivity extends AppCompatActivity {
 
     Button btn_aboutus;
-
-
-    ImageButton play;
-    ImageButton btn;
+    ImageButton play, btn_settings;
     SoundPool sp;
-    int sonido_reproduccion;
+    private int sonido_reproduccion;
 
 
     @SuppressLint("MissingInflatedId")
@@ -29,19 +26,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Button AboutUs.
-        btn_aboutus = (Button) findViewById(R.id.btn_aboutUs);
-
-        btn_aboutus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivities(new Intent[]{new Intent(MainActivity.this, AboutUs.class)});
-            }
-        });
 
         //Button Settings.
-        btn = (ImageButton) findViewById(R.id.ImageButtonSettings);
-        btn.setOnClickListener(new View.OnClickListener() {
+        btn_settings = (ImageButton) findViewById(R.id.btn_settings);
+        btn_settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivities(new Intent[]{new Intent(MainActivity.this, TermsAndConditions.class)});
@@ -49,20 +37,31 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
+        //Button AboutUs.
+        btn_aboutus = (Button) findViewById(R.id.btn_aboutUs);
+        btn_aboutus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivities(new Intent[]{new Intent(MainActivity.this, AboutUs.class)});
+            }
+        });
 
         // Music
-        play = (ImageButton) findViewById(R.id.ImageButtonStart);
+        play = (ImageButton) findViewById(R.id.btn_start_button);
         sp = new SoundPool(1, AudioManager.STREAM_MUSIC,1);
         sonido_reproduccion = sp.load(this,R.raw.check_it_out_now,1);
 
     }
+    // Audio para reproducción corta.
     public void AudioSoundPool(View view){
         sp.play(sonido_reproduccion,1,1,1,0,0);
 
     }
+
+    // Audio para reproducción larga.
     public void AudioMediaPlayer(View view){
         MediaPlayer mp = MediaPlayer.create(this,R.raw.check_it_out_now);
         mp.start();
     }
+
 }
