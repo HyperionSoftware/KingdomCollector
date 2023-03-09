@@ -48,8 +48,17 @@ public class MainActivity extends AppCompatActivity {
 
         // Music
         play = (ImageButton) findViewById(R.id.btn_start_button);
-        sp = new SoundPool(1, AudioManager.STREAM_MUSIC,1);
-        sonido_reproduccion = sp.load(this,R.raw.check_it_out_now,1);
+        //sp = new SoundPool(1, AudioManager.STREAM_MUSIC,1);
+        //sonido_reproduccion = sp.load(this,R.raw.check_it_out_now, 1);
+        play.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivities(new Intent[]{new Intent(MainActivity.this, activity_tablero.class)});
+                sp = new SoundPool(1, AudioManager.STREAM_MUSIC,1);
+                sonido_reproduccion = sp.load("res/raw/check_it_out_now.mp3",1);
+               //sonido_reproduccion = sp.load(this,R.raw.check_it_out_now,1);
+            }
+        });
 
     }
     // Audio para reproducción corta.
