@@ -76,6 +76,9 @@
     <string name="versionReal">versionReal</string>
     <string name="AboutUs">About us</string>
     <string name="btn_settings"><![CDATA[Term&Cond]]></string>
+    <string name="title_activity_tablero">activity_tablero</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
     />
     />
 </resources>

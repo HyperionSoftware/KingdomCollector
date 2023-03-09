@@ -11,6 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KingdomCollector"
         tools:targetApi="31">
+
         <activity
             android:name=".AboutUs"
             android:exported="false" />
@@ -31,6 +32,10 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
+        <activity android:name=".activity_tablero"
+            android:exported="false"
+            android:screenOrientation="landscape"/>
+
     </application>
 
 </manifest>
