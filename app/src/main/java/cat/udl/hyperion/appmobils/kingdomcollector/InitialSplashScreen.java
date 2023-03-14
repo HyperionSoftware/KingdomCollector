@@ -24,6 +24,6 @@ public class InitialSplashScreen extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        },3500);
+        },1500);
     }
 }

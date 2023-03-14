@@ -16,7 +16,7 @@
         tools:layout_editor_absoluteY="-175dp" />
 
     <ImageButton
-        android:id="@+id/btn_start_button"
+        android:id="@+id/btn_start"
         android:layout_width="179dp"
         android:layout_height="103dp"
         android:background="@mipmap/image_button_start_2"
