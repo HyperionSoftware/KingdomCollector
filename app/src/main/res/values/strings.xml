@@ -77,8 +77,28 @@
     <string name="AboutUs">About us</string>
     <string name="btn_settings"><![CDATA[Term&Cond]]></string>
     <string name="title_activity_tablero">activity_tablero</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="btn_00">0-0</string>
+    <string name="btn_01">0-1</string>
+    <string name="btn_02">0-2</string>
+    <string name="btn_10">1-0</string>
+    <string name="btn_11">1-1</string>
+    <string name="btn_12">1-2</string>
+    <string name="btn_20">2-0</string>
+    <string name="btn_21">2-1</string>
+    <string name="btn_22">2-2</string>
+    <string name="btn_c1">c1</string>
+    <string name="btn_c2">c2</string>
+    <string name="btn_c3">c3</string>
+    <string name="btn_c4">c4</string>
+    <string name="btn_c5">c5</string>
+    <string name="txt_score">Score:</string>
+    <string name="txt_player_name">Player name</string>
+    <string name="txt_cards">Cards:</string>
+    />
+    />
     />
     />
 </resources>
