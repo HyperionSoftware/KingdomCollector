@@ -1,65 +1,66 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.views;
 
-import android.content.Context;
-import android.graphics.Color;
-import android.util.AttributeSet;
-import android.view.Gravity;
-import android.widget.GridLayout;
-import android.widget.LinearLayout;
+import android.os.Bundle;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
-//import androidx.cardview.widget.CardView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 
-import cat.udl.hyperion.appmobils.kingdomcollector.Models.Board;
 import cat.udl.hyperion.appmobils.kingdomcollector.Models.Card;
+import cat.udl.hyperion.appmobils.kingdomcollector.R;
+import cat.udl.hyperion.appmobils.kingdomcollector.viewmodels.BoardViewModel;
 
-public class BoardView extends GridLayout {
-    private CardView[][] cardViews;
+public class BoardView extends Fragment {
 
-    public BoardView(Context context) {
-        super(context);
-        init(context);
+    private Button[][] buttons;
+    private BoardViewModel boardViewModel;
+
+    public BoardView() {
+        // Required empty public constructor
     }
 
-    public BoardView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        init(context);
+    public static BoardView newInstance() {
+        BoardView fragment = new BoardView();
+        return fragment;
     }
 
-    public BoardView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        init(context);
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        boardViewModel = new ViewModelProvider(this).get(BoardViewModel.class);
     }
 
-    private void init(Context context) {
-        setColumnCount(Board.getSize());
-        setRowCount(Board.getSize());
-        setPadding(10, 10, 10, 10);
-        setBackgroundColor(Color.BLACK);
-        cardViews = new CardView[Board.getSize()][Board.getSize()];
-        createEmptyCardViews(context);
-    }
 
-    private void createEmptyCardViews(Context context) {
-        for (int i = 0; i < Board.getSize(); i++) {
-            for (int j = 0; j < Board.getSize(); j++) {
-                CardView cardView = new CardView(context);
-                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                        LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-                layoutParams.setMargins(5, 5, 5, 5);
-                layoutParams.gravity = Gravity.CENTER;
-                cardView.setLayoutParams(layoutParams);
-                cardViews[i][j] = cardView;
-                addView(cardView);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_board, container, false);
+
+        buttons = new Button[3][3];
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                String buttonID = "button_" + i + j;
+                int resID = getResources().getIdentifier(buttonID, "id", getActivity().getPackageName());
+                buttons[i][j] = view.findViewById(resID);
+                int finalI = i;
+                int finalJ = j;
+                buttons[i][j].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Aquí puedes colocar una carta en el tablero usando el BoardViewModel
+                        Card card = new Card(1,"Hola", 2,3,4,5,"image",1); // Crea una instancia de Card con los valores apropiados
+                        boardViewModel.placeCard(finalI, finalJ, card);
+
+
+                    }
+                });
             }
         }
+
+        return view;
     }
 
-    public void setBoard(Board board) {
-        for (int i = 0; i < Board.getSize(); i++) {
-            for (int j = 0; j < Board.getSize(); j++) {
-                Card card = board.obtenerCarta(i, j);
-                cardViews[i][j].setCard(card);
-            }
-        }
-    }
 }

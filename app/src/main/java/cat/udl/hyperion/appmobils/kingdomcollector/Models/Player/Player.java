@@ -49,6 +49,7 @@ public abstract class Player {
     }
 
     public void removeCard(Card card) {
+
         this.deck.eliminarCarta(card);
     }
 
@@ -62,6 +63,18 @@ public abstract class Player {
 
     public void resetCards() {
         this.deck = new Deck();
+    }
+
+    public void setScore(int newScore) {
+        this.score = newScore;
+    }
+
+    public void setDeck(int newNumberOfCards) {
+        int indice = deck.getSelected();
+        removeCard(deck.obtenerCarta(indice));
+        if(deck.getSize() != newNumberOfCards){
+            System.out.println("Problem deleting card of the player...");
+        }
     }
 }
 

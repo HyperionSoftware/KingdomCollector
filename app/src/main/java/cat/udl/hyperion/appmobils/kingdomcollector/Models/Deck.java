@@ -52,6 +52,14 @@ public class Deck {
     public List<Card> getCards() {
         return cards;
     }
+    public int getSelected(){
+       for(int i = 0; i < cards.size(); i++){
+           if(cards.get(i).isSelected()){
+               return i;
+           }
+       }
+       return -1;
+    }
 }
 
 

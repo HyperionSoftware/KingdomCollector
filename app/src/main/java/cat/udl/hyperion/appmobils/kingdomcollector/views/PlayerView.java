@@ -1,46 +1,58 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.views;
 
-import android.content.Context;
-import android.util.AttributeSet;
+import android.os.Bundle;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
-import android.widget.LinearLayout;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
-
-import cat.udl.hyperion.appmobils.kingdomcollector.Models.Player.Player;
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
+import cat.udl.hyperion.appmobils.kingdomcollector.Models.Player.Player;
 
-public class PlayerView extends LinearLayout {
-    private TextView playerNameTextView;
-    private TextView playerScoreTextView;
-    private TextView playerNumberOfCardsTextView;
+public class PlayerView extends Fragment {
 
-    public PlayerView(Context context) {
-        super(context);
-        init(context);
+    private TextView playerName;
+    private TextView playerScore;
+    private TextView playerNumberOfCards;
+
+    private Player player;
+
+    public PlayerView() {
+        // Required empty public constructor
     }
 
-    public PlayerView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        init(context);
+    public static PlayerView newInstance() {
+        PlayerView fragment = new PlayerView();
+        return fragment;
     }
 
-    public PlayerView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        init(context);
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 
-    private void init(Context context) {
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.player_view, this);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_player, container, false);
 
-        playerNameTextView = findViewById(R.id.player_name);
-        playerScoreTextView = findViewById(R.id.player_score);
-        playerNumberOfCardsTextView = findViewById(R.id.player_number_of_cards);
+        playerName = view.findViewById(R.id.player_name);
+        playerScore = view.findViewById(R.id.player_score);
+        playerNumberOfCards = view.findViewById(R.id.player_number_of_cards);
+
+        return view;
     }
 
     public void setPlayer(Player player) {
-        playerNameTextView.setText(player.getName());
-        playerScoreTextView.setText(String.valueOf(player.getScore()));
-        playerNumberOfCardsTextView.setText(String.valueOf(player.getNumberOfCards()));
+        this.player = player;
+        updatePlayerView();
+    }
+
+    private void updatePlayerView() {
+        if (player != null) {
+            playerName.setText(player.getName());
+            playerScore.setText("Score: " + player.getScore());
+            playerNumberOfCards.setText("Cards: " + player.getNumberOfCards());
+        }
     }
 }

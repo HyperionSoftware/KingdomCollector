@@ -3,10 +3,6 @@ package cat.udl.hyperion.appmobils.kingdomcollector.Models;
 //import android.sax.Element;
 
 
-import org.w3c.dom.Element;
-
-import cat.udl.hyperion.appmobils.kingdomcollector.Models.Player.Player;
-
 /**
  * La clase Carta representaría una carta del juego, con sus atributos y métodos y valores numéricos de elemento.
  * */
@@ -18,9 +14,11 @@ public class Card {
     private int powerAbajo;
     private int powerDerecha;
     private String image;
-    private Player owner;
+    private int owner;
 
-    public Card(int id, String name, int powerArriba, int powerIzquierda, int powerAbajo, int powerDerecha, String image, Player owner) {
+    private boolean selected;
+
+    public Card(int id, String name, int powerArriba, int powerIzquierda, int powerAbajo, int powerDerecha, String image, int owner) {
         this.id = id;
         this.name = name;
         this.powerArriba = powerArriba;
@@ -28,7 +26,8 @@ public class Card {
         this.powerAbajo = powerAbajo;
         this.powerDerecha = powerDerecha;
         this.image = image;
-        this.owner = owner;
+        this.owner = 1;
+        this.selected = false;
     }
 
     // Getters y setters
@@ -57,7 +56,7 @@ public class Card {
         return powerIzquierda;
     }
 
-    public Player getOwner() {
+    public int getOwner() {
         return owner;
     }
 
@@ -77,7 +76,7 @@ public class Card {
         this.image = image;
     }
 
-    public void setOwner(Player owner) {
+    public void setOwner(int owner) {
         this.owner = owner;
     }
 
@@ -97,5 +96,8 @@ public class Card {
         this.powerIzquierda = powerIzquierda;
     }
 
+    public boolean isSelected(){
+        return selected;
+    }
 }
 
