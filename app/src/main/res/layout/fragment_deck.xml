@@ -7,7 +7,8 @@
     tools:context=".views.DeckView">
 
     <!-- TODO: Update blank fragment layout -->
-    <LinearLayout
+    <cat.udl.hyperion.appmobils.kingdomcollector.views.DeckView
+        android:id="@+id/deck_view_container"
         android:layout_width="402dp"
         android:layout_height="120dp"
         android:orientation="horizontal"
@@ -46,6 +47,6 @@
             android:layout_width="76dp"
             android:layout_height="111dp"
             android:text="@string/btn_c5" />
-    </LinearLayout>
+    </cat.udl.hyperion.appmobils.kingdomcollector.views.DeckView>
 
 </FrameLayout>

@@ -1,21 +1,28 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.views;
 
-import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import cat.udl.hyperion.appmobils.kingdomcollector.R;
+import android.content.Context;
+import android.util.AttributeSet;
+import android.widget.LinearLayout;
 
-public class DeckView extends Fragment {
+import cat.udl.hyperion.appmobils.kingdomcollector.viewmodels.DeckViewModel;
 
-    public DeckView() {
-        // Constructor vacío requerido
+public class DeckView extends LinearLayout {
+    private DeckViewModel deckViewModel;
+
+    public DeckView(Context context) {
+        super(context);
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Infla el layout para este fragment
-        return inflater.inflate(R.layout.fragment_deck, container, false);
+    public DeckView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
+
+    public DeckView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
+
+    public void setDeckViewModel(DeckViewModel deckViewModel) {
+        this.deckViewModel = deckViewModel;
+        // Configure the view with the ViewModel here
     }
 }
