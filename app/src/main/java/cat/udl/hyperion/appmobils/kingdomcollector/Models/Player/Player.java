@@ -63,5 +63,9 @@ public abstract class Player {
     public void resetCards() {
         this.deck = new Deck();
     }
+
+    public void setScore(int newScore) {
+        this.score = newScore;
+    }
 }
 

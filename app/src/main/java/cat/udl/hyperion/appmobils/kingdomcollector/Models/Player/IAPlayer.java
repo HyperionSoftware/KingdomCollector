@@ -8,6 +8,10 @@ import cat.udl.hyperion.appmobils.kingdomcollector.Models.Card;
  * Esta clase representa un jugador robot.
  * */
 public class IAPlayer extends Player {
+    /**
+     * Constructor de IAPlayer.
+     * @param name
+     */
     public IAPlayer(String name) {
         super(name);
     }
