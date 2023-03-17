@@ -51,7 +51,7 @@ public class BoardView extends Fragment {
                     @Override
                     public void onClick(View v) {
                         // Aquí puedes colocar una carta en el tablero usando el BoardViewModel
-                        Card card = new Card(1,"Hola", 2,3,4,5,"image",1); // Crea una instancia de Card con los valores apropiados
+                        Card card = new Card(1,"Hola", 2,3,4,5); // Crea una instancia de Card con los valores apropiados
                         boardViewModel.placeCard(finalI, finalJ, card);
 
 
