@@ -1,4 +1,4 @@
-package cat.udl.hyperion.appmobils.kingdomcollector.viewmodel;
+package cat.udl.hyperion.appmobils.kingdomcollector.viewmodels;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

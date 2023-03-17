@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_settings).setOnClickListener(view -> setBtn_aboutus());
 
         //Button AboutUs.
-        findViewById(R.id.btn_aboutUs).setOnClickListener(view -> setBtn_settings());
+        findViewById(R.id.btn_terms).setOnClickListener(view -> setBtn_settings());
 
         //Button Start.
         findViewById(R.id.btn_start).setOnClickListener(view -> setBtn_start());

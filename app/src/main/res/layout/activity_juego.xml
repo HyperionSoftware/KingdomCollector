@@ -36,7 +36,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout="@layout/fragment_deck" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
