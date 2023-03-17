@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".TermsAndConditions"
+    tools:context=".views.TermsAndConditions"
     tools:showIn="@layout/activity_terms_and_conditions">
 
     <androidx.core.widget.NestedScrollView

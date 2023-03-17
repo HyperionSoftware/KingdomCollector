@@ -1,4 +1,4 @@
-package cat.udl.hyperion.appmobils.kingdomcollector;
+package cat.udl.hyperion.appmobils.kingdomcollector.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,8 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+
+import cat.udl.hyperion.appmobils.kingdomcollector.R;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -20,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_settings).setOnClickListener(view -> setBtn_aboutus());
 
         //Button AboutUs.
-        findViewById(R.id.btn_aboutUs).setOnClickListener(view -> setBtn_settings());
+        findViewById(R.id.btn_terms).setOnClickListener(view -> setBtn_settings());
 
         //Button Start.
         findViewById(R.id.btn_start).setOnClickListener(view -> setBtn_start());
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setBtn_start(){
-        Intent intent = new Intent(this, activity_tablero.class);
+        Intent intent = new Intent(this, GameActivity.class);
         startActivity(intent);
     }
 

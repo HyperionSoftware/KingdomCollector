@@ -1,4 +1,4 @@
-package cat.udl.hyperion.appmobils.kingdomcollector;
+package cat.udl.hyperion.appmobils.kingdomcollector.views;
 
 import android.os.Bundle;
 

@@ -2,48 +2,64 @@ package cat.udl.hyperion.appmobils.kingdomcollector.Models;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * Esta clase representa las cartas que quedan para poder escoger.
  * */
 public class Deck {
-    private ArrayList<Card> cards;
+    private List<Card> cards;
     private static Deck instance;
 
-    /**
-     * Constructor for the Deck class that initializes the card pool.
-     */
     public Deck() {
-        cards = new ArrayList<>();
+        this.cards = new ArrayList<>();
     }
 
-    public static Object getInstance() {
-
-        if (instance == null) {
+    public static Deck getInstance() {
+        if(instance == null){
             instance = new Deck();
         }
         return instance;
-
     }
 
-    /**
-     * This method shuffles the cards in the deck.
-     */
-    public void shuffle(){
-        /*The shuffle() method uses the Collections.shuffle() method to randomly shuffle the cards in the deck.
-         This method uses the default random number generator to generate a random permutation of the list. */
+
+    // Métodos para agregarCarta, eliminarCarta, obtenerCarta, barajar
+
+    public void agregarCarta(Card card) {
+        cards.add(card);
+    }
+
+    public void eliminarCarta(Card card) {
+        cards.remove(card);
+    }
+
+    public Card obtenerCarta(int index) {
+        if (index >= 0 && index < cards.size()) {
+            return cards.get(index);
+        }
+        return null;
+    }
+
+    public void barajar() {
         Collections.shuffle(cards);
     }
 
-    /**
-     * This method removes a card from the deck.
-     * @param card The card to be removed.
-     */
-    public void remove(Card card){
-        /*The remove() method simply removes the specified card from the deck using the ArrayList.remove() method.
-         Since Card objects are compared by reference, this method will only remove the exact instance of the card
-         that is passed as an argument.*/
-        cards.remove(card);
+        // Considera agregar un método para obtener el tamaño del mazo
+    public int getSize() {
+        return cards.size();
+    }
+
+    public List<Card> getCards() {
+        return cards;
+    }
+    public int getSelected(){
+       for(int i = 0; i < cards.size(); i++){
+           if(cards.get(i).isSelected()){
+               return i;
+           }
+       }
+       return -1;
     }
 }
+
 
