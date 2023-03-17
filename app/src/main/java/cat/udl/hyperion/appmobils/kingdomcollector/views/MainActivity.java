@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setBtn_start(){
-        Intent intent = new Intent(this, juego.class);
+        Intent intent = new Intent(this, GameActivity.class);
         startActivity(intent);
     }
 
