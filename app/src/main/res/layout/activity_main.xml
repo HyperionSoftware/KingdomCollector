@@ -4,23 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".views.MainActivity">
 
     <ImageView
         android:id="@+id/background_menu_pp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:contentDescription="@string/background"
         android:scaleType="centerCrop"
         android:src="@drawable/background_menu_principal"
         tools:layout_editor_absoluteX="27dp"
         tools:layout_editor_absoluteY="-175dp" />
 
     <ImageButton
-        android:id="@+id/btn_start_button"
+        android:id="@+id/btn_start"
         android:layout_width="179dp"
         android:layout_height="103dp"
         android:background="@mipmap/image_button_start_2"
-        android:onClick="AudioMediaPlayer"
+        android:contentDescription="@string/bnt_start"
         app:layout_constraintBottom_toBottomOf="@+id/background_menu_pp"
         app:layout_constraintEnd_toEndOf="@+id/background_menu_pp"
         app:layout_constraintStart_toStartOf="@+id/background_menu_pp"
@@ -31,6 +32,7 @@
         android:id="@+id/btn_settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/action_settings"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.954"
@@ -40,15 +42,17 @@
         app:srcCompat="@android:drawable/ic_dialog_info" />
 
     <Button
-        android:id="@+id/btn_aboutUs"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/AboutUs"
+        android:id="@+id/btn_terms"
+        android:layout_width="227dp"
+        android:layout_height="51dp"
+        android:scaleType="center"
+        android:text="@string/Terms_Cond"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/background_menu_pp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.949"
+        app:layout_constraintHorizontal_bias="0.974"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/background_menu_pp"
-        app:layout_constraintVertical_bias="0.976" />
+        app:layout_constraintVertical_bias="0.954" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

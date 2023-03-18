@@ -3,139 +3,92 @@ package cat.udl.hyperion.appmobils.kingdomcollector.Models;
 //import android.sax.Element;
 
 
-import org.w3c.dom.Element;
+import cat.udl.hyperion.appmobils.kingdomcollector.Models.Player.Player;
 
 /**
  * La clase Carta representaría una carta del juego, con sus atributos y métodos y valores numéricos de elemento.
  * */
 public class Card {
-
-    private int up;
-    private int down;
-    private int left;
-    private int right;
-    private Element element;
-    private int value;
-
-    private int positionRow;
-    private int positionColumn;
-
+    private int id;
+    private String name;
+    private int powerArriba;
+    private int powerIzquierda;
+    private int powerAbajo;
+    private int powerDerecha;
     private boolean selected;
+    private int owner;
 
-    /**
-     * Método constructor de una carta.
-     * */
-    public Card(int up, int down, int left, int right, int value, int positionRow, int positionColumn){
-        this.up = up;
-        this.down = down;
-        this.left = left;
-        this.right = right;
-        this.value = value;
-        this.positionRow = positionRow;
-        this.positionColumn = positionColumn;
-        this.selected = false; //TODO: ¿? Is that thing correct?
-    }
-    /**
-     * Este método se llama cuando la carta es capturada por el jugador enemigo.
-     * */
-    public void capture(){
-        // Set the selected status of the card to false
-        selected = false;
-
-        // Set the position of the card to (-1, -1) to indicate that it's no longer on the board
-        positionRow = -1;
-        positionColumn = -1;
-
-
-        // Remove the card from the pool
-        //Deck.getInstance().remove(this);
-
-        // Subtract the value of the card from the enemy player's score
-        //Game.getInstance().getCurrentEnemy().decreaseScore(value);
-
-        // Add the value of the card to the capturing player's score
-        //Game.getInstance().getCurrentPlayer().increaseScore(value);
+    public Card(int id, String name, int powerArriba, int powerIzquierda, int powerAbajo, int powerDerecha) {
+        this.id = id;
+        this.name = name;
+        this.powerArriba = powerArriba;
+        this.powerIzquierda = powerIzquierda;
+        this.powerAbajo = powerAbajo;
+        this.powerDerecha = powerDerecha;
+        this.owner = -1;
+        this.selected = false;
     }
 
-
-    /**
-     * Este método se llama cuando el jugador selecciona la carta.
-     * */
-    public void select(){
-        selected = true;
-        // Add code to handle the selection of the card by the player
-        // For example, update the UI to show that the card is selected
-        //Game.getInstance().getCurrentPlayer().setSelectedCard(this);
-    }
-    public int getUp() {
-        return up;
+    public int getOwner() {
+        return owner;
     }
 
-    public void setUp(int up) {
-        this.up = up;
+    public void setOwner(int owner) {
+        this.owner = owner;
+    }
+    // Getters y setters
+
+    public String getName() {
+        return name;
     }
 
-    public int getDown() {
-        return down;
+    public int getId() {
+        return id;
     }
 
-    public void setDown(int down) {
-        this.down = down;
+    public int getPowerAbajo() {
+        return powerAbajo;
     }
 
-    public int getLeft() {
-        return left;
+    public int getPowerArriba() {
+        return powerArriba;
     }
 
-    public void setLeft(int left) {
-        this.left = left;
+    public int getPowerDerecha() {
+        return powerDerecha;
     }
 
-    public int getRight() {
-        return right;
+    public int getPowerIzquierda() {
+        return powerIzquierda;
     }
 
-    public void setRight(int right) {
-        this.right = right;
+
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Element getElement() {
-        return element;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setElement(Element element) {
-        this.element = element;
+    public void setPowerAbajo(int powerAbajo) {
+        this.powerAbajo = powerAbajo;
     }
 
-    public int getValue() {
-        return value;
+    public void setPowerArriba(int powerArriba) {
+        this.powerArriba = powerArriba;
     }
 
-    public void setValue(int value) {
-        this.value = value;
+    public void setPowerDerecha(int powerDerecha) {
+        this.powerDerecha = powerDerecha;
     }
 
-    public int getPositionRow() {
-        return positionRow;
+    public void setPowerIzquierda(int powerIzquierda) {
+        this.powerIzquierda = powerIzquierda;
     }
 
-    public void setPositionRow(int positionRow) {
-        this.positionRow = positionRow;
-    }
-
-    public int getPositionColumn() {
-        return positionColumn;
-    }
-
-    public void setPositionColumn(int positionColumn) {
-        this.positionColumn = positionColumn;
-    }
-
-    public boolean isSelected() {
+    public boolean isSelected(){
         return selected;
     }
-
-    public void setSelected(boolean selected) {
-        this.selected = selected;
-    }
 }
+

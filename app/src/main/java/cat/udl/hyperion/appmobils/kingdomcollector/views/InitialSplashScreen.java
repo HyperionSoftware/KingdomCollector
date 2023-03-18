@@ -1,12 +1,13 @@
-package cat.udl.hyperion.appmobils.kingdomcollector;
+package cat.udl.hyperion.appmobils.kingdomcollector.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
+
+import cat.udl.hyperion.appmobils.kingdomcollector.R;
 
 public class InitialSplashScreen extends AppCompatActivity {
 
@@ -20,10 +21,10 @@ public class InitialSplashScreen extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(InitialSplashScreen.this,MainActivity.class);
+                Intent intent = new Intent(InitialSplashScreen.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }
-        },3500);
+        },1500);
     }
 }
