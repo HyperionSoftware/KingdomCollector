@@ -1,6 +1,8 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.views;
 
 import android.os.Bundle;
+
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -11,19 +13,20 @@ import android.widget.Button;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.Models.Card;
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
+import cat.udl.hyperion.appmobils.kingdomcollector.databinding.FragmentBoardBinding;
 import cat.udl.hyperion.appmobils.kingdomcollector.viewmodels.BoardViewModel;
 
-public class BoardView extends Fragment {
+public class BoardFragment extends Fragment {
 
     private Button[][] buttons;
     private BoardViewModel boardViewModel;
 
-    public BoardView() {
+    public BoardFragment() {
         // Required empty public constructor
     }
 
-    public static BoardView newInstance() {
-        BoardView fragment = new BoardView();
+    public static BoardFragment newInstance() {
+        BoardFragment fragment = new BoardFragment();
         return fragment;
     }
 
@@ -33,11 +36,13 @@ public class BoardView extends Fragment {
         boardViewModel = new ViewModelProvider(this).get(BoardViewModel.class);
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_board, container, false);
+        FragmentBoardBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_board, container, false);
+        binding.setBoardViewModel(boardViewModel);
+        binding.setLifecycleOwner(this);
+        View view = binding.getRoot();
 
         buttons = new Button[3][3];
         for (int i = 0; i < 3; i++) {
@@ -51,10 +56,9 @@ public class BoardView extends Fragment {
                     @Override
                     public void onClick(View v) {
                         // Aquí puedes colocar una carta en el tablero usando el BoardViewModel
+                        //TODO: Implementar colocar cartas onclick, cuando una carta está seleccionada, la pones en la posición clicada.
                         Card card = new Card(1,"Hola", 2,3,4,5); // Crea una instancia de Card con los valores apropiados
                         boardViewModel.placeCard(finalI, finalJ, card);
-
-
                     }
                 });
             }
