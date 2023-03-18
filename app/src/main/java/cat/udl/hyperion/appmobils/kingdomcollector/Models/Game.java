@@ -12,6 +12,7 @@ public class Game {
 
     public Game(Player player1, Player player2, int boardSize) {
         this.player1 = player1;
+        player1.setName("JOAN");
         this.player2 = player2;
         this.board = new Board();
         this.currentPlayer = player1;

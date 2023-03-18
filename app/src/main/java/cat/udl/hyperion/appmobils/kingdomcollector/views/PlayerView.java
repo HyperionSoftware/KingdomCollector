@@ -5,16 +5,13 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
 import cat.udl.hyperion.appmobils.kingdomcollector.Models.Player.Player;
+import cat.udl.hyperion.appmobils.kingdomcollector.databinding.FragmentPlayerBinding;
 
 public class PlayerView extends Fragment {
 
-    private TextView playerName;
-    private TextView playerScore;
-    private TextView playerNumberOfCards;
-
+    private FragmentPlayerBinding binding;
     private Player player;
 
     public PlayerView() {
@@ -34,11 +31,13 @@ public class PlayerView extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_player, container, false);
+        binding = FragmentPlayerBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
 
-        playerName = view.findViewById(R.id.player_name);
-        playerScore = view.findViewById(R.id.player_score);
-        playerNumberOfCards = view.findViewById(R.id.player_number_of_cards);
+
+        // ViewModel y el LifecycleOwner para un futuro por si acaso lo dejo aquí.
+        // binding.setViewModel(viewModel);
+        // binding.setLifecycleOwner(getViewLifecycleOwner());
 
         return view;
     }
@@ -50,9 +49,15 @@ public class PlayerView extends Fragment {
 
     private void updatePlayerView() {
         if (player != null) {
-            playerName.setText(player.getName());
-            playerScore.setText("Score: " + player.getScore());
-            playerNumberOfCards.setText("Cards: " + player.getNumberOfCards());
+            binding.playerName.setText(player.getName());
+            binding.playerScore.setText("Score: " + player.getScore());
+            binding.playerNumberOfCards.setText("Cards: " + player.getNumberOfCards());
         }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 }

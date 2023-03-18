@@ -13,6 +13,8 @@ public abstract class Player {
         private Deck deck; //Deck of the player.
         private int score;
 
+
+
     public Player(String name) {
         setName(name);
         this.score = 0;

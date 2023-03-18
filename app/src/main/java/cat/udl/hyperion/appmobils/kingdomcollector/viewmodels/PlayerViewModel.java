@@ -20,6 +20,15 @@ public class PlayerViewModel extends ViewModel {
         return player;
     }
 
+    public String getName(){
+        Player currentPlayer = player.getValue();
+        if(currentPlayer!=null){
+            String s = "Player name: " + currentPlayer.getName();
+            return s;
+        }
+        return null;
+    }
+
     public void updateScore(int newScore) {
         Player currentPlayer = player.getValue();
         if (currentPlayer != null) {
@@ -35,4 +44,5 @@ public class PlayerViewModel extends ViewModel {
             player.setValue(currentPlayer);
         }
     }
+
 }

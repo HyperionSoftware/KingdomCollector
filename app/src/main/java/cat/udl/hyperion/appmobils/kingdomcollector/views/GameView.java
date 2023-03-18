@@ -35,8 +35,8 @@ public class GameView extends Fragment {
         FragmentManager fragmentManager = getChildFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        BoardView boardView = BoardView.newInstance();
-        fragmentTransaction.add(R.id.fragment_container, boardView);
+        BoardFragment boardFragment = BoardFragment.newInstance();
+        fragmentTransaction.add(R.id.fragment_container, boardFragment);
 
         PlayerView playerFragment = new PlayerView();
         fragmentTransaction.replace(R.id.player_fragment_container, playerFragment);
