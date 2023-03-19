@@ -5,14 +5,17 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import cat.udl.hyperion.appmobils.kingdomcollector.Models.Card;
 import cat.udl.hyperion.appmobils.kingdomcollector.Models.Deck;
+import cat.udl.hyperion.appmobils.kingdomcollector.views.OnCardSelectedListener;
+
 
 public class DeckViewModel extends ViewModel {
     private MutableLiveData<Deck> deckLiveData;
-
+    private OnCardSelectedListener onCardSelectedListener;
     public DeckViewModel() {
         deckLiveData = new MutableLiveData<>();
         deckLiveData.setValue(Deck.getInstance());
     }
+
 
     public LiveData<Deck> getDeckLiveData() {
         return deckLiveData;
@@ -65,4 +68,14 @@ public class DeckViewModel extends ViewModel {
         }
         return -1;
     }
+    public void setOnCardSelectedListener(OnCardSelectedListener listener) {
+        this.onCardSelectedListener = listener;
+    }
+    // Método para llamar cuando una carta es seleccionada
+    public void selectCard(Card card) {
+        if (onCardSelectedListener != null) {
+            onCardSelectedListener.onCardSelected(card);
+        }
+    }
 }
+

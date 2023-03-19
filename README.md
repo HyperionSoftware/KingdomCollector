@@ -37,9 +37,19 @@ Cadena: Para activar la regla de la cadena previamente necesitamos haber activad
 Regla Igual
 La Regla "Igual" establece que, si colocas una carta entre dos con el mismo valor en los bordes, las dos cartas se volverán de tu color. Vamos con una descripción visual. 
 
-
 Regla Suma
 "Suma" funciona de una manera parecida a igual, pero cuando el valor de los bordes sumados sea el mismo. 
 
 Regla Pared
 "Pared" es una regla que afecta a Igual y Suma. Con esta regla activa, el borde del tablero cuenta como una A (10) a la hora de hacer cálculos para Suma e Igual.
+
+## Reglas del juego mínimas:
+
+Los valores de las cartas se comprenden entre 1-10, siendo el número 10 la letra “A” el máximo valor. Las cartas se enfrentan para ganar puntos y zonas del tablero, para que una carta se enfrente a otra se tiene que colocar en una de las casillas adyacentes. De esta manera se suman puntos, hasta que el tablero está lleno y el jugador con mayor puntuación gana la partida.
+
+Regla Pared
+"Pared" es una regla que afecta a Igual y Suma. Con esta regla activa, el borde del tablero cuenta como una A (10) a la hora de hacer cálculos para Suma e Igual.
+
+Regla Suma
+"Suma" funciona de una manera parecida a igual, pero cuando el valor de los bordes sumados sea el mismo. 
+
