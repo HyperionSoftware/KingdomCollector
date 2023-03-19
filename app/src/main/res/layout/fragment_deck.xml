@@ -28,30 +28,35 @@
                 android:layout_width="76dp"
                 android:layout_height="111dp"
                 android:layout_marginStart="12dp"
+                android:foreground="@drawable/reverse_card"
                 android:text="@string/btn_c1" />
 
             <Button
                 android:id="@+id/button_c2"
                 android:layout_width="76dp"
                 android:layout_height="111dp"
+                android:foreground="@drawable/reverse_card"
                 android:text="@string/btn_c2" />
 
             <Button
                 android:id="@+id/button_c3"
                 android:layout_width="76dp"
                 android:layout_height="111dp"
+                android:foreground="@drawable/reverse_card"
                 android:text="@string/btn_c3" />
 
             <Button
                 android:id="@+id/button_c4"
                 android:layout_width="76dp"
                 android:layout_height="111dp"
+                android:foreground="@drawable/reverse_card"
                 android:text="@string/btn_c4" />
 
             <Button
                 android:id="@+id/button_c5"
                 android:layout_width="76dp"
                 android:layout_height="111dp"
+                android:foreground="@drawable/reverse_card"
                 android:text="@string/btn_c5" />
         </cat.udl.hyperion.appmobils.kingdomcollector.views.DeckView>
 
