@@ -102,4 +102,23 @@ public abstract class Player {
         return this.deck.getSize();
     }
 
+    public int getScore() {
+        return this.score;
+    }
+
+    public void resetCards() {
+        this.deck = new Deck();
+    }
+
+    public void setScore(int newScore) {
+        this.score = newScore;
+    }
+
+    public void setDeck(int newNumberOfCards) {
+        int indice = deck.getSelected();
+        removeCard(deck.obtenerCarta(indice));
+        if(deck.getSize() != newNumberOfCards){
+            System.out.println("Problem deleting card of the player...");
+        }
+    }
 }
