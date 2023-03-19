@@ -15,11 +15,18 @@ import cat.udl.hyperion.appmobils.kingdomcollector.Models.Card;
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
 import cat.udl.hyperion.appmobils.kingdomcollector.databinding.FragmentBoardBinding;
 import cat.udl.hyperion.appmobils.kingdomcollector.viewmodels.BoardViewModel;
+import cat.udl.hyperion.appmobils.kingdomcollector.viewmodels.DeckViewModel;
+
+
 
 public class BoardFragment extends Fragment {
 
     private Button[][] buttons;
     private BoardViewModel boardViewModel;
+    private DeckViewModel deckViewModel;
+
+    private Card selectedCard;
+
 
     public BoardFragment() {
         // Required empty public constructor
@@ -34,6 +41,8 @@ public class BoardFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         boardViewModel = new ViewModelProvider(this).get(BoardViewModel.class);
+        deckViewModel = new ViewModelProvider(this).get(DeckViewModel.class);
+        deckViewModel.setOnCardSelectedListener(boardViewModel); // Establece BoardViewModel como el listener de selección de cartas en DeckViewModel
     }
 
     @Override
@@ -55,10 +64,10 @@ public class BoardFragment extends Fragment {
                 buttons[i][j].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        // Aquí puedes colocar una carta en el tablero usando el BoardViewModel
-                        //TODO: Implementar colocar cartas onclick, cuando una carta está seleccionada, la pones en la posición clicada.
-                        Card card = new Card(1,"Hola", 2,3,4,5); // Crea una instancia de Card con los valores apropiados
-                        boardViewModel.placeCard(finalI, finalJ, card);
+                        if (selectedCard != null) { // Comprueba si hay una carta seleccionada
+                            boardViewModel.placeCard(finalI, finalJ, selectedCard); // Coloca la carta seleccionada en la posición clicada
+                            selectedCard = null; // Limpia la carta seleccionada para que no pueda ser colocada de nuevo
+                        }
                     }
                 });
             }
@@ -68,3 +77,20 @@ public class BoardFragment extends Fragment {
     }
 
 }
+/*public class BoardFragment extends Fragment {
+    // ...
+    private BoardViewModel boardViewModel;
+    private DeckViewModel deckViewModel;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        boardViewModel = new ViewModelProvider(this).get(BoardViewModel.class);
+        deckViewModel = new ViewModelProvider(this).get(DeckViewModel.class);
+        deckViewModel.setOnCardSelectedListener(boardViewModel); // Establece BoardViewModel como el listener de selección de cartas en DeckViewModel
+    }
+
+    // ...
+}
+*/
+
