@@ -7,20 +7,33 @@ import cat.udl.hyperion.appmobils.kingdomcollector.Models.Card;
 import cat.udl.hyperion.appmobils.kingdomcollector.Models.Deck;
 import cat.udl.hyperion.appmobils.kingdomcollector.views.OnCardSelectedListener;
 
-
+/**
+ * Esta clase ViewModel maneja el Deck de cartas y se encarga de la comunicación entre la vista y el modelo.
+ * */
 public class DeckViewModel extends ViewModel {
     private MutableLiveData<Deck> deckLiveData;
     private OnCardSelectedListener onCardSelectedListener;
+
+    /**
+     * Constructor de la clase DeckViewModel. Inicializa el DeckLiveData.
+     */
     public DeckViewModel() {
         deckLiveData = new MutableLiveData<>();
         deckLiveData.setValue(Deck.getInstance());
     }
 
-
+    /**
+     * Obtiene el DeckLiveData.
+     * @return LiveData de Deck.
+     */
     public LiveData<Deck> getDeckLiveData() {
         return deckLiveData;
     }
 
+    /**
+     * Agrega una carta al Deck.
+     * @param card Carta a agregar.
+     */
     public void addCard(Card card) {
         Deck deck = deckLiveData.getValue();
         if (deck != null) {
@@ -29,6 +42,10 @@ public class DeckViewModel extends ViewModel {
         }
     }
 
+    /**
+     * Elimina una carta del Deck.
+     * @param card Carta a eliminar.
+     */
     public void removeCard(Card card) {
         Deck deck = deckLiveData.getValue();
         if (deck != null) {
@@ -37,6 +54,11 @@ public class DeckViewModel extends ViewModel {
         }
     }
 
+    /**
+     * Obtiene una carta del Deck según su índice.
+     * @param index Índice de la carta en el Deck.
+     * @return Carta en la posición especificada.
+     */
     public Card getCard(int index) {
         Deck deck = deckLiveData.getValue();
         if (deck != null) {
@@ -45,6 +67,9 @@ public class DeckViewModel extends ViewModel {
         return null;
     }
 
+    /**
+     * Baraja las cartas del Deck.
+     */
     public void shuffle() {
         Deck deck = deckLiveData.getValue();
         if (deck != null) {
@@ -53,6 +78,10 @@ public class DeckViewModel extends ViewModel {
         }
     }
 
+    /**
+     * Obtiene el tamaño del Deck.
+     * @return Tamaño del Deck.
+     */
     public int getDeckSize() {
         Deck deck = deckLiveData.getValue();
         if (deck != null) {
@@ -61,6 +90,10 @@ public class DeckViewModel extends ViewModel {
         return 0;
     }
 
+    /**
+     * Obtiene la posición de la carta seleccionada.
+     * @return Índice de la carta seleccionada.
+     */
     public int getSelectedCard() {
         Deck deck = deckLiveData.getValue();
         if (deck != null) {
@@ -68,14 +101,22 @@ public class DeckViewModel extends ViewModel {
         }
         return -1;
     }
+
+    /**
+     * Establece el OnCardSelectedListener.
+     * @param listener Listener de selección de cartas.
+     */
     public void setOnCardSelectedListener(OnCardSelectedListener listener) {
         this.onCardSelectedListener = listener;
     }
-    // Método para llamar cuando una carta es seleccionada
+
+    /**
+     * Método para llamar cuando se selecciona una carta.
+     * @param card Carta seleccionada.
+     */
     public void selectCard(Card card) {
         if (onCardSelectedListener != null) {
             onCardSelectedListener.onCardSelected(card);
         }
     }
 }
-

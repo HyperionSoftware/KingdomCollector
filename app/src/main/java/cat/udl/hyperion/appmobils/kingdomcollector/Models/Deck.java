@@ -6,16 +6,24 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Esta clase representa las cartas que quedan para poder escoger.
- * */
+ * La clase Deck representa las cartas que quedan para poder escoger.
+ */
 public class Deck {
     private List<Card> cards;
     private static Deck instance;
 
+    /**
+     * Crea una nueva instancia de Deck.
+     */
     public Deck() {
         this.cards = new ArrayList<>();
     }
 
+    /**
+     * Devuelve la instancia única de Deck.
+     *
+     * @return la instancia única de Deck
+     */
     public static Deck getInstance() {
         if(instance == null){
             instance = new Deck();
@@ -23,17 +31,30 @@ public class Deck {
         return instance;
     }
 
-
-    // Métodos para agregarCarta, eliminarCarta, obtenerCarta, barajar
-
+    /**
+     * Agrega una carta al mazo.
+     *
+     * @param card la carta a agregar
+     */
     public void agregarCarta(Card card) {
         cards.add(card);
     }
 
+    /**
+     * Elimina una carta del mazo.
+     *
+     * @param card la carta a eliminar
+     */
     public void eliminarCarta(Card card) {
         cards.remove(card);
     }
 
+    /**
+     * Obtiene una carta del mazo según su índice.
+     *
+     * @param index el índice de la carta a obtener
+     * @return la carta obtenida o null si el índice está fuera de rango
+     */
     public Card obtenerCarta(int index) {
         if (index >= 0 && index < cards.size()) {
             return cards.get(index);
@@ -41,6 +62,11 @@ public class Deck {
         return null;
     }
 
+    /**
+     * Obtiene una carta aleatoria del mazo y la elimina del mismo.
+     *
+     * @return la carta obtenida aleatoriamente
+     */
     public Card obtenerCartaAleatoria(){
         Random random = new Random();
         int randomIndex = random.nextInt(cards.size() - 0 + 1) + 0;
@@ -48,27 +74,49 @@ public class Deck {
         eliminarCarta(card);
         return card;
     }
+
+    /**
+     * Baraja el mazo.
+     */
     public void barajar() {
         Collections.shuffle(cards);
     }
 
-        // Considera agregar un método para obtener el tamaño del mazo
+    /**
+     * Obtiene el tamaño del mazo.
+     *
+     * @return el número de cartas en el mazo
+     */
     public int getSize() {
         return cards.size();
     }
 
+    /**
+     * Obtiene la lista de cartas en el mazo.
+     *
+     * @return la lista de cartas en el mazo
+     */
     public List<Card> getCards() {
         return cards;
     }
+
+    /**
+     * Obtiene el índice de la carta seleccionada en el mazo.
+     *
+     * @return el índice de la carta seleccionada o -1 si no hay ninguna seleccionada
+     */
     public int getSelected(){
-       for(int i = 0; i < cards.size(); i++){
-           if(cards.get(i).isSelected()){
-               return i;
-           }
-       }
-       return -1;
+        for(int i = 0; i < cards.size(); i++){
+            if(cards.get(i).isSelected()){
+                return i;
+            }
+        }
+        return -1;
     }
 
+    /**
+     * Inicializa el mazo con 15 cartas aleatorias.
+     */
     public void initializeDeck(){
         Card card;
         Random random = new Random();
