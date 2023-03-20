@@ -98,10 +98,9 @@
     <string name="txt_score">Score:</string>
     <string name="txt_player_name">Player name</string>
     <string name="txt_cards">Cards:</string>
+    <string name="login_title">Iniciar sesión</string>
+    <string name="email_hint">Correo electrónico</string>
+    <string name="password_hint">Contraseña</string>
+    <string name="login_button">Iniciar sesión</string>
 
-
-    />
-    />
-    />
-    />
 </resources>
