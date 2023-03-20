@@ -12,7 +12,7 @@
         android:theme="@style/Theme.KingdomCollector"
         tools:targetApi="31">
         <activity
-            android:name=".login"
+            android:name=".views.Login"
             android:exported="false" />
         <activity
             android:name=".views.GameActivity"

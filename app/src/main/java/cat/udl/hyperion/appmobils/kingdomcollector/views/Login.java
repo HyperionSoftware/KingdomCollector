@@ -1,10 +1,12 @@
-package cat.udl.hyperion.appmobils.kingdomcollector;
+package cat.udl.hyperion.appmobils.kingdomcollector.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class login extends AppCompatActivity {
+import cat.udl.hyperion.appmobils.kingdomcollector.R;
+
+public class Login extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
