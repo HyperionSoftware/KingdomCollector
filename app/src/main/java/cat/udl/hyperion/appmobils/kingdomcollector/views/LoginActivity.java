@@ -1,6 +1,6 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.views;
-
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,8 +15,8 @@ public class LoginActivity extends AppCompatActivity {
 
     protected String myClassTag = this.getClass().getSimpleName();
 
-    EditText etEmail;
-    EditText etPassword;
+    EditText editText_email;
+    EditText editText_password;
     private FirebaseAuth mAuth;
 
     @Override
@@ -24,8 +24,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        etEmail = findViewById(R.id.email_input);
-        etPassword = findViewById(R.id.password_input);
+        editText_email = findViewById(R.id.email_input);
+        editText_password = findViewById(R.id.password_input);
         findViewById(R.id.btn_login).setOnClickListener(v -> login());
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
@@ -39,8 +39,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void login() {
-        String email = etEmail.getText().toString();
-        String password = etPassword.getText().toString();
+        String email = editText_email.getText().toString();
+        String password = editText_password.getText().toString();
 
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
                         Log.w(myClassTag, "signInWithEmail:failure", task.getException());
                         Toast.makeText(LoginActivity.this, "Authentication failed.",
                                 Toast.LENGTH_SHORT).show();
-                        etPassword.setText("");
+                        editText_password.setText("");
                     }
                 });
     }
@@ -61,6 +61,8 @@ public class LoginActivity extends AppCompatActivity {
     private void reload(){
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null) {
+            editText_password.setText("");
+            editText_email.setText("");
             Intent i = new Intent(this, MainActivity.class);
             startActivity(i);
         }
