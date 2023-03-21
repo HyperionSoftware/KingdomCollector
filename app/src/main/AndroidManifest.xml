@@ -12,6 +12,9 @@
         android:theme="@style/Theme.KingdomCollector"
         tools:targetApi="31">
         <activity
+            android:name=".views.Register"
+            android:exported="false" />
+        <activity
             android:name=".views.LoginActivity"
             android:exported="false" />
         <activity
