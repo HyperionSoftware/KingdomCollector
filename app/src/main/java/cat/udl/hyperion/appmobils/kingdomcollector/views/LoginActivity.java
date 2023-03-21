@@ -29,8 +29,13 @@ public class LoginActivity extends AppCompatActivity {
         findViewById(R.id.btn_login).setOnClickListener(v -> login());
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
+        findViewById(R.id.register_button1).setOnClickListener(v-> goToRegisterPage());
     }
 
+    private void goToRegisterPage(){
+        Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
+    }
     @Override
     public void onStart() {
         super.onStart();
@@ -39,8 +44,20 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void login() {
-        String email = editText_email.getText().toString();
-        String password = editText_password.getText().toString();
+        String email = editText_email.getText().toString().trim();
+        String password = editText_password.getText().toString().trim();
+
+        if (email.isEmpty()) {
+            editText_email.setError("Email is required");
+            editText_email.requestFocus();
+            return;
+        }
+
+        if (password.isEmpty()) {
+            editText_password.setError("Password is required");
+            editText_password.requestFocus();
+            return;
+        }
 
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
@@ -57,6 +74,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
     }
+
 
     private void reload(){
         FirebaseUser currentUser = mAuth.getCurrentUser();

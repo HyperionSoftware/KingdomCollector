@@ -51,8 +51,8 @@
 
     <Button
         android:id="@+id/btn_login"
-        android:layout_width="254dp"
-        android:layout_height="79dp"
+        android:layout_width="264dp"
+        android:layout_height="80dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
@@ -65,5 +65,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password_input"
         app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/register_button1"
+        android:layout_width="259dp"
+        android:layout_height="68dp"
+        android:text="@string/register"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.513"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_login"
+        app:layout_constraintVertical_bias="0.058" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

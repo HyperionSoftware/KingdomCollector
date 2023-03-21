@@ -103,5 +103,6 @@
     <string name="password_hint">Contraseña</string>
     <string name="login_button">Iniciar sesión</string>
     <string name="logout">Logout</string>
+    <string name="register">Register</string>
 
 </resources>
