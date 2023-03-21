@@ -64,7 +64,15 @@ public class LoginActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d(myClassTag, "signInWithEmail:success");
-                        reload();
+                        FirebaseUser currentUser = mAuth.getCurrentUser();
+                        if(currentUser.isEmailVerified()){
+                            reload();
+                        }
+                        else{
+                            Toast.makeText(LoginActivity.this, "Verifica tu correo electrónico para iniciar sesión.",
+                                    Toast.LENGTH_SHORT).show();
+                            Log.d(myClassTag, "signInFailed:EmailNotConfirmed");
+                        }
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w(myClassTag, "signInWithEmail:failure", task.getException());

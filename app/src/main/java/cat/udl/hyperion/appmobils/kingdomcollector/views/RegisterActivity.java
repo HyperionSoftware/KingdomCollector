@@ -1,5 +1,6 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.views;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,7 +9,10 @@ import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
@@ -16,6 +20,8 @@ import cat.udl.hyperion.appmobils.kingdomcollector.R;
 public class RegisterActivity extends AppCompatActivity {
     protected String myClassTag = this.getClass().getSimpleName();
     private FirebaseAuth mAuth;
+
+    private FirebaseUser user;
     EditText editText_email;
     EditText editText_password;
     EditText editText_username;
@@ -62,34 +68,37 @@ public class RegisterActivity extends AppCompatActivity {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        // Registro exitoso, actualizar el nombre de usuario del usuario
-                        Log.d(myClassTag, "registerInWithEmail:success");
-                        mAuth.getCurrentUser().updateProfile(new UserProfileChangeRequest.Builder()
-                                        .setDisplayName(username)
-                                        .build())
-                                .addOnCompleteListener(task1 -> {
-                                    if (task1.isSuccessful()) {
-                                        Log.d(myClassTag, "actualitzationInWithEmail:success");
-                                        // Actualización del perfil exitosa, hacer algo en consecuencia (por ejemplo, ir a otra actividad)
-                                        Toast.makeText(RegisterActivity.this, "Registrado correctamente.",
-                                                Toast.LENGTH_SHORT).show();
-                                        goToLoginPage();
-
-                                    } else {
-                                        Log.d(myClassTag, "Error en la actualización del perfil.");
-                                        Toast.makeText(RegisterActivity.this, "Actualitzation of profile failed.",
-                                                Toast.LENGTH_SHORT).show();
-                                        // Error en la actualización del perfil, mostrar un mensaje de error o hacer algo en consecuencia
+                        // El registro fue exitoso, enviar correo de verificación
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        user.sendEmailVerification()
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            Toast.makeText(RegisterActivity.this, "Se ha enviado un correo de verificación a su cuenta de correo electrónico. Por favor, confirme su correo electrónico antes de iniciar sesión.", Toast.LENGTH_LONG).show();
+                                        }
                                     }
                                 });
+                        // Actualizar el nombre de usuario del usuario
+                        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                .setDisplayName(username)
+                                .build();
+                        user.updateProfile(profileUpdates)
+                                .addOnCompleteListener(task1 -> {
+                                    if (task1.isSuccessful()) {
+                                        Log.d(myClassTag, "Perfil actualizado correctamente con el username.");
+                                    }
+                                });
+                        // Ir a la pantalla de inicio de sesión
+                        goToLoginPage();
                     } else {
-                        // Error en el registro, mostrar un mensaje de error o hacer algo en consecuencia
-                        Log.d(myClassTag, "Error en el registro.");
-                        Toast.makeText(RegisterActivity.this, "RegisterActivity failed.",
-                                Toast.LENGTH_SHORT).show();
+                        // El registro falló, mostrar un mensaje de error
+                        Toast.makeText(RegisterActivity.this, "No se pudo crear la cuenta. Por favor, inténtelo de nuevo más tarde.", Toast.LENGTH_LONG).show();
+                        Log.d(myClassTag, "Error al crear la cuenta.", task.getException());
                     }
                 });
     }
+
     private void goToLoginPage(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
