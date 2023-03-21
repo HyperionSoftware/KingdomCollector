@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login">
+    tools:context=".views.LoginActivity">
 
     <TextView
-        android:id="@+id/login_title"
+        android:id="@+id/txt_title_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/login_title"
@@ -19,40 +19,51 @@
 
     <EditText
         android:id="@+id/email_input"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="298dp"
+        android:layout_height="50dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:hint="@string/email_hint"
+        android:autofillHints="email"
         android:inputType="textEmailAddress"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_title" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_title_login" />
 
     <EditText
         android:id="@+id/password_input"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="298dp"
+        android:layout_height="49dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:hint="@string/password_hint"
+        android:autofillHints="password"
         android:inputType="textPassword"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email_input" />
 
     <Button
-        android:id="@+id/login_button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/btn_login"
+        android:layout_width="254dp"
+        android:layout_height="79dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
         android:text="@string/login_button"
+        android:textColor="@color/design_default_color_surface"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password_input" />
+        app:layout_constraintTop_toBottomOf="@+id/password_input"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -75,7 +75,7 @@
     <string name="versionReal">versionReal</string>
     <string name="Terms_Cond">Terms and Cond</string>
     <string name="btn_settings"><![CDATA[Term&Cond]]></string>
-    <string name="title_activity_tablero">activity_tablero</string>
+    <string name="tablero_activity_title">activity_tablero</string>
     <string name="bnt_start">START</string>
     <string name="background" />
 
@@ -98,9 +98,10 @@
     <string name="txt_score">Score:</string>
     <string name="txt_player_name">Player name</string>
     <string name="txt_cards">Cards:</string>
-    <string name="login_title">Iniciar sesión</string>
+    <string name="login_title">Login</string>
     <string name="email_hint">Correo electrónico</string>
     <string name="password_hint">Contraseña</string>
     <string name="login_button">Iniciar sesión</string>
+    <string name="logout">Logout</string>
 
 </resources>

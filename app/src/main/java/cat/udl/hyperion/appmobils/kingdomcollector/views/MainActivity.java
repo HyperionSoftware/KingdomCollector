@@ -6,11 +6,16 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
 
 
 public class MainActivity extends AppCompatActivity {
+    private FirebaseAuth mAuth;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -30,6 +35,18 @@ public class MainActivity extends AppCompatActivity {
         //Music
         MediaPlayer mp = MediaPlayer.create(this,R.raw.check_it_out_now);
         mp.start();
+
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        assert user != null;
+        Toast.makeText(this, "¡WELCOME!", Toast.LENGTH_SHORT).show(); // + user.getUid()
+
+        findViewById(R.id.btn_logout).setOnClickListener(v -> logout());
+    }
+
+    private void logout() {
+        mAuth.signOut();
+        finish();
 
     }
 
