@@ -69,10 +69,10 @@
  "
     </string>
     <string name="action_settings">Settings</string>
-    <string name="aboutPage">About_us</string>
-    <string name="authors">authors</string>
-    <string name="version">version</string>
-    <string name="versionReal">versionReal</string>
+    <string name="aboutPage">About us</string>
+    <string name="authors">Authors</string>
+    <string name="version">Version</string>
+    <string name="versionReal">1.0.0</string>
     <string name="Terms_Cond">Terms and Cond</string>
     <string name="btn_settings"><![CDATA[Term&Cond]]></string>
     <string name="tablero_activity_title">activity_tablero</string>
@@ -99,11 +99,13 @@
     <string name="txt_player_name">Player name</string>
     <string name="txt_cards">Cards:</string>
     <string name="login_title">Login</string>
-    <string name="email_hint">Correo electrónico</string>
-    <string name="password_hint">Contraseña</string>
-    <string name="login_button">Iniciar sesión</string>
+    <string name="email_hint">Mail</string>
+    <string name="password_hint">Password</string>
+    <string name="login_button">Log in</string>
     <string name="logout">Logout</string>
     <string name="register">Register</string>
     <string name="forgot_password">Forgot your password?</string>
+    <string name="recoverpasswordButton">Recover your password</string>
+    <string name="putYourMailToRecover">Put your mail here to recover your password:</string>
 
 </resources>

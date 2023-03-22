@@ -1,0 +1,111 @@
+<resources>
+    <string name="app_name">KingdomCollector</string>
+    <string name="title_activity_terms_and_conditions">Términos y condiciones</string>
+    <string name="large_text">
+        "Hyperion Mobile App Términos y condiciones de uso"
+
+        "Bienvenido a la aplicación móvil de Hyperion (en adelante, la &quot;Aplicación&quot;).
+         Estos términos y condiciones (en adelante, los "Términos")
+         establecer las condiciones de uso de la Aplicación. Al utilizar la Aplicación,
+         usted acepta estos Términos en su totalidad. Si no está de acuerdo con estos Términos,
+         por favor, no utilice la Aplicación.
+
+         Objeto de la Aplicación La Aplicación es un servicio de [descripción del servicio ofrecido por
+         la aplicación].
+         La empresa Hyperion es propietaria de la Aplicación y se reserva todos los derechos sobre la Aplicación.
+         Condiciones de uso Al utilizar la Aplicación, usted acepta las siguientes condiciones:
+
+         A. Usted es responsable del uso que haga de la Aplicación.
+         No puede utilizar la Aplicación para fines ilegales o no autorizados.
+
+         B. No puede usar la Aplicación de ninguna manera que pueda dañar, deshabilitar, sobrecargar,
+         o dañar la Aplicación o interferir con su uso por parte de otros usuarios.
+
+         C. No puede usar la Aplicación para enviar correo no deseado, spam o cualquier otro tipo de correo no solicitado.
+         comunicación. d. No puede copiar, modificar o distribuir contenido de la Aplicación.
+         sin el permiso expreso de Hyperion.
+
+         Propiedad intelectual La Aplicación y todo su contenido, incluyendo pero no limitado a texto,
+         gráficos, imágenes, videos, logotipos y software están protegidos por las leyes de propiedad intelectual.
+
+         La empresa Hyperion posee todos los derechos de propiedad intelectual de la Aplicación.
+         Privacidad Hyperion respeta su privacidad y cumple con todas las leyes de protección de datos aplicables.
+         La información personal que usted proporcione a la Aplicación será utilizada únicamente para la
+         finalidades previstas en la Política de Privacidad de la Aplicación.
+
+         Al usar la Aplicación, usted acepta nuestra Política de privacidad.
+         Limitación de responsabilidad Hyperion no será responsable de ningún daño directo, indirecto, incidental,
+         daños especiales o consecuentes, incluidos, entre otros, daños por lucro cesante,
+         interrupción del negocio, pérdida de información u otros daños pecuniarios, resultantes de la
+         uso o imposibilidad de uso de la Aplicación.
+
+         Cambios en los Términos Hyperion se reserva el derecho de modificar estos Términos en cualquier momento.
+         Si cambiamos estos Términos, se lo notificaremos a través de la Aplicación o por correo electrónico.
+         Si no está de acuerdo con los Términos modificados, debe dejar de usar la Aplicación.
+         Ley aplicable y jurisdicción Estos Términos se regirán e interpretarán de acuerdo con
+         con las leyes de [país donde está registrada la empresa Hyperion].
+         Cualquier disputa que surja en relación con estos Términos estará sujeta a la exclusiva
+         jurisdicción de los tribunales de [ciudad donde está registrada la empresa Hyperion].
+         Al utilizar la Aplicación, acepta someterse a la jurisdicción exclusiva de los tribunales de
+         [ciudad donde está registrada la empresa Hyperion] por cualquier disputa que surja en relación con
+         estos términos.
+
+         Terminación Hyperion se reserva el derecho de cancelar su acceso a la Aplicación en
+         en cualquier momento y sin previo aviso si incumple estos Términos.
+
+         Disposición general Si alguna disposición de estos Términos se considera inválida o inaplicable,
+         esa disposición se interpretará de conformidad con la ley aplicable para reflejar,
+         en la medida de lo posible, la intención original de las partes y las demás disposiciones
+         siguen siendo válidos y exigibles. La renuncia de Hyperion a cualquier disposición de estos Términos no será
+         considerará una renuncia adicional o continua de esa disposición o cualquier otra disposición.
+         Estos Términos constituyen el acuerdo completo entre usted e Hyperion en relación con
+         la Aplicación y reemplaza todos los acuerdos anteriores o contemporáneos entre usted y
+         Hyperion en relación con la Aplicación.
+
+         Si tiene alguna pregunta o inquietud acerca de estos Términos, comuníquese con nosotros a través de
+         [correo electrónico o formulario de contacto de la aplicación]. Fecha de vigencia: [fecha de vigencia de los Términos].
+
+         Gracias por utilizar la aplicación Hyperion."
+ "
+    </string>
+    <string name="action_settings">Configuacióm</string>
+    <string name="aboutPage">Sobre Nosotros</string>
+    <string name="authors">Autores</string>
+    <string name="version">Versión</string>
+    <string name="versionReal">1.0.0</string>
+    <string name="Terms_Cond">Términos y condiciones</string>
+    <string name="btn_settings"><![CDATA[TerminosyCondiciones]]></string>
+    <string name="tablero_activity_title">Tablero</string>
+    <string name="bnt_start">JUGAR</string>
+    <string name="background" />
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hola blanco</string>
+    <string name="btn_00">0_0</string>
+    <string name="btn_01">0_1</string>
+    <string name="btn_02">0_2</string>
+    <string name="btn_10">1_0</string>
+    <string name="btn_11">1_1</string>
+    <string name="btn_12">1_2</string>
+    <string name="btn_20">2_0</string>
+    <string name="btn_21">2_1</string>
+    <string name="btn_22">2_2</string>
+    <string name="btn_c1">c1</string>
+    <string name="btn_c2">c2</string>
+    <string name="btn_c3">c3</string>
+    <string name="btn_c4">c4</string>
+    <string name="btn_c5">c5</string>
+    <string name="txt_score">Puntuación: </string>
+    <string name="txt_player_name">Nombre: </string>
+    <string name="txt_cards">Cartas:</string>
+    <string name="login_title">Iniciar sesión</string>
+    <string name="email_hint">Correo electrónico</string>
+    <string name="password_hint">Contraseña</string>
+    <string name="login_button">Iniciar sesión</string>
+    <string name="logout">Salir</string>
+    <string name="register">Registrarse</string>
+    <string name="forgot_password">¿Has olvidado tu contraseña?</string>
+    <string name="recoverpasswordButton">Recupera tu contraseña</string>
+    <string name="putYourMailToRecover">Introduce tu correo electrónico para recuperar tu contraseña:</string>
+
+</resources>
