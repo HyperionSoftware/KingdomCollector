@@ -30,6 +30,12 @@ public class LoginActivity extends AppCompatActivity {
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
         findViewById(R.id.register_button1).setOnClickListener(v-> goToRegisterPage());
+        findViewById(R.id.forgot_password_text).setOnClickListener(v-> goToRecoverPasswordPage());
+    }
+
+    private void goToRecoverPasswordPage() {
+        Intent intent = new Intent(this, RecoverPassword.class);
+        startActivity(intent);
     }
 
     private void goToRegisterPage(){

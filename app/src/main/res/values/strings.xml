@@ -104,5 +104,6 @@
     <string name="login_button">Iniciar sesión</string>
     <string name="logout">Logout</string>
     <string name="register">Register</string>
+    <string name="forgot_password">Forgot your password?</string>
 
 </resources>
