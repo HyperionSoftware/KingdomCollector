@@ -95,20 +95,23 @@ public class MainActivity extends AppCompatActivity {
             callback.onFailure("Usuario no autenticado");
             return;
         }
-
         String userId = user.getUid();
         DatabaseReference loginRef = FirebaseDatabase.getInstance().getReference("login_records").child(userId);
         loginRef.orderByKey().limitToLast(2).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    String lastLogin = null;
+                if (dataSnapshot.exists() && dataSnapshot.getChildrenCount() == 2) {
+                    String secondLastLogin = null;
+                    int count = 0;
                     for (DataSnapshot loginSnapshot : dataSnapshot.getChildren()) {
-                        lastLogin = loginSnapshot.child("timestamp").getValue(String.class);
+                        if (++count == 2) {
+                            secondLastLogin = loginSnapshot.child("timestamp").getValue(String.class);
+                            break;
+                        }
                     }
-                    callback.onSuccess(lastLogin);
+                    callback.onSuccess(secondLastLogin);
                 } else {
-                    callback.onFailure("No login records found.");
+                    callback.onFailure("No login records found or only one record exists.");
                 }
             }
 
@@ -118,6 +121,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-
 }
