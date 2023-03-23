@@ -8,6 +8,13 @@ import android.widget.EditText;
 import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
 
@@ -54,13 +61,13 @@ public class LoginActivity extends AppCompatActivity {
         String password = editText_password.getText().toString().trim();
 
         if (email.isEmpty()) {
-            editText_email.setError("Email is required");
+            editText_email.setError("Email is required.");
             editText_email.requestFocus();
             return;
         }
 
         if (password.isEmpty()) {
-            editText_password.setError("Password is required");
+            editText_password.setError("Password is required.");
             editText_password.requestFocus();
             return;
         }
@@ -95,8 +102,36 @@ public class LoginActivity extends AppCompatActivity {
         if(currentUser != null) {
             editText_password.setText("");
             editText_email.setText("");
+            saveLoginDatabase();
             Intent i = new Intent(this, MainActivity.class);
             startActivity(i);
+        }
+    }
+    private void saveLoginDatabase(){
+        //Obtiene el usuario actual de FirebaseAuth.
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            String userId = user.getUid();
+            //Crea una referencia a la base de datos en tiempo real de Firebase en la ruta "login_records/{userId}".
+            DatabaseReference loginRef = FirebaseDatabase.getInstance().getReference("login_records").child(userId);
+            //Obtiene la hora actual y la formatea como una cadena de texto.
+            String timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(new Date());
+            //Crea un Map con la información requerida: correo electrónico del usuario y la hora de inicio de sesión.
+            Map<String, Object> loginData = new HashMap<>();
+            loginData.put("timestamp", timestamp);
+            loginData.put("email", user.getEmail());
+
+            //Guarda la información en la base de datos utilizando la función push()
+            //para generar una nueva entrada en la lista de registros de inicio de sesión para ese usuario.
+            loginRef.push().setValue(loginData)
+                    .addOnSuccessListener(aVoid -> {
+                        // Registro de inicio de sesión guardado exitosamente
+                        Log.d(myClassTag, "Se ha guardado el inicio de sesión en la database realtime de Firebase");
+                    })
+                    .addOnFailureListener(e -> {
+                        Log.d(myClassTag, "No se ha podido guardar el inicio de sesión en la database realtime de Firebase");
+                        // Error al guardar el registro de inicio de sesión
+                    });
         }
     }
 }

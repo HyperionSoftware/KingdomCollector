@@ -46,4 +46,14 @@ public class GameViewModel extends ViewModel {
     public Game getGame() {
         return game;
     }
+
+    /**
+     * Guarda la información de ganador en la base de datos.
+     * @param userId
+     * @param score
+     */
+    public void saveGameData(String userId, int score) {
+        game.saveGameData(userId, score);
+    }
+
 }
