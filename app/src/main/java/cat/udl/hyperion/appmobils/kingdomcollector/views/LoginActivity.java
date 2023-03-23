@@ -1,4 +1,6 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.views;
+import static java.lang.Integer.parseInt;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -15,6 +17,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
 
@@ -61,13 +64,15 @@ public class LoginActivity extends AppCompatActivity {
         String password = editText_password.getText().toString().trim();
 
         if (email.isEmpty()) {
-            editText_email.setError("Email is required.");
+            String emailEmpty = getString(R.string.emailEmpty);
+            editText_email.setError(emailEmpty);
             editText_email.requestFocus();
             return;
         }
 
         if (password.isEmpty()) {
-            editText_password.setError("Password is required.");
+            String passwordRequired = getString(R.string.passwordRequired);
+            editText_password.setError(passwordRequired);
             editText_password.requestFocus();
             return;
         }
@@ -82,14 +87,16 @@ public class LoginActivity extends AppCompatActivity {
                             reload();
                         }
                         else{
-                            Toast.makeText(LoginActivity.this, "Verifica tu correo electrónico para iniciar sesión.",
+                            String verifyEmail = getString(R.string.verifyEmail);
+                            Toast.makeText(LoginActivity.this, verifyEmail,
                                     Toast.LENGTH_SHORT).show();
                             Log.d(myClassTag, "signInFailed:EmailNotConfirmed");
                         }
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w(myClassTag, "signInWithEmail:failure", task.getException());
-                        Toast.makeText(LoginActivity.this, "Authentication failed.",
+                        String authFailed = getString(R.string.authFailed);
+                        Toast.makeText(LoginActivity.this, authFailed,
                                 Toast.LENGTH_SHORT).show();
                         editText_password.setText("");
                     }

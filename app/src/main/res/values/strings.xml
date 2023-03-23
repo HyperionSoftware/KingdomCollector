@@ -107,5 +107,10 @@
     <string name="forgot_password">Forgot your password?</string>
     <string name="recoverpasswordButton">Recover your password</string>
     <string name="putYourMailToRecover">Put your mail here to recover your password:</string>
+    <string name="emailEmpty">Mail is required.</string>
+    <string name="passwordRequired">Password is required.</string>
+    <string name="verifyEmail">Verify your mail to log in.</string>
+    <string name="authFailed">Authentication failed.</string>
+
 
 </resources>
