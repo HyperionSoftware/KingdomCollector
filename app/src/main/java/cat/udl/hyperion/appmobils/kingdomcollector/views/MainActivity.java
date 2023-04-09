@@ -18,6 +18,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import cat.udl.hyperion.appmobils.kingdomcollector.Models.CardCollection;
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
 
 
@@ -39,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
 
         //Button Start.
         findViewById(R.id.btn_start).setOnClickListener(view -> setBtn_start());
+
+        //Button Collection.
+        findViewById(R.id.btn_collection).setOnClickListener(view -> setBtn_collection());
 
         //Music
         MediaPlayer mp = MediaPlayer.create(this,R.raw.check_it_out_now);
@@ -87,6 +91,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void setBtn_start(){
         Intent intent = new Intent(this, GameActivity.class);
+        startActivity(intent);
+    }
+
+    public void setBtn_collection(){
+        Intent intent = new Intent(this, CardCollectionActivity.class);
         startActivity(intent);
     }
     private void getLastLogin(LastLoginCallback callback) {

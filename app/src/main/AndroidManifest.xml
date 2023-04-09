@@ -15,6 +15,9 @@
             android:name=".views.RecoverPassword"
             android:exported="false" />
         <activity
+            android:name=".views.CardCollectionActivity"
+            android:exported="false" />
+        <activity
             android:name=".views.RegisterActivity"
             android:exported="false" />
         <activity

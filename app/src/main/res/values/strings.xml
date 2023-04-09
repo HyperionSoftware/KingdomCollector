@@ -111,6 +111,8 @@
     <string name="passwordRequired">Password is required.</string>
     <string name="verifyEmail">Verify your mail to log in.</string>
     <string name="authFailed">Authentication failed.</string>
+    <string name="btn_collection" translatable="false">Collection</string>
+    <string name="card_description">Card Description</string>
 
 
 </resources>
