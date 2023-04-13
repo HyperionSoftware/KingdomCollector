@@ -107,5 +107,10 @@
     <string name="forgot_password">¿Has olvidado tu contraseña?</string>
     <string name="recoverpasswordButton">Recupera tu contraseña</string>
     <string name="putYourMailToRecover">Introduce tu correo electrónico para recuperar tu contraseña:</string>
+    <string name="emailEmpty">El correo electrónico es necesario.</string>
+    <string name="passwordRequired">La contraseña es necesaria.</string>
+    <string name="verifyEmail">Verifica tu correo electrónico para iniciar sesión.</string>
+    <string name="authFailed">La autenticación ha fallado.</string>
+    <string name="card_description">Card Description</string>
 
 </resources>
