@@ -3,14 +3,15 @@ package cat.udl.hyperion.appmobils.kingdomcollector.viewmodels;
 import androidx.lifecycle.ViewModel;
 import cat.udl.hyperion.appmobils.kingdomcollector.Models.Board;
 import cat.udl.hyperion.appmobils.kingdomcollector.Models.Card;
-import cat.udl.hyperion.appmobils.kingdomcollector.views.OnCardSelectedListener;
+import cat.udl.hyperion.appmobils.kingdomcollector.Models.CardCollection;
+import cat.udl.hyperion.appmobils.kingdomcollector.views.OnCardClickListener;
 
 /**
  * ViewModel que se encarga de manejar los datos del tablero.
  * */
-public class BoardViewModel extends ViewModel implements OnCardSelectedListener {
+public class BoardViewModel extends ViewModel implements OnCardClickListener {
     private Board board;
-    private Card selectedCard;
+    private CardCollection selectedCard;
 
     public BoardViewModel() {
         board = new Board();
@@ -49,7 +50,12 @@ public class BoardViewModel extends ViewModel implements OnCardSelectedListener 
      * @param card La carta seleccionada por el usuario.
      */
     @Override
-    public void onCardSelected(Card card){
+    public void onCardSelected(CardCollection card){
+        selectedCard = card;
+    }
+
+    @Override
+    public void onCardDeselected(CardCollection card) {
         selectedCard = card;
     }
 }
