@@ -18,6 +18,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Iterator;
+
 import cat.udl.hyperion.appmobils.kingdomcollector.Models.CardCollection;
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
 
@@ -52,20 +54,20 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
         assert user != null;
 
-        getLastLogin(new LastLoginCallback() {
+        getPenultimateLogin(new PenultimateLoginCallback() {
             @Override
-            public void onSuccess(String lastLogin) {
-                if (lastLogin != null) {
-                    Log.d(myClassTag,"LastLogin:" + lastLogin);
-                    Toast.makeText(MainActivity.this, "Bienvenido " + user.getDisplayName() + " tu último inicio de sesión fue: " + lastLogin, Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(MainActivity.this, "Bienvenido " + user.getDisplayName() + ", no se encontraron registros de inicio de sesión anteriores.", Toast.LENGTH_SHORT).show();
-                }
+            public void onFailure(String usuario_no_autenticado) {
+                Toast.makeText(MainActivity.this, "Error: " + usuario_no_autenticado, Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void onFailure(String errorMessage) {
-                Toast.makeText(MainActivity.this, "Error: " + errorMessage, Toast.LENGTH_SHORT).show();
+            public void onSuccess(String secondLastLogin) {
+                if (secondLastLogin != null) {
+                    Log.d(myClassTag,"LastLogin:" + secondLastLogin);
+                    Toast.makeText(MainActivity.this, "Bienvenido " + user.getDisplayName() + " tu último inicio de sesión fue: " + secondLastLogin, Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "Bienvenido " + user.getDisplayName() + ", no se encontraron registros de inicio de sesión anteriores.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -130,4 +132,33 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    private void getPenultimateLogin(PenultimateLoginCallback callback) {
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user == null) {
+            callback.onFailure("Usuario no autenticado");
+            return;
+        }
+        String userId = user.getUid();
+        DatabaseReference loginRef = FirebaseDatabase.getInstance().getReference("login_records").child(userId);
+        loginRef.orderByChild("timestamp").limitToLast(2).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.getChildrenCount() == 2) {
+                    Iterator<DataSnapshot> iterator = dataSnapshot.getChildren().iterator();
+                    DataSnapshot secondLastLoginSnapshot = iterator.next();
+                    DataSnapshot lastLoginSnapshot = iterator.next();
+                    String secondLastLogin = secondLastLoginSnapshot.child("timestamp").getValue(String.class);
+                    callback.onSuccess(secondLastLogin);
+                } else {
+                    callback.onFailure("No hay suficientes registros de inicio de sesión.");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                callback.onFailure(databaseError.getMessage());
+            }
+        });
+    }
+
 }
