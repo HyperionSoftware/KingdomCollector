@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -16,6 +17,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.Iterator;
@@ -28,11 +30,18 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     protected String myClassTag = this.getClass().getSimpleName();
 
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference gameDataRef = database.getReference("game_data");
+
+    String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+    DatabaseReference userGameDataRef = gameDataRef.child(userId);
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         //Button Settings.
         findViewById(R.id.btn_settings).setOnClickListener(view -> setBtn_aboutus());
@@ -49,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         //Music
         MediaPlayer mp = MediaPlayer.create(this,R.raw.check_it_out_now);
         mp.start();
+
 
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
@@ -93,6 +103,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void setBtn_start(){
         Intent intent = new Intent(this, GameActivity.class);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference gameDataRef = database.getReference("game_data");
+
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DatabaseReference userGameDataRef = gameDataRef.child(userId);
+
+        // Increment the count by 1
+        userGameDataRef.child("count").setValue(ServerValue.increment(1));
+
         startActivity(intent);
     }
 
@@ -160,5 +179,26 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
+    ValueEventListener gameDataListener = new ValueEventListener() {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+            if (dataSnapshot.exists()) {
+                long count = dataSnapshot.child("count").getValue(Long.class);
+                // Actualizar el valor del TextView con el valor de "count"
+                //personal_record_value.setText(String.valueOf(count));
+            }
+        }
+
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
+            Log.w("MainActivity", "Error al leer los datos.", databaseError.toException());
+        }
+    };
+
+
+
 
 }
