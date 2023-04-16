@@ -112,5 +112,7 @@
     <string name="verifyEmail">Verifica tu correo electrónico para iniciar sesión.</string>
     <string name="authFailed">La autenticación ha fallado.</string>
     <string name="card_description">Card Description</string>
+    <string name="world_record_title">World Record</string>
+    <string name="personal_record_title">Record personal</string>
 
 </resources>

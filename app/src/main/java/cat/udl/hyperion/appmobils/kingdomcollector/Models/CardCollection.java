@@ -5,6 +5,7 @@ public class CardCollection {
     private String name;
     private int imageResource;
     private String description;
+    private boolean selected;
 
     public CardCollection(String name, int imageResource, String description) {
         this.name = name;
@@ -23,4 +24,14 @@ public class CardCollection {
     public String getDescription() {
         return description;
     }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean b) {
+        selected = b;
+
+    }
 }
+

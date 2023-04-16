@@ -1,8 +1,14 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.viewmodels;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import cat.udl.hyperion.appmobils.kingdomcollector.Models.Player.Player;
 
 /**
@@ -40,9 +46,14 @@ public class PlayerViewModel extends ViewModel {
      * @return String que representa el nombre del jugador actual.
      */
     public String getName(){
+        FirebaseAuth mAuth;
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+
         Player currentPlayer = player.getValue();
         if(currentPlayer!=null){
             String s = "Player name: " + currentPlayer.getName();
+            Log.d("PlayerName", "El nom del jugador és " + s);
             return s;
         }
         return null;

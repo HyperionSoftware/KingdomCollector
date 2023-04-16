@@ -7,11 +7,14 @@ import androidx.lifecycle.ViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
+import cat.udl.hyperion.appmobils.kingdomcollector.Models.Card;
 import cat.udl.hyperion.appmobils.kingdomcollector.Models.CardCollection;
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
 
 public class CardViewModel extends ViewModel {
     private final MutableLiveData<List<CardCollection>> cardsLiveData;
+    private final MutableLiveData<List<Card>> selectedCards = new MutableLiveData<>();
+
 
     public CardViewModel() {
         cardsLiveData = new MutableLiveData<>();
@@ -28,4 +31,20 @@ public class CardViewModel extends ViewModel {
     public LiveData<List<CardCollection>> getCardsLiveData() {
         return cardsLiveData;
     }
+
+    /*public void selectCard(CardCollection card) {
+        List<Card> cards = selectedCards.getValue();
+        cards.add(card);
+        selectedCards.setValue(cards);
+    }*/
+
+    /*public void deselectCard(CardCollection card) {
+        List<Card> cards = selectedCards.getValue();
+        cards.remove(card);
+        selectedCards.setValue(cards);
+    }*/
+
+    /*public MutableLiveData<List<Card>> getSelectedCards() {
+        return selectedCards;
+    }*/
 }
