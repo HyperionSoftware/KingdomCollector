@@ -1,7 +1,6 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.Models;
 
 import android.util.Log;
-import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -9,11 +8,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 import java.util.Map;
 
-import cat.udl.hyperion.appmobils.kingdomcollector.Models.Board;
-import cat.udl.hyperion.appmobils.kingdomcollector.Models.Card;
 import cat.udl.hyperion.appmobils.kingdomcollector.Models.Player.Player;
-import cat.udl.hyperion.appmobils.kingdomcollector.views.GameView;
-import cat.udl.hyperion.appmobils.kingdomcollector.views.LoginActivity;
 
 /**
  * Esta clase representa el juego Kingdom Collector.
@@ -49,7 +44,7 @@ public class Game {
      * @param y la posición y donde colocar la carta.
      * @param card la carta que se jugará.
      */
-    public void jugar(int x, int y, Card card) {
+    public void jugar(int x, int y, CardCollection card) {
         if (!isGameOver) {
             if (currentPlayer.hasCard(card) && board.obtenerCarta(x, y) == null) {
                 board.colocarCarta(x, y, card);
