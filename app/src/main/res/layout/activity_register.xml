@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".views.RegisterActivity">
+    tools:context=".other.auth.RegisterActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
