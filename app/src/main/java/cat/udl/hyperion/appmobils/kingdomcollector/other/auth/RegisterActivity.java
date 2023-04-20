@@ -1,4 +1,4 @@
-package cat.udl.hyperion.appmobils.kingdomcollector.views;
+package cat.udl.hyperion.appmobils.kingdomcollector.other.auth;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -91,6 +91,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 });
                         // Ir a la pantalla de inicio de sesión
                         goToLoginPage();
+                        logout();
                     } else {
                         // El registro falló, mostrar un mensaje de error
                         Toast.makeText(RegisterActivity.this, "No se pudo crear la cuenta. Por favor, inténtelo de nuevo más tarde.", Toast.LENGTH_LONG).show();
@@ -104,4 +105,8 @@ public class RegisterActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void logout(){
+        mAuth.signOut();
+        finish();
+    }
 }

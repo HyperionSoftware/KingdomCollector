@@ -12,31 +12,31 @@
         android:theme="@style/Theme.KingdomCollector"
         tools:targetApi="31">
         <activity
-            android:name=".views.RecoverPassword"
+            android:name=".viewmodels.RecoverPassword"
             android:exported="false" />
         <activity
             android:name=".views.CardCollectionActivity"
             android:exported="false" />
         <activity
-            android:name=".views.RegisterActivity"
+            android:name=".other.auth.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".views.LoginActivity"
+            android:name=".other.auth.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".views.GameActivity"
             android:exported="false"
             android:theme="@style/Theme.KingdomCollector.NoActionBar" />
         <activity
-            android:name=".views.AboutUs"
+            android:name=".other.AboutUs"
             android:exported="false" />
         <activity
-            android:name=".views.TermsAndConditions"
+            android:name=".other.TermsAndConditions"
             android:exported="false"
             android:label="@string/title_activity_terms_and_conditions"
             android:theme="@style/Theme.KingdomCollector.NoActionBar" />
         <activity
-            android:name=".views.InitialSplashScreen"
+            android:name=".other.InitialSplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -45,7 +45,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".views.MainActivity"
+            android:name=".other.MainActivity"
             android:exported="false"
             android:theme="@style/Theme.KingdomCollector.NoActionBar" />
     </application>
