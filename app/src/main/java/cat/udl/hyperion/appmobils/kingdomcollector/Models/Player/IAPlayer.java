@@ -1,7 +1,7 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.Models.Player;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.Models.Board;
-import cat.udl.hyperion.appmobils.kingdomcollector.Models.Card;
+import cat.udl.hyperion.appmobils.kingdomcollector.Models.CardCollection;
 
 /**
  * Esta clase representa un jugador robot en un juego de cartas.
@@ -24,7 +24,7 @@ public class IAPlayer extends Player {
      * @return La carta seleccionada por el jugador robot, o null si no se ha seleccionado ninguna.
      */
     @Override
-    public Card playCard(Board board) {
+    public CardCollection playCard(Board board) {
         // TODO: Implementar la lógica de selección de carta para el jugador IA.
         // En este método se debe programar la lógica que permita al jugador robot seleccionar
         // una carta para jugar. Una vez que se haya seleccionado la carta, se debe devolver

@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import cat.udl.hyperion.appmobils.kingdomcollector.Models.Card;
+import cat.udl.hyperion.appmobils.kingdomcollector.Models.CardCollection;
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
 import cat.udl.hyperion.appmobils.kingdomcollector.databinding.FragmentBoardBinding;
 import cat.udl.hyperion.appmobils.kingdomcollector.viewmodels.BoardViewModel;
@@ -25,7 +25,7 @@ public class BoardFragment extends Fragment {
     private BoardViewModel boardViewModel;
     private DeckViewModel deckViewModel;
 
-    private Card selectedCard;
+    private CardCollection selectedCard;
 
 
     public BoardFragment() {

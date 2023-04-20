@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     protected String myClassTag = this.getClass().getSimpleName();
 
+    private MediaPlayer mp;
+
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference gameDataRef = database.getReference("game_data");
 
@@ -58,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_collection).setOnClickListener(view -> setBtn_collection());
 
         //Music
-        MediaPlayer mp = MediaPlayer.create(this,R.raw.check_it_out_now);
+        mp = MediaPlayer.create(this,R.raw.check_it_out_now);
         mp.start();
 
 
@@ -84,8 +86,35 @@ public class MainActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.btn_logout).setOnClickListener(v -> logout());
+
     }
 
+    // Método para parar la música cuando la app está en segundo plano
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (mp != null) {
+            mp.pause();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (mp != null) {
+            mp.start();
+        }
+    }
+
+    // Liberar recursos Mediaplayer
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mp != null) {
+            mp.release();
+            mp = null;
+        }
+    }
 
     private void logout() {
         mAuth.signOut();

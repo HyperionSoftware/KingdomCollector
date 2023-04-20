@@ -3,7 +3,7 @@ package cat.udl.hyperion.appmobils.kingdomcollector.viewmodels;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-import cat.udl.hyperion.appmobils.kingdomcollector.Models.Card;
+
 import cat.udl.hyperion.appmobils.kingdomcollector.Models.CardCollection;
 import cat.udl.hyperion.appmobils.kingdomcollector.Models.Deck;
 import cat.udl.hyperion.appmobils.kingdomcollector.views.OnCardClickListener;
@@ -35,7 +35,7 @@ public class DeckViewModel extends ViewModel {
      * Agrega una carta al Deck.
      * @param card Carta a agregar.
      */
-    public void addCard(Card card) {
+    public void addCard(CardCollection card) {
         Deck deck = deckLiveData.getValue();
         if (deck != null) {
             deck.agregarCarta(card);
@@ -47,7 +47,7 @@ public class DeckViewModel extends ViewModel {
      * Elimina una carta del Deck.
      * @param card Carta a eliminar.
      */
-    public void removeCard(Card card) {
+    public void removeCard(CardCollection card) {
         Deck deck = deckLiveData.getValue();
         if (deck != null) {
             deck.eliminarCarta(card);
@@ -60,7 +60,7 @@ public class DeckViewModel extends ViewModel {
      * @param index Índice de la carta en el Deck.
      * @return Carta en la posición especificada.
      */
-    public Card getCard(int index) {
+    public CardCollection getCard(int index) {
         Deck deck = deckLiveData.getValue();
         if (deck != null) {
             return deck.obtenerCarta(index);

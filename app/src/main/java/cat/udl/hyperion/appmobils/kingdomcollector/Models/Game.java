@@ -44,7 +44,7 @@ public class Game {
      * @param y la posición y donde colocar la carta.
      * @param card la carta que se jugará.
      */
-    public void jugar(int x, int y, Card card) {
+    public void jugar(int x, int y, CardCollection card) {
         if (!isGameOver) {
             if (currentPlayer.hasCard(card) && board.obtenerCarta(x, y) == null) {
                 board.colocarCarta(x, y, card);
