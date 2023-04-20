@@ -1,4 +1,4 @@
-package cat.udl.hyperion.appmobils.kingdomcollector.views;
+package cat.udl.hyperion.appmobils.kingdomcollector.other;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,8 +21,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Iterator;
 
-import cat.udl.hyperion.appmobils.kingdomcollector.Models.CardCollection;
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
+import cat.udl.hyperion.appmobils.kingdomcollector.other.auth.LastLoginCallback;
+import cat.udl.hyperion.appmobils.kingdomcollector.views.CardCollectionActivity;
+import cat.udl.hyperion.appmobils.kingdomcollector.views.GameActivity;
 
 
 public class MainActivity extends AppCompatActivity {

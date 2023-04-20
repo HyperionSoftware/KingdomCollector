@@ -1,4 +1,4 @@
-package cat.udl.hyperion.appmobils.kingdomcollector.views;
+package cat.udl.hyperion.appmobils.kingdomcollector.other.auth;
 import static java.lang.Integer.parseInt;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,9 +17,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-import java.util.ResourceBundle;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
+import cat.udl.hyperion.appmobils.kingdomcollector.other.MainActivity;
 
 public class LoginActivity extends AppCompatActivity {
 

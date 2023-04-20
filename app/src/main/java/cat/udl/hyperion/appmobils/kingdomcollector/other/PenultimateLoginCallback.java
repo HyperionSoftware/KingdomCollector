@@ -1,4 +1,4 @@
-package cat.udl.hyperion.appmobils.kingdomcollector.views;
+package cat.udl.hyperion.appmobils.kingdomcollector.other;
 
 public interface PenultimateLoginCallback {
 
