@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import cat.udl.hyperion.appmobils.kingdomcollector.Models.Card;
 import cat.udl.hyperion.appmobils.kingdomcollector.Models.CardCollection;
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
 import cat.udl.hyperion.appmobils.kingdomcollector.viewmodels.CardViewModel;
@@ -58,10 +57,10 @@ public class CardCollectionActivity extends AppCompatActivity{
 
     private static class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
         private List<CardCollection> cardCollections;
-        private List<Card> cards;
+        private List<CardCollection> cards;
         private OnCardClickListener onCardClickListener;
 
-        public CardAdapter(List<Card> cards, OnCardClickListener onCardClickListener) {
+        public CardAdapter(List<CardCollection> cards, OnCardClickListener onCardClickListener) {
             this.cards = cards;
             this.onCardClickListener = onCardClickListener;
         }

@@ -5,12 +5,11 @@ import android.graphics.Color;
 import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import cat.udl.hyperion.appmobils.kingdomcollector.Models.Card;
+import cat.udl.hyperion.appmobils.kingdomcollector.Models.CardCollection;
 
 public class CardView extends LinearLayout {
     private TextView textView;
-    private Card card;
+    private CardCollection card;
 
     public CardView(Context context) {
         super(context);
@@ -28,7 +27,7 @@ public class CardView extends LinearLayout {
         addView(textView, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
     }
 
-    public void setCard(Card card) {
+    public void setCard(CardCollection card) {
         this.card = card;
         if (card != null) {
             String cardInfo = card.getName() + "\n"
@@ -40,7 +39,7 @@ public class CardView extends LinearLayout {
         }
     }
 
-    public Card getCard() {
+    public CardCollection getCard() {
         return card;
     }
 }

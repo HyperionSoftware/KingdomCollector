@@ -9,14 +9,14 @@ import java.util.Random;
  * La clase Deck representa las cartas que quedan para poder escoger.
  */
 public class Deck {
-    private List<Card> cards;
+    private final List<CardCollection> cards;
     private static Deck instance;
 
     /**
      * Crea una nueva instancia de Deck.
      */
     public Deck() {
-        this.cards = new ArrayList<>();
+        this.cards = new ArrayList<CardCollection>();
     }
 
     /**
@@ -36,7 +36,7 @@ public class Deck {
      *
      * @param card la carta a agregar
      */
-    public void agregarCarta(Card card) {
+    public void agregarCarta(CardCollection card) {
         cards.add(card);
     }
 
@@ -45,7 +45,7 @@ public class Deck {
      *
      * @param card la carta a eliminar
      */
-    public void eliminarCarta(Card card) {
+    public void eliminarCarta(CardCollection card) {
         cards.remove(card);
     }
 
@@ -55,7 +55,7 @@ public class Deck {
      * @param index el índice de la carta a obtener
      * @return la carta obtenida o null si el índice está fuera de rango
      */
-    public Card obtenerCarta(int index) {
+    public CardCollection obtenerCarta(int index) {
         if (index >= 0 && index < cards.size()) {
             return cards.get(index);
         }
@@ -67,10 +67,10 @@ public class Deck {
      *
      * @return la carta obtenida aleatoriamente
      */
-    public Card obtenerCartaAleatoria(){
+    public CardCollection obtenerCartaAleatoria(){
         Random random = new Random();
         int randomIndex = random.nextInt(cards.size() - 0 + 1) + 0;
-        Card card = obtenerCarta(randomIndex);
+        CardCollection card = obtenerCarta(randomIndex);
         eliminarCarta(card);
         return card;
     }
@@ -96,7 +96,7 @@ public class Deck {
      *
      * @return la lista de cartas en el mazo
      */
-    public List<Card> getCards() {
+    public List<CardCollection> getCards() {
         return cards;
     }
 
@@ -118,7 +118,7 @@ public class Deck {
      * Inicializa el mazo con 15 cartas aleatorias.
      */
     public void initializeDeck(){
-        Card card;
+        CardCollection card = null;
         Random random = new Random();
         int valorMax = 10, valorMin = 1;
         for(int i = 0; i < 15; i++){ //Crearemos 15 cartas.
@@ -126,7 +126,8 @@ public class Deck {
             int randomIzquierda = random.nextInt(valorMax - valorMin +1) + valorMin;
             int randomAbajo = random.nextInt(valorMax - valorMin +1) + valorMin;
             int randomDerecha = random.nextInt(valorMax - valorMin +1) + valorMin;
-            card = new Card(i, "TestingCard",randomArriba, randomIzquierda, randomAbajo, randomDerecha);
+            assert false;
+            card = new CardCollection(card.getId(), card.getName(), card.getImageResource(), card.getDescription(), card.getType(), randomArriba, randomIzquierda, randomAbajo, randomDerecha);
             cards.add(card);
         }
     }

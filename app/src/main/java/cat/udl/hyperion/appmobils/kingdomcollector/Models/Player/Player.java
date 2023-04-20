@@ -1,7 +1,7 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.Models.Player;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.Models.Board;
-import cat.udl.hyperion.appmobils.kingdomcollector.Models.Card;
+import cat.udl.hyperion.appmobils.kingdomcollector.Models.CardCollection;
 import cat.udl.hyperion.appmobils.kingdomcollector.Models.Deck;
 
 /**
@@ -29,7 +29,7 @@ public abstract class Player {
      * @param board El tablero actual del juego.
      * @return La carta seleccionada por el jugador, o null si no se ha seleccionado ninguna.
      */
-    public abstract Card playCard(Board board);
+    public abstract CardCollection playCard(Board board);
 
     // Getters y setters
 
@@ -75,8 +75,8 @@ public abstract class Player {
      * @param card La carta que se quiere comprobar.
      * @return true si el jugador tiene la carta, false en caso contrario.
      */
-    public boolean hasCard(Card card) {
-        for (Card c : this.deck.getCards()) { // Recorre las cartas del mazo del jugador.
+    public boolean hasCard(CardCollection card) {
+        for (CardCollection c : this.deck.getCards()) { // Recorre las cartas del mazo del jugador.
             if (c.getId() == card.getId()) { // Compara los identificadores de las cartas.
                 return true; // Si hay una carta con el mismo identificador, devuelve true.
             }
@@ -89,7 +89,7 @@ public abstract class Player {
      *
      * @param card La carta que se quiere eliminar.
      */
-    public void removeCard(Card card) {
+    public void removeCard(CardCollection card) {
         this.deck.eliminarCarta(card); // Elimina la carta del mazo del jugador.
     }
 
