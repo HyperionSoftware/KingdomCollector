@@ -8,6 +8,7 @@ public class CardCollection {
     private String name;
     private int imageResource;
     private String description;
+    private String type;
     private int powerArriba;
     private int powerIzquierda;
     private int powerAbajo;
@@ -25,11 +26,12 @@ public class CardCollection {
      * @param powerDerecha Poder de la carta en la dirección de la derecha.
      */
 
-    public CardCollection(int id, String name, int imageResource, String description, int powerArriba, int powerIzquierda, int powerAbajo, int powerDerecha) {
+    public CardCollection(int id, String name, int imageResource, String description,String type, int powerArriba, int powerIzquierda, int powerAbajo, int powerDerecha) {
         this.id = id;
         this.name = name;
         this.imageResource = imageResource;
         this.description = description;
+        this.type = type;
         this.powerArriba = powerArriba;
         this.powerAbajo = powerAbajo;
         this.powerDerecha = powerDerecha;
@@ -50,6 +52,9 @@ public class CardCollection {
     public String getName() {
         return name;
     }
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public int getImageResource() {
         return imageResource;
@@ -57,6 +62,13 @@ public class CardCollection {
 
     public String getDescription() {
         return description;
+    }
+
+    public String getType() {
+        return type;
+    }
+    public void setType(String type) {
+        this.type = type;
     }
 
     public boolean isSelected() {
