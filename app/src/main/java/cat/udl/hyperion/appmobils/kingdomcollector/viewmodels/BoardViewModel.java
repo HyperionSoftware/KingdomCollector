@@ -57,4 +57,5 @@ public class BoardViewModel extends ViewModel implements OnCardClickListener {
     public void onCardDeselected(CardCollection card) {
         selectedCard = card;
     }
+
 }

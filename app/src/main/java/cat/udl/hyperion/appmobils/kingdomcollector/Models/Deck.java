@@ -127,7 +127,7 @@ public class Deck {
             int randomAbajo = random.nextInt(valorMax - valorMin +1) + valorMin;
             int randomDerecha = random.nextInt(valorMax - valorMin +1) + valorMin;
             assert false;
-            card = new CardCollection(card.getId(), card.getName(), card.getImageResource(), card.getDescription(), card.getType(), randomArriba, randomIzquierda, randomAbajo, randomDerecha);
+            card = new CardCollection(card.getId(), card.getName(),card.getImagePath(), card.getDescription(), card.getType(), randomArriba, randomIzquierda, randomAbajo, randomDerecha);
             cards.add(card);
         }
     }

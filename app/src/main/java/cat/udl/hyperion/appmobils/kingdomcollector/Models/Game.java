@@ -44,7 +44,7 @@ public class Game {
      * @param y la posición y donde colocar la carta.
      * @param card la carta que se jugará.
      */
-    public void jugar(int x, int y, CardCollection card) {
+    /*public void jugar(int x, int y, CardCollection card) {
         if (!isGameOver) {
             if (currentPlayer.hasCard(card) && board.obtenerCarta(x, y) == null) {
                 board.colocarCarta(x, y, card);
@@ -55,7 +55,7 @@ public class Game {
                 }
             }
         }
-    }
+    }*/
 
     /**
      * Cambia el turno de los jugadores.
@@ -106,5 +106,9 @@ public class Game {
                     // Error al guardar la información del juego
                     Log.d(myClassTag, "No se ha guardado el ganador en firsebase database");
                 });
+    }
+
+    public void jugar(int x, int y, CardCollection card) {
+
     }
 }
