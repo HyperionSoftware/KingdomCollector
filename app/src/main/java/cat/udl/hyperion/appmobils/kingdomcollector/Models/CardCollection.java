@@ -1,13 +1,14 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.Models;
 
-import cat.udl.hyperion.appmobils.kingdomcollector.Models.Player.Player;
-
 /**
- * La clase Carta representa una carta del juego, con sus atributos y métodos y valores numéricos de elemento.
+ * La clase CardCollection representa una carta del juego, con sus atributos y métodos y valores numéricos del elemento.
  */
-public class Card {
+public class CardCollection {
     private int id;
     private String name;
+    private String imagePath;
+    private String description;
+    private String type;
     private int powerArriba;
     private int powerIzquierda;
     private int powerAbajo;
@@ -15,27 +16,30 @@ public class Card {
     private boolean selected;
     private int owner;
 
-    /**
-     * Constructor de la clase Card. Crea una carta con los atributos indicados.
-     * @param id Identificador único de la carta.
-     * @param name Nombre de la carta.
-     * @param powerArriba Poder de la carta en la dirección de arriba.
-     * @param powerIzquierda Poder de la carta en la dirección de la izquierda.
-     * @param powerAbajo Poder de la carta en la dirección de abajo.
-     * @param powerDerecha Poder de la carta en la dirección de la derecha.
-     */
-    public Card(int id, String name, int powerArriba, int powerIzquierda, int powerAbajo, int powerDerecha) {
+
+
+    public CardCollection(int id, String name, String imagePath, String description, String type, int powerArriba, int powerIzquierda, int powerAbajo, int powerDerecha) {
         this.id = id;
         this.name = name;
+        this.imagePath = imagePath;
+        this.description = description;
+        this.type = type;
         this.powerArriba = powerArriba;
         this.powerIzquierda = powerIzquierda;
         this.powerAbajo = powerAbajo;
         this.powerDerecha = powerDerecha;
-        this.owner = -1;
         this.selected = false;
+        this.owner = -1;
+
     }
 
-    // Getters y setters
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -45,12 +49,28 @@ public class Card {
         this.name = name;
     }
 
-    public int getId() {
-        return id;
+    public String getImagePath() {
+        return imagePath;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public int getPowerArriba() {
@@ -100,4 +120,7 @@ public class Card {
     public void setOwner(int owner) {
         this.owner = owner;
     }
+
 }
+
+

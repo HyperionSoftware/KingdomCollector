@@ -3,16 +3,17 @@ package cat.udl.hyperion.appmobils.kingdomcollector.viewmodels;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-import cat.udl.hyperion.appmobils.kingdomcollector.Models.Card;
+
+import cat.udl.hyperion.appmobils.kingdomcollector.Models.CardCollection;
 import cat.udl.hyperion.appmobils.kingdomcollector.Models.Deck;
-import cat.udl.hyperion.appmobils.kingdomcollector.views.OnCardSelectedListener;
+import cat.udl.hyperion.appmobils.kingdomcollector.views.OnCardClickListener;
 
 /**
  * Esta clase ViewModel maneja el Deck de cartas y se encarga de la comunicación entre la vista y el modelo.
  * */
 public class DeckViewModel extends ViewModel {
-    private MutableLiveData<Deck> deckLiveData;
-    private OnCardSelectedListener onCardSelectedListener;
+    private final MutableLiveData<Deck> deckLiveData;
+    private OnCardClickListener onCardClickListener;
 
     /**
      * Constructor de la clase DeckViewModel. Inicializa el DeckLiveData.
@@ -34,7 +35,7 @@ public class DeckViewModel extends ViewModel {
      * Agrega una carta al Deck.
      * @param card Carta a agregar.
      */
-    public void addCard(Card card) {
+    public void addCard(CardCollection card) {
         Deck deck = deckLiveData.getValue();
         if (deck != null) {
             deck.agregarCarta(card);
@@ -46,7 +47,7 @@ public class DeckViewModel extends ViewModel {
      * Elimina una carta del Deck.
      * @param card Carta a eliminar.
      */
-    public void removeCard(Card card) {
+    public void removeCard(CardCollection card) {
         Deck deck = deckLiveData.getValue();
         if (deck != null) {
             deck.eliminarCarta(card);
@@ -59,7 +60,7 @@ public class DeckViewModel extends ViewModel {
      * @param index Índice de la carta en el Deck.
      * @return Carta en la posición especificada.
      */
-    public Card getCard(int index) {
+    public CardCollection getCard(int index) {
         Deck deck = deckLiveData.getValue();
         if (deck != null) {
             return deck.obtenerCarta(index);
@@ -106,17 +107,17 @@ public class DeckViewModel extends ViewModel {
      * Establece el OnCardSelectedListener.
      * @param listener Listener de selección de cartas.
      */
-    public void setOnCardSelectedListener(OnCardSelectedListener listener) {
-        this.onCardSelectedListener = listener;
+    public void setOnCardSelectedListener(OnCardClickListener listener) {
+        this.onCardClickListener = listener;
     }
 
     /**
      * Método para llamar cuando se selecciona una carta.
-     * @param card Carta seleccionada.
+     * @param cardCollection Carta seleccionada.
      */
-    public void selectCard(Card card) {
-        if (onCardSelectedListener != null) {
-            onCardSelectedListener.onCardSelected(card);
+    public void selectCard(CardCollection cardCollection) {
+        if (onCardClickListener != null) {
+            onCardClickListener.onCardSelected(cardCollection);
         }
     }
 }

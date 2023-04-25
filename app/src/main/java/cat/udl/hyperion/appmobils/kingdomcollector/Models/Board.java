@@ -4,7 +4,7 @@ package cat.udl.hyperion.appmobils.kingdomcollector.Models;
  * La clase Board representa el tablero del juego, con sus cartas y posiciones en el mismo.
  */
 public class Board {
-    private Card[][] cells; // Matriz de cartas que representa las celdas del tablero.
+    private cat.udl.hyperion.appmobils.kingdomcollector.Models.CardCollection[][] cells; // Matriz de cartas que representa las celdas del tablero.
     private static final int size = 3; // Tamaño del tablero, definido como una constante.
 
     /**
@@ -12,7 +12,7 @@ public class Board {
      * Inicializa la matriz de celdas del tablero.
      */
     public Board() {
-        this.cells = new Card[size][size];
+        this.cells = new cat.udl.hyperion.appmobils.kingdomcollector.Models.CardCollection[size][size];
     }
 
     /**
@@ -31,7 +31,7 @@ public class Board {
      * @param y La posición vertical de la celda.
      * @param carta La carta que se quiere colocar.
      */
-    public void colocarCarta(int x, int y, Card carta) {
+    public void colocarCarta(int x, int y, cat.udl.hyperion.appmobils.kingdomcollector.Models.CardCollection carta) {
         if (cells[x][y] == null) { // Si la celda está vacía, se puede colocar la carta.
             cells[x][y] = carta; // Coloca la carta en la celda.
             verificarAdyacentes(x, y, carta); // Comprueba si la carta afecta a otras cartas adyacentes.
@@ -45,7 +45,7 @@ public class Board {
      * @param y La posición vertical de la celda.
      * @return La carta que está en la celda, o null si la celda está vacía.
      */
-    public Card obtenerCarta(int x, int y) {
+    public cat.udl.hyperion.appmobils.kingdomcollector.Models.CardCollection obtenerCarta(int x, int y) {
         return cells[x][y]; // Devuelve la carta que está en la celda.
     }
 
@@ -67,7 +67,7 @@ public class Board {
      * @param y La posición vertical de la celda donde se ha colocado la carta.
      * @param carta La carta que se ha colocado en la celda.
      */
-    private void verificarAdyacentes(int x, int y, Card carta) {
+    private void verificarAdyacentes(int x, int y, cat.udl.hyperion.appmobils.kingdomcollector.Models.CardCollection carta) {
         // Norte
         if (y > 0 && cells[x][y - 1] != null && cells[x][y - 1].getOwner() != carta.getOwner()) {
             if (carta.getPowerArriba() > cells[x][y - 1].getPowerAbajo()) {

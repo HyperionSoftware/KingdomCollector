@@ -1,4 +1,4 @@
-package cat.udl.hyperion.appmobils.kingdomcollector.views;
+package cat.udl.hyperion.appmobils.kingdomcollector.other;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,7 @@ import android.view.WindowManager;
 import java.util.Objects;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
+import cat.udl.hyperion.appmobils.kingdomcollector.other.auth.LoginActivity;
 
 public class InitialSplashScreen extends AppCompatActivity {
 

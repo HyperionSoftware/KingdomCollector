@@ -1,7 +1,7 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.Models.Player;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.Models.Board;
-import cat.udl.hyperion.appmobils.kingdomcollector.Models.Card;
+import cat.udl.hyperion.appmobils.kingdomcollector.Models.CardCollection;
 
 /**
  * Esta clase representa un jugador humano en un juego de cartas.
@@ -24,13 +24,13 @@ public class HumanPlayer extends Player {
      * @return La carta seleccionada por el jugador humano, o null si no se ha seleccionado ninguna.
      */
     @Override
-    public Card playCard(Board board) {
+    public CardCollection playCard(Board board) {
         // TODO: Implementar la lógica de selección de carta para el jugador humano.
         // En este método se debe programar la lógica que permita al jugador humano seleccionar
         // una carta para jugar. Una vez que se haya seleccionado la carta, se debe devolver
         // un objeto de tipo Card con la carta seleccionada. Si el jugador humano no selecciona
         // ninguna carta, se debe devolver null.
-        Card card = null;
+        CardCollection card = null;
         return card; // Devuelve la carta seleccionada o null si no se ha seleccionado ninguna.
     }
 }

@@ -2,7 +2,8 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.viewmodels;
 
 import androidx.lifecycle.ViewModel;
-import cat.udl.hyperion.appmobils.kingdomcollector.Models.Card;
+
+import cat.udl.hyperion.appmobils.kingdomcollector.Models.CardCollection;
 import cat.udl.hyperion.appmobils.kingdomcollector.Models.Game;
 import cat.udl.hyperion.appmobils.kingdomcollector.Models.Player.Player;
 
@@ -28,7 +29,7 @@ public class GameViewModel extends ViewModel {
      * @param y la posición en el eje Y donde se colocará la carta.
      * @param card la carta a jugar.
      * */
-    public void play(int x, int y, Card card) {
+    public void play(int x, int y, CardCollection card) {
         game.jugar(x, y, card);
     }
 
