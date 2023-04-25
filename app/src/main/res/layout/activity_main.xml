@@ -67,4 +67,61 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.952" />
 
+    <Button
+        android:id="@+id/btn_collection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_collection"
+        app:layout_constraintBottom_toTopOf="@+id/btn_logout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_start" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/world_record_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/world_record_title"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/world_record_value"
+        app:layout_constraintEnd_toEndOf="@+id/background_menu_pp"
+        app:layout_constraintStart_toStartOf="@+id/background_menu_pp"
+        app:layout_constraintTop_toBottomOf="@+id/btn_collection" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/world_record_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/personal_record_title"
+        app:layout_constraintEnd_toEndOf="@+id/background_menu_pp"
+        app:layout_constraintStart_toStartOf="@+id/background_menu_pp"
+        app:layout_constraintTop_toBottomOf="@+id/world_record_title" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/personal_record_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/personal_record_title"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/personal_record_value"
+        app:layout_constraintEnd_toEndOf="@+id/background_menu_pp"
+        app:layout_constraintStart_toStartOf="@+id/background_menu_pp"
+        app:layout_constraintTop_toBottomOf="@+id/world_record_value" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/personal_record_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_logout"
+        app:layout_constraintEnd_toEndOf="@+id/background_menu_pp"
+        app:layout_constraintStart_toStartOf="@+id/background_menu_pp"
+        app:layout_constraintTop_toBottomOf="@+id/personal_record_title" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

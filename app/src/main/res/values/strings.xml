@@ -111,6 +111,9 @@
     <string name="passwordRequired">Password is required.</string>
     <string name="verifyEmail">Verify your mail to log in.</string>
     <string name="authFailed">Authentication failed.</string>
+    <string name="personal_record_title">Personal Record</string>
+    <string name="world_record_title">World Record</string>
+    <string name="btn_collection">Collection</string>
 
 
 </resources>

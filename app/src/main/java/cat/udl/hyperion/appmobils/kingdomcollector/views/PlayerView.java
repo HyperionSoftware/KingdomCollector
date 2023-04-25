@@ -1,11 +1,15 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.views;
 
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import cat.udl.hyperion.appmobils.kingdomcollector.R;
+
+import androidx.fragment.app.Fragment;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import cat.udl.hyperion.appmobils.kingdomcollector.Models.Player.Player;
 import cat.udl.hyperion.appmobils.kingdomcollector.databinding.FragmentPlayerBinding;
 
@@ -13,13 +17,19 @@ public class PlayerView extends Fragment {
 
     private FragmentPlayerBinding binding;
     private Player player;
+    private static FirebaseAuth mAuth;
+    protected String myClassTag = this.getClass().getSimpleName();
+
 
     public PlayerView() {
         // Required empty public constructor
+        updatePlayerView();
     }
 
     public static PlayerView newInstance() {
         PlayerView fragment = new PlayerView();
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
         return fragment;
     }
 

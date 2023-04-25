@@ -111,5 +111,8 @@
     <string name="passwordRequired">La contraseña es necesaria.</string>
     <string name="verifyEmail">Verifica tu correo electrónico para iniciar sesión.</string>
     <string name="authFailed">La autenticación ha fallado.</string>
+    <string name="personal_record_title">Personal Record</string>
+    <string name="world_record_title">World Record</string>
+    <string name="btn_collection">Collection</string>
 
 </resources>
