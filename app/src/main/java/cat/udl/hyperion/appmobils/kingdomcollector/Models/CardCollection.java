@@ -6,7 +6,7 @@ package cat.udl.hyperion.appmobils.kingdomcollector.Models;
 public class CardCollection {
     private int id;
     private String name;
-    private String imagePath;
+    private int imagePath;
     private String description;
     private String type;
     private int powerArriba;
@@ -18,7 +18,7 @@ public class CardCollection {
 
 
 
-    public CardCollection(int id, String name, String imagePath, String description, String type, int powerArriba, int powerIzquierda, int powerAbajo, int powerDerecha) {
+    public CardCollection(int id, String name, int imagePath, String description, String type, int powerArriba, int powerIzquierda, int powerAbajo, int powerDerecha) {
         this.id = id;
         this.name = name;
         this.imagePath = imagePath;
@@ -49,11 +49,11 @@ public class CardCollection {
         this.name = name;
     }
 
-    public String getImagePath() {
+    public int getImagePath() {
         return imagePath;
     }
 
-    public void setImagePath(String imagePath) {
+    public void setImagePath(int imagePath) {
         this.imagePath = imagePath;
     }
 
