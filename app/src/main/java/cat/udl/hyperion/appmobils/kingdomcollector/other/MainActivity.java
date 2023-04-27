@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /*public void setBtn_start(){
-        Intent intent = new Intent(this, GameActivity.class);
+        Intent intent = new Intent(this, GameBoardActivity.class);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference gameDataRef = database.getReference("game_data");
 
@@ -225,8 +225,5 @@ public class MainActivity extends AppCompatActivity {
             Log.w("MainActivity", "Error al leer los datos.", databaseError.toException());
         }
     };
-
-
-
 
 }

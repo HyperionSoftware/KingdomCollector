@@ -115,6 +115,7 @@
     <string name="card_type" translatable="false">Card Type</string>
     <string name="world_record_title">World Record</string>
     <string name="personal_record_title">Record personal</string>
+    <string name="selected_cards_label">Selected Cards:</string>
 
 
 </resources>

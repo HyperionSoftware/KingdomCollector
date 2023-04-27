@@ -9,6 +9,8 @@ public class Card {
     private int image;
     private String type;
 
+    private boolean isSelected;
+
 
 
     public Card(int id, String name, int image, String type) {
@@ -50,6 +52,15 @@ public class Card {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
     }
 
 
