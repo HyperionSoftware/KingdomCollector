@@ -2,6 +2,7 @@ package cat.udl.hyperion.appmobils.kingdomcollector.Models.Player;
 
 import java.util.HashMap;
 import java.util.Map;
+import android.util.Log;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.Models.Board;
 import cat.udl.hyperion.appmobils.kingdomcollector.Models.CardCollection;
@@ -11,6 +12,7 @@ import cat.udl.hyperion.appmobils.kingdomcollector.Models.Deck;
  * La clase Player representa un jugador en un juego de cartas, con sus cartas, puntos y jugadas.
  */
 public abstract class Player {
+    private static final String TAG = "Player";
     private String name; // El nombre del jugador.
     private Deck deck; // El mazo de cartas del jugador.
     private int score; // La puntuación del jugador.
@@ -39,6 +41,7 @@ public abstract class Player {
         this.id = id; // Inicializa el identificador del jugador.
         setName(name); // Establece el nombre del jugador llamando al método setName().
         this.score = 0; // Inicializa la puntuación del jugador a cero.
+        Log.d(TAG, "Player creado con ID: " + id + " y nombre: " + name);
     }
 
     /**
@@ -78,7 +81,9 @@ public abstract class Player {
      * @param deck El nuevo mazo de cartas del jugador.
      */
     public void setDeck(Deck deck) {
+
         this.deck = deck;
+        Log.d(TAG, "Se estableció el mazo del jugador con ID: " + id + " y nombre: " + name);
     }
 
     /**
@@ -96,7 +101,9 @@ public abstract class Player {
      * @param name El nuevo nombre del jugador.
      */
     public void setName(String name) {
+
         this.name = name;
+        Log.d(TAG, "Se cambió el nombre del jugador con ID: " + id + " a: " + name);
     }
 
     /**
@@ -121,6 +128,7 @@ public abstract class Player {
      */
     public void removeCard(CardCollection card) {
         this.deck.eliminarCarta(card); // Elimina la carta del mazo del jugador.
+        Log.d(TAG, "Se eliminó la carta con ID: " + card.getId() + " del mazo del jugador con ID: " + id + " y nombre: " + name);
     }
 
     /**

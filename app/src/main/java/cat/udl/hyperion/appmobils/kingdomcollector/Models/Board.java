@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import android.util.Log;
 
 /**
  * La clase Board representa el tablero del juego, con sus cartas y posiciones en el mismo.
  */
 public class Board {
+    private static final String TAG = "Board";
     private CardCollection[][] cells; // Matriz de cartas que representa las celdas del tablero.
     private static final int size = 3; // Tamaño del tablero, definido como una constante.
 
@@ -39,7 +41,9 @@ public class Board {
      * Inicializa la matriz de celdas del tablero.
      */
     public Board() {
+
         this.cells = new CardCollection[size][size];
+        Log.d(TAG, "Tablero creado");
     }
 
     /**
@@ -62,6 +66,9 @@ public class Board {
         if (cells[x][y] == null) { // Si la celda está vacía, se puede colocar la carta.
             cells[x][y] = carta; // Coloca la carta en la celda.
             verificarAdyacentes(x, y, carta); // Comprueba si la carta afecta a otras cartas adyacentes.
+            Log.d(TAG, "Carta colocada en posición (" + x + ", " + y + ") con ID: " + carta.getId());
+        } else {
+            Log.d(TAG, "La posición (" + x + ", " + y + ") ya tiene una carta. No se coloca la carta con ID: " + carta.getId());
         }
     }
 
