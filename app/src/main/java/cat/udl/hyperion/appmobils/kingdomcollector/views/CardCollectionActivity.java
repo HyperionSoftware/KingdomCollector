@@ -13,14 +13,10 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-
 import java.util.List;
 
-import cat.udl.hyperion.appmobils.kingdomcollector.Models.CardCollection;
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
+import cat.udl.hyperion.appmobils.kingdomcollector.models.Card;
 import cat.udl.hyperion.appmobils.kingdomcollector.viewmodels.CardViewModel;
 
 
@@ -29,17 +25,12 @@ import cat.udl.hyperion.appmobils.kingdomcollector.viewmodels.CardViewModel;
 
 public class CardCollectionActivity extends AppCompatActivity {
     private CardAdapter adapter;
-    private CardViewModel cardViewModel;
-    private RecyclerView selectedCardsRecyclerView;
-    private static FirebaseStorage storage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card_collection);
 
-        // Inicializar FirebaseStorage
-        storage = FirebaseStorage.getInstance();
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 4));
@@ -53,13 +44,12 @@ public class CardCollectionActivity extends AppCompatActivity {
     }
 
     private static class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
-        private List<CardCollection> cardCollections;
-        private List<CardCollection> cards;
-        private final OnCardClickListener onCardClickListener;
+        private List<Card> cards;
 
-        public CardAdapter(List<CardCollection> cardCollections, OnCardClickListener onCardClickListener) {
-            this.cardCollections = cardCollections;
-            this.onCardClickListener = onCardClickListener;
+
+        public CardAdapter(List<Card> cards, Object o) {
+            this.cards = cards;
+
         }
 
         @NonNull
@@ -71,28 +61,19 @@ public class CardCollectionActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(@NonNull CardViewHolder holder, int position) {
-            StorageReference storageRef = storage.getReference();
-            StorageReference islandRef = storageRef.child("images/" + cardCollections.get(position).getName() + ".png");
-            holder.nameTextView.setText(cardCollections.get(position).getName());
-            holder.descriptionTextView.setText(cardCollections.get(position).getDescription());
-            holder.cardCollection = cardCollections.get(position);
-            holder.onCardClickListener = onCardClickListener;
-            islandRef.getDownloadUrl().addOnSuccessListener(uri -> {
-                Glide.with(holder.imageView.getContext())
-                        .load(uri)
-                        .into(holder.imageView);
-            });
-
-
+            Card card = cards.get(position);
+            holder.nameTextView.setText(card.getName());
+            holder.imageView.setImageResource(card.getImage());
+            holder.typeTextView.setText(card.getType());
         }
 
         @Override
         public int getItemCount() {
-            return cardCollections != null ? cardCollections.size() : 0;
+            return cards != null ? cards.size() : 0;
         }
 
-        public void setCards(List<CardCollection> cardCollections) {
-            this.cardCollections = cardCollections;
+        public void setCards(List<Card> cards) {
+            this.cards = cards;
             notifyDataSetChanged();
         }
     }
@@ -100,15 +81,13 @@ public class CardCollectionActivity extends AppCompatActivity {
     private static class CardViewHolder extends RecyclerView.ViewHolder {
         private final TextView nameTextView;
         private final ImageView imageView;
-        private final TextView descriptionTextView;
-        public OnCardClickListener onCardClickListener;
-        private CardCollection cardCollection;
+        private final TextView typeTextView;
 
         public CardViewHolder(@NonNull View itemView) {
             super(itemView);
             nameTextView = itemView.findViewById(R.id.name_text_view);
             imageView = itemView.findViewById(R.id.image_view);
-            descriptionTextView = itemView.findViewById(R.id.description_text_view);
+            typeTextView = itemView.findViewById(R.id.type_text_view);
 
         }
     }

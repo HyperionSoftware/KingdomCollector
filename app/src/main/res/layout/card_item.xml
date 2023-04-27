@@ -20,10 +20,10 @@
         android:textAppearance="?android:textAppearanceMedium" />
 
     <TextView
-        android:id="@+id/description_text_view"
+        android:id="@+id/type_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/card_description"
+        android:text="@string/card_type"
         android:textAppearance="?android:textAppearanceSmall" />
 
 </LinearLayout>
