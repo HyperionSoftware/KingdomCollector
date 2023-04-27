@@ -13,8 +13,8 @@ public class IAPlayer extends Player {
      *
      * @param name El nombre del jugador robot.
      */
-    public IAPlayer(String name) {
-        super(name); // Llama al constructor de la clase padre (Player) para inicializar el nombre.
+    public IAPlayer(int id, String name) {
+        super(id, name); // Llama al constructor de la clase padre (Player) para inicializar el identificador y el nombre.
     }
 
     /**

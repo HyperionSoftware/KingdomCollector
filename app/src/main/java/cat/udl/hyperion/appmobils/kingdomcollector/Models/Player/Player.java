@@ -1,5 +1,8 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.Models.Player;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import cat.udl.hyperion.appmobils.kingdomcollector.Models.Board;
 import cat.udl.hyperion.appmobils.kingdomcollector.Models.CardCollection;
 import cat.udl.hyperion.appmobils.kingdomcollector.Models.Deck;
@@ -11,16 +14,43 @@ public abstract class Player {
     private String name; // El nombre del jugador.
     private Deck deck; // El mazo de cartas del jugador.
     private int score; // La puntuación del jugador.
+    private int id; // Agregar un campo para el identificador del jugador
+
+    /**
+     * Convierte el estado del jugador en un objeto Map<String, Object> que puede ser almacenado en Firebase.
+     * @return un objeto Map<String, Object> que representa el estado del jugador.
+     */
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("id", getId());
+        result.put("name", getName());
+        result.put("score", getScore());
+        // ...
+        return result;
+    }
 
     /**
      * Constructor de la clase Player.
      *
+     * @param id El identificador único del jugador.
      * @param name El nombre del jugador.
      */
-    public Player(String name) {
+    public Player(int id, String name) {
+        this.id = id; // Inicializa el identificador del jugador.
         setName(name); // Establece el nombre del jugador llamando al método setName().
         this.score = 0; // Inicializa la puntuación del jugador a cero.
     }
+
+    /**
+     * Getter para el identificador del jugador.
+     *
+     * @return El identificador del jugador.
+     */
+    public int getId() {
+        return id;
+    }
+
+
 
     /**
      * Método abstracto que debe ser implementado por las clases que extienden Player,

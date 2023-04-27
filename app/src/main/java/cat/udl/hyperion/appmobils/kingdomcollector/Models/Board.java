@@ -1,11 +1,38 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.Models;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * La clase Board representa el tablero del juego, con sus cartas y posiciones en el mismo.
  */
 public class Board {
     private CardCollection[][] cells; // Matriz de cartas que representa las celdas del tablero.
     private static final int size = 3; // Tamaño del tablero, definido como una constante.
+
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("size", size);
+
+        // Almacenar el estado de las celdas en el tablero
+        List<List<Map<String, Object>>> cellsList = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            List<Map<String, Object>> row = new ArrayList<>();
+            for (int j = 0; j < size; j++) {
+                if (cells[i][j] != null) {
+                    row.add(cells[i][j].toMap());
+                } else {
+                    row.add(null);
+                }
+            }
+            cellsList.add(row);
+        }
+        result.put("cells", cellsList);
+
+        return result;
+    }
 
     /**
      * Constructor de la clase Board.

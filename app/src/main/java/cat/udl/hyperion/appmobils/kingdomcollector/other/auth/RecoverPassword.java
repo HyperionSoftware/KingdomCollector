@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +19,7 @@ import cat.udl.hyperion.appmobils.kingdomcollector.R;
 
 public class RecoverPassword extends AppCompatActivity {
 
+    protected String myClassTag = this.getClass().getSimpleName();
     private EditText emailInput;
     private Button recoverPasswordButton;
     private FirebaseAuth firebaseAuth;
@@ -47,6 +49,7 @@ public class RecoverPassword extends AppCompatActivity {
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(RecoverPassword.this, "Se ha enviado un correo electrónico para restablecer la contraseña", Toast.LENGTH_SHORT).show();
+                                    Log.d(myClassTag, "Enviado email con exito.");
                                 } else {
                                     Toast.makeText(RecoverPassword.this, "Ha habido un error al enviar el correo electrónico para restablecer la contraseña", Toast.LENGTH_SHORT).show();
                                 }
