@@ -44,9 +44,5 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
         this.cards = cards;
         notifyDataSetChanged();
     }
-
-    public void setOnItemClickListener(Object o) {
-
-    }
 }
 

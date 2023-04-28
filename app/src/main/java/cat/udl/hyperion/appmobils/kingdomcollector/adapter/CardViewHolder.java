@@ -5,12 +5,15 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
 import cat.udl.hyperion.appmobils.kingdomcollector.models.Card;
+import cat.udl.hyperion.appmobils.kingdomcollector.viewmodels.CardSelectedViewModel;
+import cat.udl.hyperion.appmobils.kingdomcollector.views.CardCollectionActivity;
 
 public class CardViewHolder extends RecyclerView.ViewHolder {
     private final TextView nameTextView;
@@ -36,6 +39,13 @@ public class CardViewHolder extends RecyclerView.ViewHolder {
                 card.setSelected(!card.isSelected());
                 // Actualiza la vista para reflejar el cambio
                 itemView.setBackgroundColor(card.isSelected() ? Color.LTGRAY : Color.WHITE);
+                // Agrega o remueve la carta seleccionada del ViewModel
+                CardSelectedViewModel selectedViewModel = new ViewModelProvider((CardCollectionActivity) itemView.getContext()).get(CardSelectedViewModel.class);
+                if (card.isSelected()) {
+                    selectedViewModel.addSelectedCard(card);
+                } else {
+                    selectedViewModel.removeSelectedCard(card);
+                }
             }
         });
     }
