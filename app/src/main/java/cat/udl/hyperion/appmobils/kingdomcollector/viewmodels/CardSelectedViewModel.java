@@ -20,6 +20,9 @@ public class CardSelectedViewModel extends ViewModel {
     public LiveData<List<Card>> getSelectedCardsLiveData() {
         return selectedCardsLiveData;
     }
+    public LiveData<List<Card>> setSelectedCardsLiveData(List<Card> cards) {
+        return selectedCardsLiveData;
+    }
 
     public void addSelectedCard(Card card) {
         List<Card> selectedCards = selectedCardsLiveData.getValue();
@@ -31,5 +34,11 @@ public class CardSelectedViewModel extends ViewModel {
         List<Card> selectedCards = selectedCardsLiveData.getValue();
         selectedCards.remove(card);
         selectedCardsLiveData.setValue(selectedCards);
+    }
+
+    public Card[] getSelectedCards() {
+        List<Card> selectedCards = selectedCardsLiveData.getValue();
+        assert selectedCards != null;
+        return selectedCards.toArray(new Card[0]);
     }
 }

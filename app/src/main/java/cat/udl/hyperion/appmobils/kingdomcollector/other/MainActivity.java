@@ -16,6 +16,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.Iterator;
@@ -23,6 +24,7 @@ import java.util.Iterator;
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
 import cat.udl.hyperion.appmobils.kingdomcollector.other.auth.LastLoginCallback;
 import cat.udl.hyperion.appmobils.kingdomcollector.views.CardCollectionActivity;
+import cat.udl.hyperion.appmobils.kingdomcollector.views.GameActivity;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -51,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_terms).setOnClickListener(view -> setBtn_settings());
 
         //Button Start.
-        //findViewById(R.id.btn_start).setOnClickListener(view -> setBtn_start());
+        findViewById(R.id.btn_start).setOnClickListener(view -> setBtn_start());
 
         //Button Collection.
         findViewById(R.id.btn_collection).setOnClickListener(view -> setBtn_collection());
@@ -129,8 +131,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    /*public void setBtn_start(){
-        Intent intent = new Intent(this, GameBoardActivity.class);
+    public void setBtn_start(){
+        Intent intent = new Intent(this, GameActivity.class);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference gameDataRef = database.getReference("game_data");
 
@@ -141,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
         userGameDataRef.child("count").setValue(ServerValue.increment(1));
 
         startActivity(intent);
-    }*/
+    }
 
     public void setBtn_collection(){
         Intent intent = new Intent(this, CardCollectionActivity.class);

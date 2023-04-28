@@ -41,4 +41,8 @@ public class CardSelectedAdapter extends RecyclerView.Adapter<CardSelectedViewHo
         this.selectedCards = selectedCards;
         notifyDataSetChanged();
     }
+
+    public List<Card> getSelectedCards() {
+        return selectedCards;
+    }
 }

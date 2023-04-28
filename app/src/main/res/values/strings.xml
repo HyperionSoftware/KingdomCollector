@@ -116,6 +116,7 @@
     <string name="world_record_title">World Record</string>
     <string name="personal_record_title">Record personal</string>
     <string name="selected_cards_label">Selected Cards:</string>
+    <string name="confirm_selection">Confirmar Equipo</string>
 
 
 </resources>
