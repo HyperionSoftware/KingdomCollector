@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -15,6 +18,9 @@
             android:name=".other.auth.RecoverPassword"
             android:exported="false" />
         <activity
+            android:name=".views.GameActivity"
+            android:exported="false" />
+        <activity
             android:name=".views.CardCollectionActivity"
             android:exported="false" />
         <activity
@@ -23,10 +29,6 @@
         <activity
             android:name=".other.auth.LoginActivity"
             android:exported="false" />
-        <activity
-            android:name=".views.GameActivity"
-            android:exported="false"
-            android:theme="@style/Theme.KingdomCollector.NoActionBar" />
         <activity
             android:name=".other.AboutUs"
             android:exported="false" />

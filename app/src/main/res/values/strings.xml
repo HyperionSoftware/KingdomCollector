@@ -112,9 +112,13 @@
     <string name="verifyEmail">Verify your mail to log in.</string>
     <string name="authFailed">Authentication failed.</string>
     <string name="btn_collection" translatable="false">Collection</string>
-    <string name="card_description">Card Description</string>
+    <string name="card_type" translatable="false">Card Type</string>
     <string name="world_record_title">World Record</string>
     <string name="personal_record_title">Record personal</string>
+    <string name="selected_cards_label" translatable="false">Selected Cards:</string>
+    <string name="confirm_selection" translatable="false">Confirmar Equipo</string>
+    <string name="card_name" translatable="false">Card Name</string>
+    <string name="card_description">Card Description</string>
 
 
 </resources>
