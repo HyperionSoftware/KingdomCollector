@@ -1,5 +1,9 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.Models.Player;
 
+import java.util.HashMap;
+import java.util.Map;
+import android.util.Log;
+
 import cat.udl.hyperion.appmobils.kingdomcollector.Models.Board;
 import cat.udl.hyperion.appmobils.kingdomcollector.Models.CardCollection;
 import cat.udl.hyperion.appmobils.kingdomcollector.Models.Deck;
@@ -8,19 +12,48 @@ import cat.udl.hyperion.appmobils.kingdomcollector.Models.Deck;
  * La clase Player representa un jugador en un juego de cartas, con sus cartas, puntos y jugadas.
  */
 public abstract class Player {
+    private static final String TAG = "Player";
     private String name; // El nombre del jugador.
     private Deck deck; // El mazo de cartas del jugador.
     private int score; // La puntuación del jugador.
+    private int id; // Agregar un campo para el identificador del jugador
+
+    /**
+     * Convierte el estado del jugador en un objeto Map<String, Object> que puede ser almacenado en Firebase.
+     * @return un objeto Map<String, Object> que representa el estado del jugador.
+     */
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("id", getId());
+        result.put("name", getName());
+        result.put("score", getScore());
+        // ...
+        return result;
+    }
 
     /**
      * Constructor de la clase Player.
      *
+     * @param id El identificador único del jugador.
      * @param name El nombre del jugador.
      */
-    public Player(String name) {
+    public Player(int id, String name) {
+        this.id = id; // Inicializa el identificador del jugador.
         setName(name); // Establece el nombre del jugador llamando al método setName().
         this.score = 0; // Inicializa la puntuación del jugador a cero.
+        Log.d(TAG, "Player creado con ID: " + id + " y nombre: " + name);
     }
+
+    /**
+     * Getter para el identificador del jugador.
+     *
+     * @return El identificador del jugador.
+     */
+    public int getId() {
+        return id;
+    }
+
+
 
     /**
      * Método abstracto que debe ser implementado por las clases que extienden Player,
@@ -48,7 +81,9 @@ public abstract class Player {
      * @param deck El nuevo mazo de cartas del jugador.
      */
     public void setDeck(Deck deck) {
+
         this.deck = deck;
+        Log.d(TAG, "Se estableció el mazo del jugador con ID: " + id + " y nombre: " + name);
     }
 
     /**
@@ -66,7 +101,9 @@ public abstract class Player {
      * @param name El nuevo nombre del jugador.
      */
     public void setName(String name) {
+
         this.name = name;
+        Log.d(TAG, "Se cambió el nombre del jugador con ID: " + id + " a: " + name);
     }
 
     /**
@@ -91,6 +128,7 @@ public abstract class Player {
      */
     public void removeCard(CardCollection card) {
         this.deck.eliminarCarta(card); // Elimina la carta del mazo del jugador.
+        Log.d(TAG, "Se eliminó la carta con ID: " + card.getId() + " del mazo del jugador con ID: " + id + " y nombre: " + name);
     }
 
     /**

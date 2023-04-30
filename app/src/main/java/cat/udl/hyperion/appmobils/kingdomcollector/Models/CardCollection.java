@@ -1,5 +1,7 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.Models;
 
+import java.util.HashMap;
+import java.util.Map;
 /**
  * La clase CardCollection representa una carta del juego, con sus atributos y métodos y valores numéricos del elemento.
  */
@@ -40,6 +42,29 @@ public class CardCollection {
         this.owner = -1;
 
     }
+
+    /**
+     * Convierte el estado de la carta en un objeto Map<String, Object> que puede ser almacenado en Firebase.
+     * @return un objeto Map<String, Object> que representa el estado de la carta.
+     */
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("id", id);
+        result.put("name", name);
+        result.put("imageResource", imageResource);
+        result.put("description", description);
+        result.put("type", type);
+        result.put("powerArriba", powerArriba);
+        result.put("powerIzquierda", powerIzquierda);
+        result.put("powerAbajo", powerAbajo);
+        result.put("powerDerecha", powerDerecha);
+        result.put("selected", selected);
+        result.put("owner", owner);
+
+        return result;
+    }
+
+
 
     // Getters y setters
 

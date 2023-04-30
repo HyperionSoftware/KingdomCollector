@@ -4,9 +4,12 @@ import android.util.Log;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import cat.udl.hyperion.appmobils.kingdomcollector.Models.Board;
+
 
 import java.util.HashMap;
 import java.util.Map;
+
 
 import cat.udl.hyperion.appmobils.kingdomcollector.Models.Player.Player;
 
@@ -15,11 +18,30 @@ import cat.udl.hyperion.appmobils.kingdomcollector.Models.Player.Player;
  * */
 public class Game {
     protected String myClassTag = this.getClass().getSimpleName();
-    private Player player1;
-    private Player player2;
-    private Board board;
+    private final Player player1;
+    private final Player player2;
+    private final Board board;
     private Player currentPlayer;
     private boolean isGameOver;
+
+    /**
+     * Convierte el estado del juego en un objeto Map<String, Object> que puede ser almacenado
+     * en Firebase.
+     * Incluye información sobre los jugadores, el tablero, el jugador actual y si el juego ha
+     * terminado.
+     *
+     * @return un objeto Map<String, Object> que representa el estado del juego.
+     */
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("player1", player1.toMap());
+        result.put("player2", player2.toMap());
+        result.put("board", board.toMap());
+        result.put("currentPlayer", currentPlayer.getId());
+        result.put("isGameOver", isGameOver);
+        return result;
+    }
+
 
     /**
      * Crea un objeto Game con dos jugadores y un tamaño de tablero.
@@ -87,8 +109,8 @@ public class Game {
     }
     /**
      * Guarda la información de la partida cuando se termina.
-     * @param userId
-     * @param score
+     * @param userId El identificador del usuario.
+     * @param score La puntación del usuario.
      */
     public void saveGameData(String userId, int score) {
         DatabaseReference gameDataRef = FirebaseDatabase.getInstance().getReference("game_data").child(userId);
