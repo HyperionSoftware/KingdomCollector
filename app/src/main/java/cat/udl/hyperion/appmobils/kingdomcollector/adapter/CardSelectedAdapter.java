@@ -23,7 +23,7 @@ public class CardSelectedAdapter extends RecyclerView.Adapter<CardSelectedViewHo
     @Override
     public CardSelectedViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_selected_item, parent, false);
-        return new CardSelectedViewHolder(view);
+        return new CardSelectedViewHolder(view, selectedCards);
     }
 
     @Override

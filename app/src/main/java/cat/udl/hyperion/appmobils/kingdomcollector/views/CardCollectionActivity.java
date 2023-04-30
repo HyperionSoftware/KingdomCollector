@@ -3,7 +3,6 @@ package cat.udl.hyperion.appmobils.kingdomcollector.views;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -14,17 +13,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
 import cat.udl.hyperion.appmobils.kingdomcollector.adapter.CardAdapter;
 import cat.udl.hyperion.appmobils.kingdomcollector.adapter.CardSelectedAdapter;
 import cat.udl.hyperion.appmobils.kingdomcollector.models.Card;
-import cat.udl.hyperion.appmobils.kingdomcollector.other.MainActivity;
 import cat.udl.hyperion.appmobils.kingdomcollector.viewmodels.CardSelectedViewModel;
 import cat.udl.hyperion.appmobils.kingdomcollector.viewmodels.CardViewModel;
 
@@ -37,31 +35,27 @@ public class CardCollectionActivity extends AppCompatActivity {
 
     private Button confirmButton;
 
-    private SharedPreferences mSharedPreferences;
-    private static final String SHARED_PREFS_FILE = "selected_cards_prefs";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card_collection);
 
+        confirmButton = findViewById(R.id.btn_confirm_selection);
+        confirmButton.setOnClickListener(v -> confirmSelection());
+
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 4));
         cardAdapter = new CardAdapter(null);
         recyclerView.setAdapter(cardAdapter);
+
 
         RecyclerView selectedRecyclerView = findViewById(R.id.selected_recycler_view);
         selectedRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         selectedCardAdapter = new CardSelectedAdapter(null);
         selectedRecyclerView.setAdapter(selectedCardAdapter);
 
-        confirmButton = findViewById(R.id.btn_confirm_selection);
-        confirmButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                confirmSelection();
-            }
-        });
+
 
         CardViewModel viewModel = new ViewModelProvider(this).get(CardViewModel.class);
         viewModel.getCardsLiveData().observe(this, cards -> cardAdapter.setCards(cards));
@@ -69,16 +63,29 @@ public class CardCollectionActivity extends AppCompatActivity {
         CardSelectedViewModel selectedViewModel = new ViewModelProvider(this).get(CardSelectedViewModel.class);
         selectedViewModel.getSelectedCardsLiveData().observe(this, selectedCards -> selectedCardAdapter.setSelectedCards(selectedCards));
 
-        // Inicializar SharedPreferences
-        mSharedPreferences = getSharedPreferences(SHARED_PREFS_FILE, MODE_PRIVATE);
+        // Cargar las cartas seleccionadas y actualizar el CardSelectedViewModel
+        List<Card> selectedCards = loadSelectedCards();
+        CardSelectedViewModel cardSelectedViewModel = new ViewModelProvider(this).get(CardSelectedViewModel.class);
+        cardSelectedViewModel.setSelectedCardsLiveData(selectedCards);
 
-        // Cargar las cartas seleccionadas guardadas anteriormente
-        Set<String> selectedCardsSet = mSharedPreferences.getStringSet("selected_cards", new HashSet<String>());
-        List<Card> selectedCards = new ArrayList<>();
-        for (String cardJson : selectedCardsSet) {
-            selectedCards.add(new Gson().fromJson(cardJson, Card.class));
-        }
-        selectedCardAdapter.setSelectedCards(selectedCards);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        CardSelectedViewModel cardSelectedViewModel = new ViewModelProvider(this).get(CardSelectedViewModel.class);
+        List<Card> selectedCards = cardSelectedViewModel.getSelectedCardsLiveData().getValue();
+        saveSelectedCards(selectedCards);
+    }
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        cardAdapter = null;
+        selectedCardAdapter = null;
+        confirmButton = null;
     }
 
     private void confirmSelection() {
@@ -87,23 +94,40 @@ public class CardCollectionActivity extends AppCompatActivity {
             Toast.makeText(this, "Debe seleccionar exactamente 5 cartas", Toast.LENGTH_SHORT).show();
             return;
         }
-        CardSelectedViewModel viewModel = new ViewModelProvider(this).get(CardSelectedViewModel.class);
-        viewModel.setSelectedCardsLiveData(selectedCards);
 
-        // Convertir el conjunto de cartas seleccionadas a un conjunto de strings
-        Set<String> selectedCardsSet = new HashSet<>();
-        for (Card card : viewModel.getSelectedCards()) {
-            selectedCardsSet.add(new Gson().toJson(card));
-        }
+        // Guarda las cartas seleccionadas en las preferencias compartidas
+        //saveSelectedCards(selectedCards);
 
-        // Guardar el conjunto de strings en las SharedPreferences
-        SharedPreferences.Editor editor = mSharedPreferences.edit();
-        editor.putStringSet("selected_cards", selectedCardsSet);
-        editor.apply();
-
-
-        startActivity(new Intent(this, MainActivity.class));
+        // Inicia el GameActivity y pasa las cartas seleccionadas como un Extra
+        Intent intent = new Intent(this, GameActivity.class);
+        //intent.putExtra("selectedCards", (Serializable) selectedCards);
+        startActivity(intent);
     }
+
+    private void saveSelectedCards(List<Card> selectedCards) {
+        SharedPreferences sharedPreferences = getSharedPreferences("selected_cards", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        Gson gson = new Gson();
+        String json = gson.toJson(selectedCards);
+        editor.putString("cards", json);
+        editor.apply();
+    }
+
+    private List<Card> loadSelectedCards() {
+        SharedPreferences sharedPreferences = getSharedPreferences("selected_cards", MODE_PRIVATE);
+        String json = sharedPreferences.getString("cards", null);
+
+        if (json != null) {
+            Gson gson = new Gson();
+            Type type = new TypeToken<List<Card>>() {}.getType();
+            return gson.fromJson(json, type);
+        } else {
+            return new ArrayList<>();
+        }
+    }
+
+
 }
 
 

@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
@@ -17,7 +18,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
 
 
     public CardAdapter(List<Card> cards) {
-        this.cards = cards;
+        this.cards = cards != null ? cards : new ArrayList<>();
     }
 
     @NonNull

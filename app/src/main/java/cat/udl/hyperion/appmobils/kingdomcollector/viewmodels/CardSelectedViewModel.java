@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.models.Card;
 
@@ -20,25 +21,21 @@ public class CardSelectedViewModel extends ViewModel {
     public LiveData<List<Card>> getSelectedCardsLiveData() {
         return selectedCardsLiveData;
     }
-    public LiveData<List<Card>> setSelectedCardsLiveData(List<Card> cards) {
-        return selectedCardsLiveData;
+
+    public void setSelectedCardsLiveData(List<Card> cards) {
+        selectedCardsLiveData.setValue(cards);
     }
 
     public void addSelectedCard(Card card) {
-        List<Card> selectedCards = selectedCardsLiveData.getValue();
+        List<Card> selectedCards = new ArrayList<>(Objects.requireNonNull(selectedCardsLiveData.getValue()));
         selectedCards.add(card);
         selectedCardsLiveData.setValue(selectedCards);
     }
 
     public void removeSelectedCard(Card card) {
-        List<Card> selectedCards = selectedCardsLiveData.getValue();
+        List<Card> selectedCards = new ArrayList<>(Objects.requireNonNull(selectedCardsLiveData.getValue()));
         selectedCards.remove(card);
         selectedCardsLiveData.setValue(selectedCards);
     }
 
-    public Card[] getSelectedCards() {
-        List<Card> selectedCards = selectedCardsLiveData.getValue();
-        assert selectedCards != null;
-        return selectedCards.toArray(new Card[0]);
-    }
 }

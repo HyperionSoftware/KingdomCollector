@@ -18,6 +18,9 @@
             android:name=".other.auth.RecoverPassword"
             android:exported="false" />
         <activity
+            android:name=".views.GameActivity"
+            android:exported="false" />
+        <activity
             android:name=".views.CardCollectionActivity"
             android:exported="false" />
         <activity

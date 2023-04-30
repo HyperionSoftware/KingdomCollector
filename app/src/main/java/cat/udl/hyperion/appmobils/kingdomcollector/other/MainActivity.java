@@ -16,10 +16,10 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.Iterator;
+import java.util.Objects;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
 import cat.udl.hyperion.appmobils.kingdomcollector.other.auth.LastLoginCallback;
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference gameDataRef = database.getReference("game_data");
 
-    String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+    String userId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
     DatabaseReference userGameDataRef = gameDataRef.child(userId);
 
     @SuppressLint("MissingInflatedId")
@@ -133,14 +133,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void setBtn_start(){
         Intent intent = new Intent(this, GameActivity.class);
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        /*FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference gameDataRef = database.getReference("game_data");
 
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         DatabaseReference userGameDataRef = gameDataRef.child(userId);
 
         // Increment the count by 1
-        userGameDataRef.child("count").setValue(ServerValue.increment(1));
+        userGameDataRef.child("count").setValue(ServerValue.increment(1));*/
 
         startActivity(intent);
     }
