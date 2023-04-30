@@ -1,4 +1,5 @@
 # KingdomCollector
+ALBERT MIRA PER AQUEST SPRINT NOMÉS BRANCH MAIN. 
 App Android Studio Proyecto Integrador Hyperion 2022/23
 
 ## Authors
