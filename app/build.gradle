@@ -42,15 +42,23 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'
     implementation platform('com.google.firebase:firebase-bom:31.2.3')
+
     // Add the dependency for the Firebase Authentication library
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.android.gms:play-services-auth:20.5.0'
+
     // Add the dependency for the Realtime Database library
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation 'com.google.firebase:firebase-database'
-    // Add the dependency for the Realtime Database library
-// When using the BoM, you don't specify versions in Firebase library dependencies
-    implementation 'com.google.firebase:firebase-database'
+
+    implementation 'com.google.firebase:firebase-storage:20.1.0'
+
+    //Persistencia de cartas seleccionadas
+    implementation 'com.google.code.gson:gson:2.9.0'
+
+
+
+
 
 }

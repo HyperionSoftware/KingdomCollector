@@ -1,139 +1,135 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.views;
 
-import androidx.annotation.NonNull;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
-import cat.udl.hyperion.appmobils.kingdomcollector.Models.CardCollection;
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
+import cat.udl.hyperion.appmobils.kingdomcollector.adapter.CardAdapter;
+import cat.udl.hyperion.appmobils.kingdomcollector.adapter.CardSelectedAdapter;
+import cat.udl.hyperion.appmobils.kingdomcollector.models.Card;
+import cat.udl.hyperion.appmobils.kingdomcollector.viewmodels.CardSelectedViewModel;
 import cat.udl.hyperion.appmobils.kingdomcollector.viewmodels.CardViewModel;
 
-public class CardCollectionActivity extends AppCompatActivity{
-    private CardAdapter adapter;
-    private CardViewModel cardViewModel;
-    private RecyclerView selectedCardsRecyclerView;
+
+
+public class CardCollectionActivity extends AppCompatActivity {
+
+    private CardAdapter cardAdapter;
+    private CardSelectedAdapter selectedCardAdapter;
+
+    private Button confirmButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card_collection);
 
-        //cardViewModel = ViewModelProviders.of(this).get(CardViewModel.class);
-
-
+        confirmButton = findViewById(R.id.btn_confirm_selection);
+        confirmButton.setOnClickListener(v -> confirmSelection());
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        adapter = new CardAdapter(null, null); // Revisar.
-        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 4));
+        cardAdapter = new CardAdapter(null);
+        recyclerView.setAdapter(cardAdapter);
+
+
+        RecyclerView selectedRecyclerView = findViewById(R.id.selected_recycler_view);
+        selectedRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        selectedCardAdapter = new CardSelectedAdapter(null);
+        selectedRecyclerView.setAdapter(selectedCardAdapter);
+
+
 
         CardViewModel viewModel = new ViewModelProvider(this).get(CardViewModel.class);
-        viewModel.getCardsLiveData().observe(this, cards -> adapter.setCards(cards));
+        viewModel.getCardsLiveData().observe(this, cards -> cardAdapter.setCards(cards));
+
+        CardSelectedViewModel selectedViewModel = new ViewModelProvider(this).get(CardSelectedViewModel.class);
+        selectedViewModel.getSelectedCardsLiveData().observe(this, selectedCards -> selectedCardAdapter.setSelectedCards(selectedCards));
+
+        // Cargar las cartas seleccionadas y actualizar el CardSelectedViewModel
+        List<Card> selectedCards = loadSelectedCards();
+        CardSelectedViewModel cardSelectedViewModel = new ViewModelProvider(this).get(CardSelectedViewModel.class);
+        cardSelectedViewModel.setSelectedCardsLiveData(selectedCards);
+
     }
 
-    /*@Override
-    public void onCardSelected(CardCollection cardCollection) {
-        cardViewModel.selectCard(cardCollection);
+    @Override
+    protected void onPause() {
+        super.onPause();
 
-    }*/
+        CardSelectedViewModel cardSelectedViewModel = new ViewModelProvider(this).get(CardSelectedViewModel.class);
+        List<Card> selectedCards = cardSelectedViewModel.getSelectedCardsLiveData().getValue();
+        saveSelectedCards(selectedCards);
+    }
 
-    /*@Override
-    public void onCardDeselected(CardCollection cardCollection) {
-        cardViewModel.deselectCard(cardCollection);
 
-    }*/
+    @Override
+    protected void onStop() {
+        super.onStop();
+        cardAdapter = null;
+        selectedCardAdapter = null;
+        confirmButton = null;
+    }
 
-    private static class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
-        private List<CardCollection> cardCollections;
-        private List<CardCollection> cards;
-        private OnCardClickListener onCardClickListener;
-
-        public CardAdapter(List<CardCollection> cards, OnCardClickListener onCardClickListener) {
-            this.cards = cards;
-            this.onCardClickListener = onCardClickListener;
+    private void confirmSelection() {
+        List<Card> selectedCards = selectedCardAdapter.getSelectedCards();
+        if (selectedCards.size() != 5) {
+            Toast.makeText(this, "Debe seleccionar exactamente 5 cartas", Toast.LENGTH_SHORT).show();
+            return;
         }
 
+        // Guarda las cartas seleccionadas en las preferencias compartidas
+        //saveSelectedCards(selectedCards);
 
-        @NonNull
-        @Override
-        public CardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_item, parent, false);
-            return new CardViewHolder(view);
-        }
+        // Inicia el GameActivity y pasa las cartas seleccionadas como un Extra
+        Intent intent = new Intent(this, GameActivity.class);
+        //intent.putExtra("selectedCards", (Serializable) selectedCards);
+        startActivity(intent);
+    }
 
-        @Override
-        public void onBindViewHolder(@NonNull CardViewHolder holder, int position) {
-            CardCollection cardCollection = cardCollections.get(position);
-            holder.nameTextView.setText(cardCollection.getName());
-            holder.imageView.setImageResource(cardCollection.getImageResource());
-            holder.descriptionTextView.setText(cardCollection.getDescription());
-        }
+    private void saveSelectedCards(List<Card> selectedCards) {
+        SharedPreferences sharedPreferences = getSharedPreferences("selected_cards", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        @Override
-        public int getItemCount() {
-            return cardCollections != null ? cardCollections.size() : 0;
-        }
+        Gson gson = new Gson();
+        String json = gson.toJson(selectedCards);
+        editor.putString("cards", json);
+        editor.apply();
+    }
 
-        @SuppressLint("NotifyDataSetChanged")
-        public void setCards(List<CardCollection> cardCollections) {
-            this.cardCollections = cardCollections;
-            notifyDataSetChanged();
+    private List<Card> loadSelectedCards() {
+        SharedPreferences sharedPreferences = getSharedPreferences("selected_cards", MODE_PRIVATE);
+        String json = sharedPreferences.getString("cards", null);
+
+        if (json != null) {
+            Gson gson = new Gson();
+            Type type = new TypeToken<List<Card>>() {}.getType();
+            return gson.fromJson(json, type);
+        } else {
+            return new ArrayList<>();
         }
     }
 
-    private static class CardViewHolder extends RecyclerView.ViewHolder {
-        private final TextView nameTextView;
-        private final ImageView imageView;
-        private final TextView descriptionTextView;
-        private CardCollection cardCollection;
 
-        public CardViewHolder(@NonNull View itemView) {
-            super(itemView);
-            nameTextView = itemView.findViewById(R.id.name_text_view);
-            imageView = itemView.findViewById(R.id.image_view);
-            descriptionTextView = itemView.findViewById(R.id.description_text_view);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    OnCardClickListener onCardClickListener = null;
-                    if (cardCollection.isSelected()) {
-                        cardCollection.setSelected(false);
-                        assert false;
-                        onCardClickListener.onCardDeselected(cardCollection);
-                    } else {
-                        cardCollection.setSelected(true);
-                        assert false;
-                        onCardClickListener.onCardSelected(cardCollection);
-                    }
-                }
-            });
-        }
-
-        public void bind(CardCollection cardCollection) {
-            this.cardCollection = cardCollection;
-            imageView.setImageResource(cardCollection.getImageResource());
-            nameTextView.setText(cardCollection.getName());
-            descriptionTextView.setText(cardCollection.getDescription());
-
-            if (cardCollection.isSelected()) {
-                itemView.setBackgroundResource(R.drawable.reverse_card);
-            } else {
-                itemView.setBackgroundResource(R.drawable.reverse_card);
-            }
-        }
-    }
 }
+
+
+
+
