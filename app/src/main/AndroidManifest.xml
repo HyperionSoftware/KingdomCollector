@@ -21,7 +21,7 @@
             android:name=".views.GameActivity"
             android:exported="false" />
         <activity
-            android:name=".views.CardCollectionActivity"
+            android:name=".views.CollectionActivity"
             android:exported="false" />
         <activity
             android:name=".other.auth.RegisterActivity"

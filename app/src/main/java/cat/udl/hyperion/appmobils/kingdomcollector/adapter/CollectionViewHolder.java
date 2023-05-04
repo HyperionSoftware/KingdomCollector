@@ -13,15 +13,15 @@ import java.util.List;
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
 import cat.udl.hyperion.appmobils.kingdomcollector.models.Card;
 import cat.udl.hyperion.appmobils.kingdomcollector.viewmodels.CardSelectedViewModel;
-import cat.udl.hyperion.appmobils.kingdomcollector.views.CardCollectionActivity;
+import cat.udl.hyperion.appmobils.kingdomcollector.views.CollectionActivity;
 
-public class CardViewHolder extends RecyclerView.ViewHolder {
+public class CollectionViewHolder extends RecyclerView.ViewHolder {
     private final TextView nameTextView;
     private final ImageView imageView;
     private final TextView typeTextView;
     private final List<Card> cards;
 
-    public CardViewHolder(View itemView, List<Card> cards) {
+    public CollectionViewHolder(View itemView, List<Card> cards) {
         super(itemView);
         this.cards = cards;
         nameTextView = itemView.findViewById(R.id.name_text_view);
@@ -40,7 +40,7 @@ public class CardViewHolder extends RecyclerView.ViewHolder {
                 // Actualiza la vista para reflejar el cambio
                 itemView.setBackgroundColor(card.isSelected() ? Color.LTGRAY : Color.WHITE);
                 // Agrega o remueve la carta seleccionada del ViewModel
-                CardSelectedViewModel selectedViewModel = new ViewModelProvider((CardCollectionActivity) itemView.getContext()).get(CardSelectedViewModel.class);
+                CardSelectedViewModel selectedViewModel = new ViewModelProvider((CollectionActivity) itemView.getContext()).get(CardSelectedViewModel.class);
                 if (card.isSelected()) {
                     selectedViewModel.addSelectedCard(card);
                 } else {
@@ -52,10 +52,8 @@ public class CardViewHolder extends RecyclerView.ViewHolder {
 
     public void bind(Card card) {
         nameTextView.setText(card.getName());
-        imageView.setImageResource(card.getImage());
+        imageView.setImageResource(card.setImageResource());
         typeTextView.setText(card.getType());
-        // Establece el fondo de la vista según el estado de selección de la carta
-        itemView.setBackgroundColor(card.isSelected() ? Color.LTGRAY : Color.WHITE);
     }
 }
 

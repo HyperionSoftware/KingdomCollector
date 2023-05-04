@@ -13,7 +13,7 @@ import java.util.List;
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
 import cat.udl.hyperion.appmobils.kingdomcollector.models.Card;
 import cat.udl.hyperion.appmobils.kingdomcollector.viewmodels.CardSelectedViewModel;
-import cat.udl.hyperion.appmobils.kingdomcollector.views.CardCollectionActivity;
+import cat.udl.hyperion.appmobils.kingdomcollector.views.CollectionActivity;
 
 public class CardSelectedViewHolder extends RecyclerView.ViewHolder {
     private final ImageView imageView;
@@ -36,7 +36,7 @@ public class CardSelectedViewHolder extends RecyclerView.ViewHolder {
                 card.setSelected(false);
 
                 // Remueve la carta seleccionada del ViewModel
-                CardSelectedViewModel selectedViewModel = new ViewModelProvider((CardCollectionActivity) itemView.getContext()).get(CardSelectedViewModel.class);
+                CardSelectedViewModel selectedViewModel = new ViewModelProvider((CollectionActivity) itemView.getContext()).get(CardSelectedViewModel.class);
                 selectedViewModel.removeSelectedCard(card);
 
                 // Actualiza la lista de cartas seleccionadas en el adaptador
@@ -49,8 +49,8 @@ public class CardSelectedViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bind(Card card) {
-        imageView.setImageResource(card.getImage());
-        // Establece el fondo de la vista según el estado de selección de la carta
-        itemView.setBackgroundColor(card.isSelected() ? Color.LTGRAY : Color.WHITE);
+        imageView.setImageResource(card.setImageResource());
+
+
     }
 }

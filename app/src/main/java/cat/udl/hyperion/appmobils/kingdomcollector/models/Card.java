@@ -6,17 +6,17 @@ package cat.udl.hyperion.appmobils.kingdomcollector.models;
 public class Card {
     private int id;
     private String name;
-    private int image;
+    private int imageUrl;
     private String type;
 
     private boolean isSelected;
 
 
 
-    public Card(int id, String name, int image, String type) {
+    public Card(int id, String name, int imageResource, String type) {
         this.id = id;
         this.name = name;
-        this.image = image;
+        this.imageUrl = imageResource;
         this.type = type;
 
 
@@ -38,20 +38,12 @@ public class Card {
         this.name = name;
     }
 
-    public int getImage() {
-        return image;
-    }
-
-    public void setImage(int image) {
-        this.image = image;
+    public int setImageResource() {
+        return imageUrl;
     }
 
     public String getType() {
         return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
 

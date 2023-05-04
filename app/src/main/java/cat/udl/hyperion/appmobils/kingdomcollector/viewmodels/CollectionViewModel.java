@@ -10,11 +10,11 @@ import java.util.List;
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
 import cat.udl.hyperion.appmobils.kingdomcollector.models.Card;
 
-public class CardViewModel extends ViewModel {
+public class CollectionViewModel extends ViewModel {
     private final MutableLiveData<List<Card>> cardsLiveData;
 
 
-    public CardViewModel() {
+    public CollectionViewModel() {
         cardsLiveData = new MutableLiveData<>();
         List<Card> presidentCards = new ArrayList<>();
 
@@ -37,6 +37,7 @@ public class CardViewModel extends ViewModel {
     public LiveData<List<Card>> getCardsLiveData() {
         return cardsLiveData;
     }
+
 
 
 }

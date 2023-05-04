@@ -20,17 +20,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
-import cat.udl.hyperion.appmobils.kingdomcollector.adapter.CardAdapter;
+import cat.udl.hyperion.appmobils.kingdomcollector.adapter.CollectionAdapter;
 import cat.udl.hyperion.appmobils.kingdomcollector.adapter.CardSelectedAdapter;
 import cat.udl.hyperion.appmobils.kingdomcollector.models.Card;
 import cat.udl.hyperion.appmobils.kingdomcollector.viewmodels.CardSelectedViewModel;
-import cat.udl.hyperion.appmobils.kingdomcollector.viewmodels.CardViewModel;
+import cat.udl.hyperion.appmobils.kingdomcollector.viewmodels.CollectionViewModel;
 
 
 
-public class CardCollectionActivity extends AppCompatActivity {
+public class CollectionActivity extends AppCompatActivity {
 
-    private CardAdapter cardAdapter;
+    private CollectionAdapter collectionAdapter;
     private CardSelectedAdapter selectedCardAdapter;
 
     private Button confirmButton;
@@ -46,8 +46,8 @@ public class CardCollectionActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 4));
-        cardAdapter = new CardAdapter(null);
-        recyclerView.setAdapter(cardAdapter);
+        collectionAdapter = new CollectionAdapter(null);
+        recyclerView.setAdapter(collectionAdapter);
 
 
         RecyclerView selectedRecyclerView = findViewById(R.id.selected_recycler_view);
@@ -57,8 +57,8 @@ public class CardCollectionActivity extends AppCompatActivity {
 
 
 
-        CardViewModel viewModel = new ViewModelProvider(this).get(CardViewModel.class);
-        viewModel.getCardsLiveData().observe(this, cards -> cardAdapter.setCards(cards));
+        CollectionViewModel viewModel = new ViewModelProvider(this).get(CollectionViewModel.class);
+        viewModel.getCardsLiveData().observe(this, cards -> collectionAdapter.setCards(cards));
 
         CardSelectedViewModel selectedViewModel = new ViewModelProvider(this).get(CardSelectedViewModel.class);
         selectedViewModel.getSelectedCardsLiveData().observe(this, selectedCards -> selectedCardAdapter.setSelectedCards(selectedCards));
@@ -83,7 +83,7 @@ public class CardCollectionActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        cardAdapter = null;
+        collectionAdapter = null;
         selectedCardAdapter = null;
         confirmButton = null;
     }
