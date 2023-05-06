@@ -122,7 +122,7 @@ public class BoardViewModel extends ViewModel {
                 CellViewModel cellViewModel = getCellViewModelAt(row, col);
                 Card card = cellViewModel.getCard().getValue();
                 if (card != null) {
-                    boardState.append(String.format("Posición (%d, %d): %s\n", row, col, card.getName()));
+                    boardState.append(String.format("Posición (%d, %d): %s : %s\n", row, col, card.getName(), card.getOwner().getName()));
                 } else {
                     boardState.append(String.format("Posición (%d, %d): Vacío\n", row, col));
                 }
@@ -130,6 +130,7 @@ public class BoardViewModel extends ViewModel {
         }
         Log.d(TAG, boardState.toString());
     }
+
 
 
     public List<CellViewModel> getCellViewModels() {

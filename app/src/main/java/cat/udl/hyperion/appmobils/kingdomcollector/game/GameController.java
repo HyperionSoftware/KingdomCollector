@@ -119,11 +119,11 @@ public class GameController {
     }
 
     public int getHumanPlayerPoints() {
-        return humanPlayer.getPoints();
+        return humanPlayer.getPoints().getValue();
     }
 
     public int getComputerPlayerPoints() {
-        return computerPlayer.getPoints();
+        return computerPlayer.getPoints().getValue();
     }
 
     public BoardViewModel getBoardViewModel() {
@@ -147,30 +147,31 @@ public class GameController {
             if (newRow >= 0 && newRow < 3 && newCol >= 0 && newCol < 3) {
                 Card adjacentCard = boardViewModel.getCellViewModelAt(newRow, newCol).getCard().getValue();
                 if (adjacentCard != null) {
-                    int playedCardSideValue = getPower(getAdjacentSide(row, col, newRow, newCol), playedCard);
-                    int adjacentCardSideValue = getPower(getOppositeSide(getAdjacentSide(row, col, newRow, newCol)), playedCard);
-
-                    if (playedCardSideValue > adjacentCardSideValue && playedCard.getOwner() != adjacentCard.getOwner()) {
+                    int adjacentSide = getAdjacentSide(row, col, newRow, newCol);
+                    if (hasGreaterPower(adjacentSide, playedCard, adjacentCard) && playedCard.getOwner() != adjacentCard.getOwner()) {
                         adjacentCard.setOwner(playedCard.getOwner());
                     }
                 }
             }
         }
     }
-    public int getPower(int side, Card card) {
+
+    public boolean hasGreaterPower(int side, Card newCard, Card oldCard) {
         switch (side) {
             case 1:
-                return card.getPowerArriba();
+                return newCard.getPowerAbajo() > oldCard.getPowerArriba();
             case 2:
-                return card.getPowerIzquierda();
+                return newCard.getPowerDerecha() > oldCard.getPowerIzquierda();
             case 3:
-                return card.getPowerAbajo();
+                return newCard.getPowerArriba() > oldCard.getPowerAbajo();
             case 4:
-                return card.getPowerDerecha();
+                return newCard.getPowerIzquierda() > oldCard.getPowerDerecha();
             default:
-                return -1;
+                return false;
         }
     }
+
+
     private int getAdjacentSide(int row1, int col1, int row2, int col2) {
         if (row1 == row2 - 1) return 1; // top
         if (row1 == row2 + 1) return 3; // bottom
@@ -178,17 +179,5 @@ public class GameController {
         if (col1 == col2 + 1) return 4; // right
         return -1;
     }
-
-    private int getOppositeSide(int side) {
-        if (side == 1) return 3;
-        if (side == 2) return 4;
-        if (side == 3) return 1;
-        if (side == 4) return 2;
-        return -1;
-    }
-
-
-
-
 }
 

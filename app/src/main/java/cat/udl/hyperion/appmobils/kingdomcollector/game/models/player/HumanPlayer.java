@@ -1,8 +1,10 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.game.models.player;
 
+import java.io.Serializable;
+
 import cat.udl.hyperion.appmobils.kingdomcollector.game.GameController;
 
-public class HumanPlayer extends Player{
+public class HumanPlayer extends Player implements Serializable {
     @Override
     public void playTurn(GameController gameController) {
         // La lógica para jugar el turno de un jugador humano se manejará en la interfaz de usuario

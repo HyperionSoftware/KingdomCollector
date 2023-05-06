@@ -18,7 +18,7 @@
             android:id="@+id/player_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{playerViewModel.player.name}"
+            android:text="@{playerViewModel.playerName}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,9 +26,10 @@
             android:id="@+id/player_points"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{String.valueOf(playerViewModel.player.points)}"
+            android:text="@{String.valueOf(playerViewModel.playerPoints)}"
             app:layout_constraintStart_toEndOf="@+id/player_name"
             app:layout_constraintTop_toTopOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
