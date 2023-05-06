@@ -22,6 +22,7 @@ import java.util.List;
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
 import cat.udl.hyperion.appmobils.kingdomcollector.adapter.CardAdapter;
 import cat.udl.hyperion.appmobils.kingdomcollector.adapter.CardSelectedAdapter;
+import cat.udl.hyperion.appmobils.kingdomcollector.game.views.GameActivity;
 import cat.udl.hyperion.appmobils.kingdomcollector.models.Card;
 import cat.udl.hyperion.appmobils.kingdomcollector.viewmodels.CardSelectedViewModel;
 import cat.udl.hyperion.appmobils.kingdomcollector.viewmodels.CardViewModel;
