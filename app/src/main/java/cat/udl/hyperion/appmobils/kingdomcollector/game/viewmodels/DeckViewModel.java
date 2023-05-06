@@ -83,4 +83,20 @@ public class DeckViewModel extends ViewModel {
         }
         return true;
     }
+
+    public int getDeckSize() {
+        Deck currentDeck = deck.getValue();
+        if(currentDeck!=null){
+            return currentDeck.getCards().size();
+        }
+        return 0;
+    }
+
+    public Card getCardAtIndex(int index) {
+        Deck currentDeck = deck.getValue();
+        if (currentDeck != null && index >= 0 && index < currentDeck.getCards().size()) {
+            return currentDeck.getCards().get(index);
+        }
+        return null;
+    }
 }

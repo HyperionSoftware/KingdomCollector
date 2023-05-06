@@ -11,48 +11,66 @@ import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.IAPlayer;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.Player;
 
 public class GameController {
+    private static final String TAG = "GameController";
 
     private BoardViewModel boardViewModel;
-    private DeckViewModel deckViewModel;
+    private DeckViewModel humanDeckViewModel;
+    private DeckViewModel computerDeckViewModel;
     private Player humanPlayer;
     private Player computerPlayer;
     private Player currentPlayer;
 
     public GameController(BoardViewModel boardViewModel, DeckViewModel humanDeckViewModel, DeckViewModel computerDeckViewModel) {
         this.boardViewModel = boardViewModel;
-        this.deckViewModel = humanDeckViewModel;
+        this.humanDeckViewModel = humanDeckViewModel;
+        this.computerDeckViewModel = computerDeckViewModel;
         this.humanPlayer = new HumanPlayer("Human");
         this.computerPlayer = new IAPlayer("Computer");
         this.currentPlayer = humanPlayer;
     }
 
+    public Player getHumanPlayer() {
+        return humanPlayer;
+    }
+
     public void startNewGame() {
         boardViewModel.clearBoard();
-        deckViewModel.resetDeck();
+        humanDeckViewModel.resetDeck();
+        computerDeckViewModel.resetDeck();
         humanPlayer.setPoints(0);
         computerPlayer.setPoints(0);
     }
 
-    public void playCard(int row, int col) {
-        if (currentPlayer == humanPlayer) {
-            Card selectedCard = deckViewModel.getSelectedCard().getValue();
+    public void playCard(Player player, int row, int col) {
+        Log.d(TAG,"Playing the card to position ("+ row+","+col+").");
+        if (player == humanPlayer) {
+            Card selectedCard = humanDeckViewModel.getSelectedCard().getValue();
             if (selectedCard != null) {
                 boardViewModel.placeCard(row, col, selectedCard);
                 boardViewModel.setBoardDataChanged(true);
-                deckViewModel.removeCardFromDeck(selectedCard);
+                humanDeckViewModel.removeCardFromDeck(selectedCard);
+                humanDeckViewModel.setSelectedCard(null); // Assegurem que no es pugui tirar dos vegades la mateixa carta.
                 updateGamePoints(); // Actualiza los puntos según las reglas del juego.
                 switchTurn(humanPlayer, computerPlayer);
-                Log.d("GameController", "It's " + currentPlayer +" turn.");
                 if (!isGameOver()) {
                     computerPlayer.playTurn(this);
                 }
+            }
+        } else if (player == computerPlayer) {
+            Card selectedCard = computerDeckViewModel.getSelectedCard().getValue();
+            if (selectedCard != null) {
+                boardViewModel.placeCard(row, col, selectedCard);
+                boardViewModel.setBoardDataChanged(true);
+                computerDeckViewModel.removeCardFromDeck(selectedCard);
+                computerDeckViewModel.setSelectedCard(null); // Assegurem que no es pugui tirar dos vegades la mateixa carta.
+                updateGamePoints(); // Actualiza los puntos según las reglas del juego.
                 switchTurn(computerPlayer, humanPlayer);
             }
         }
     }
 
     public boolean isGameOver() {
-        return boardViewModel.isBoardFull() || deckViewModel.isDeckEmpty();
+        return boardViewModel.isBoardFull() || humanDeckViewModel.isDeckEmpty() || computerDeckViewModel.isDeckEmpty();
     }
 
     private void updateGamePoints() {
@@ -66,6 +84,7 @@ public class GameController {
         } else {
             currentPlayer = player1;
         }
+        Log.d(TAG,"switchTurn: it's " + currentPlayer.getName() + " turn.");
     }
 
     public boolean isCellEmpty(int row, int col) {
@@ -84,4 +103,13 @@ public class GameController {
     public BoardViewModel getBoardViewModel() {
         return boardViewModel;
     }
+
+    public DeckViewModel getHumanDeckViewModel() {
+        return humanDeckViewModel;
+    }
+
+    public DeckViewModel getComputerDeckViewModel() {
+        return computerDeckViewModel;
+    }
 }
+

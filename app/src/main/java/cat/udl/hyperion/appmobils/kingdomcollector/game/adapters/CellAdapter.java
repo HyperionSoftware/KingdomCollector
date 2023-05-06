@@ -69,7 +69,7 @@ public class CellAdapter extends RecyclerView.Adapter<CellAdapter.ViewHolder> {
 
         View.OnClickListener cellClickListener = v -> {
             if (gameController.isCellEmpty(row, col)) {
-                gameController.playCard(row, col);
+                gameController.playCard(gameController.getHumanPlayer(),row, col);
             }
         };
 
