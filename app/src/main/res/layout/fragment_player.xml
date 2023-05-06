@@ -13,23 +13,39 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
+        <!-- Jugador Humano -->
         <TextView
-            android:id="@+id/player_name"
+            android:id="@+id/human_player_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{playerViewModel.playerName}"
+            android:text="@{playerViewModel.humanPlayerName}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/player_points"
+            android:id="@+id/human_player_points"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{String.valueOf(playerViewModel.playerPoints)}"
-            app:layout_constraintStart_toEndOf="@+id/player_name"
+            android:text="@{String.valueOf(playerViewModel.humanPlayerPoints)}"
+            app:layout_constraintStart_toEndOf="@+id/human_player_name"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <!-- Jugador Robot -->
+        <TextView
+            android:id="@+id/robot_player_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{playerViewModel.robotPlayerName}"
+            app:layout_constraintEnd_toStartOf="@+id/robot_player_points"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/robot_player_points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(playerViewModel.robotPlayerPoints)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

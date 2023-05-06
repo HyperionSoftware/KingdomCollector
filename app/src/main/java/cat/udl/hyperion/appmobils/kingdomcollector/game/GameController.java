@@ -37,6 +37,10 @@ public class GameController {
         return humanPlayer;
     }
 
+    public Player getComputerPlayer() {
+        return computerPlayer;
+    }
+
     public void startNewGame() {
         boardViewModel.clearBoard();
         humanDeckViewModel.resetDeck();

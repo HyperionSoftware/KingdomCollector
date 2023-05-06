@@ -4,11 +4,13 @@ import androidx.databinding.ObservableField;
 import androidx.lifecycle.MutableLiveData;
 
 
+import java.io.Serializable;
+
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Card;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Deck;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.GameController;
 
-public abstract class Player {
+public abstract class Player implements Serializable {
     private String name;
     private ObservableField<Deck> deck;
     private MutableLiveData<Integer> points;

@@ -1,10 +1,11 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.game.models.player;
 
+import java.io.Serializable;
 import java.util.Random;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.game.GameController;
 
-public class IAPlayer extends Player {
+public class IAPlayer extends Player implements Serializable {
     public IAPlayer(String name) {
         super(name);
     }

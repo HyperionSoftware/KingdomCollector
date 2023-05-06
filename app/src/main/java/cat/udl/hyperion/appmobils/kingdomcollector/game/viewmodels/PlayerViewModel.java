@@ -8,17 +8,27 @@ import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.HumanPlaye
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.Player;
 
 public class PlayerViewModel extends ViewModel {
-    private HumanPlayer player;
+    private Player humanPlayer;
+    private Player robotPlayer;
 
-    public PlayerViewModel(HumanPlayer player) {
-        this.player = player;
+    public PlayerViewModel(Player humanPlayer, Player robotPlayer) {
+        this.humanPlayer = humanPlayer;
+        this.robotPlayer = robotPlayer;
     }
 
-    public LiveData<String> getPlayerName() {
-        return new MutableLiveData<>(player.getName());
+    public LiveData<String> getHumanPlayerName() {
+        return new MutableLiveData<>(humanPlayer.getName());
     }
 
-    public LiveData<Integer> getPlayerPoints() {
-        return player.getPoints();
+    public LiveData<Integer> getHumanPlayerPoints() {
+        return humanPlayer.getPoints();
+    }
+
+    public LiveData<String> getRobotPlayerName() {
+        return new MutableLiveData<>(robotPlayer.getName());
+    }
+
+    public LiveData<Integer> getRobotPlayerPoints() {
+        return robotPlayer.getPoints();
     }
 }
