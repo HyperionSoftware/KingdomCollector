@@ -57,6 +57,10 @@ dependencies {
     //Persistencia de cartas seleccionadas
     implementation 'com.google.code.gson:gson:2.9.0'
 
+    // Game binding
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+
 
 
 

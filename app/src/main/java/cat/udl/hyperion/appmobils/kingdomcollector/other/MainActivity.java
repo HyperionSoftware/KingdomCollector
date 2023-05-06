@@ -22,9 +22,9 @@ import java.util.Iterator;
 import java.util.Objects;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
+import cat.udl.hyperion.appmobils.kingdomcollector.game.views.GameActivity;
 import cat.udl.hyperion.appmobils.kingdomcollector.other.auth.LastLoginCallback;
 import cat.udl.hyperion.appmobils.kingdomcollector.views.CardCollectionActivity;
-import cat.udl.hyperion.appmobils.kingdomcollector.views.GameActivity;
 
 
 public class MainActivity extends AppCompatActivity {
