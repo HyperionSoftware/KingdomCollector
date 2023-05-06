@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    tools:context=".game.views.GameActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/game_board_recycler_view"
+    <FrameLayout
+        android:id="@+id/playerFragment"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="3" />
+        android:layout_height="0dp"
+        android:layout_weight="0.5" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/selected_recycler_view"
+    <FrameLayout
+        android:id="@+id/boardFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="25dp"
-        android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        android:layout_height="20dp"
+        android:layout_weight="4" />
+
+    <FrameLayout
+        android:id="@+id/deckFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5" />
 
 </LinearLayout>
