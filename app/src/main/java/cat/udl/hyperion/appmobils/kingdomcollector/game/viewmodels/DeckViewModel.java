@@ -24,6 +24,15 @@ public class DeckViewModel extends ViewModel {
         deck.setValue(new Deck());
         selectedCard = new MutableLiveData<>();
     }
+    public void initializeOwnerForCards(Player owner) {
+        Deck currentDeck = deck.getValue();
+        if (currentDeck != null) {
+            for (Card card : currentDeck.getCards()) {
+                card.setOwner(owner);
+            }
+        }
+    }
+
 
     public LiveData<Deck> getDeck() {
         Log.d("DeckViewModel", "Obteniendo el DeckViewModel...");

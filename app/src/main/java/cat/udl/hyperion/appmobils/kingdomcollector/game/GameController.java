@@ -27,6 +27,10 @@ public class GameController {
         this.humanPlayer = new HumanPlayer("Human");
         this.computerPlayer = new IAPlayer("Computer");
         this.currentPlayer = humanPlayer;
+
+        // Inicializar el propietario de las cartas en cada mazo
+        this.humanDeckViewModel.initializeOwnerForCards(humanPlayer);
+        this.computerDeckViewModel.initializeOwnerForCards(computerPlayer);
     }
 
     public Player getHumanPlayer() {
@@ -47,6 +51,7 @@ public class GameController {
             Card selectedCard = humanDeckViewModel.getSelectedCard().getValue();
             if (selectedCard != null) {
                 boardViewModel.placeCard(row, col, selectedCard);
+                checkAndUpdateAdjacentCards(row, col, selectedCard); // Añadir esta línea
                 boardViewModel.setBoardDataChanged(true);
                 humanDeckViewModel.removeCardFromDeck(selectedCard);
                 humanDeckViewModel.setSelectedCard(null); // Assegurem que no es pugui tirar dos vegades la mateixa carta.
@@ -60,6 +65,7 @@ public class GameController {
             Card selectedCard = computerDeckViewModel.getSelectedCard().getValue();
             if (selectedCard != null) {
                 boardViewModel.placeCard(row, col, selectedCard);
+                checkAndUpdateAdjacentCards(row, col, selectedCard);
                 boardViewModel.setBoardDataChanged(true);
                 computerDeckViewModel.removeCardFromDeck(selectedCard);
                 computerDeckViewModel.setSelectedCard(null); // Assegurem que no es pugui tirar dos vegades la mateixa carta.
@@ -74,8 +80,28 @@ public class GameController {
     }
 
     private void updateGamePoints() {
-        // Aquí puedes implementar la lógica para actualizar los puntos de ambos jugadores
-        // según las reglas del juego.
+        int humanPoints = 0;
+        int computerPoints = 0;
+
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 3; col++) {
+                Card currentCard = boardViewModel.getCellViewModelAt(row, col).getCard().getValue();
+                if (currentCard == null) {
+                    continue;
+                }
+
+                Player owner = currentCard.getOwner();
+                if (owner == humanPlayer) {
+                    humanPoints++;
+                } else if (owner == computerPlayer) {
+                    computerPoints++;
+                }
+            }
+        }
+
+        humanPlayer.setPoints(humanPoints);
+        computerPlayer.setPoints(computerPoints);
+        Log.d(TAG, "HumanPlayerPoints: "+ humanPoints + " computerPlayerPoints: " + computerPoints);
     }
 
     public void switchTurn(Player player1, Player player2) {
@@ -111,5 +137,58 @@ public class GameController {
     public DeckViewModel getComputerDeckViewModel() {
         return computerDeckViewModel;
     }
+    private void checkAndUpdateAdjacentCards(int row, int col, Card playedCard) {
+        int[][] adjacentCoordinates = {{row - 1, col}, {row + 1, col}, {row, col - 1}, {row, col + 1}};
+
+        for (int[] coordinates : adjacentCoordinates) {
+            int newRow = coordinates[0];
+            int newCol = coordinates[1];
+
+            if (newRow >= 0 && newRow < 3 && newCol >= 0 && newCol < 3) {
+                Card adjacentCard = boardViewModel.getCellViewModelAt(newRow, newCol).getCard().getValue();
+                if (adjacentCard != null) {
+                    int playedCardSideValue = getPower(getAdjacentSide(row, col, newRow, newCol), playedCard);
+                    int adjacentCardSideValue = getPower(getOppositeSide(getAdjacentSide(row, col, newRow, newCol)), playedCard);
+
+                    if (playedCardSideValue > adjacentCardSideValue && playedCard.getOwner() != adjacentCard.getOwner()) {
+                        adjacentCard.setOwner(playedCard.getOwner());
+                    }
+                }
+            }
+        }
+    }
+    public int getPower(int side, Card card) {
+        switch (side) {
+            case 1:
+                return card.getPowerArriba();
+            case 2:
+                return card.getPowerIzquierda();
+            case 3:
+                return card.getPowerAbajo();
+            case 4:
+                return card.getPowerDerecha();
+            default:
+                return -1;
+        }
+    }
+    private int getAdjacentSide(int row1, int col1, int row2, int col2) {
+        if (row1 == row2 - 1) return 1; // top
+        if (row1 == row2 + 1) return 3; // bottom
+        if (col1 == col2 - 1) return 2; // left
+        if (col1 == col2 + 1) return 4; // right
+        return -1;
+    }
+
+    private int getOppositeSide(int side) {
+        if (side == 1) return 3;
+        if (side == 2) return 4;
+        if (side == 3) return 1;
+        if (side == 4) return 2;
+        return -1;
+    }
+
+
+
+
 }
 

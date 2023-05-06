@@ -2,6 +2,8 @@ package cat.udl.hyperion.appmobils.kingdomcollector.game.models;
 
 import androidx.databinding.ObservableField;
 
+import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.Player;
+
 public class Card{
     private int imageUrl;
     private String name;
@@ -10,6 +12,7 @@ public class Card{
     private int powerAbajo;
     private int powerDerecha;
     private ObservableField<Boolean> selected;
+    private Player owner;
 
     /**
      * Constructor de la clase Card. Crea una carta con los atributos indicados.
@@ -28,6 +31,15 @@ public class Card{
         this.powerAbajo = powerAbajo;
         this.powerDerecha = powerDerecha;
         this.selected = new ObservableField<>(false);
+        this.owner = null;
+    }
+
+    public Player getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Player owner) {
+        this.owner = owner;
     }
 
     public int getImageResource() {
