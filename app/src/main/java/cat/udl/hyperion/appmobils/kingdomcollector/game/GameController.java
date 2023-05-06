@@ -1,6 +1,10 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.game;
 
+
 import android.util.Log;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Card;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.BoardViewModel;
@@ -19,18 +23,22 @@ public class GameController {
     private Player humanPlayer;
     private Player computerPlayer;
     private Player currentPlayer;
+    private FirebaseAuth mAuth;
 
     public GameController(BoardViewModel boardViewModel, DeckViewModel humanDeckViewModel, DeckViewModel computerDeckViewModel) {
         this.boardViewModel = boardViewModel;
         this.humanDeckViewModel = humanDeckViewModel;
         this.computerDeckViewModel = computerDeckViewModel;
-        this.humanPlayer = new HumanPlayer("Human");
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        this.humanPlayer = new HumanPlayer(user.getDisplayName());
         this.computerPlayer = new IAPlayer("Computer");
         this.currentPlayer = humanPlayer;
 
         // Inicializar el propietario de las cartas en cada mazo
         this.humanDeckViewModel.initializeOwnerForCards(humanPlayer);
         this.computerDeckViewModel.initializeOwnerForCards(computerPlayer);
+
     }
 
     public Player getHumanPlayer() {
