@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.adapters.CellAdapter;
 import cat.udl.hyperion.appmobils.kingdomcollector.databinding.FragmentBoardBinding;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.GameController;
+import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.HumanPlayer;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.BoardViewModel;
 
 public class BoardFragment extends Fragment {
@@ -22,6 +23,7 @@ public class BoardFragment extends Fragment {
     private GameController gameController;
     private FragmentBoardBinding binding;
     private CellAdapter cellAdapter;
+    private HumanPlayer humanPlayer;
 
     public static BoardFragment newInstance(GameController gameController) {
         BoardFragment fragment = new BoardFragment();
@@ -58,8 +60,8 @@ public class BoardFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         binding = FragmentBoardBinding.inflate(inflater, container, false);
         binding.setBoardViewModel(boardViewModel);
-
-        cellAdapter = new CellAdapter(gameController, getViewLifecycleOwner());
+        humanPlayer = (HumanPlayer) gameController.getHumanPlayer();
+        cellAdapter = new CellAdapter(gameController, getViewLifecycleOwner(), humanPlayer);
         binding.recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
         binding.recyclerView.setAdapter(cellAdapter);
 

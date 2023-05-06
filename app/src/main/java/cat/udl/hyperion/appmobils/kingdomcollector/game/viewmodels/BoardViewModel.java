@@ -75,14 +75,7 @@ public class BoardViewModel extends ViewModel {
         }
     }
 
-    public Cell getCellAt(int row, int col) {
-        List<Cell> cellList = cells.getValue();
-        if (cellList != null) {
-            return cellList.get(row * 3 + col);
-        } else {
-            throw new IllegalStateException("Cells MutableLiveData has a null value");
-        }
-    }
+
 
     public CellViewModel getCellViewModelAt(int row, int col) {
         if (cellViewModels != null) {

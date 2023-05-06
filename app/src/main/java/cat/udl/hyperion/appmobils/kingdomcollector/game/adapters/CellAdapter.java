@@ -1,5 +1,6 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.game.adapters;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.HumanPlayer;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.CellViewModel;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
@@ -25,6 +27,14 @@ public class CellAdapter extends RecyclerView.Adapter<CellAdapter.ViewHolder> {
 
     private List<CellViewModel> cellViewModels;
     private final LifecycleOwner lifecycleOwner;
+    private HumanPlayer humanPlayer;
+
+    public CellAdapter(GameController gameController, LifecycleOwner lifecycleOwner, HumanPlayer humanPlayer) {
+        this.gameController = gameController;
+        this.lifecycleOwner = lifecycleOwner;
+        this.cellViewModels = gameController.getBoardViewModel().getCellViewModels();
+        this.humanPlayer = humanPlayer;
+    }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private final CellLayoutBinding binding;
@@ -35,13 +45,6 @@ public class CellAdapter extends RecyclerView.Adapter<CellAdapter.ViewHolder> {
         }
     }
 
-
-
-    public CellAdapter(GameController gameController, LifecycleOwner lifecycleOwner) {
-        this.gameController = gameController;
-        this.lifecycleOwner = lifecycleOwner;
-        this.cellViewModels = gameController.getBoardViewModel().getCellViewModels();
-    }
 
 
     @NonNull
@@ -72,6 +75,22 @@ public class CellAdapter extends RecyclerView.Adapter<CellAdapter.ViewHolder> {
                 gameController.playCard(gameController.getHumanPlayer(),row, col);
             }
         };
+
+        //TODO: Afegir un puto color a la carta de fondo.
+        // COLOR CARTA FONDO
+        // el tema és que falla el getValue().getCard() sempre retorna NULL.
+        // ara tinc son, demà serà un altre dia.
+        // bonanit:)
+        holder.binding.backgroundView.setBackgroundColor(Color.TRANSPARENT); //BORRAR AQUESTA LINEA QUAN IMPLEMENTEM COLOR.
+        /*if (cellViewModels.get(position).getCell().getValue().getCard().getOwner().getName().equals(humanPlayer.getName())) {
+            holder.binding.backgroundView.setBackgroundColor(Color.TRANSPARENT);
+        } else {
+            holder.binding.backgroundView.setBackgroundColor(Color.argb(128, 0, 0, 0));
+        }*/
+
+
+
+
 
         holder.binding.setCellClickListener(cellClickListener);
     }
