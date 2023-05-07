@@ -24,7 +24,6 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-        //TEST
         BoardViewModel boardViewModel = new BoardViewModel(gameController);
         DeckViewModel humanDeckViewModel = new DeckViewModel();
         DeckViewModel computerDeckViewModel = new DeckViewModel();
