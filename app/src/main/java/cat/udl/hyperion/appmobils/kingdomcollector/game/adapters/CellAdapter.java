@@ -79,8 +79,9 @@ public class CellAdapter extends RecyclerView.Adapter<CellAdapter.ViewHolder> {
         };
 
         // Agregar un observador para escuchar cambios en Card
-        cellViewModel.getCard().observe(lifecycleOwner, card -> {
-            if (card != null) {
+        cellViewModel.getCardOwner().observe(lifecycleOwner, owner ->  {
+            if (owner != null) {
+                Card card = cellViewModel.getCard().getValue();
                 holder.binding.imageView.setImageResource(card.getImageResource());
                 if (card.getOwner().getName().equals(humanPlayer.getName())) {
                     holder.binding.backgroundView.setBackgroundColor(Color.TRANSPARENT);
@@ -88,11 +89,9 @@ public class CellAdapter extends RecyclerView.Adapter<CellAdapter.ViewHolder> {
                     holder.binding.backgroundView.setBackgroundColor(Color.argb(128, 0, 0, 0));
                 }
             } else {
-                //holder.binding.imageView.setImageResource(0);
                 holder.binding.backgroundView.setBackgroundColor(Color.argb(128, 0, 0, 0));
             }
         });
-
 
 
 

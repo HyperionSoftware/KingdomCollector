@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel;
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Card;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Cell;
+import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.Player;
 
 public class CellViewModel extends ViewModel {
     private MutableLiveData<Cell> cell;
@@ -34,6 +35,15 @@ public class CellViewModel extends ViewModel {
 
     public LiveData<Card> getCard() {
         return card;
+    }
+
+    public LiveData<Player> getCardOwner() {
+        return Transformations.switchMap(card, card -> {
+            if (card == null) {
+                return null;
+            }
+            return card.getOwnerField();
+        });
     }
 
     public void setCard(Card card) {
