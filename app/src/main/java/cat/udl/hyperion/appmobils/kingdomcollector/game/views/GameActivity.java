@@ -1,5 +1,6 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.game.views;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,7 +29,7 @@ public class GameActivity extends AppCompatActivity {
         DeckViewModel humanDeckViewModel = new DeckViewModel();
         DeckViewModel computerDeckViewModel = new DeckViewModel();
 
-        gameController = new GameController(boardViewModel, humanDeckViewModel, computerDeckViewModel);
+        gameController = new GameController(this, boardViewModel, humanDeckViewModel, computerDeckViewModel);
 
         PlayerFragment playerFragment = PlayerFragment.newInstance((HumanPlayer) gameController.getHumanPlayer(), (IAPlayer)gameController.getComputerPlayer());
         DeckFragment deckFragment = DeckFragment.newInstance(humanDeckViewModel);

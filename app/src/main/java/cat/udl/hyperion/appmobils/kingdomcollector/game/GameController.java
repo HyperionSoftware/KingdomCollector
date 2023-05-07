@@ -17,6 +17,9 @@ import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.HumanPlaye
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.IAPlayer;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.Player;
 
+import android.widget.Toast;
+import android.content.Context;
+
 public class GameController {
     private static final String TAG = "GameController";
 
@@ -28,8 +31,11 @@ public class GameController {
     private Player currentPlayer;
     private FirebaseAuth mAuth;
     private Handler handler;
+    private Context context;
 
-    public GameController(BoardViewModel boardViewModel, DeckViewModel humanDeckViewModel, DeckViewModel computerDeckViewModel) {
+
+    public GameController(Context context, BoardViewModel boardViewModel, DeckViewModel humanDeckViewModel, DeckViewModel computerDeckViewModel) {
+        this.context = context;
         this.boardViewModel = boardViewModel;
         this.humanDeckViewModel = humanDeckViewModel;
         this.computerDeckViewModel = computerDeckViewModel;
@@ -67,6 +73,10 @@ public class GameController {
         Log.d(TAG,"Playing the card to position ("+ row+","+col+").");
         int randomTime = getRandomTimeToPlay();
         if (player == humanPlayer) {
+            if (!isHumanPlayerTurn()) {
+                Toast.makeText(context, "No es tu turno.", Toast.LENGTH_SHORT).show();
+                return;
+            }
             Card selectedCard = humanDeckViewModel.getSelectedCard().getValue();
             if (selectedCard != null) {
                 boardViewModel.placeCard(row, col, selectedCard);
@@ -152,6 +162,10 @@ public class GameController {
 
     public int getComputerPlayerPoints() {
         return computerPlayer.getPoints().getValue();
+    }
+
+    public boolean isHumanPlayerTurn() {
+        return currentPlayer == humanPlayer;
     }
 
     public BoardViewModel getBoardViewModel() {
