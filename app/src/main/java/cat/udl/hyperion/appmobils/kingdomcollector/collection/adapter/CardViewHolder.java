@@ -1,4 +1,4 @@
-package cat.udl.hyperion.appmobils.kingdomcollector.adapter;
+package cat.udl.hyperion.appmobils.kingdomcollector.collection.adapter;
 
 import android.graphics.Color;
 import android.view.View;
@@ -11,9 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
-import cat.udl.hyperion.appmobils.kingdomcollector.models.Card;
-import cat.udl.hyperion.appmobils.kingdomcollector.viewmodels.CardSelectedViewModel;
-import cat.udl.hyperion.appmobils.kingdomcollector.views.CardCollectionActivity;
+import cat.udl.hyperion.appmobils.kingdomcollector.collection.models.Card;
+import cat.udl.hyperion.appmobils.kingdomcollector.collection.viewmodels.CardSelectedViewModel;
+import cat.udl.hyperion.appmobils.kingdomcollector.collection.views.CardCollectionActivity;
 
 public class CardViewHolder extends RecyclerView.ViewHolder {
     private final TextView nameTextView;
