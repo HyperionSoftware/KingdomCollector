@@ -1,6 +1,7 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.game.adapters;
 
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Card;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.HumanPlayer;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.CellViewModel;
 
@@ -76,17 +78,20 @@ public class CellAdapter extends RecyclerView.Adapter<CellAdapter.ViewHolder> {
             }
         };
 
-        //TODO: Afegir un puto color a la carta de fondo.
-        // COLOR CARTA FONDO
-        // el tema és que falla el getValue().getCard() sempre retorna NULL.
-        // ara tinc son, demà serà un altre dia.
-        // bonanit:)
-        holder.binding.backgroundView.setBackgroundColor(Color.TRANSPARENT); //BORRAR AQUESTA LINEA QUAN IMPLEMENTEM COLOR.
-        /*if (cellViewModels.get(position).getCell().getValue().getCard().getOwner().getName().equals(humanPlayer.getName())) {
-            holder.binding.backgroundView.setBackgroundColor(Color.TRANSPARENT);
-        } else {
-            holder.binding.backgroundView.setBackgroundColor(Color.argb(128, 0, 0, 0));
-        }*/
+        // Agregar un observador para escuchar cambios en Card
+        cellViewModel.getCard().observe(lifecycleOwner, card -> {
+            if (card != null) {
+                holder.binding.imageView.setImageResource(card.getImageResource());
+                if (card.getOwner().getName().equals(humanPlayer.getName())) {
+                    holder.binding.backgroundView.setBackgroundColor(Color.TRANSPARENT);
+                } else {
+                    holder.binding.backgroundView.setBackgroundColor(Color.argb(128, 0, 0, 0));
+                }
+            } else {
+                //holder.binding.imageView.setImageResource(0);
+                holder.binding.backgroundView.setBackgroundColor(Color.argb(128, 0, 0, 0));
+            }
+        });
 
 
 
@@ -98,5 +103,12 @@ public class CellAdapter extends RecyclerView.Adapter<CellAdapter.ViewHolder> {
     @Override
     public int getItemCount() {
         return numCells;
+    }
+    public CellViewModel getCellViewModelAt(int row, int col) {
+        if (cellViewModels != null) {
+            return cellViewModels.get(row * 3 + col);
+        } else {
+            throw new IllegalStateException("CellViewModels list is not initialized");
+        }
     }
 }
