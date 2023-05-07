@@ -1,10 +1,13 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.game;
 
 
+import android.os.Handler;
 import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Random;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Card;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.BoardViewModel;
@@ -24,6 +27,7 @@ public class GameController {
     private Player computerPlayer;
     private Player currentPlayer;
     private FirebaseAuth mAuth;
+    private Handler handler;
 
     public GameController(BoardViewModel boardViewModel, DeckViewModel humanDeckViewModel, DeckViewModel computerDeckViewModel) {
         this.boardViewModel = boardViewModel;
@@ -38,6 +42,8 @@ public class GameController {
         // Inicializar el propietario de las cartas en cada mazo
         this.humanDeckViewModel.initializeOwnerForCards(humanPlayer);
         this.computerDeckViewModel.initializeOwnerForCards(computerPlayer);
+
+        handler = new Handler();
 
     }
 
@@ -59,6 +65,7 @@ public class GameController {
 
     public void playCard(Player player, int row, int col) {
         Log.d(TAG,"Playing the card to position ("+ row+","+col+").");
+        int randomTime = getRandomTimeToPlay();
         if (player == humanPlayer) {
             Card selectedCard = humanDeckViewModel.getSelectedCard().getValue();
             if (selectedCard != null) {
@@ -73,18 +80,27 @@ public class GameController {
                     computerPlayer.playTurn(this);
                 }
             }
-        } else if (player == computerPlayer) {
-            Card selectedCard = computerDeckViewModel.getSelectedCard().getValue();
-            if (selectedCard != null) {
-                boardViewModel.placeCard(row, col, selectedCard);
-                checkAndUpdateAdjacentCards(row, col, selectedCard);
-                boardViewModel.setBoardDataChanged(true);
-                computerDeckViewModel.removeCardFromDeck(selectedCard);
-                computerDeckViewModel.setSelectedCard(null); // Assegurem que no es pugui tirar dos vegades la mateixa carta.
-                updateGamePoints(); // Actualiza los puntos según las reglas del juego.
-                switchTurn(computerPlayer, humanPlayer);
-            }
         }
+        else if (player == computerPlayer) {
+            handler.postDelayed(() -> {
+                Card selectedCard = computerDeckViewModel.getSelectedCard().getValue();
+                if (selectedCard != null) {
+                    boardViewModel.placeCard(row, col, selectedCard);
+                    checkAndUpdateAdjacentCards(row, col, selectedCard);
+                    boardViewModel.setBoardDataChanged(true);
+                    computerDeckViewModel.removeCardFromDeck(selectedCard);
+                    computerDeckViewModel.setSelectedCard(null); // Assegurem que no es pugui tirar dos vegades la mateixa carta.
+                    updateGamePoints(); // Actualiza los puntos según las reglas del juego.
+                    switchTurn(computerPlayer, humanPlayer);
+                }
+            }, randomTime*1000); // Random time between 1 and 3 seconds to play the computer.
+        }
+    }
+
+    private int getRandomTimeToPlay() {
+        Random random = new Random();
+        int valorRandom = random.nextInt(3)+1;
+        return valorRandom;
     }
 
     public boolean isGameOver() {

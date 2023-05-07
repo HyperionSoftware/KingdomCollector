@@ -111,7 +111,4 @@ public class Card{
         selected.notifyChange();
     }
 
-    /*public byte[] getImageUrl() {
-
-    }*/
 }
