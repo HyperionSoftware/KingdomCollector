@@ -19,6 +19,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{playerViewModel.humanPlayerName}"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,6 +29,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{String.valueOf(playerViewModel.humanPlayerPoints)}"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
             app:layout_constraintStart_toEndOf="@+id/human_player_name"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,6 +40,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{playerViewModel.robotPlayerName}"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
             app:layout_constraintEnd_toStartOf="@+id/robot_player_points"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -44,6 +50,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{String.valueOf(playerViewModel.robotPlayerPoints)}"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
