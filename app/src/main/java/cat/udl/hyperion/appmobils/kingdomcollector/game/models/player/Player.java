@@ -1,20 +1,23 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.game.models.player;
 
 import androidx.databinding.ObservableField;
+import androidx.lifecycle.MutableLiveData;
 
+
+import java.io.Serializable;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Card;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Deck;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.GameController;
 
-public abstract class Player {
+public abstract class Player implements Serializable {
     private String name;
     private ObservableField<Deck> deck;
-    private ObservableField<Integer> points;
+    private MutableLiveData<Integer> points;
 
     public Player(String name){
         this.name = name;
-        this.points = new ObservableField<>(0);
+        this.points = new MutableLiveData<>(0);
         deck = new ObservableField<>(new Deck());
         deck.get().initializeDeck();
     }
@@ -40,22 +43,14 @@ public abstract class Player {
         return deck;
     }
 
-    public int getPoints() {
-        return points.get();
-    }
-
-    public void setPoints(int points) {
-        this.points.set(points);
-    }
-
-    public ObservableField<Integer> getPointsField() {
+    public MutableLiveData<Integer> getPoints() {
         return points;
     }
 
-    public void notifyPropertyChanged(int fieldId) {
-        deck.notifyChange();
-        points.notifyChange();
+    public void setPoints(int points) {
+        this.points.setValue(points);
     }
+
 
     public void addCardToDeck(Card card) {
         Deck currentDeck = deck.get();
@@ -75,10 +70,6 @@ public abstract class Player {
         deck.set(currentDeck);
     }
 
-    public void increasePoints(int points) {
-        int currentPoints = this.points.get();
-        currentPoints += points;
-        this.points.set(currentPoints);
-    }
+
 
 }

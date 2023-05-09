@@ -1,4 +1,4 @@
-package cat.udl.hyperion.appmobils.kingdomcollector.models;
+package cat.udl.hyperion.appmobils.kingdomcollector.collection.models;
 
 /**
  * La clase CardCollection representa una carta del juego, con sus atributos y métodos y valores numéricos del elemento.

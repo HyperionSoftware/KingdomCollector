@@ -1,6 +1,13 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.game;
 
+
+import android.os.Handler;
 import android.util.Log;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Random;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Card;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.BoardViewModel;
@@ -10,54 +17,136 @@ import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.HumanPlaye
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.IAPlayer;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.Player;
 
+import android.widget.Toast;
+import android.content.Context;
+
 public class GameController {
+    private static final String TAG = "GameController";
 
     private BoardViewModel boardViewModel;
-    private DeckViewModel deckViewModel;
+    private DeckViewModel humanDeckViewModel;
+    private DeckViewModel computerDeckViewModel;
     private Player humanPlayer;
     private Player computerPlayer;
     private Player currentPlayer;
+    private FirebaseAuth mAuth;
+    private Handler handler;
+    private Context context;
 
-    public GameController(BoardViewModel boardViewModel, DeckViewModel humanDeckViewModel, DeckViewModel computerDeckViewModel) {
+
+    public GameController(Context context, BoardViewModel boardViewModel, DeckViewModel humanDeckViewModel, DeckViewModel computerDeckViewModel) {
+        this.context = context;
         this.boardViewModel = boardViewModel;
-        this.deckViewModel = humanDeckViewModel;
-        this.humanPlayer = new HumanPlayer("Human");
+        this.humanDeckViewModel = humanDeckViewModel;
+        this.computerDeckViewModel = computerDeckViewModel;
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        this.humanPlayer = new HumanPlayer(user.getDisplayName());
         this.computerPlayer = new IAPlayer("Computer");
         this.currentPlayer = humanPlayer;
+
+        // Inicializar el propietario de las cartas en cada mazo
+        this.humanDeckViewModel.initializeOwnerForCards(humanPlayer);
+        this.computerDeckViewModel.initializeOwnerForCards(computerPlayer);
+
+        handler = new Handler();
+
+    }
+
+    public Player getHumanPlayer() {
+        return humanPlayer;
+    }
+
+    public Player getComputerPlayer() {
+        return computerPlayer;
     }
 
     public void startNewGame() {
         boardViewModel.clearBoard();
-        deckViewModel.resetDeck();
+        humanDeckViewModel.resetDeck();
+        computerDeckViewModel.resetDeck();
         humanPlayer.setPoints(0);
         computerPlayer.setPoints(0);
     }
 
-    public void playCard(int row, int col) {
-        if (currentPlayer == humanPlayer) {
-            Card selectedCard = deckViewModel.getSelectedCard().getValue();
+    public void playCard(Player player, int row, int col) {
+        // TODO: Tasca Ricard (T3.2). Utilitza if(isGameOver) en algun lloc
+        // per poder fer que el joc acabi quan les condicions de fi de joc es compleixin:
+        // boardViewModel.isBoardFull() || humanDeckViewModel.isDeckEmpty() || computerDeckViewModel.isDeckEmpty();
+        // Quan les condicions de isGameOver es compleixin, s'ha de calcular el guanyador.
+        // TODO: Tasca Ricard (T3.1)
+        // Fer funció que miri els punts del computerPlayer vs els punts de HumanPlayer, guardar el Player que ha guanyat.
+        // funció de tipus: private Player getWinner(Player player1, Player player2)
+        Log.d(TAG,"Playing the card to position ("+ row+","+col+").");
+        int randomTime = getRandomTimeToPlay();
+        if (player == humanPlayer) {
+            if (!isHumanPlayerTurn()) {
+                Toast.makeText(context, "No es tu turno.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            Card selectedCard = humanDeckViewModel.getSelectedCard().getValue();
             if (selectedCard != null) {
                 boardViewModel.placeCard(row, col, selectedCard);
+                checkAndUpdateAdjacentCards(row, col, selectedCard); // Añadir esta línea
                 boardViewModel.setBoardDataChanged(true);
-                deckViewModel.removeCardFromDeck(selectedCard);
+                humanDeckViewModel.removeCardFromDeck(selectedCard);
+                humanDeckViewModel.setSelectedCard(null); // Assegurem que no es pugui tirar dos vegades la mateixa carta.
                 updateGamePoints(); // Actualiza los puntos según las reglas del juego.
                 switchTurn(humanPlayer, computerPlayer);
-                Log.d("GameController", "It's " + currentPlayer +" turn.");
                 if (!isGameOver()) {
                     computerPlayer.playTurn(this);
                 }
-                switchTurn(computerPlayer, humanPlayer);
             }
+        }
+        else if (player == computerPlayer) {
+            handler.postDelayed(() -> {
+                Card selectedCard = computerDeckViewModel.getSelectedCard().getValue();
+                if (selectedCard != null) {
+                    boardViewModel.placeCard(row, col, selectedCard);
+                    checkAndUpdateAdjacentCards(row, col, selectedCard);
+                    boardViewModel.setBoardDataChanged(true);
+                    computerDeckViewModel.removeCardFromDeck(selectedCard);
+                    computerDeckViewModel.setSelectedCard(null); // Assegurem que no es pugui tirar dos vegades la mateixa carta.
+                    updateGamePoints(); // Actualiza los puntos según las reglas del juego.
+                    switchTurn(computerPlayer, humanPlayer);
+                }
+            }, randomTime*1000); // Random time between 1 and 3 seconds to play the computer.
         }
     }
 
+    private int getRandomTimeToPlay() {
+        Random random = new Random();
+        int valorRandom = random.nextInt(3)+1;
+        return valorRandom;
+    }
+
     public boolean isGameOver() {
-        return boardViewModel.isBoardFull() || deckViewModel.isDeckEmpty();
+        return boardViewModel.isBoardFull() || humanDeckViewModel.isDeckEmpty() || computerDeckViewModel.isDeckEmpty();
     }
 
     private void updateGamePoints() {
-        // Aquí puedes implementar la lógica para actualizar los puntos de ambos jugadores
-        // según las reglas del juego.
+        int humanPoints = 0;
+        int computerPoints = 0;
+
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 3; col++) {
+                Card currentCard = boardViewModel.getCellViewModelAt(row, col).getCard().getValue();
+                if (currentCard == null) {
+                    continue;
+                }
+
+                Player owner = currentCard.getOwner();
+                if (owner == humanPlayer) {
+                    humanPoints++;
+                } else if (owner == computerPlayer) {
+                    computerPoints++;
+                }
+            }
+        }
+
+        humanPlayer.setPoints(humanPoints);
+        computerPlayer.setPoints(computerPoints);
+        Log.d(TAG, "HumanPlayerPoints: "+ humanPoints + " computerPlayerPoints: " + computerPoints);
     }
 
     public void switchTurn(Player player1, Player player2) {
@@ -66,6 +155,7 @@ public class GameController {
         } else {
             currentPlayer = player1;
         }
+        Log.d(TAG,"switchTurn: it's " + currentPlayer.getName() + " turn.");
     }
 
     public boolean isCellEmpty(int row, int col) {
@@ -74,14 +164,69 @@ public class GameController {
     }
 
     public int getHumanPlayerPoints() {
-        return humanPlayer.getPoints();
+        return humanPlayer.getPoints().getValue();
     }
 
     public int getComputerPlayerPoints() {
-        return computerPlayer.getPoints();
+        return computerPlayer.getPoints().getValue();
+    }
+
+    public boolean isHumanPlayerTurn() {
+        return currentPlayer == humanPlayer;
     }
 
     public BoardViewModel getBoardViewModel() {
         return boardViewModel;
     }
+
+    public DeckViewModel getHumanDeckViewModel() {
+        return humanDeckViewModel;
+    }
+
+    public DeckViewModel getComputerDeckViewModel() {
+        return computerDeckViewModel;
+    }
+    private void checkAndUpdateAdjacentCards(int row, int col, Card playedCard) {
+        int[][] adjacentCoordinates = {{row - 1, col}, {row + 1, col}, {row, col - 1}, {row, col + 1}};
+
+        for (int[] coordinates : adjacentCoordinates) {
+            int newRow = coordinates[0];
+            int newCol = coordinates[1];
+
+            if (newRow >= 0 && newRow < 3 && newCol >= 0 && newCol < 3) {
+                Card adjacentCard = boardViewModel.getCellViewModelAt(newRow, newCol).getCard().getValue();
+                if (adjacentCard != null) {
+                    int adjacentSide = getAdjacentSide(row, col, newRow, newCol);
+                    if (hasGreaterPower(adjacentSide, playedCard, adjacentCard) && playedCard.getOwner() != adjacentCard.getOwner()) {
+                        adjacentCard.setOwner(playedCard.getOwner());
+                    }
+                }
+            }
+        }
+    }
+
+    public boolean hasGreaterPower(int side, Card newCard, Card oldCard) {
+        switch (side) {
+            case 1:
+                return newCard.getPowerAbajo() > oldCard.getPowerArriba();
+            case 2:
+                return newCard.getPowerDerecha() > oldCard.getPowerIzquierda();
+            case 3:
+                return newCard.getPowerArriba() > oldCard.getPowerAbajo();
+            case 4:
+                return newCard.getPowerIzquierda() > oldCard.getPowerDerecha();
+            default:
+                return false;
+        }
+    }
+
+
+    private int getAdjacentSide(int row1, int col1, int row2, int col2) {
+        if (row1 == row2 - 1) return 1; // top
+        if (row1 == row2 + 1) return 3; // bottom
+        if (col1 == col2 - 1) return 2; // left
+        if (col1 == col2 + 1) return 4; // right
+        return -1;
+    }
 }
+

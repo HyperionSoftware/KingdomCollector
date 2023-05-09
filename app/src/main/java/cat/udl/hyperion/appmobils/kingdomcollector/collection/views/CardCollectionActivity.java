@@ -1,4 +1,4 @@
-package cat.udl.hyperion.appmobils.kingdomcollector.views;
+package cat.udl.hyperion.appmobils.kingdomcollector.collection.views;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,13 +20,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
-import cat.udl.hyperion.appmobils.kingdomcollector.adapter.CardAdapter;
-import cat.udl.hyperion.appmobils.kingdomcollector.adapter.CardSelectedAdapter;
+import cat.udl.hyperion.appmobils.kingdomcollector.collection.adapter.CardAdapter;
+import cat.udl.hyperion.appmobils.kingdomcollector.collection.adapter.CardSelectedAdapter;
+import cat.udl.hyperion.appmobils.kingdomcollector.collection.viewmodels.CardSelectedViewModel;
+import cat.udl.hyperion.appmobils.kingdomcollector.collection.viewmodels.CardViewModel;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.views.GameActivity;
-import cat.udl.hyperion.appmobils.kingdomcollector.models.Card;
-import cat.udl.hyperion.appmobils.kingdomcollector.viewmodels.CardSelectedViewModel;
-import cat.udl.hyperion.appmobils.kingdomcollector.viewmodels.CardViewModel;
-
+import cat.udl.hyperion.appmobils.kingdomcollector.collection.models.Card;
 
 
 public class CardCollectionActivity extends AppCompatActivity {

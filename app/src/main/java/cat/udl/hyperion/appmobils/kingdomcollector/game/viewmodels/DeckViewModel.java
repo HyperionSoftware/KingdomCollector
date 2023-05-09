@@ -24,6 +24,15 @@ public class DeckViewModel extends ViewModel {
         deck.setValue(new Deck());
         selectedCard = new MutableLiveData<>();
     }
+    public void initializeOwnerForCards(Player owner) {
+        Deck currentDeck = deck.getValue();
+        if (currentDeck != null) {
+            for (Card card : currentDeck.getCards()) {
+                card.setOwner(owner);
+            }
+        }
+    }
+
 
     public LiveData<Deck> getDeck() {
         Log.d("DeckViewModel", "Obteniendo el DeckViewModel...");
@@ -82,5 +91,21 @@ public class DeckViewModel extends ViewModel {
             return currentDeck.getCards().isEmpty();
         }
         return true;
+    }
+
+    public int getDeckSize() {
+        Deck currentDeck = deck.getValue();
+        if(currentDeck!=null){
+            return currentDeck.getCards().size();
+        }
+        return 0;
+    }
+
+    public Card getCardAtIndex(int index) {
+        Deck currentDeck = deck.getValue();
+        if (currentDeck != null && index >= 0 && index < currentDeck.getCards().size()) {
+            return currentDeck.getCards().get(index);
+        }
+        return null;
     }
 }

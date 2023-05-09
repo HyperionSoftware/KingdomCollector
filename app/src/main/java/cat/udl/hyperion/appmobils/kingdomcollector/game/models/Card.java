@@ -1,6 +1,11 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.game.models;
 
 import androidx.databinding.ObservableField;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+
+
+import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.Player;
 
 public class Card{
     private int imageUrl;
@@ -10,6 +15,7 @@ public class Card{
     private int powerAbajo;
     private int powerDerecha;
     private ObservableField<Boolean> selected;
+    private MutableLiveData<Player> owner;
 
     /**
      * Constructor de la clase Card. Crea una carta con los atributos indicados.
@@ -28,6 +34,17 @@ public class Card{
         this.powerAbajo = powerAbajo;
         this.powerDerecha = powerDerecha;
         this.selected = new ObservableField<>(false);
+        this.owner = new MutableLiveData<>(null);
+    }
+    public LiveData<Player> getOwnerField() {
+        return owner;
+    }
+    public Player getOwner() {
+        return owner.getValue();
+    }
+
+    public void setOwner(Player owner) {
+        this.owner.setValue(owner);
     }
 
     public int getImageResource() {
@@ -94,7 +111,4 @@ public class Card{
         selected.notifyChange();
     }
 
-    /*public byte[] getImageUrl() {
-
-    }*/
 }

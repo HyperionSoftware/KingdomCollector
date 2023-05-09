@@ -75,14 +75,7 @@ public class BoardViewModel extends ViewModel {
         }
     }
 
-    public Cell getCellAt(int row, int col) {
-        List<Cell> cellList = cells.getValue();
-        if (cellList != null) {
-            return cellList.get(row * 3 + col);
-        } else {
-            throw new IllegalStateException("Cells MutableLiveData has a null value");
-        }
-    }
+
 
     public CellViewModel getCellViewModelAt(int row, int col) {
         if (cellViewModels != null) {
@@ -122,7 +115,7 @@ public class BoardViewModel extends ViewModel {
                 CellViewModel cellViewModel = getCellViewModelAt(row, col);
                 Card card = cellViewModel.getCard().getValue();
                 if (card != null) {
-                    boardState.append(String.format("Posición (%d, %d): %s\n", row, col, card.getName()));
+                    boardState.append(String.format("Posición (%d, %d): %s : %s\n", row, col, card.getName(), card.getOwner().getName()));
                 } else {
                     boardState.append(String.format("Posición (%d, %d): Vacío\n", row, col));
                 }
@@ -130,6 +123,7 @@ public class BoardViewModel extends ViewModel {
         }
         Log.d(TAG, boardState.toString());
     }
+
 
 
     public List<CellViewModel> getCellViewModels() {

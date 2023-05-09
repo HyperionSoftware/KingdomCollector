@@ -1,4 +1,4 @@
-package cat.udl.hyperion.appmobils.kingdomcollector.viewmodels;
+package cat.udl.hyperion.appmobils.kingdomcollector.collection.viewmodels;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import cat.udl.hyperion.appmobils.kingdomcollector.models.Card;
+import cat.udl.hyperion.appmobils.kingdomcollector.collection.models.Card;
 
 public class CardSelectedViewModel extends ViewModel {
     private final MutableLiveData<List<Card>> selectedCardsLiveData;

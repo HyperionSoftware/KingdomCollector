@@ -1,5 +1,7 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.game.adapters;
 
+import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Card;
+import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.HumanPlayer;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.CellViewModel;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
@@ -25,6 +29,14 @@ public class CellAdapter extends RecyclerView.Adapter<CellAdapter.ViewHolder> {
 
     private List<CellViewModel> cellViewModels;
     private final LifecycleOwner lifecycleOwner;
+    private HumanPlayer humanPlayer;
+
+    public CellAdapter(GameController gameController, LifecycleOwner lifecycleOwner, HumanPlayer humanPlayer) {
+        this.gameController = gameController;
+        this.lifecycleOwner = lifecycleOwner;
+        this.cellViewModels = gameController.getBoardViewModel().getCellViewModels();
+        this.humanPlayer = humanPlayer;
+    }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private final CellLayoutBinding binding;
@@ -35,13 +47,6 @@ public class CellAdapter extends RecyclerView.Adapter<CellAdapter.ViewHolder> {
         }
     }
 
-
-
-    public CellAdapter(GameController gameController, LifecycleOwner lifecycleOwner) {
-        this.gameController = gameController;
-        this.lifecycleOwner = lifecycleOwner;
-        this.cellViewModels = gameController.getBoardViewModel().getCellViewModels();
-    }
 
 
     @NonNull
@@ -69,9 +74,27 @@ public class CellAdapter extends RecyclerView.Adapter<CellAdapter.ViewHolder> {
 
         View.OnClickListener cellClickListener = v -> {
             if (gameController.isCellEmpty(row, col)) {
-                gameController.playCard(row, col);
+                gameController.playCard(gameController.getHumanPlayer(),row, col);
             }
         };
+
+        // Agregar un observador para escuchar cambios en Card
+        cellViewModel.getCardOwner().observe(lifecycleOwner, owner ->  {
+            if (owner != null) {
+                Card card = cellViewModel.getCard().getValue();
+                holder.binding.imageView.setImageResource(card.getImageResource());
+                if (card.getOwner().getName().equals(humanPlayer.getName())) {
+                    holder.binding.backgroundView.setBackgroundColor(Color.TRANSPARENT);
+                } else {
+                    holder.binding.backgroundView.setBackgroundColor(Color.argb(128, 0, 0, 0));
+                }
+            } else {
+                holder.binding.backgroundView.setBackgroundColor(Color.argb(128, 0, 0, 0));
+            }
+        });
+
+
+
 
         holder.binding.setCellClickListener(cellClickListener);
     }
@@ -79,5 +102,12 @@ public class CellAdapter extends RecyclerView.Adapter<CellAdapter.ViewHolder> {
     @Override
     public int getItemCount() {
         return numCells;
+    }
+    public CellViewModel getCellViewModelAt(int row, int col) {
+        if (cellViewModels != null) {
+            return cellViewModels.get(row * 3 + col);
+        } else {
+            throw new IllegalStateException("CellViewModels list is not initialized");
+        }
     }
 }
