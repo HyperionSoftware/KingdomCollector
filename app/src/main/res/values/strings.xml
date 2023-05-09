@@ -119,6 +119,7 @@
     <string name="confirm_selection" translatable="false">Confirmar Equipo</string>
     <string name="card_name" translatable="false">Card Name</string>
     <string name="card_description">Card Description</string>
+    <string name="actualizar">actualizar</string>
 
 
 </resources>

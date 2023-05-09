@@ -114,5 +114,6 @@
     <string name="card_description">Card Description</string>
     <string name="world_record_title">World Record</string>
     <string name="personal_record_title">Record personal</string>
+    <string name="actualizar">actualizar</string>
 
 </resources>
