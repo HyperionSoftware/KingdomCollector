@@ -8,7 +8,6 @@ import androidx.lifecycle.MutableLiveData;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.Player;
 
 public class Card{
-    private final int id;
     private int imageUrl;
     private String name;
     private String type;
@@ -30,8 +29,7 @@ public class Card{
      * @param powerAbajo Poder de la carta en la dirección de abajo.
      * @param powerDerecha Poder de la carta en la dirección de la derecha.
      */
-    public Card(int id, String name,int imageResource,String type, int powerArriba, int powerIzquierda, int powerAbajo, int powerDerecha){
-        this.id = id;
+    public Card(String name,int imageResource,String type, int powerArriba, int powerIzquierda, int powerAbajo, int powerDerecha){
         this.imageUrl = imageResource;
         this.name = name;
         this.type = type;
