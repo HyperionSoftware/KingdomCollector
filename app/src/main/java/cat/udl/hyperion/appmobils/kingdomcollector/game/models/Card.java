@@ -8,12 +8,15 @@ import androidx.lifecycle.MutableLiveData;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.Player;
 
 public class Card{
+    private final int id;
     private int imageUrl;
     private String name;
+    private String type;
     private int powerArriba;
     private int powerIzquierda;
     private int powerAbajo;
     private int powerDerecha;
+    private boolean isSelected;
     private ObservableField<Boolean> selected;
     private MutableLiveData<Player> owner;
 
@@ -21,14 +24,17 @@ public class Card{
      * Constructor de la clase Card. Crea una carta con los atributos indicados.
      * @param imageResource Identificador único de la imagen de la carta.
      * @param name Nombre de la carta.
+     * @param type Tipo de la carta.
      * @param powerArriba Poder de la carta en la dirección de arriba.
      * @param powerIzquierda Poder de la carta en la dirección de la izquierda.
      * @param powerAbajo Poder de la carta en la dirección de abajo.
      * @param powerDerecha Poder de la carta en la dirección de la derecha.
      */
-    public Card(int imageResource, String name, int powerArriba, int powerIzquierda, int powerAbajo, int powerDerecha){
+    public Card(int id, String name,int imageResource,String type, int powerArriba, int powerIzquierda, int powerAbajo, int powerDerecha){
+        this.id = id;
         this.imageUrl = imageResource;
         this.name = name;
+        this.type = type;
         this.powerArriba = powerArriba;
         this.powerIzquierda = powerIzquierda;
         this.powerAbajo = powerAbajo;
@@ -63,6 +69,14 @@ public class Card{
         this.name = name;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public int getPowerArriba() {
         return powerArriba;
     }
@@ -95,20 +109,20 @@ public class Card{
         this.powerDerecha = powerDerecha;
     }
 
-    public boolean isSelected() {
-        return selected.get();
-    }
-
-    public void setSelected(boolean selected) {
-        this.selected.set(selected);
-    }
-
     public ObservableField<Boolean> getSelectedField() {
         return selected;
     }
 
     public void notifyPropertyChanged(int fieldId) {
         selected.notifyChange();
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
     }
 
 }

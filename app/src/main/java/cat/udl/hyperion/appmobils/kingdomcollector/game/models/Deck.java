@@ -3,10 +3,8 @@ package cat.udl.hyperion.appmobils.kingdomcollector.game.models;
 import androidx.databinding.ObservableArrayList;
 
 import java.util.Collections;
-import java.util.List;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
-import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.DeckViewModel;
 
 public class Deck {
     private ObservableArrayList<Card> cards;
@@ -19,11 +17,11 @@ public class Deck {
     public void initializeDeck(){
         //TODO: Fer que initializeDeck agafi únicament les 5 cartes seleccionades de Collection.
         cards = new ObservableArrayList<>();
-        cards.add(new Card(R.drawable.barrio_adri_contreras_presidente,"AdriContreras", 9, 7, 10,10));
-        cards.add(new Card(R.drawable.barrio_barnera_portero, "Barnera", 3, 4, 4, 4));
-        cards.add(new Card(R.drawable.barrio_boada_delantero,"Boada", 6,2,3,6));
-        cards.add(new Card(R.drawable.barrio_capilla_medio,"Capilla",5,5,3,1));
-        cards.add(new Card(R.drawable.barrio_jacob_delantero,"Jacob",2,3,6,7));
+        cards.add(new Card(1,"Ibai Llanos", R.drawable.ibai,"President",9,8,9,8));
+        cards.add(new Card(2,"Iker Casillas", R.drawable.iker_casillas,"President",7,7,7,7));
+        cards.add(new Card(3,"The Gref", R.drawable.thegref,"President",6,5,4,7));
+        cards.add(new Card(4,"Kun Aguero", R.drawable.kun_aguero,"President",8,4,5,8));
+        cards.add(new Card(5,"Juan Guarnizo", R.drawable.juan_guarnizo,"President",9,6,3,2));
     }
 
     public void agregarCarta(Card card) {
