@@ -56,15 +56,15 @@
 
         <Button
             android:id="@+id/register_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="176dp"
+            android:layout_height="48dp"
             android:layout_marginTop="24dp"
-            android:background="#4CAF50"
-            android:text="Register"
+            android:background="#004CAF50"
             android:foreground="@drawable/register_button"
+            android:padding="12dp"
+            android:text="Register"
             android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            android:padding="12dp"/>
+            android:textSize="18sp" />
 
     </LinearLayout>
 </ScrollView>
