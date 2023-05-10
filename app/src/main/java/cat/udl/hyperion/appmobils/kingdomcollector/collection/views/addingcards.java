@@ -45,6 +45,8 @@ public class addingcards extends AppCompatActivity {
         cardManager.addCard(new FirestoreCard("elbarrio11", "https://firebasestorage.googleapis.com/v0/b/hyperion-843ad.appspot.com/o/elbarrio%2Fbarrio_ubon_medio.png?alt=media&token=cecd6abf-2e69-4453-83c3-e1cba5273b5d", "Ubon", "Medio", 9, 10, 9, 9));
 
         //Cartas del equipo ...:
-
+        //(String id, String imageUrl, String name, String type, int powerArriba, int powerIzquierda, int powerAbajo, int powerDerecha) {
+        //cardManager.addCard(new FirestoreCard("1k1", "URL", "NombreJugador", "delantero", 2,1,4,5));
+        cardManager.addCard(new FirestoreCard("1k1","https://firebasestorage.googleapis.com/v0/b/hyperion-843ad.appspot.com/o/1k%2F1k_bruno_defensa.png?alt=media&token=38550727-aea6-4958-ba91-539290355376","Bruno", "Defensa",5,3,5,3 ));
     }
 }
