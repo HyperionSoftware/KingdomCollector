@@ -16,7 +16,7 @@
         android:autofillHints="email"
         android:hint="@string/email_hint"
         android:inputType="textEmailAddress"
-        android:textSize="20sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -30,7 +30,7 @@
         android:autofillHints="password"
         android:hint="@string/password_hint"
         android:inputType="textPassword"
-        android:textSize="20sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email_input" />
@@ -43,8 +43,9 @@
         android:layout_marginTop="20dp"
         android:foreground="@drawable/login_button"
         android:text="@string/login_button"
-        android:textColor="@color/design_default_color_surface"
+        android:textColor="#FFFFFF"
         android:textSize="20sp"
+        app:iconTint="#00FFFFFF"
         app:layout_constraintEnd_toStartOf="@+id/register_button1"
         app:layout_constraintHorizontal_bias="0.467"
         app:layout_constraintStart_toStartOf="parent"
