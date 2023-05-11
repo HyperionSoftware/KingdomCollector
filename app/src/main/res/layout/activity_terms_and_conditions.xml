@@ -5,16 +5,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="@drawable/pantalla_ini"
+    android:background="@drawable/pantalla_inicio"
     tools:context=".other.TermsAndConditions">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_bar_height"
-        android:background="#00FFFFFF"
         android:fitsSystemWindows="true"
-        android:theme="@style/Theme.KingdomCollector.AppBarOverlay" />
+        android:background="#00FFFFFF"
+        android:theme="@style/Theme.KingdomCollector.AppBarOverlay">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:toolbarId="@+id/toolbar">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/Theme.KingdomCollector.PopupOverlay" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <include layout="@layout/content_scrolling" />
 
@@ -23,8 +43,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/fab_margin"
-        app:layout_anchor="@+id/app_bar"
-        app:layout_anchorGravity="end|top"
+        app:layout_anchor="@id/app_bar"
+        app:layout_anchorGravity="end|bottom"
         app:srcCompat="@android:drawable/ic_dialog_email" />
 
     <ImageView
