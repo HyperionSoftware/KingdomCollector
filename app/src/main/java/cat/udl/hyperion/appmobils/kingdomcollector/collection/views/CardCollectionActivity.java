@@ -24,8 +24,8 @@ import cat.udl.hyperion.appmobils.kingdomcollector.collection.adapter.CardAdapte
 import cat.udl.hyperion.appmobils.kingdomcollector.collection.adapter.CardSelectedAdapter;
 import cat.udl.hyperion.appmobils.kingdomcollector.collection.viewmodels.CardSelectedViewModel;
 import cat.udl.hyperion.appmobils.kingdomcollector.collection.viewmodels.CardViewModel;
+import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Card;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.views.GameActivity;
-import cat.udl.hyperion.appmobils.kingdomcollector.collection.models.Card;
 
 
 public class CardCollectionActivity extends AppCompatActivity {

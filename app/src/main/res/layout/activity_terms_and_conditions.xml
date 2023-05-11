@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:background="@drawable/pantalla_inicio"
     tools:context=".other.TermsAndConditions">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -12,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_bar_height"
         android:fitsSystemWindows="true"
+        android:background="#00FFFFFF"
         android:theme="@style/Theme.KingdomCollector.AppBarOverlay">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -42,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/fab_margin"
         app:layout_anchor="@id/app_bar"
-        app:layout_anchorGravity="bottom|end"
+        app:layout_anchorGravity="end|bottom"
         app:srcCompat="@android:drawable/ic_dialog_email" />
 
     <ImageView
