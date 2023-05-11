@@ -2,8 +2,6 @@ package cat.udl.hyperion.appmobils.kingdomcollector.game.models;
 
 import androidx.databinding.ObservableArrayMap;
 
-import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.BoardViewModel;
-
 public class Board {
     private ObservableArrayMap<String, ObservableArrayMap<String, Cell>> board;
     private static final int numRows = 3;

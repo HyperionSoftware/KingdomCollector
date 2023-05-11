@@ -114,7 +114,6 @@ public class Card{
     public void notifyPropertyChanged(int fieldId) {
         selected.notifyChange();
     }
-
     public boolean isSelected() {
         return isSelected;
     }

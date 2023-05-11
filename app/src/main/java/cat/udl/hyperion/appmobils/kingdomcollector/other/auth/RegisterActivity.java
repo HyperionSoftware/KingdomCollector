@@ -1,19 +1,22 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.other.auth;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
 
@@ -25,6 +28,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText editText_email;
     EditText editText_password;
     EditText editText_username;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +41,10 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     }
+    // En la parte superior de tu clase RegisterActivity
+
+
+    // Reemplaza tu método register() con este
     private void register() {
         String email = editText_email.getText().toString().trim();
         String password = editText_password.getText().toString().trim();
@@ -71,12 +79,9 @@ public class RegisterActivity extends AppCompatActivity {
                         // El registro fue exitoso, enviar correo de verificación
                         FirebaseUser user = mAuth.getCurrentUser();
                         user.sendEmailVerification()
-                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if (task.isSuccessful()) {
-                                            Toast.makeText(RegisterActivity.this, "Se ha enviado un correo de verificación a su cuenta de correo electrónico. Por favor, confirme su correo electrónico antes de iniciar sesión.", Toast.LENGTH_LONG).show();
-                                        }
+                                .addOnCompleteListener(task1 -> {
+                                    if (task1.isSuccessful()) {
+                                        Toast.makeText(RegisterActivity.this, "Se ha enviado un correo de verificación a su cuenta de correo electrónico. Por favor, confirme su correo electrónico antes de iniciar sesión.", Toast.LENGTH_LONG).show();
                                     }
                                 });
                         // Actualizar el nombre de usuario del usuario
@@ -84,17 +89,41 @@ public class RegisterActivity extends AppCompatActivity {
                                 .setDisplayName(username)
                                 .build();
                         user.updateProfile(profileUpdates)
-                                .addOnCompleteListener(task1 -> {
-                                    if (task1.isSuccessful()) {
+                                .addOnCompleteListener(task12 -> {
+                                    if (task12.isSuccessful()) {
                                         Log.d(myClassTag, "Perfil actualizado correctamente con el username.");
+                                        assignRandomCardsToUser(user.getUid());
+                                        finish();
                                     }
                                 });
-                        // Ir a la pantalla de inicio de sesión
-                        goToLoginPage();
                     } else {
                         // El registro falló, mostrar un mensaje de error
                         Toast.makeText(RegisterActivity.this, "No se pudo crear la cuenta. Por favor, inténtelo de nuevo más tarde.", Toast.LENGTH_LONG).show();
                         Log.d(myClassTag, "Error al crear la cuenta.", task.getException());
+                    }
+                });
+    }
+
+    // Este es el nuevo método para asignar 5 cartas aleatorias al usuario
+    private void assignRandomCardsToUser(String userId) {
+        db.collection("general_cards")
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        List<DocumentSnapshot> allCards = task.getResult().getDocuments();
+                        Collections.shuffle(allCards); // Mezcla las tarjetas
+                        List<DocumentSnapshot> selectedCards = allCards.subList(0, 5); // Selecciona las primeras 5 tarjetas
+                        // Continuación del método assignRandomCardsToUser
+                        for (DocumentSnapshot card : selectedCards) {
+                            Map<String, Object> cardData = card.getData();
+                            if (cardData != null) {
+                                db.collection("users/" + userId + "/user_cards")
+                                        .document(card.getId())
+                                        .set(cardData)
+                                        .addOnSuccessListener(aVoid -> Log.d(myClassTag, "Card added successfully for user: " + userId))
+                                        .addOnFailureListener(e -> Log.d(myClassTag, "Error adding card for user: " + userId, e));
+                            }
+                        }
                     }
                 });
     }
