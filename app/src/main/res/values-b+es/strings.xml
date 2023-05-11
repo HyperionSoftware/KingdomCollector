@@ -114,5 +114,8 @@
     <string name="card_description">Card Description</string>
     <string name="world_record_title">World Record</string>
     <string name="personal_record_title">Record personal</string>
+    <string name="hopeyouenjoyaboutus">Esperamos que disfrute jugando tanto como nosotros disfrutamos creando este juego para usted.</string>
+    <string name="Thankyouforplay">¡Gracias por jugar nuestro juego!</string>
+    <string name="welcometoourgame">¡Bienvenido a nuestro juego! Somos un equipo de desarrolladores apasionados por crear experiencias divertidas y emocionantes para nuestros jugadores.</string>
 
 </resources>

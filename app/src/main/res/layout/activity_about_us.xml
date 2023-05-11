@@ -4,21 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/pantalla_ini"
     tools:context=".other.AboutUs">
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="407dp"
-        android:layout_height="376dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginEnd="2dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.453"
-        app:srcCompat="@drawable/background" />
 
     <TextView
         android:id="@+id/textView7"
@@ -127,7 +114,7 @@
         android:id="@+id/textView"
         android:layout_width="347dp"
         android:layout_height="74dp"
-        android:text="Welcome to our game! We are a team of developers passionate about creating fun and exciting experiences for our players. "
+        android:text="@string/welcometoourgame"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -142,7 +129,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="8dp"
-        android:text="We hope you enjoy playing as much as we enjoyed creating this game for you."
+        android:text="@string/hopeyouenjoyaboutus"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textView11"
@@ -157,7 +144,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="30dp"
-        android:text="Thank you for playing our game! "
+        android:text="@string/Thankyouforplay"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
