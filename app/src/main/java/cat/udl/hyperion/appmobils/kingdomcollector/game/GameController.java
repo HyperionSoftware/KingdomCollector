@@ -70,6 +70,15 @@ public class GameController {
     }
 
     public void playCard(Player player, int row, int col) {
+        if (isGameOver()) {
+            Player winner = getWinner();
+            if (winner != null) {
+                Toast.makeText(context, "El ganador es " + winner.getName(), Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(context, "Es un empate", Toast.LENGTH_LONG).show();
+            }
+            return;
+        }
         // TODO: Tasca Ricard (T3.2). Utilitza if(isGameOver) en algun lloc
         // per poder fer que el joc acabi quan les condicions de fi de joc es compleixin:
         // boardViewModel.isBoardFull() || humanDeckViewModel.isDeckEmpty() || computerDeckViewModel.isDeckEmpty();
@@ -120,8 +129,33 @@ public class GameController {
         return valorRandom;
     }
 
+    private Player getWinner() {
+        int humanPoints = humanPlayer.getPoints().getValue();
+        int computerPoints = computerPlayer.getPoints().getValue();
+
+        if (humanPoints > computerPoints) {
+            return humanPlayer;
+        } else if (humanPoints < computerPoints) {
+            return computerPlayer;
+        } else {
+            return null; // Empate
+        }
+    }
+
+
     public boolean isGameOver() {
-        return boardViewModel.isBoardFull() || humanDeckViewModel.isDeckEmpty() || computerDeckViewModel.isDeckEmpty();
+        boolean gameOver = boardViewModel.isBoardFull() || humanDeckViewModel.isDeckEmpty() || computerDeckViewModel.isDeckEmpty();
+
+        if (gameOver) {
+            Player winner = getWinner();
+            if (winner != null) {
+                Toast.makeText(context, "El ganador es " + winner.getName(), Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(context, "Es un empate", Toast.LENGTH_LONG).show();
+            }
+        }
+
+        return gameOver;
     }
 
     private void updateGamePoints() {
