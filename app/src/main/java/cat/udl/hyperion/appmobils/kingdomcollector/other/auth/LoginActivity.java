@@ -1,17 +1,18 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.other.auth;
-import static java.lang.Integer.parseInt;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -20,6 +21,7 @@ import java.util.Map;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
 import cat.udl.hyperion.appmobils.kingdomcollector.other.MainActivity;
+import cat.udl.hyperion.appmobils.kingdomcollector.other.TermsAndConditions;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -40,7 +42,13 @@ public class LoginActivity extends AppCompatActivity {
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
         findViewById(R.id.register_button1).setOnClickListener(v-> goToRegisterPage());
-        findViewById(R.id.forgot_password_text).setOnClickListener(v-> goToRecoverPasswordPage());
+        findViewById(R.id.forgot_password_text4).setOnClickListener(v-> goToRecoverPasswordPage());
+        findViewById(R.id.termsAndConditionsFromLogin).setOnClickListener(v-> goToTermsAndConditionsPage());
+    }
+
+    private void goToTermsAndConditionsPage() {
+        Intent intent = new Intent(this, TermsAndConditions.class);
+        startActivity(intent);
     }
 
     private void goToRecoverPasswordPage() {

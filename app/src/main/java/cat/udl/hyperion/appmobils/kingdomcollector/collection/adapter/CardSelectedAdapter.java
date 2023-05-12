@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
-import cat.udl.hyperion.appmobils.kingdomcollector.collection.models.Card;
+import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Card;
 
 public class CardSelectedAdapter extends RecyclerView.Adapter<CardSelectedViewHolder> {
     private List<Card> selectedCards;

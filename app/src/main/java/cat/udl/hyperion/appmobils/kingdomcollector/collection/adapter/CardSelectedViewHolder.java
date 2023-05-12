@@ -11,9 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
-import cat.udl.hyperion.appmobils.kingdomcollector.collection.models.Card;
 import cat.udl.hyperion.appmobils.kingdomcollector.collection.viewmodels.CardSelectedViewModel;
 import cat.udl.hyperion.appmobils.kingdomcollector.collection.views.CardCollectionActivity;
+import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Card;
 
 public class CardSelectedViewHolder extends RecyclerView.ViewHolder {
     private final ImageView imageView;
@@ -49,7 +49,7 @@ public class CardSelectedViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bind(Card card) {
-        imageView.setImageResource(card.getImage());
+        imageView.setImageResource(card.getImageResource());
         // Establece el fondo de la vista según el estado de selección de la carta
         itemView.setBackgroundColor(card.isSelected() ? Color.LTGRAY : Color.WHITE);
     }

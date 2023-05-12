@@ -1,6 +1,10 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.game.models;
 
 import androidx.databinding.ObservableArrayMap;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import java.util.HashMap;
+import java.util.Map;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.BoardViewModel;
 
@@ -8,6 +12,32 @@ public class Board {
     private ObservableArrayMap<String, ObservableArrayMap<String, Cell>> board;
     private static final int numRows = 3;
     private static final int numCols = 3;
+
+    public void saveToFirebase() {
+        // Obtén una instancia de la base de datos de Firebase
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+        // Crea una referencia a la ubicación donde deseas almacenar el tablero
+        DatabaseReference myRef = database.getReference("boards");
+
+        // Convierte tu tablero a una estructura Map que Firebase puede entender
+        Map<String, Map<String, Map<String, Object>>> firebaseBoard = new HashMap<>();
+        for (String rowKey : board.keySet()) {
+            Map<String, Map<String, Object>> row = new HashMap<>();
+            for (String cellKey : board.get(rowKey).keySet()) {
+                Cell cell = board.get(rowKey).get(cellKey);
+                Map<String, Object> firebaseCell = new HashMap<>();
+                // Aquí debes agregar los atributos de la celda que desees guardar
+                firebaseCell.put("card", cell.getCard());
+                row.put(cellKey, firebaseCell);
+            }
+            firebaseBoard.put(rowKey, row);
+        }
+
+        // Guarda el tablero en Firebase
+        myRef.setValue(firebaseBoard);
+    }
+
 
     public Board(){
         initializeBoard();

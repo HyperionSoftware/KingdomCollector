@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import cat.udl.hyperion.appmobils.kingdomcollector.collection.models.Card;
+import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Card;
 
 public class CardSelectedViewModel extends ViewModel {
     private final MutableLiveData<List<Card>> selectedCardsLiveData;

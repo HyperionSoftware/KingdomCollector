@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
-import cat.udl.hyperion.appmobils.kingdomcollector.collection.models.Card;
+import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Card;
 
 public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
     private List<Card> cards;
