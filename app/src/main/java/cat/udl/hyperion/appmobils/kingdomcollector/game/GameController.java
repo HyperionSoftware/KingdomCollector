@@ -9,6 +9,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Random;
 
+import cat.udl.hyperion.appmobils.kingdomcollector.R;
+import cat.udl.hyperion.appmobils.kingdomcollector.game.fragments.WinnerFragment;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Card;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.BoardViewModel;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.CellViewModel;
@@ -16,6 +18,7 @@ import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.DeckViewModel
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.HumanPlayer;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.IAPlayer;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.Player;
+import cat.udl.hyperion.appmobils.kingdomcollector.game.views.GameActivity;
 
 import android.widget.Toast;
 import android.content.Context;
@@ -32,9 +35,9 @@ public class GameController {
     private FirebaseAuth mAuth;
     private Handler handler;
     private Context context;
+    private GameActivity gameActivity;
 
-
-    public GameController(Context context, BoardViewModel boardViewModel, DeckViewModel humanDeckViewModel, DeckViewModel computerDeckViewModel) {
+    public GameController(Context context, BoardViewModel boardViewModel, DeckViewModel humanDeckViewModel, DeckViewModel computerDeckViewModel, GameActivity gameActivity) {
         this.context = context;
         this.boardViewModel = boardViewModel;
         this.humanDeckViewModel = humanDeckViewModel;
@@ -44,6 +47,8 @@ public class GameController {
         this.humanPlayer = new HumanPlayer(user.getDisplayName());
         this.computerPlayer = new IAPlayer("Computer");
         this.currentPlayer = humanPlayer;
+        this.gameActivity = gameActivity;
+
 
         // Inicializar el propietario de las cartas en cada mazo
         this.humanDeckViewModel.initializeOwnerForCards(humanPlayer);
@@ -70,6 +75,7 @@ public class GameController {
     }
 
     public void playCard(Player player, int row, int col) {
+
         if (isGameOver()) {
             Player winner = getWinner();
             if (winner != null) {
@@ -150,6 +156,7 @@ public class GameController {
             Player winner = getWinner();
             if (winner != null) {
                 Toast.makeText(context, "El ganador es " + winner.getName(), Toast.LENGTH_LONG).show();
+                showWinnerFragment(winner.getName());
             } else {
                 Toast.makeText(context, "Es un empate", Toast.LENGTH_LONG).show();
             }
@@ -262,5 +269,18 @@ public class GameController {
         if (col1 == col2 + 1) return 4; // right
         return -1;
     }
+
+    private void showWinnerFragment(String winnerName) {
+        int humanPoints = getHumanPlayerPoints();
+        int computerPoints = getComputerPlayerPoints();
+        String result = humanPoints + "-" + computerPoints;
+
+        WinnerFragment winnerFragment = WinnerFragment.newInstance(winnerName, result);
+        gameActivity.getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.boardFragment, winnerFragment)
+                .commit();
+    }
+
 }
 

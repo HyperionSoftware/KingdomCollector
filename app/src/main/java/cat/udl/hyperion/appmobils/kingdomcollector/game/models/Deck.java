@@ -6,13 +6,16 @@ import java.util.Collections;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
 
+/**
+ * Cada jugador tiene su Deck, que es una lista de cartas.
+ */
 public class Deck {
     private ObservableArrayList<Card> cards;
-    private static Deck instance;
 
     public Deck(){
         initializeDeck();
     }
+
 
     public void initializeDeck(){
         //TODO: Fer que initializeDeck agafi únicament les 5 cartes seleccionades de Collection.
@@ -22,6 +25,10 @@ public class Deck {
         cards.add(new Card("Boada",R.drawable.barrio_boada_delantero,"Delantero", 6,2,3,6));
         cards.add(new Card("Capilla",R.drawable.barrio_capilla_medio,"Medio",5,5,3,1));
         cards.add(new Card("Jacob",R.drawable.barrio_jacob_delantero,"Delantero",2,3,6,7));
+    }
+
+    public static Deck getInstance() {
+        return new Deck();
     }
 
     public void agregarCarta(Card card) {
