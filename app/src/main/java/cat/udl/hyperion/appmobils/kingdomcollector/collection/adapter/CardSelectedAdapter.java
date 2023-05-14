@@ -37,6 +37,7 @@ public class CardSelectedAdapter extends RecyclerView.Adapter<CardSelectedViewHo
         return selectedCards != null ? selectedCards.size() : 0;
     }
 
+    // Actualiza la lista de cartas seleccionadas en el adaptador
     public void setSelectedCards(List<Card> selectedCards) {
         this.selectedCards = selectedCards;
         notifyDataSetChanged();

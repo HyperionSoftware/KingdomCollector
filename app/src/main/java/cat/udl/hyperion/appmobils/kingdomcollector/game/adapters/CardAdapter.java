@@ -31,6 +31,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
         return new CardViewHolder(binding);
     }
 
+    // para cada carta, se le asigna un listener que se ejecutará cuando se haga click en la carta.
     @Override
     public void onBindViewHolder(@NonNull CardViewHolder holder, int position) {
         Card card = cards.get(position);
@@ -38,6 +39,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
         holder.binding.cardImage.setOnClickListener((v -> onCardClickListener.onCardClick(card)));
     }
 
+    // Devuelve el número de cartas que hay en el mazo
     @Override
     public int getItemCount() {
         return cards != null ? cards.size() : 0;

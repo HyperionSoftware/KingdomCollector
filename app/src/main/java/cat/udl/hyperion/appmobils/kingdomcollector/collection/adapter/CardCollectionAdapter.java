@@ -13,33 +13,35 @@ import java.util.List;
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Card;
 
-public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
+public class CardCollectionAdapter extends RecyclerView.Adapter<CardCollectionViewHolder> {
     private List<Card> cards;
 
 
-    public CardAdapter(List<Card> cards) {
+    public CardCollectionAdapter(List<Card> cards) {
         this.cards = cards != null ? cards : new ArrayList<>();
     }
 
     @NonNull
     @Override
-    public CardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public CardCollectionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_item, parent, false);
-        return new CardViewHolder(view, cards);
+        return new CardCollectionViewHolder(view, cards);
     }
 
 
+    // Actualiza la lista de cartas en el adaptador
     @Override
-    public void onBindViewHolder(@NonNull CardViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CardCollectionViewHolder holder, int position) {
         Card card = cards.get(position);
         holder.bind(card);
     }
 
-
+    // Devuelve el número de cartas en la lista.
     @Override
     public int getItemCount() {
         return cards != null ? cards.size() : 0;
     }
+
 
     public void setCards(List<Card> cards) {
         this.cards = cards;

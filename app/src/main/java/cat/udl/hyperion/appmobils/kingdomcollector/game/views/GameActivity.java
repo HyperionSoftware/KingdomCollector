@@ -1,6 +1,5 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.game.views;
 
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,7 +15,6 @@ import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.HumanPlaye
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.IAPlayer;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.BoardViewModel;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.DeckViewModel;
-import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.PlayerViewModel;
 
 public class GameActivity extends AppCompatActivity {
     private GameController gameController;
@@ -29,7 +27,7 @@ public class GameActivity extends AppCompatActivity {
         DeckViewModel humanDeckViewModel = new DeckViewModel();
         DeckViewModel computerDeckViewModel = new DeckViewModel();
 
-        gameController = new GameController(this, boardViewModel, humanDeckViewModel, computerDeckViewModel);
+        gameController = new GameController(this, boardViewModel, humanDeckViewModel, computerDeckViewModel,this);
 
         PlayerFragment playerFragment = PlayerFragment.newInstance((HumanPlayer) gameController.getHumanPlayer(), (IAPlayer)gameController.getComputerPlayer());
         DeckFragment deckFragment = DeckFragment.newInstance(humanDeckViewModel);
@@ -43,7 +41,9 @@ public class GameActivity extends AppCompatActivity {
         fragmentTransaction.add(R.id.deckFragment, deckFragment);
         fragmentTransaction.add(R.id.boardFragment, boardFragment);
 
+
         // Realiza la transacción
         fragmentTransaction.commit();
     }
+
 }

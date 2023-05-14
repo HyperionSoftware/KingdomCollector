@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
-import cat.udl.hyperion.appmobils.kingdomcollector.collection.adapter.CardAdapter;
+import cat.udl.hyperion.appmobils.kingdomcollector.collection.adapter.CardCollectionAdapter;
 import cat.udl.hyperion.appmobils.kingdomcollector.collection.adapter.CardSelectedAdapter;
 import cat.udl.hyperion.appmobils.kingdomcollector.collection.viewmodels.CardSelectedViewModel;
 import cat.udl.hyperion.appmobils.kingdomcollector.collection.viewmodels.CardViewModel;
@@ -30,7 +30,7 @@ import cat.udl.hyperion.appmobils.kingdomcollector.game.views.GameActivity;
 
 public class CardCollectionActivity extends AppCompatActivity {
 
-    private CardAdapter cardAdapter;
+    private CardCollectionAdapter cardCollectionAdapter;
     private CardSelectedAdapter selectedCardAdapter;
 
     private Button confirmButton;
@@ -46,8 +46,8 @@ public class CardCollectionActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 4));
-        cardAdapter = new CardAdapter(null);
-        recyclerView.setAdapter(cardAdapter);
+        cardCollectionAdapter = new CardCollectionAdapter(null);
+        recyclerView.setAdapter(cardCollectionAdapter);
 
 
         RecyclerView selectedRecyclerView = findViewById(R.id.selected_recycler_view);
@@ -58,7 +58,7 @@ public class CardCollectionActivity extends AppCompatActivity {
 
 
         CardViewModel viewModel = new ViewModelProvider(this).get(CardViewModel.class);
-        viewModel.getCardsLiveData().observe(this, cards -> cardAdapter.setCards(cards));
+        viewModel.getCardsLiveData().observe(this, cards -> cardCollectionAdapter.setCards(cards));
 
         CardSelectedViewModel selectedViewModel = new ViewModelProvider(this).get(CardSelectedViewModel.class);
         selectedViewModel.getSelectedCardsLiveData().observe(this, selectedCards -> selectedCardAdapter.setSelectedCards(selectedCards));
@@ -83,7 +83,7 @@ public class CardCollectionActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        cardAdapter = null;
+        cardCollectionAdapter = null;
         selectedCardAdapter = null;
         confirmButton = null;
     }
@@ -95,12 +95,8 @@ public class CardCollectionActivity extends AppCompatActivity {
             return;
         }
 
-        // Guarda las cartas seleccionadas en las preferencias compartidas
-        //saveSelectedCards(selectedCards);
-
         // Inicia el GameActivity y pasa las cartas seleccionadas como un Extra
         Intent intent = new Intent(this, GameActivity.class);
-        //intent.putExtra("selectedCards", (Serializable) selectedCards);
         startActivity(intent);
     }
 
@@ -126,8 +122,6 @@ public class CardCollectionActivity extends AppCompatActivity {
             return new ArrayList<>();
         }
     }
-
-
 }
 
 
