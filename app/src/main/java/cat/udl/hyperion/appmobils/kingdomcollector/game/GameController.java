@@ -1,8 +1,10 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.game;
 
 
+import android.content.Context;
 import android.os.Handler;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -12,16 +14,13 @@ import java.util.Random;
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.fragments.WinnerFragment;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Card;
-import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.BoardViewModel;
-import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.CellViewModel;
-import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.DeckViewModel;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.HumanPlayer;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.IAPlayer;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.Player;
+import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.BoardViewModel;
+import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.CellViewModel;
+import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.DeckViewModel;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.views.GameActivity;
-
-import android.widget.Toast;
-import android.content.Context;
 
 public class GameController {
     private static final String TAG = "GameController";
@@ -79,8 +78,10 @@ public class GameController {
         if (isGameOver()) {
             Player winner = getWinner();
             if (winner != null) {
+                //TODO: DA1. Funcionar amb valors de strings.
                 Toast.makeText(context, "El ganador es " + winner.getName(), Toast.LENGTH_LONG).show();
             } else {
+                //TODO: DA1. Funcionar amb valors de strings.
                 Toast.makeText(context, "Es un empate", Toast.LENGTH_LONG).show();
             }
             return;
@@ -96,6 +97,7 @@ public class GameController {
         int randomTime = getRandomTimeToPlay();
         if (player == humanPlayer) {
             if (!isHumanPlayerTurn()) {
+                //TODO: DA1. Funcionar amb valors de strings.
                 Toast.makeText(context, "No es tu turno.", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -155,9 +157,11 @@ public class GameController {
         if (gameOver) {
             Player winner = getWinner();
             if (winner != null) {
+                //TODO: DA1. Funcionar amb valors de strings.
                 Toast.makeText(context, "El ganador es " + winner.getName(), Toast.LENGTH_LONG).show();
                 showWinnerFragment(winner.getName());
             } else {
+                //TODO: DA1. Funcionar amb valors de strings.
                 Toast.makeText(context, "Es un empate", Toast.LENGTH_LONG).show();
             }
         }

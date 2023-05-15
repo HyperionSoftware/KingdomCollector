@@ -74,6 +74,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()) {
+                                            //TODO: DA1. Funcionar amb valors de strings.
                                             Toast.makeText(RegisterActivity.this, "Se ha enviado un correo de verificación a su cuenta de correo electrónico. Por favor, confirme su correo electrónico antes de iniciar sesión.", Toast.LENGTH_LONG).show();
                                         }
                                     }
@@ -91,6 +92,7 @@ public class RegisterActivity extends AppCompatActivity {
                         logout();
                     } else {
                         // El registro falló, mostrar un mensaje de error
+                        //TODO: DA1. Funcionar amb valors de strings.
                         Toast.makeText(RegisterActivity.this, "No se pudo crear la cuenta. Por favor, inténtelo de nuevo más tarde.", Toast.LENGTH_LONG).show();
                         Log.d(myClassTag, "Error al crear la cuenta.", task.getException());
                     }

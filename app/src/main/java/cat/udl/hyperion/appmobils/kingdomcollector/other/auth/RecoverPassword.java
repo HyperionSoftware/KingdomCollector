@@ -1,8 +1,5 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.other.auth;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -10,6 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -48,9 +48,11 @@ public class RecoverPassword extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
+                                    //TODO: DA1. Funcionar amb valors de strings.
                                     Toast.makeText(RecoverPassword.this, "Se ha enviado un correo electrónico para restablecer la contraseña", Toast.LENGTH_SHORT).show();
                                     Log.d(myClassTag, "Enviado email con exito.");
                                 } else {
+                                    //TODO: DA1. Funcionar amb valors de strings.
                                     Toast.makeText(RecoverPassword.this, "Ha habido un error al enviar el correo electrónico para restablecer la contraseña", Toast.LENGTH_SHORT).show();
                                 }
                             }

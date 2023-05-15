@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
         getPenultimateLogin(new PenultimateLoginCallback() {
             @Override
             public void onFailure(String usuario_no_autenticado) {
+                //TODO: DA1. Funcionar amb valors de strings.
                 Toast.makeText(MainActivity.this, "Error: " + usuario_no_autenticado, Toast.LENGTH_SHORT).show();
             }
 
@@ -77,8 +78,10 @@ public class MainActivity extends AppCompatActivity {
             public void onSuccess(String secondLastLogin) {
                 if (secondLastLogin != null) {
                     Log.d(myClassTag,"LastLogin:" + secondLastLogin);
+                    //TODO: DA1. Funcionar amb valors de strings.
                     Toast.makeText(MainActivity.this, "Bienvenido " + user.getDisplayName() + " tu último inicio de sesión fue: " + secondLastLogin, Toast.LENGTH_SHORT).show();
                 } else {
+                    //TODO: DA1. Funcionar amb valors de strings.
                     Toast.makeText(MainActivity.this, "Bienvenido " + user.getDisplayName() + ", no se encontraron registros de inicio de sesión anteriores.", Toast.LENGTH_SHORT).show();
                 }
             }
