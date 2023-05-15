@@ -74,8 +74,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()) {
-                                            //TODO: DA1. Funcionar amb valors de strings.
-                                            Toast.makeText(RegisterActivity.this, "Se ha enviado un correo de verificación a su cuenta de correo electrónico. Por favor, confirme su correo electrónico antes de iniciar sesión.", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(RegisterActivity.this,R.string.email_sended_confirm, Toast.LENGTH_LONG).show();
                                         }
                                     }
                                 });
