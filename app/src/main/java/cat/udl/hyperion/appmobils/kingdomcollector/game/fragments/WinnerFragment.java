@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
+import cat.udl.hyperion.appmobils.kingdomcollector.game.views.GameActivity;
 import cat.udl.hyperion.appmobils.kingdomcollector.other.MainActivity;
 
 public class WinnerFragment extends Fragment {
@@ -39,15 +40,24 @@ public class WinnerFragment extends Fragment {
         tvResult.setText("El ganador es " + winnerName + ". Resultado final: " + result);
 
         // Button para volver a la pantalla principal
-        ImageButton btnPlayAgain = view.findViewById(R.id.btn_return_home);
-        btnPlayAgain.setOnClickListener(v -> goToHome());
+        ImageButton btnHome = view.findViewById(R.id.btn_return_home);
+        btnHome.setOnClickListener(v -> goToHome());
 
-
+        // Button para volver a jugar "play again"
+        ImageButton btnPlayAgain = view.findViewById(R.id.btn_play_again);
+        btnPlayAgain.setOnClickListener(v-> playAgain());
         return view;
+    }
+
+    private void playAgain() {
+        Intent intent = new Intent(getActivity(), GameActivity.class);
+        getActivity().finish();  // Finaliza la actividad actual
+        startActivity(intent);  // Inicia una nueva instancia de GameActivity
     }
 
     private void goToHome() {
         Intent intent = new Intent(getActivity(), MainActivity.class);
+        getActivity().finish();
         startActivity(intent);
     }
 }

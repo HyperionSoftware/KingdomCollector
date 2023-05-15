@@ -1,12 +1,18 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.other.auth;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -79,9 +85,12 @@ public class RegisterActivity extends AppCompatActivity {
                         // El registro fue exitoso, enviar correo de verificación
                         FirebaseUser user = mAuth.getCurrentUser();
                         user.sendEmailVerification()
-                                .addOnCompleteListener(task1 -> {
-                                    if (task1.isSuccessful()) {
-                                        Toast.makeText(RegisterActivity.this, "Se ha enviado un correo de verificación a su cuenta de correo electrónico. Por favor, confirme su correo electrónico antes de iniciar sesión.", Toast.LENGTH_LONG).show();
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            Toast.makeText(RegisterActivity.this,R.string.email_sended_confirm, Toast.LENGTH_LONG).show();
+                                        }
                                     }
                                 });
                         // Actualizar el nombre de usuario del usuario
@@ -96,14 +105,20 @@ public class RegisterActivity extends AppCompatActivity {
                                         finish();
                                     }
                                 });
+                        logout();
                     } else {
                         // El registro falló, mostrar un mensaje de error
+                        //TODO: DA1. Funcionar amb valors de strings.
                         Toast.makeText(RegisterActivity.this, "No se pudo crear la cuenta. Por favor, inténtelo de nuevo más tarde.", Toast.LENGTH_LONG).show();
                         Log.d(myClassTag, "Error al crear la cuenta.", task.getException());
                     }
                 });
     }
 
+    private void logout(){
+        mAuth.signOut();
+        finish();
+    }
     // Este es el nuevo método para asignar 5 cartas aleatorias al usuario
     private void assignRandomCardsToUser(String userId) {
         db.collection("general_cards")

@@ -120,4 +120,6 @@
     <string name="actualizar">actualizar</string>
 
 
+    <string name="email_sended_confirm">Se ha enviado un correo de verificación a su cuenta de correo electrónico. Por favor, confirme su correo electrónico antes de iniciar sesión.</string>
+
 </resources>

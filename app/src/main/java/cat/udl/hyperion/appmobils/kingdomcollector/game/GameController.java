@@ -1,8 +1,10 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.game;
 
 
+import android.content.Context;
 import android.os.Handler;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -12,16 +14,13 @@ import java.util.Random;
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.fragments.WinnerFragment;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Card;
-import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.BoardViewModel;
-import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.CellViewModel;
-import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.DeckViewModel;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.HumanPlayer;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.IAPlayer;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.Player;
+import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.BoardViewModel;
+import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.CellViewModel;
+import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.DeckViewModel;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.views.GameActivity;
-
-import android.widget.Toast;
-import android.content.Context;
 
 public class GameController {
     private static final String TAG = "GameController";
@@ -75,27 +74,22 @@ public class GameController {
     }
 
     public void playCard(Player player, int row, int col) {
-
         if (isGameOver()) {
             Player winner = getWinner();
             if (winner != null) {
+                //TODO: DA1. Funcionar amb valors de strings.
                 Toast.makeText(context, "El ganador es " + winner.getName(), Toast.LENGTH_LONG).show();
             } else {
+                //TODO: DA1. Funcionar amb valors de strings.
                 Toast.makeText(context, "Es un empate", Toast.LENGTH_LONG).show();
             }
             return;
         }
-        // TODO: Tasca Ricard (T3.2). Utilitza if(isGameOver) en algun lloc
-        // per poder fer que el joc acabi quan les condicions de fi de joc es compleixin:
-        // boardViewModel.isBoardFull() || humanDeckViewModel.isDeckEmpty() || computerDeckViewModel.isDeckEmpty();
-        // Quan les condicions de isGameOver es compleixin, s'ha de calcular el guanyador.
-        // TODO: Tasca Ricard (T3.1)
-        // Fer funció que miri els punts del computerPlayer vs els punts de HumanPlayer, guardar el Player que ha guanyat.
-        // funció de tipus: private Player getWinner(Player player1, Player player2)
         Log.d(TAG,"Playing the card to position ("+ row+","+col+").");
         int randomTime = getRandomTimeToPlay();
         if (player == humanPlayer) {
             if (!isHumanPlayerTurn()) {
+                //TODO: DA1. Funcionar amb valors de strings.
                 Toast.makeText(context, "No es tu turno.", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -155,9 +149,11 @@ public class GameController {
         if (gameOver) {
             Player winner = getWinner();
             if (winner != null) {
+                //TODO: DA1. Funcionar amb valors de strings.
                 Toast.makeText(context, "El ganador es " + winner.getName(), Toast.LENGTH_LONG).show();
                 showWinnerFragment(winner.getName());
             } else {
+                //TODO: DA1. Funcionar amb valors de strings.
                 Toast.makeText(context, "Es un empate", Toast.LENGTH_LONG).show();
             }
         }

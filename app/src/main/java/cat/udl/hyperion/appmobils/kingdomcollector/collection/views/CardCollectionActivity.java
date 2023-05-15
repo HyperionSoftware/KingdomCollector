@@ -91,6 +91,7 @@ public class CardCollectionActivity extends AppCompatActivity {
     private void confirmSelection() {
         List<Card> selectedCards = selectedCardAdapter.getSelectedCards();
         if (selectedCards.size() != 5) {
+            //TODO: DA1. Funcionar amb valors de strings.
             Toast.makeText(this, "Debe seleccionar exactamente 5 cartas", Toast.LENGTH_SHORT).show();
             return;
         }
