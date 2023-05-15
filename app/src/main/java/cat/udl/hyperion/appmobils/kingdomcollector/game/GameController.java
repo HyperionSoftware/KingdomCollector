@@ -74,7 +74,6 @@ public class GameController {
     }
 
     public void playCard(Player player, int row, int col) {
-
         if (isGameOver()) {
             Player winner = getWinner();
             if (winner != null) {
@@ -86,13 +85,6 @@ public class GameController {
             }
             return;
         }
-        // TODO: Tasca Ricard (T3.2). Utilitza if(isGameOver) en algun lloc
-        // per poder fer que el joc acabi quan les condicions de fi de joc es compleixin:
-        // boardViewModel.isBoardFull() || humanDeckViewModel.isDeckEmpty() || computerDeckViewModel.isDeckEmpty();
-        // Quan les condicions de isGameOver es compleixin, s'ha de calcular el guanyador.
-        // TODO: Tasca Ricard (T3.1)
-        // Fer funció que miri els punts del computerPlayer vs els punts de HumanPlayer, guardar el Player que ha guanyat.
-        // funció de tipus: private Player getWinner(Player player1, Player player2)
         Log.d(TAG,"Playing the card to position ("+ row+","+col+").");
         int randomTime = getRandomTimeToPlay();
         if (player == humanPlayer) {
