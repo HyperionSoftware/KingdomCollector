@@ -1,13 +1,12 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.other.auth;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -89,8 +88,7 @@ public class RegisterActivity extends AppCompatActivity {
                                         Log.d(myClassTag, "Perfil actualizado correctamente con el username.");
                                     }
                                 });
-                        // Ir a la pantalla de inicio de sesión
-                        goToLoginPage();
+                        logout();
                     } else {
                         // El registro falló, mostrar un mensaje de error
                         Toast.makeText(RegisterActivity.this, "No se pudo crear la cuenta. Por favor, inténtelo de nuevo más tarde.", Toast.LENGTH_LONG).show();
@@ -99,9 +97,9 @@ public class RegisterActivity extends AppCompatActivity {
                 });
     }
 
-    private void goToLoginPage(){
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
+    private void logout(){
+        mAuth.signOut();
+        finish();
     }
 
 }
