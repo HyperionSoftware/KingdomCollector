@@ -3,6 +3,8 @@ package cat.udl.hyperion.appmobils.kingdomcollector.game.models;
 import androidx.databinding.ObservableField;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import java.util.HashMap;
+import java.util.Map;
 
 
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.Player;
@@ -18,6 +20,38 @@ public class Card{
     private boolean isSelected;
     private ObservableField<Boolean> selected;
     private MutableLiveData<Player> owner;
+
+    public Card(Map<String, Object> card) {
+
+    }
+
+    // Método para convertir los datos de la carta a un mapa que se puede guardar en Firebase
+    public Map<String, Object> toMap() {
+        // Crear un nuevo HashMap para almacenar los datos
+        HashMap<String, Object> resultado = new HashMap<>();
+
+        // Agregar cada campo de la carta al mapa con su respectivo nombre de clave
+        resultado.put("imageUrl", imageUrl);
+        resultado.put("name", name);
+        resultado.put("type", type);
+        resultado.put("powerArriba", powerArriba);
+        resultado.put("powerIzquierda", powerIzquierda);
+        resultado.put("powerAbajo", powerAbajo);
+        resultado.put("powerDerecha", powerDerecha);
+        resultado.put("isSelected", isSelected);
+
+        // Si la carta tiene un propietario, guardar el nombre del propietario
+        // Aquí estamos asumiendo que la clase Player tiene un método getName() que devuelve el nombre del jugador
+        if (owner.getValue() != null) {
+            resultado.put("owner", owner.getValue().getName());
+        } else {
+            // Si la carta no tiene propietario, guardar null
+            resultado.put("owner", null);
+        }
+
+        // Devolver el mapa
+        return resultado;
+    }
 
     /**
      * Constructor de la clase Card. Crea una carta con los atributos indicados.

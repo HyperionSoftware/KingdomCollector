@@ -21,6 +21,8 @@ public class DeckViewModel extends ViewModel {
     public DeckViewModel() {
         Log.d("DeckViewModel", "Creando el DeckViewModel...");
         deck = new MutableLiveData<>();
+        // Si se hace un getInstance() de Deck, imlpementando el patrón Singleton, se puede hacer
+        // deck.setValue(Deck.getInstance()), entonces las cartas seleccionadas son visibles en el game.
         deck.setValue(new Deck());
         selectedCard = new MutableLiveData<>();
     }
@@ -38,6 +40,7 @@ public class DeckViewModel extends ViewModel {
         Log.d("DeckViewModel", "Obteniendo el DeckViewModel...");
         return deck;
     }
+
 
     public void addCardToDeck(Card card) {
         Deck currentDeck = deck.getValue();

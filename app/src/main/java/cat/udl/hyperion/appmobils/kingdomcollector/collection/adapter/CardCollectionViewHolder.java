@@ -1,6 +1,9 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.collection.adapter;
 
+import static android.content.ContentValues.TAG;
+
 import android.graphics.Color;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,14 +17,15 @@ import cat.udl.hyperion.appmobils.kingdomcollector.R;
 import cat.udl.hyperion.appmobils.kingdomcollector.collection.viewmodels.CardSelectedViewModel;
 import cat.udl.hyperion.appmobils.kingdomcollector.collection.views.CardCollectionActivity;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Card;
+import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Deck;
 
-public class CardViewHolder extends RecyclerView.ViewHolder {
+public class CardCollectionViewHolder extends RecyclerView.ViewHolder {
     private final TextView nameTextView;
     private final ImageView imageView;
     private final TextView typeTextView;
     private final List<Card> cards;
 
-    public CardViewHolder(View itemView, List<Card> cards) {
+    public CardCollectionViewHolder(View itemView, List<Card> cards) {
         super(itemView);
         this.cards = cards;
         nameTextView = itemView.findViewById(R.id.name_text_view);
@@ -43,6 +47,7 @@ public class CardViewHolder extends RecyclerView.ViewHolder {
                 CardSelectedViewModel selectedViewModel = new ViewModelProvider((CardCollectionActivity) itemView.getContext()).get(CardSelectedViewModel.class);
                 if (card.isSelected()) {
                     selectedViewModel.addSelectedCard(card);
+
                 } else {
                     selectedViewModel.removeSelectedCard(card);
                 }

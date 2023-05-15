@@ -68,6 +68,9 @@
         Thank you for using the Hyperion Application."
  "
     </string>
+
+
+
     <string name="action_settings">Settings</string>
     <string name="aboutPage">About us</string>
     <string name="authors">Authors</string>
@@ -81,6 +84,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- activity_game-->
     <string name="btn_00">0_0</string>
     <string name="btn_01">0_1</string>
     <string name="btn_02">0_2</string>
@@ -98,6 +103,8 @@
     <string name="txt_score">Score:</string>
     <string name="txt_player_name">Player name</string>
     <string name="txt_cards">Cards:</string>
+
+    <!-- activity_login__register__recover-->
     <string name="login_title">Login</string>
     <string name="email_hint">Mail</string>
     <string name="password_hint">Password</string>
@@ -115,15 +122,22 @@
     <string name="card_type" translatable="false">Card Type</string>
     <string name="world_record_title">World Record</string>
     <string name="personal_record_title">Record personal</string>
+
+    <!-- activity_cardcollection -->
     <string name="selected_cards_label" translatable="false">Selected Cards:</string>
     <string name="confirm_selection" translatable="false">Confirmar Equipo</string>
     <string name="card_name" translatable="false">Card Name</string>
     <string name="card_description">Card Description</string>
+
+    <!-- Ni flowers -->
     <string name="hopeyouenjoyaboutus">We hope you enjoy playing as much as we enjoyed creating this game for you.</string>
     <string name="Thankyouforplay">Thank you for playing our game!</string>
     <string name="welcometoourgame">Welcome to our game! We are a team of developers passionate about creating fun and exciting experiences for our players.</string>
     <string name="actualizar">actualizar</string>
 
 
+    <!-- fragment_winner-->
+    <string name="return_home" translatable="false">Return home</string>
+    <string name="play_again" translatable="false">Return home</string>
 
 </resources>
