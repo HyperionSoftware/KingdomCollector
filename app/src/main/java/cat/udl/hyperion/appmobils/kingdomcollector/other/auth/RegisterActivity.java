@@ -1,18 +1,28 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.other.auth;
 
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
+
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
 
@@ -24,6 +34,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText editText_email;
     EditText editText_password;
     EditText editText_username;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +47,10 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     }
+    // En la parte superior de tu clase RegisterActivity
+
+
+    // Reemplaza tu método register() con este
     private void register() {
         String email = editText_email.getText().toString().trim();
         String password = editText_password.getText().toString().trim();
@@ -83,9 +98,11 @@ public class RegisterActivity extends AppCompatActivity {
                                 .setDisplayName(username)
                                 .build();
                         user.updateProfile(profileUpdates)
-                                .addOnCompleteListener(task1 -> {
-                                    if (task1.isSuccessful()) {
+                                .addOnCompleteListener(task12 -> {
+                                    if (task12.isSuccessful()) {
                                         Log.d(myClassTag, "Perfil actualizado correctamente con el username.");
+                                        assignRandomCardsToUser(user.getUid());
+                                        finish();
                                     }
                                 });
                         logout();
@@ -101,6 +118,34 @@ public class RegisterActivity extends AppCompatActivity {
     private void logout(){
         mAuth.signOut();
         finish();
+    }
+    // Este es el nuevo método para asignar 5 cartas aleatorias al usuario
+    private void assignRandomCardsToUser(String userId) {
+        db.collection("general_cards")
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        List<DocumentSnapshot> allCards = task.getResult().getDocuments();
+                        Collections.shuffle(allCards); // Mezcla las tarjetas
+                        List<DocumentSnapshot> selectedCards = allCards.subList(0, 5); // Selecciona las primeras 5 tarjetas
+                        // Continuación del método assignRandomCardsToUser
+                        for (DocumentSnapshot card : selectedCards) {
+                            Map<String, Object> cardData = card.getData();
+                            if (cardData != null) {
+                                db.collection("users/" + userId + "/user_cards")
+                                        .document(card.getId())
+                                        .set(cardData)
+                                        .addOnSuccessListener(aVoid -> Log.d(myClassTag, "Card added successfully for user: " + userId))
+                                        .addOnFailureListener(e -> Log.d(myClassTag, "Error adding card for user: " + userId, e));
+                            }
+                        }
+                    }
+                });
+    }
+
+    private void goToLoginPage(){
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 
 }
