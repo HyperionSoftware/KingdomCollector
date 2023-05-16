@@ -11,6 +11,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class CardManager {
     private FirebaseFirestore db;
 
+
+
     public CardManager() {
         db = FirebaseFirestore.getInstance();
     }

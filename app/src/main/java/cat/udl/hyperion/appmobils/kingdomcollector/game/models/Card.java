@@ -1,16 +1,28 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.game.models;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.ObservableField;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
 import java.util.HashMap;
 import java.util.Map;
 
 
+import javax.annotation.Nonnull;
+
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.Player;
 
+@Entity(tableName = "cards")
 public class Card{
 
+    @PrimaryKey
+    @NonNull
+    @ColumnInfo(name = "id")
     private String id;
     private int imageUrl;
     private String name;
@@ -20,7 +32,11 @@ public class Card{
     private int powerAbajo;
     private int powerDerecha;
     private boolean isSelected;
+
+    @Ignore
     private ObservableField<Boolean> selected;
+
+    @Ignore
     private MutableLiveData<Player> owner;
 
 
@@ -72,6 +88,26 @@ public class Card{
 
     public int getImageResource() {
         return imageUrl;
+    }
+
+    public int getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setId(@NonNull String id) {
+        this.id = id;
+    }
+
+    public void setImageUrl(int imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public void setOwner(MutableLiveData<Player> owner) {
+        this.owner = owner;
+    }
+
+    public void setSelected(ObservableField<Boolean> selected) {
+        this.selected = selected;
     }
 
     public void setImageResource(int imageResource) {
