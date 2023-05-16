@@ -7,13 +7,12 @@ import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
@@ -25,6 +24,8 @@ import java.util.List;
 import java.util.Map;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
+import cat.udl.hyperion.appmobils.kingdomcollector.collection.db.AppDatabase;
+import cat.udl.hyperion.appmobils.kingdomcollector.collection.db.CardEntity;
 
 public class RegisterActivity extends AppCompatActivity {
     protected String myClassTag = this.getClass().getSimpleName();
@@ -35,6 +36,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText editText_password;
     EditText editText_username;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private AppDatabase appDatabase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +46,9 @@ public class RegisterActivity extends AppCompatActivity {
         editText_password = findViewById(R.id.password_input);
         editText_username = findViewById(R.id.name_input);
         findViewById(R.id.register_button).setOnClickListener(v -> register());
+        // Inicializar la base de datos Room
+        appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "card-database").build();
+
 
 
     }
@@ -139,9 +144,34 @@ public class RegisterActivity extends AppCompatActivity {
                 });
     }
 
-    private void goToLoginPage(){
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
+    private void downloadCardsToLocalDB(){
+        db.collection("general_cards")
+                .get()
+                .addOnCompleteListener(task1 -> {
+                    if (task1.isSuccessful()) {
+                        for (DocumentSnapshot document : task1.getResult()) {
+                            Map<String, Object> cardData = document.getData();
+                            CardEntity cardEntity = new CardEntity();
+                            cardEntity.id = document.getId();
+                            // Aquí debes hacer el mapeo de los campos de la base de datos a los de la entidad.
+                            // Este es un ejemplo, actualiza los campos según corresponda.
+                            cardEntity.imageUrl = Integer.parseInt(cardData.get("imageUrl").toString());
+                            cardEntity.name = cardData.get("name").toString();
+                            cardEntity.type = cardData.get("type").toString();
+                            cardEntity.powerArriba = Integer.parseInt(cardData.get("powerArriba").toString());
+                            cardEntity.powerIzquierda = Integer.parseInt(cardData.get("powerIzquierda").toString());
+                            cardEntity.powerAbajo = Integer.parseInt(cardData.get("powerAbajo").toString());
+                            cardEntity.powerDerecha = Integer.parseInt(cardData.get("powerDerecha").toString());
+                            cardEntity.isSelected = (boolean) cardData.get("isSelected");
+                            // Manéjalo según cómo decidas guardar el propietario en la base de datos local.
+                            //cardEntity.owner = (String) cardData.get("owner");
+                            new Thread(() -> {
+                                appDatabase.cardDao().insertAll(cardEntity);
+                            }).start();
+                        }
+                    } else {
+                        Log.d(myClassTag, "Error getting documents: ", task1.getException());
+                    }
     }
 
 }
