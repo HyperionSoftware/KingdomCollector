@@ -10,6 +10,8 @@ import java.util.Map;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.Player;
 
 public class Card{
+
+    private String id;
     private int imageUrl;
     private String name;
     private String type;
@@ -21,36 +23,13 @@ public class Card{
     private ObservableField<Boolean> selected;
     private MutableLiveData<Player> owner;
 
+
     public Card(Map<String, Object> card) {
 
     }
 
-    // Método para convertir los datos de la carta a un mapa que se puede guardar en Firebase
-    public Map<String, Object> toMap() {
-        // Crear un nuevo HashMap para almacenar los datos
-        HashMap<String, Object> resultado = new HashMap<>();
+    public Card(){
 
-        // Agregar cada campo de la carta al mapa con su respectivo nombre de clave
-        resultado.put("imageUrl", imageUrl);
-        resultado.put("name", name);
-        resultado.put("type", type);
-        resultado.put("powerArriba", powerArriba);
-        resultado.put("powerIzquierda", powerIzquierda);
-        resultado.put("powerAbajo", powerAbajo);
-        resultado.put("powerDerecha", powerDerecha);
-        resultado.put("isSelected", isSelected);
-
-        // Si la carta tiene un propietario, guardar el nombre del propietario
-        // Aquí estamos asumiendo que la clase Player tiene un método getName() que devuelve el nombre del jugador
-        if (owner.getValue() != null) {
-            resultado.put("owner", owner.getValue().getName());
-        } else {
-            // Si la carta no tiene propietario, guardar null
-            resultado.put("owner", null);
-        }
-
-        // Devolver el mapa
-        return resultado;
     }
 
     /**
@@ -63,7 +42,8 @@ public class Card{
      * @param powerAbajo Poder de la carta en la dirección de abajo.
      * @param powerDerecha Poder de la carta en la dirección de la derecha.
      */
-    public Card(String name,int imageResource,String type, int powerArriba, int powerIzquierda, int powerAbajo, int powerDerecha){
+    public Card(String id,int imageResource, String name,String type, int powerArriba, int powerIzquierda, int powerAbajo, int powerDerecha){
+        this.id = id;
         this.imageUrl = imageResource;
         this.name = name;
         this.type = type;
@@ -74,6 +54,11 @@ public class Card{
         this.selected = new ObservableField<>(false);
         this.owner = new MutableLiveData<>(null);
     }
+
+    public String getId() {
+        return id;
+    }
+
     public LiveData<Player> getOwnerField() {
         return owner;
     }
@@ -154,6 +139,33 @@ public class Card{
 
     public void setSelected(boolean selected) {
         isSelected = selected;
+    }
+    // Método para convertir los datos de la carta a un mapa que se puede guardar en Firebase
+    public Map<String, Object> toMap() {
+        // Crear un nuevo HashMap para almacenar los datos
+        HashMap<String, Object> resultado = new HashMap<>();
+
+        // Agregar cada campo de la carta al mapa con su respectivo nombre de clave
+        resultado.put("imageUrl", imageUrl);
+        resultado.put("name", name);
+        resultado.put("type", type);
+        resultado.put("powerArriba", powerArriba);
+        resultado.put("powerIzquierda", powerIzquierda);
+        resultado.put("powerAbajo", powerAbajo);
+        resultado.put("powerDerecha", powerDerecha);
+        resultado.put("isSelected", isSelected);
+
+        // Si la carta tiene un propietario, guardar el nombre del propietario
+        // Aquí estamos asumiendo que la clase Player tiene un método getName() que devuelve el nombre del jugador
+        if (owner.getValue() != null) {
+            resultado.put("owner", owner.getValue().getName());
+        } else {
+            // Si la carta no tiene propietario, guardar null
+            resultado.put("owner", null);
+        }
+
+        // Devolver el mapa
+        return resultado;
     }
 
 }

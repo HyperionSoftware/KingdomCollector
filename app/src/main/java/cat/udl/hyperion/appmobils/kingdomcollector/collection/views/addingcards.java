@@ -44,9 +44,7 @@ public class addingcards extends AppCompatActivity {
         cardManager.addCard(new FirestoreCard("elbarrio10", R.drawable.barrio_ros_defensa, "Ros", "Defensa", 3, 3, 6, 7));
         cardManager.addCard(new FirestoreCard("elbarrio11", R.drawable.barrio_ubon_medio, "Ubon", "Medio", 9, 10, 9, 9));
 
-        //Cartas del equipo ...:
-        //(String id, String imageUrl, String name, String type, int powerArriba, int powerIzquierda, int powerAbajo, int powerDerecha) {
-        //cardManager.addCard(new FirestoreCard("1k1", "URL", "NombreJugador", "delantero", 2,1,4,5));
+        //Cartas del equipo 1k:
         cardManager.addCard(new FirestoreCard("1k1",R.drawable.k_bruno_defensa,"Bruno", "Defensa",5,3,5,3 ));
         cardManager.addCard(new FirestoreCard("1k2",R.drawable.k_gunter_delantero,"Gunter", "Delantero",7,3,1,5 ));
         cardManager.addCard(new FirestoreCard("1k3",R.drawable.k_iker_casillas_presidente,"Casillas", "Presidente",10,10,7,8 ));

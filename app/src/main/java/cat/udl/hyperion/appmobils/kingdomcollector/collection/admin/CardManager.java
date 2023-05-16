@@ -15,8 +15,8 @@ public class CardManager {
         db = FirebaseFirestore.getInstance();
     }
 
-    public void addCard(FirestoreCard firestoreCard) {
-        db.collection("general_cards").document(firestoreCard.getId()).set(firestoreCard)
+    public void addCard(FirestoreCard card) {
+        db.collection("general_cards").document(card.getId()).set(card)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
