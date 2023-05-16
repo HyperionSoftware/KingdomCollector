@@ -37,4 +37,60 @@ public class FirestoreCard {
         Card card = new Card(id,imageUrl, name, type, powerArriba, powerIzquierda, powerAbajo, powerDerecha);
         return card;
     }
+
+    public void setImageUrl(int imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPowerIzquierda(int powerIzquierda) {
+        this.powerIzquierda = powerIzquierda;
+    }
+
+    public void setPowerDerecha(int powerDerecha) {
+        this.powerDerecha = powerDerecha;
+    }
+
+    public void setPowerArriba(int powerArriba) {
+        this.powerArriba = powerArriba;
+    }
+
+    public void setPowerAbajo(int powerAbajo) {
+        this.powerAbajo = powerAbajo;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getImageUrl() {
+        return imageUrl;
+    }
+
+    public int getPowerArriba() {
+        return powerArriba;
+    }
+
+    public int getPowerIzquierda() {
+        return powerIzquierda;
+    }
+
+    public int getPowerDerecha() {
+        return powerDerecha;
+    }
+
+    public int getPowerAbajo() {
+        return powerAbajo;
+    }
 }
