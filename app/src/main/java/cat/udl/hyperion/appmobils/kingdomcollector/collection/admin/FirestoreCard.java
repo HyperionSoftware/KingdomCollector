@@ -2,7 +2,7 @@ package cat.udl.hyperion.appmobils.kingdomcollector.collection.admin;
 
 public class FirestoreCard {
     private String id;
-    private String imageUrl;
+    private int imageUrl;
     private String name;
 
     private String type;
@@ -11,7 +11,7 @@ public class FirestoreCard {
     private int powerAbajo;
     private int powerDerecha;
 
-    public FirestoreCard(String id, String imageUrl, String name, String type, int powerArriba, int powerIzquierda, int powerAbajo, int powerDerecha) {
+    public FirestoreCard(String id, int imageUrl, String name, String type, int powerArriba, int powerIzquierda, int powerAbajo, int powerDerecha) {
         this.id = id;
         this.imageUrl = imageUrl;
         this.name = name;
@@ -25,7 +25,7 @@ public class FirestoreCard {
     public FirestoreCard() {
     }
 
-    public String getImageUrl() {
+    public int getImageUrl() {
         return imageUrl;
     }
 
@@ -57,7 +57,7 @@ public class FirestoreCard {
         return type;
     }
 
-    public void setImageUrl(String imageUrl) {
+    public void setImageUrl(int imageUrl) {
         this.imageUrl = imageUrl;
     }
 

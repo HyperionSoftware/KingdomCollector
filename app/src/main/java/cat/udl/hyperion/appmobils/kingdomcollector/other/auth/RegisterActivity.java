@@ -47,10 +47,6 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     }
-    // En la parte superior de tu clase RegisterActivity
-
-
-    // Reemplaza tu método register() con este
     private void register() {
         String email = editText_email.getText().toString().trim();
         String password = editText_password.getText().toString().trim();
