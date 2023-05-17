@@ -97,6 +97,12 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_logout).setOnClickListener(v -> logout());
 
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
 
     private void setBtn_actualizar() {
         Intent intent = new Intent(this, addingcards.class);
