@@ -6,8 +6,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 import java.util.Map;
 
-import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.BoardViewModel;
-
 public class Board {
     private ObservableArrayMap<String, ObservableArrayMap<String, Cell>> board;
     private static final int numRows = 3;

@@ -133,6 +133,8 @@
     <string name="hopeyouenjoyaboutus">We hope you enjoy playing as much as we enjoyed creating this game for you.</string>
     <string name="Thankyouforplay">Thank you for playing our game!</string>
     <string name="welcometoourgame">Welcome to our game! We are a team of developers passionate about creating fun and exciting experiences for our players.</string>
+    <string name="actualizar">actualizar</string>
+
 
     <!-- fragment_winner-->
     <string name="return_home" translatable="false">Return home</string>
