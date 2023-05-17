@@ -153,6 +153,10 @@
     <string name="bienvenido">Bienvenido %1$s, tu último inicio de sesión fue: %2$s</string>
     <string name="bienvenido_sin_registro">Bienvenido %1$s, no se encontraron registros de inicio de sesión anteriores.</string>
 
+    <string name="recover_password_empty_email">Por favor, introduce tu correo electrónico</string>
+    <string name="recover_password_email_sent">Se ha enviado un correo electrónico para restablecer la contraseña</string>
+    <string name="recover_password_email_failed">Ha habido un error al enviar el correo electrónico para restablecer la contraseña</string>
+
 
 
     <string name="error_message">An error occurred while fetching the cards.</string>
