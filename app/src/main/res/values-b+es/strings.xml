@@ -43,14 +43,14 @@
          Si cambiamos estos Términos, se lo notificaremos a través de la Aplicación o por correo electrónico.
          Si no está de acuerdo con los Términos modificados, debe dejar de usar la Aplicación.
          Ley aplicable y jurisdicción Estos Términos se regirán e interpretarán de acuerdo con
-         con las leyes de [país donde está registrada la empresa Hyperion].
+         las leyes de [país donde está registrada la empresa Hyperion].
          Cualquier disputa que surja en relación con estos Términos estará sujeta a la exclusiva
          jurisdicción de los tribunales de [ciudad donde está registrada la empresa Hyperion].
          Al utilizar la Aplicación, acepta someterse a la jurisdicción exclusiva de los tribunales de
          [ciudad donde está registrada la empresa Hyperion] por cualquier disputa que surja en relación con
          estos términos.
 
-         Terminación Hyperion se reserva el derecho de cancelar su acceso a la Aplicación en
+         Terminación Hyperion se reserva el derecho de cancelar su acceso a la Aplicación
          en cualquier momento y sin previo aviso si incumple estos Términos.
 
          Disposición general Si alguna disposición de estos Términos se considera inválida o inaplicable,
@@ -118,6 +118,11 @@
     <string name="Thankyouforplay">¡Gracias por jugar nuestro juego!</string>
     <string name="welcometoourgame">¡Bienvenido a nuestro juego! Somos un equipo de desarrolladores apasionados por crear experiencias divertidas y emocionantes para nuestros jugadores.</string>
     <string name="actualizar">actualizar</string>
+    <string name="card_type_presidente">Presidente</string>
+    <string name="card_type_delantero">Delantero</string>
+    <string name="card_type_medio">Medio</string>
+    <string name="card_type_defensa">Defensa</string>
+    <string name="error_message">Ha ocurrido un error al obtener las tarjetas.</string>
 
 
     <string name="email_sended_confirm">Se ha enviado un correo de verificación a su cuenta de correo electrónico. Por favor, confirme su correo electrónico antes de iniciar sesión.</string>
