@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
 
@@ -18,6 +19,7 @@ import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Card;
 public class CollectionActivity extends AppCompatActivity {
 
     private AppDatabase db;
+    private RecyclerView presidenteRecyclerView, delanteroRecyclerView, medioRecyclerView, defensaRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,11 @@ public class CollectionActivity extends AppCompatActivity {
 
         db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "general-cards-local").build();
 
+        presidenteRecyclerView = findViewById(R.id.presidente_recycler_view);
+        delanteroRecyclerView = findViewById(R.id.delantero_recycler_view);
+        medioRecyclerView = findViewById(R.id.medio_recycler_view);
+        defensaRecyclerView = findViewById(R.id.defensa_recycler_view);
+
         getCardsFromDb();
     }
 
@@ -33,20 +40,40 @@ public class CollectionActivity extends AppCompatActivity {
         Executors.newSingleThreadExecutor().execute(new Runnable() {
             @Override
             public void run() {
-                List<Card> cards = db.cardDao().getAllCards();
+                List<Card> allCards = db.cardDao().getAllCards();
+                List<Card> presidenteCards = new ArrayList<>();
+                List<Card> delanteroCards = new ArrayList<>();
+                List<Card> medioCards = new ArrayList<>();
+                List<Card> defensaCards = new ArrayList<>();
+
+                for (Card card : allCards) {
+                    if (card.getType().equals("Presidente")) {
+                        presidenteCards.add(card);
+                    } else if (card.getType().equals("Delantero")) {
+                        delanteroCards.add(card);
+                    } else if (card.getType().equals("Medio")) {
+                        medioCards.add(card);
+                    } else if (card.getType().equals("Defensa")) {
+                        defensaCards.add(card);
+                    }
+                }
+
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        setupRecyclerView(cards);
+                        setupRecyclerView(presidenteRecyclerView, presidenteCards);
+                        setupRecyclerView(delanteroRecyclerView, delanteroCards);
+                        setupRecyclerView(medioRecyclerView, medioCards);
+                        setupRecyclerView(defensaRecyclerView, defensaCards);
                     }
                 });
             }
         });
     }
 
-    private void setupRecyclerView(List<Card> cards) {
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    private void setupRecyclerView(RecyclerView recyclerView, List<Card> cards) {
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(layoutManager);
         CardAdapter cardAdapter = new CardAdapter(cards);
         recyclerView.setAdapter(cardAdapter);
     }
