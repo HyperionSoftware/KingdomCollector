@@ -141,10 +141,4 @@
     <string name="play_again" translatable="false">Return home</string>
 
     <string name="email_sended_confirm">An email verification has been sent to your email account. Please confirm your email before logging in.</string>
-
-    <string name="card_type_presidente">President</string>
-    <string name="card_type_delantero">Forward</string>
-    <string name="card_type_medio">Midfielder</string>
-    <string name="card_type_defensa">Defender</string>
-    <string name="error_message">An error occurred while fetching the cards.</string>
 </resources>
