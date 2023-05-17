@@ -146,5 +146,9 @@
     <string name="card_type_delantero">Forward</string>
     <string name="card_type_medio">Midfielder</string>
     <string name="card_type_defensa">Defender</string>
+    <string name="winner_is">El ganador es </string>
+    <string name="tie">Es un empate</string>
+    <string name="not_your_turn">No es tu turno.</string>
+
     <string name="error_message">An error occurred while fetching the cards.</string>
 </resources>

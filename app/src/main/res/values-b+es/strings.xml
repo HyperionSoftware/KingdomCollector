@@ -123,6 +123,10 @@
     <string name="card_type_medio">Medio</string>
     <string name="card_type_defensa">Defensa</string>
     <string name="error_message">Ha ocurrido un error al obtener las tarjetas.</string>
+    <string name="winner_is">El ganador es </string>
+    <string name="tie">Es un empate</string>
+    <string name="not_your_turn">No es tu turno.</string>
+
 
 
     <string name="email_sended_confirm">Se ha enviado un correo de verificación a su cuenta de correo electrónico. Por favor, confirme su correo electrónico antes de iniciar sesión.</string>

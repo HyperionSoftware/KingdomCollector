@@ -25,25 +25,31 @@ import cat.udl.hyperion.appmobils.kingdomcollector.game.views.GameActivity;
 public class GameController {
     private static final String TAG = "GameController";
 
-    private BoardViewModel boardViewModel;
-    private DeckViewModel humanDeckViewModel;
-    private DeckViewModel computerDeckViewModel;
-    private Player humanPlayer;
-    private Player computerPlayer;
+    private final BoardViewModel boardViewModel;
+    private final DeckViewModel humanDeckViewModel;
+    private final DeckViewModel computerDeckViewModel;
+    private final Player humanPlayer;
+    private final Player computerPlayer;
     private Player currentPlayer;
-    private FirebaseAuth mAuth;
-    private Handler handler;
-    private Context context;
-    private GameActivity gameActivity;
+
+    //private FirebaseAuth mAuth;
+    private final Handler handler;
+    private final Context context;
+    private final GameActivity gameActivity;
 
     public GameController(Context context, BoardViewModel boardViewModel, DeckViewModel humanDeckViewModel, DeckViewModel computerDeckViewModel, GameActivity gameActivity) {
         this.context = context;
         this.boardViewModel = boardViewModel;
         this.humanDeckViewModel = humanDeckViewModel;
         this.computerDeckViewModel = computerDeckViewModel;
-        mAuth = FirebaseAuth.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
-        this.humanPlayer = new HumanPlayer(user.getDisplayName());
+        if(user != null) {
+            this.humanPlayer = new HumanPlayer(user.getDisplayName());
+        } else {
+            // manejar la situación cuando no hay un usuario autenticado
+            this.humanPlayer = new HumanPlayer("default username");
+        }
         this.computerPlayer = new IAPlayer("Computer");
         this.currentPlayer = humanPlayer;
         this.gameActivity = gameActivity;
@@ -78,10 +84,10 @@ public class GameController {
             Player winner = getWinner();
             if (winner != null) {
                 //TODO: DA1. Funcionar amb valors de strings.
-                Toast.makeText(context, "El ganador es " + winner.getName(), Toast.LENGTH_LONG).show();
+                Toast.makeText(context, context.getString(R.string.winner_is) + winner.getName(), Toast.LENGTH_LONG).show();
             } else {
                 //TODO: DA1. Funcionar amb valors de strings.
-                Toast.makeText(context, "Es un empate", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, context.getString(R.string.tie), Toast.LENGTH_LONG).show();
             }
             return;
         }
@@ -90,7 +96,7 @@ public class GameController {
         if (player == humanPlayer) {
             if (!isHumanPlayerTurn()) {
                 //TODO: DA1. Funcionar amb valors de strings.
-                Toast.makeText(context, "No es tu turno.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, context.getString(R.string.not_your_turn), Toast.LENGTH_SHORT).show();
                 return;
             }
             Card selectedCard = humanDeckViewModel.getSelectedCard().getValue();
