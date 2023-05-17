@@ -13,6 +13,7 @@ import java.util.concurrent.Executors;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
 import cat.udl.hyperion.appmobils.kingdomcollector.collection.adapter.CardAdapter;
+import cat.udl.hyperion.appmobils.kingdomcollector.collection.adapter.SelectedCardsAdapter;
 import cat.udl.hyperion.appmobils.kingdomcollector.collection.db.AppDatabase;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Card;
 
@@ -21,6 +22,10 @@ public class CollectionActivity extends AppCompatActivity {
     private AppDatabase db;
     private RecyclerView presidenteRecyclerView, delanteroRecyclerView, medioRecyclerView, defensaRecyclerView;
 
+    private RecyclerView selectedCardsRecyclerView;
+    private SelectedCardsAdapter selectedCardsAdapter;
+    private List<Card> selectedCardsList;
+    private List<Card> tempSelectedCardsList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +37,13 @@ public class CollectionActivity extends AppCompatActivity {
         delanteroRecyclerView = findViewById(R.id.delantero_recycler_view);
         medioRecyclerView = findViewById(R.id.medio_recycler_view);
         defensaRecyclerView = findViewById(R.id.defensa_recycler_view);
+
+        // Inicializar el RecyclerView y el adaptador para las cartas seleccionadas
+        selectedCardsRecyclerView = findViewById(R.id.selected_cards_recycler_view);
+        selectedCardsList = new ArrayList<>();
+        tempSelectedCardsList = new ArrayList<>();
+        selectedCardsAdapter = new SelectedCardsAdapter(selectedCardsList);
+        selectedCardsRecyclerView.setAdapter(selectedCardsAdapter);
 
         getCardsFromDb();
     }
