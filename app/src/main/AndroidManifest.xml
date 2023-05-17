@@ -24,7 +24,8 @@
             android:exported="false" />
         <activity
             android:name=".game.views.GameActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.KingdomCollector.NoActionBar"/>
         <activity
             android:name=".other.auth.RegisterActivity"
             android:exported="false" />
