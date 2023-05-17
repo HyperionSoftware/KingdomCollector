@@ -1,5 +1,6 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.game.models;
 
+
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
@@ -13,5 +14,8 @@ public interface CardDao {
     void insert(Card card);
 
     @Query("SELECT * FROM cards")
-    LiveData<List<Card>> getAllCards();
+    List<Card> getAllCards();
+
+    @Query("SELECT * FROM cards ORDER BY RANDOM() LIMIT :limit")
+    LiveData<List<Card>> getRandomCards(int limit);
 }

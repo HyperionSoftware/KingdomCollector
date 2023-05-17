@@ -17,13 +17,13 @@
             android:name=".collection.views.addingcards"
             android:exported="false" />
         <activity
+            android:name=".collection.views.CollectionActivity"
+            android:exported="false" />
+        <activity
             android:name=".other.auth.RecoverPassword"
             android:exported="false" />
         <activity
             android:name=".game.views.GameActivity"
-            android:exported="false" />
-        <activity
-            android:name=".collection.views.CardCollectionActivity"
             android:exported="false" />
         <activity
             android:name=".other.auth.RegisterActivity"

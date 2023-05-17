@@ -144,34 +144,4 @@ public class RegisterActivity extends AppCompatActivity {
                 });
     }
 
-    private void downloadCardsToLocalDB(){
-        db.collection("general_cards")
-                .get()
-                .addOnCompleteListener(task1 -> {
-                    if (task1.isSuccessful()) {
-                        for (DocumentSnapshot document : task1.getResult()) {
-                            Map<String, Object> cardData = document.getData();
-                            CardEntity cardEntity = new CardEntity();
-                            cardEntity.id = document.getId();
-                            // Aquí debes hacer el mapeo de los campos de la base de datos a los de la entidad.
-                            // Este es un ejemplo, actualiza los campos según corresponda.
-                            cardEntity.imageUrl = Integer.parseInt(cardData.get("imageUrl").toString());
-                            cardEntity.name = cardData.get("name").toString();
-                            cardEntity.type = cardData.get("type").toString();
-                            cardEntity.powerArriba = Integer.parseInt(cardData.get("powerArriba").toString());
-                            cardEntity.powerIzquierda = Integer.parseInt(cardData.get("powerIzquierda").toString());
-                            cardEntity.powerAbajo = Integer.parseInt(cardData.get("powerAbajo").toString());
-                            cardEntity.powerDerecha = Integer.parseInt(cardData.get("powerDerecha").toString());
-                            cardEntity.isSelected = (boolean) cardData.get("isSelected");
-                            // Manéjalo según cómo decidas guardar el propietario en la base de datos local.
-                            //cardEntity.owner = (String) cardData.get("owner");
-                            new Thread(() -> {
-                                appDatabase.cardDao().insertAll(cardEntity);
-                            }).start();
-                        }
-                    } else {
-                        Log.d(myClassTag, "Error getting documents: ", task1.getException());
-                    }
-    }
-
 }

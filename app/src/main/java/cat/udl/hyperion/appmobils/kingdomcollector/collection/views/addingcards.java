@@ -7,6 +7,8 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
+import java.util.concurrent.Executors;
+
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
 import cat.udl.hyperion.appmobils.kingdomcollector.collection.admin.CardManager;
 import cat.udl.hyperion.appmobils.kingdomcollector.collection.admin.FirestoreCard;
@@ -63,10 +65,15 @@ public class addingcards extends AppCompatActivity {
         addCardToDbAndManager("1k12", R.drawable.k_sorroche_delantero,"Sorroche", "Delantero",7,1,3,1 );
 
     }
-    private void addCardToDbAndManager(String id, int drawable, String name, String role, int score1, int score2, int score3, int score4) {
-        Card card = new Card(id, drawable, name, role, score1, score2, score3, score4);
-        cardManager.addCard(new FirestoreCard(id));
-        db.cardDao().insert(card);
+    private void addCardToDbAndManager(final String id, final int drawable, final String name, final String role, final int powerArriba, final int powerIzquierda, final int powerAbajo, final int powerDerecha) {
+        Executors.newSingleThreadExecutor().execute(new Runnable() {
+            @Override
+            public void run() {
+                Card card = new Card(id, drawable, name, role, powerArriba, powerIzquierda, powerAbajo, powerDerecha);
+                cardManager.addCard(new FirestoreCard(id));
+                db.cardDao().insert(card);
+            }
+        });
     }
 
 }

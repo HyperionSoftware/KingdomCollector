@@ -23,7 +23,7 @@ import java.util.Iterator;
 import java.util.Objects;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
-import cat.udl.hyperion.appmobils.kingdomcollector.collection.views.CardCollectionActivity;
+import cat.udl.hyperion.appmobils.kingdomcollector.collection.views.CollectionActivity;
 import cat.udl.hyperion.appmobils.kingdomcollector.collection.views.addingcards;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.views.GameActivity;
 import cat.udl.hyperion.appmobils.kingdomcollector.other.auth.LastLoginCallback;
@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setBtn_collection(){
-        Intent intent = new Intent(this, CardCollectionActivity.class);
+        Intent intent = new Intent(this, CollectionActivity.class);
         startActivity(intent);
     }
     private void getLastLogin(LastLoginCallback callback) {
