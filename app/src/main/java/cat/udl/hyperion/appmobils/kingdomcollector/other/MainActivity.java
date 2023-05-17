@@ -78,18 +78,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(String usuario_no_autenticado) {
                 //TODO: DA1. Funcionar amb valors de strings.
-                Toast.makeText(MainActivity.this, "Error: " + usuario_no_autenticado, Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, getString(R.string.error_usuario_no_autenticado) + usuario_no_autenticado, Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onSuccess(String secondLastLogin) {
                 if (secondLastLogin != null) {
                     Log.d(myClassTag,"LastLogin:" + secondLastLogin);
-                    //TODO: DA1. Funcionar amb valors de strings.
-                    Toast.makeText(MainActivity.this, "Bienvenido " + user.getDisplayName() + " tu último inicio de sesión fue: " + secondLastLogin, Toast.LENGTH_SHORT).show();
+                    String welcomeMessage = String.format(getString(R.string.bienvenido), user.getDisplayName(), secondLastLogin);
+                    Toast.makeText(MainActivity.this, welcomeMessage, Toast.LENGTH_SHORT).show();
                 } else {
-                    //TODO: DA1. Funcionar amb valors de strings.
-                    Toast.makeText(MainActivity.this, "Bienvenido " + user.getDisplayName() + ", no se encontraron registros de inicio de sesión anteriores.", Toast.LENGTH_SHORT).show();
+                    String welcomeNoRecordMessage = String.format(getString(R.string.bienvenido_sin_registro), user.getDisplayName());
+                    Toast.makeText(MainActivity.this, welcomeNoRecordMessage, Toast.LENGTH_SHORT).show();
                 }
             }
         });
