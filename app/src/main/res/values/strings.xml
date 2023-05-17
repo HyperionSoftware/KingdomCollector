@@ -157,6 +157,12 @@
     <string name="recover_password_email_sent">Se ha enviado un correo electrónico para restablecer la contraseña</string>
     <string name="recover_password_email_failed">Ha habido un error al enviar el correo electrónico para restablecer la contraseña</string>
 
+    <string name="error_empty_email">Email is required</string>
+    <string name="error_empty_password">Password is required</string>
+    <string name="error_empty_username">Username is required</string>
+    <string name="email_verification_sent">Email verification sent. Please check your email.</string>
+    <string name="error_register_failed">Failed to create account. Please try again later.</string>
+
 
 
     <string name="error_message">An error occurred while fetching the cards.</string>
