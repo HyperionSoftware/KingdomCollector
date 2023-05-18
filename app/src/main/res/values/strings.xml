@@ -120,7 +120,7 @@
     <string name="authFailed">Authentication failed.</string>
     <string name="btn_collection" translatable="false">Collection</string>
     <string name="card_type" translatable="false">Card Type</string>
-    <string name="world_record_title">World Record</string>
+    <string name="world_record_title">Victories</string>
     <string name="personal_record_title">Record personal</string>
 
     <!-- activity_cardcollection -->

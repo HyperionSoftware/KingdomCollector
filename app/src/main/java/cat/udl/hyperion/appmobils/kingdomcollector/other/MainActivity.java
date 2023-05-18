@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private MediaPlayer mp;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference gameDataRef = database.getReference("game_data");
+    DatabaseReference gameDataRef = database.getReference("winner_count");
 
     String userId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
     DatabaseReference userGameDataRef = gameDataRef.child(userId);
@@ -74,6 +75,8 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
         assert user != null;
 
+        userGameDataRef.addValueEventListener(gameDataListener);
+
         getPenultimateLogin(new PenultimateLoginCallback() {
             @Override
             public void onFailure(String usuario_no_autenticado) {
@@ -101,6 +104,13 @@ public class MainActivity extends AppCompatActivity {
     private void setBtn_actualizar() {
         Intent intent = new Intent(this, addingcards.class);
         startActivity(intent);
+    }
+
+    // Metodo para obtener las veces que el usuario ha ganado
+    @Override
+    protected void onStart() {
+        super.onStart();
+        userGameDataRef.addValueEventListener(gameDataListener);
     }
 
     // Método para parar la música cuando la app está en segundo plano
@@ -148,15 +158,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void setBtn_start(){
         Intent intent = new Intent(this, GameActivity.class);
-        /*FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference gameDataRef = database.getReference("game_data");
-
-        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        DatabaseReference userGameDataRef = gameDataRef.child(userId);
-
-        // Increment the count by 1
-        userGameDataRef.child("count").setValue(ServerValue.increment(1));*/
-
         startActivity(intent);
     }
 
@@ -231,9 +232,18 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
             if (dataSnapshot.exists()) {
-                long count = dataSnapshot.child("count").getValue(Long.class);
+                Long count = dataSnapshot.getValue(Long.class);
                 // Actualizar el valor del TextView con el valor de "count"
-                //personal_record_value.setText(String.valueOf(count));
+                TextView winnerCountText = findViewById(R.id.winner_count_value);
+                if (count != null) {
+                    winnerCountText.setText(String.valueOf(count));
+                } else {
+                    winnerCountText.setText("0");
+                }
+            } else {
+                // El nodo no existe o el usuario no ha ganado aún, puedes manejarlo de la forma que prefieras.
+                TextView winnerCountText = findViewById(R.id.winner_count_value);
+                winnerCountText.setText("0");
             }
         }
 
