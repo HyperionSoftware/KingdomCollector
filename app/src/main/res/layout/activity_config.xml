@@ -5,42 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_principal_dos"
-    tools:context=".Config">
-
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="171dp"
-        android:layout_height="48dp"
-        android:background="@android:color/transparent"
-        android:foreground="@drawable/about_us_boton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="459dp" />
+    tools:context=".other.Config">
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="182dp"
-        android:layout_height="49dp"
-        android:background="@android:color/transparent"
-        android:foreground="@drawable/terminos_boton"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
-
-    <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="274dp"
-        android:layout_height="65dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView10"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/settings" />
-
-    <Button
-        android:id="@+id/button3"
+        android:id="@+id/button_back_from_config"
         android:layout_width="36dp"
         android:layout_height="35dp"
         android:layout_marginStart="15dp"
@@ -50,29 +18,57 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <SeekBar
-        android:id="@+id/seekBar"
-        android:layout_width="349dp"
-        android:layout_height="17dp"
+    <ImageView
+        android:id="@+id/titulo_game_settings"
+        android:layout_width="274dp"
+        android:layout_height="65dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.741"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView10"
-        android:progressTint="@android:color/white"
-        app:layout_constraintVertical_bias="0.028" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/settings" />
 
     <ImageView
-        android:id="@+id/imageView10"
+        android:id="@+id/titulo_musica"
         android:layout_width="79dp"
         android:layout_height="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/ajustador_volumen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.153"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titulo_game_settings"
         app:srcCompat="@drawable/music_txt" />
+
+    <SeekBar
+        android:id="@+id/ajustador_volumen"
+        android:layout_width="349dp"
+        android:layout_height="17dp"
+        app:layout_constraintBottom_toTopOf="@+id/button_about_us"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.741"
+        app:layout_constraintStart_toStartOf="parent"
+        app:progressTint="@android:color/white" />
+
+    <Button
+        android:id="@+id/button_about_us"
+        android:layout_width="171dp"
+        android:layout_height="48dp"
+        android:background="@android:color/transparent"
+        android:foreground="@drawable/about_us_boton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/button_terms_and_conditions"
+        android:layout_width="182dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="32dp"
+        android:background="@android:color/transparent"
+        android:foreground="@drawable/terminos_boton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_about_us" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

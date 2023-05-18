@@ -67,7 +67,7 @@
         app:layout_constraintStart_toStartOf="@+id/background_menu_pp" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/titulo_kingdom_collector"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="28dp"
@@ -78,7 +78,7 @@
         app:srcCompat="@drawable/gamename" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/button_config"
         android:layout_width="49dp"
         android:layout_height="45dp"
         android:layout_marginEnd="4dp"
@@ -92,13 +92,13 @@
         app:layout_constraintVertical_bias="0.026" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/balones_de_oro_fondo"
         android:layout_width="137dp"
         android:layout_height="41dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_start"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/titulo_kingdom_collector"
         app:srcCompat="@drawable/balon_oro" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

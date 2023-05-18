@@ -47,16 +47,22 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Button Settings.
-        findViewById(R.id.btn_settings).setOnClickListener(view -> setBtn_aboutus());
+        //findViewById(R.id.btn_settings).setOnClickListener(view -> setBtn_aboutus());
 
         //Button AboutUs.
-        findViewById(R.id.btn_terms).setOnClickListener(view -> setBtn_settings());
+        //findViewById(R.id.btn_terms).setOnClickListener(view -> setBtn_settings());
+
+        //Button Config.
+        findViewById(R.id.button_config).setOnClickListener(view-> goToSettings());
 
         //Button Start.
         findViewById(R.id.btn_start).setOnClickListener(view -> setBtn_start());
 
         //Button Collection.
         findViewById(R.id.btn_collection).setOnClickListener(view -> setBtn_collection());
+
+        // Button Logout.
+        findViewById(R.id.btn_logout).setOnClickListener(v -> logout());
 
         //Music
         mp = MediaPlayer.create(this,R.raw.check_it_out_now);
@@ -87,8 +93,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.btn_logout).setOnClickListener(v -> logout());
 
+
+    }
+
+    private void goToSettings() {
+        Intent intent = new Intent(this, Config.class);
+        startActivity(intent);
     }
 
     // Método para parar la música cuando la app está en segundo plano
