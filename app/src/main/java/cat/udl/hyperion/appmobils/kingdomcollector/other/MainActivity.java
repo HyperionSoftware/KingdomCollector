@@ -19,7 +19,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Objects;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
@@ -154,17 +156,31 @@ public class MainActivity extends AppCompatActivity {
 
     public void setBtn_start(){
         Intent intent = new Intent(this, GameActivity.class);
-        /*FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference gameDataRef = database.getReference("game_data");
-
-        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        DatabaseReference userGameDataRef = gameDataRef.child(userId);
-
-        // Increment the count by 1
-        userGameDataRef.child("count").setValue(ServerValue.increment(1));*/
-
         startActivity(intent);
+
+        // Supongamos que la puntuación está almacenada en una variable llamada "puntuacion"
+        int puntuacion = 100;
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            // Guardar la puntuación en Firebase Realtime Database
+            DatabaseReference puntuacionesRef = FirebaseDatabase.getInstance().getReference("users/" + userId + "/puntuaciones");
+            String scoreId = puntuacionesRef.push().getKey();  // Generar un nuevo ID para la puntuación
+            if(scoreId != null) {
+                puntuacionesRef.child(scoreId).setValue(puntuacion)
+                        .addOnSuccessListener(aVoid -> Log.d(myClassTag, "Puntuación guardada en Firebase Realtime Database"))
+                        .addOnFailureListener(e -> Log.e(myClassTag, "Error al guardar la puntuación en Firebase Realtime Database", e));
+            } else {
+                // No se pudo generar un nuevo ID para la puntuación
+                Log.e(myClassTag, "Error al generar un nuevo ID para la puntuación");
+            }
+        } else {
+            // El usuario no está autenticado
+            Log.e(myClassTag, "Error al guardar la puntuación: Usuario no autenticado");
+        }
     }
+
+
+
 
     public void setBtn_collection(){
         Intent intent = new Intent(this, CollectionActivity.class);
