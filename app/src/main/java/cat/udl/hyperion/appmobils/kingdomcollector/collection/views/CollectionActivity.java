@@ -60,13 +60,13 @@ public class CollectionActivity extends AppCompatActivity {
                 List<Card> defensaCards = new ArrayList<>();
 
                 for (Card card : allCards) {
-                    if (card.getType().equals(getString(R.string.card_type_presidente))) {
+                    if (card.getType().equals(getString(R.string.card_type_president))) {
                         presidenteCards.add(card);
-                    } else if (card.getType().equals(getString(R.string.card_type_delantero))) {
+                    } else if (card.getType().equals(getString(R.string.card_type_forward))) {
                         delanteroCards.add(card);
-                    } else if (card.getType().equals(getString(R.string.card_type_medio))) {
+                    } else if (card.getType().equals(getString(R.string.card_type_midfielder))) {
                         medioCards.add(card);
-                    } else if (card.getType().equals(getString(R.string.card_type_defensa))) {
+                    } else if (card.getType().equals(getString(R.string.card_type_defender))) {
                         defensaCards.add(card);
                     }
                 }
