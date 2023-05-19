@@ -1,6 +1,8 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.collection.views;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +18,7 @@ import cat.udl.hyperion.appmobils.kingdomcollector.R;
 import cat.udl.hyperion.appmobils.kingdomcollector.collection.adapter.CardAdapter;
 import cat.udl.hyperion.appmobils.kingdomcollector.collection.db.AppDatabase;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Card;
+import cat.udl.hyperion.appmobils.kingdomcollector.game.views.GameActivity;
 
 public class CollectionActivity extends AppCompatActivity {
 
@@ -41,6 +44,9 @@ public class CollectionActivity extends AppCompatActivity {
         selectedCardsRecyclerView.setLayoutManager(selectedLayoutManager);
         selectedCardsAdapter = new CardAdapter(selectedCardsList, selectedCardsList);
         selectedCardsRecyclerView.setAdapter(selectedCardsAdapter);
+
+        // Botón confirmar equipo:
+        findViewById(R.id.confirm_button_2).setOnClickListener(v-> sendCardsToGame());
 
 
         getCardsFromDb();
@@ -101,5 +107,11 @@ public class CollectionActivity extends AppCompatActivity {
             s += selectedCardsList.get(i).getName() + " ";
         }
         return s;
+    }
+
+    private void sendCardsToGame(){
+        Intent intent = new Intent(this, GameActivity.class);
+        intent.putParcelableArrayListExtra("selectedCards", (ArrayList<? extends Parcelable>) selectedCardsList);
+        startActivity(intent);
     }
 }

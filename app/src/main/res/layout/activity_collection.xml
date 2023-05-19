@@ -61,7 +61,17 @@
             android:id="@+id/your_team_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:orientation="horizontal" />
+            android:orientation="horizontal" >
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/confirm_button_2"
+            android:text="Confirmar selección"
+            />
+
 
     </LinearLayout>
 </ScrollView>
