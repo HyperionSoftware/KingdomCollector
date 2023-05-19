@@ -3,11 +3,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Presidentes" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/presidente_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:orientation="horizontal" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Delanteros" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/delantero_recycler_view"
@@ -15,14 +24,32 @@
         android:layout_height="150dp"
         android:orientation="horizontal" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Medios" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/medio_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:orientation="horizontal" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Defensas" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/defensa_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:orientation="horizontal" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tu equipo" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/your_team_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:orientation="horizontal" />
