@@ -1,8 +1,5 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.game;
 
-
-import static android.content.ContentValues.TAG;
-
 import android.content.Context;
 import android.os.Handler;
 import android.util.Log;
@@ -33,7 +30,6 @@ import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.BoardViewMode
 import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.CellViewModel;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.DeckViewModel;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.views.GameActivity;
-import cat.udl.hyperion.appmobils.kingdomcollector.other.MainActivity;
 
 public class GameController {
     private static final String TAG = "GameController";
@@ -161,12 +157,13 @@ public class GameController {
 
         if (gameOver) {
             Player winner = getWinner();
-            if (winner != null) {
+            if (winner == humanPlayer) {
                 //TODO: DA1. Funcionar amb valors de strings.
-                Toast.makeText(context, "El ganador es " + winner.getName(), Toast.LENGTH_LONG).show();
                 showWinnerFragment(winner.getName());
                 incrementWinCount();
-            } else {
+            } else if(winner == computerPlayer){
+                showWinnerFragment(winner.getName());
+            }else {
                 //TODO: DA1. Funcionar amb valors de strings.
                 Toast.makeText(context, "Es un empate", Toast.LENGTH_LONG).show();
             }

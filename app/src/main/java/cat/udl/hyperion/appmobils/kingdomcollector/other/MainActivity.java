@@ -1,5 +1,7 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.other;
 
+import static android.content.ContentValues.TAG;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -43,12 +45,16 @@ public class MainActivity extends AppCompatActivity {
     String userId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
     DatabaseReference userGameDataRef = gameDataRef.child(userId);
 
+    // Nombre y puntuación máxima del usuario con más puntos.
+    private String highestScoringUserID;
+    private long highestScore;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        loadHighestScore();
 
         //Button Settings.
         findViewById(R.id.btn_settings).setOnClickListener(view -> setBtn_aboutus());
@@ -61,6 +67,9 @@ public class MainActivity extends AppCompatActivity {
 
         //Button Collection.
         findViewById(R.id.btn_collection).setOnClickListener(view -> setBtn_collection());
+
+        //Button Logout.
+        findViewById(R.id.btn_logout).setOnClickListener(v -> logout());
 
         //TODO: Borrar cuándo estén todas las cartas ya incluidas en firebase storage.
         //Button actualizar.
@@ -97,8 +106,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.btn_logout).setOnClickListener(v -> logout());
-
     }
 
     private void setBtn_actualizar() {
@@ -111,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         userGameDataRef.addValueEventListener(gameDataListener);
+
     }
 
     // Método para parar la música cuando la app está en segundo plano
@@ -143,28 +151,32 @@ public class MainActivity extends AppCompatActivity {
     private void logout() {
         mAuth.signOut();
         finish();
-
     }
 
-    public void setBtn_aboutus(){
-        Intent intent = new Intent(this, AboutUs.class);
+
+    public void startNewActivity(Class<?> cls) {
+        Intent intent = new Intent(this, cls);
         startActivity(intent);
+    }
+    public void setBtn_aboutus(){
+        startNewActivity(AboutUs.class);
     }
 
     public void setBtn_settings(){
-        Intent intent = new Intent(this, TermsAndConditions.class);
-        startActivity(intent);
+        startNewActivity(TermsAndConditions.class);
     }
 
     public void setBtn_start(){
-        Intent intent = new Intent(this, GameActivity.class);
-        startActivity(intent);
+        startNewActivity(GameActivity.class);
     }
 
     public void setBtn_collection(){
-        Intent intent = new Intent(this, CollectionActivity.class);
-        startActivity(intent);
+        startNewActivity(CollectionActivity.class);
     }
+
+
+
+
     private void getLastLogin(LastLoginCallback callback) {
         FirebaseUser user = mAuth.getCurrentUser();
         if (user == null) {
@@ -252,5 +264,32 @@ public class MainActivity extends AppCompatActivity {
             Log.w("MainActivity", "Error al leer los datos.", databaseError.toException());
         }
     };
+
+    // Método para obtener el score más alto
+    private void loadHighestScore() {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("winner_count");
+
+        TextView highestScoreText = findViewById(R.id.highestScoreText);
+
+        reference.orderByValue().limitToLast(1).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    highestScoringUserID = snapshot.getKey();
+                    highestScore = snapshot.getValue(Long.class);
+                }
+
+                highestScoreText.setText(String.valueOf(highestScore));
+                Log.w(TAG, "El score más alto es: " + highestScore);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Manejo del error.
+                Log.w(TAG, "Error al cargar el score más alto.", databaseError.toException());
+            }
+        });
+    }
+
 
 }
