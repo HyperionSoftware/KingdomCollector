@@ -69,11 +69,17 @@ public class addingcards extends AppCompatActivity {
         Executors.newSingleThreadExecutor().execute(new Runnable() {
             @Override
             public void run() {
-                Card card = new Card(id, drawable, name, role, powerArriba, powerIzquierda, powerAbajo, powerDerecha);
-                cardManager.addCard(new FirestoreCard(id));
-                db.cardDao().insert(card);
+                // Check if the card already exists
+                Card existingCard = db.cardDao().getCardById(id);
+                if (existingCard == null) {
+                    // The card does not exist, so we can insert it
+                    Card card = new Card(id, drawable, name, role, powerArriba, powerIzquierda, powerAbajo, powerDerecha);
+                    cardManager.addCard(new FirestoreCard(id));
+                    db.cardDao().insert(card);
+                }
             }
         });
     }
+
 
 }
