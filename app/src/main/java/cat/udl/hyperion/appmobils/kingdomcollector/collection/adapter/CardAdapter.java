@@ -5,10 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
@@ -17,10 +17,11 @@ import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Card;
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder> {
     private List<Card> cards;
     private List<Card> selectedCards;
+    private OnClickListener onClickListener = null;
 
-    public CardAdapter(List<Card> cards) {
+    public CardAdapter(List<Card> cards, List<Card> selectedCards) {
         this.cards = cards;
-        this.selectedCards = new ArrayList<>();
+        this.selectedCards = selectedCards;
     }
 
     @Override
@@ -48,11 +49,20 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
                 // Verificar si la tarjeta ya está seleccionada
                 if (isSelected(card)) {
                     removeSelectedCard(card);
+                    notifyItemRemoved(selectedCards.indexOf(card));
                 } else {
-                    addSelectedCard(card);
+                    // Comprobar si el equipo ya tiene 5 cartas
+                    if (selectedCards.size() >= 5) {
+                        Toast.makeText(v.getContext(), "El equipo ya tiene 5 cartas. Desselecciona una carta para agregar otra.", Toast.LENGTH_LONG).show();
+                    } else {
+                        addSelectedCard(card);
+                        notifyItemInserted(selectedCards.size() - 1);
+                    }
+                }
+                if (onClickListener != null) {
+                    onClickListener.onClick();
                 }
 
-                // Notificar cambios en la selección de tarjetas
                 notifyDataSetChanged();
             }
         });
@@ -62,6 +72,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
     public int getItemCount() {
         return cards.size();
     }
+
 
     public static class CardViewHolder extends RecyclerView.ViewHolder {
         private ImageView cardImage;
@@ -96,5 +107,12 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
 
     public List<Card> getSelectedCards() {
         return selectedCards;
+    }
+    public interface OnClickListener {
+        void onClick();
+    }
+
+    public void setOnClickListener(OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
     }
 }

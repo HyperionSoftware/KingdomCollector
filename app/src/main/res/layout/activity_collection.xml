@@ -1,59 +1,67 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:fillViewport="true">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Presidentes" />
+        android:orientation="vertical">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/presidente_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:orientation="horizontal" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Delanteros" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Presidentes" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/delantero_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:orientation="horizontal" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/presidente_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:orientation="horizontal" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Medios" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Delanteros" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/medio_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:orientation="horizontal" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Defensas" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/delantero_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:orientation="horizontal" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/defensa_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:orientation="horizontal" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Tu equipo" />
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/your_team_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:orientation="horizontal" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Medios" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/medio_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:orientation="horizontal" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Defensas" />
 
-</LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/defensa_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:orientation="horizontal" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tu equipo" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/your_team_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:orientation="horizontal" />
+
+    </LinearLayout>
+</ScrollView>
