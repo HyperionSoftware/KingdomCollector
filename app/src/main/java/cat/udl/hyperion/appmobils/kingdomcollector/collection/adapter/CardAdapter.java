@@ -1,5 +1,6 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.collection.adapter;
 
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,8 +72,14 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
         }
 
         public void bind(Card card) {
-            cardImage.setImageResource(card.getImageResource());
+            try {
+                cardImage.setImageResource(card.getImageResource());
+            } catch (Resources.NotFoundException e) {
+                // Recurso de imagen no encontrado. Cargar una imagen predeterminada.
+                cardImage.setImageResource(R.drawable.card_placeholder);  // suponiendo que 'ic_default_image' es tu imagen predeterminada.
+            }
         }
+
     }
 
     private boolean isSelected(Card card) {

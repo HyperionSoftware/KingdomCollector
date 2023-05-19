@@ -38,7 +38,7 @@ public class addingcards extends AppCompatActivity {
 
     private void addCards() {
         //Cartas del equipo ElBarrio:
-        addCardToDbAndManager("elbarrio1", R.drawable.adri_contreras,"Adri_Contreras", "Presidente", 9, 10, 7, 10);
+        addCardToDbAndManager("elbarrio1", R.drawable.barrio_adri_contreras_presidente,"Adri_Contreras", "Presidente", 9, 10, 7, 10);
         addCardToDbAndManager("elbarrio2", R.drawable.barrio_barnera_portero, "Barnera", "Portero", 3, 4, 4, 4);
         addCardToDbAndManager("elbarrio3", R.drawable.barrio_boada_delantero, "Boada", "Delantero", 6, 3, 2, 6);
         addCardToDbAndManager("elbarrio4", R.drawable.barrio_capilla_medio, "Capilla", "Medio", 5, 3, 5, 1);
