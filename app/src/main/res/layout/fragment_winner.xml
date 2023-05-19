@@ -20,8 +20,7 @@
             android:layout_height="146dp"
             android:layout_marginBottom="16dp"
             android:textColor="#FFFFFF"
-            android:textSize="34sp"
-            app:srcCompat="@drawable/image_win" />
+            android:textSize="34sp" />
 
         <TextView
             android:id="@+id/tvResult"

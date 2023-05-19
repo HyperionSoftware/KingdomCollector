@@ -17,17 +17,20 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Iterator;
 import java.util.Objects;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
+import cat.udl.hyperion.appmobils.kingdomcollector.collection.views.CollectionActivity;
+import cat.udl.hyperion.appmobils.kingdomcollector.collection.views.addingcards;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.views.GameActivity;
 import cat.udl.hyperion.appmobils.kingdomcollector.other.auth.LastLoginCallback;
-import cat.udl.hyperion.appmobils.kingdomcollector.collection.views.CardCollectionActivity;
 
 
 public class MainActivity extends AppCompatActivity {
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseAuth mAuth;
     protected String myClassTag = this.getClass().getSimpleName();
 
@@ -61,8 +64,13 @@ public class MainActivity extends AppCompatActivity {
         //Button Collection.
         findViewById(R.id.btn_collection).setOnClickListener(view -> setBtn_collection());
 
+
         // Button Logout.
         findViewById(R.id.btn_logout).setOnClickListener(v -> logout());
+        //TODO: Borrar cuándo estén todas las cartas ya incluidas en firebase storage.
+        //Button actualizar.
+        findViewById(R.id.actualizar).setOnClickListener(view -> setBtn_actualizar());
+
 
         //Music
         mp = MediaPlayer.create(this,R.raw.check_it_out_now);
@@ -99,6 +107,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void goToSettings() {
         Intent intent = new Intent(this, Config.class);
+        startActivity(intent);
+    }
+
+    private void setBtn_actualizar() {
+        Intent intent = new Intent(this, addingcards.class);
         startActivity(intent);
     }
 
@@ -160,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setBtn_collection(){
-        Intent intent = new Intent(this, CardCollectionActivity.class);
+        Intent intent = new Intent(this, CollectionActivity.class);
         startActivity(intent);
     }
     private void getLastLogin(LastLoginCallback callback) {

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -11,7 +10,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/scoreboard_background"
+        android:padding="16dp">
 
         <!-- Jugador Humano -->
         <TextView
@@ -20,8 +21,11 @@
             android:layout_height="wrap_content"
             android:text="@{playerViewModel.humanPlayerName}"
             android:textColor="@android:color/white"
-            android:textSize="18sp"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-light"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/human_player_points"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -30,30 +34,56 @@
             android:layout_height="wrap_content"
             android:text="@{String.valueOf(playerViewModel.humanPlayerPoints)}"
             android:textColor="@android:color/white"
-            android:textSize="18sp"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-light"
             app:layout_constraintStart_toEndOf="@+id/human_player_name"
+            app:layout_constraintEnd_toStartOf="@+id/score_separator"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Jugador Robot -->
+        <!-- Separador del Marcador -->
         <TextView
-            android:id="@+id/robot_player_name"
+            android:id="@+id/score_separator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{playerViewModel.robotPlayerName}"
+            android:text=" - "
             android:textColor="@android:color/white"
-            android:textSize="18sp"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-light"
+            app:layout_constraintStart_toEndOf="@+id/human_player_points"
             app:layout_constraintEnd_toStartOf="@+id/robot_player_points"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <!-- Jugador Robot -->
         <TextView
             android:id="@+id/robot_player_points"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{String.valueOf(playerViewModel.robotPlayerPoints)}"
             android:textColor="@android:color/white"
-            android:textSize="18sp"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-light"
+            app:layout_constraintStart_toEndOf="@+id/score_separator"
+            app:layout_constraintEnd_toStartOf="@+id/robot_player_name"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/robot_player_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{playerViewModel.robotPlayerName}"
+            android:textColor="@android:color/white"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-light"
+            app:layout_constraintStart_toEndOf="@+id/robot_player_points"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>
+
+
