@@ -56,12 +56,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         loadHighestScore();
 
-        //Button Settings.
-        //findViewById(R.id.btn_settings).setOnClickListener(view -> setBtn_aboutus());
-
-        //Button AboutUs.
-        //findViewById(R.id.btn_terms).setOnClickListener(view -> setBtn_settings());
-
         //Button Config.
         findViewById(R.id.button_config).setOnClickListener(view-> goToSettings());
 
@@ -70,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
 
         //Button Collection.
         findViewById(R.id.btn_collection).setOnClickListener(view -> setBtn_collection());
-
 
         // Button Logout.
         findViewById(R.id.btn_logout).setOnClickListener(v -> logout());

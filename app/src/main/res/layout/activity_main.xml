@@ -77,7 +77,6 @@
         android:text="@string/world_record_title"
         android:textColor="@android:color/white"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_terms"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.941"
         app:layout_constraintStart_toEndOf="@+id/winner_count_title"
