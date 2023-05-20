@@ -54,7 +54,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         loadHighestScore();
+
+
+        //Button Config.
+        findViewById(R.id.button_config).setOnClickListener(view-> goToSettings());
+
 
         //Button Start.
         findViewById(R.id.btn_start).setOnClickListener(view -> setBtn_start());
@@ -63,9 +69,13 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_collection).setOnClickListener(view -> setBtn_collection());
 
 
+        // Button Logout.
+        findViewById(R.id.btn_logout).setOnClickListener(v -> logout());
+
         //TODO: Borrar cuándo estén todas las cartas ya incluidas en firebase storage.
         //Button actualizar.
         findViewById(R.id.actualizar).setOnClickListener(view -> setBtn_actualizar());
+
 
         //Music
         mp = MediaPlayer.create(this,R.raw.check_it_out_now);
@@ -97,6 +107,13 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+
+    }
+
+    private void goToSettings() {
+        Intent intent = new Intent(this, Config.class);
+        startActivity(intent);
 
     }
 
