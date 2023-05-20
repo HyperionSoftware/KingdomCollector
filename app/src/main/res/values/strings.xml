@@ -117,10 +117,13 @@
     <string name="passwordRequired">Password is required.</string>
     <string name="verifyEmail">Verify your mail to log in.</string>
     <string name="authFailed">Authentication failed.</string>
+
+    <!-- activity_main -->
     <string name="btn_collection" translatable="false">Collection</string>
     <string name="card_type" translatable="false">Card Type</string>
-    <string name="world_record_title">World Record</string>
+    <string name="victorias_usuario" translatable="false">Victories</string>
     <string name="personal_record_title">Record personal</string>
+    <string name="world_record_title">World record</string>
 
     <!-- activity_cardcollection -->
     <string name="selected_cards_label" translatable="false">Selected Cards:</string>

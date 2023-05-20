@@ -55,6 +55,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_start" />
 
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/personal_record_value"
         android:layout_width="wrap_content"
@@ -65,6 +66,7 @@
         app:layout_constraintEnd_toEndOf="@+id/background_menu_pp"
         app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="@+id/background_menu_pp" />
+
 
 
     <ImageView
