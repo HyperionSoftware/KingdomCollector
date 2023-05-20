@@ -54,13 +54,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         loadHighestScore();
 
-        //Button Settings.
-        findViewById(R.id.btn_settings).setOnClickListener(view -> setBtn_aboutus());
 
-        //Button AboutUs.
-        findViewById(R.id.btn_terms).setOnClickListener(view -> setBtn_settings());
+        //Button Config.
+        findViewById(R.id.button_config).setOnClickListener(view-> goToSettings());
+
 
         //Button Start.
         findViewById(R.id.btn_start).setOnClickListener(view -> setBtn_start());
@@ -68,12 +68,14 @@ public class MainActivity extends AppCompatActivity {
         //Button Collection.
         findViewById(R.id.btn_collection).setOnClickListener(view -> setBtn_collection());
 
-        //Button Logout.
+
+        // Button Logout.
         findViewById(R.id.btn_logout).setOnClickListener(v -> logout());
 
         //TODO: Borrar cuándo estén todas las cartas ya incluidas en firebase storage.
         //Button actualizar.
         findViewById(R.id.actualizar).setOnClickListener(view -> setBtn_actualizar());
+
 
         //Music
         mp = MediaPlayer.create(this,R.raw.check_it_out_now);
@@ -105,6 +107,13 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+
+    }
+
+    private void goToSettings() {
+        Intent intent = new Intent(this, Config.class);
+        startActivity(intent);
 
     }
 
@@ -246,16 +255,16 @@ public class MainActivity extends AppCompatActivity {
             if (dataSnapshot.exists()) {
                 Long count = dataSnapshot.getValue(Long.class);
                 // Actualizar el valor del TextView con el valor de "count"
-                TextView winnerCountText = findViewById(R.id.winner_count_value);
+                //TextView winnerCountText = findViewById(R.id.winner_count_value);
                 if (count != null) {
-                    winnerCountText.setText(String.valueOf(count));
+                    //winnerCountText.setText(String.valueOf(count));
                 } else {
-                    winnerCountText.setText("0");
+                    //winnerCountText.setText("0");
                 }
             } else {
                 // El nodo no existe o el usuario no ha ganado aún, puedes manejarlo de la forma que prefieras.
-                TextView winnerCountText = findViewById(R.id.winner_count_value);
-                winnerCountText.setText("0");
+                //TextView winnerCountText = findViewById(R.id.winner_count_value);
+                //winnerCountText.setText("0");
             }
         }
 
@@ -269,7 +278,7 @@ public class MainActivity extends AppCompatActivity {
     private void loadHighestScore() {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("winner_count");
 
-        TextView highestScoreText = findViewById(R.id.highestScoreText);
+        //TextView highestScoreText = findViewById(R.id.highestScoreText);
 
         reference.orderByValue().limitToLast(1).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -279,7 +288,7 @@ public class MainActivity extends AppCompatActivity {
                     highestScore = snapshot.getValue(Long.class);
                 }
 
-                highestScoreText.setText(String.valueOf(highestScore));
+                //highestScoreText.setText(String.valueOf(highestScore));
                 Log.w(TAG, "El score más alto es: " + highestScore);
             }
 
