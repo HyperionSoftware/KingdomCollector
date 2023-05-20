@@ -81,24 +81,7 @@
     <string name="bnt_start">START</string>
     <string name="background" />
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
     <!-- activity_game-->
-    <string name="btn_00">0_0</string>
-    <string name="btn_01">0_1</string>
-    <string name="btn_02">0_2</string>
-    <string name="btn_10">1_0</string>
-    <string name="btn_11">1_1</string>
-    <string name="btn_12">1_2</string>
-    <string name="btn_20">2_0</string>
-    <string name="btn_21">2_1</string>
-    <string name="btn_22">2_2</string>
-    <string name="btn_c1">c1</string>
-    <string name="btn_c2">c2</string>
-    <string name="btn_c3">c3</string>
-    <string name="btn_c4">c4</string>
-    <string name="btn_c5">c5</string>
     <string name="txt_score">Score:</string>
     <string name="txt_player_name">Player name</string>
     <string name="txt_cards">Cards:</string>
@@ -143,4 +126,12 @@
     <string name="play_again" translatable="false">Return home</string>
 
     <string name="email_sended_confirm">An email verification has been sent to your email account. Please confirm your email before logging in.</string>
+    <string name="str_joan_bonell_ruiz" translatable="false">Joan Bonell Ruiz</string>
+    <string name="str_Carlos_Martinez_Gonzalez" translatable="false">Carlos Martínez González</string>
+    <string name="str_ricard_bosch_perianes" translatable="false">Ricard Bosch Perianes</string>
+    <string name="str_claudia_rodriguez_martinez" translatable="false">Claudia Rodriguez Martinez</string>
+    <string name="btn_play_online" translatable="false">Play online</string>
+    <string name="btn_play_local" translatable="false">play local</string>
+    <string name="btn_select_your_cards" translatable="false">select your cards</string>
+
 </resources>

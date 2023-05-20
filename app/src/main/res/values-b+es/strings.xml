@@ -80,21 +80,7 @@
     <string name="background" />
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hola blanco</string>
-    <string name="btn_00">0_0</string>
-    <string name="btn_01">0_1</string>
-    <string name="btn_02">0_2</string>
-    <string name="btn_10">1_0</string>
-    <string name="btn_11">1_1</string>
-    <string name="btn_12">1_2</string>
-    <string name="btn_20">2_0</string>
-    <string name="btn_21">2_1</string>
-    <string name="btn_22">2_2</string>
-    <string name="btn_c1">c1</string>
-    <string name="btn_c2">c2</string>
-    <string name="btn_c3">c3</string>
-    <string name="btn_c4">c4</string>
-    <string name="btn_c5">c5</string>
+
     <string name="txt_score">Puntuación: </string>
     <string name="txt_player_name">Nombre: </string>
     <string name="txt_cards">Cartas:</string>

@@ -28,7 +28,6 @@ import java.util.Objects;
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
 import cat.udl.hyperion.appmobils.kingdomcollector.collection.views.CollectionActivity;
 import cat.udl.hyperion.appmobils.kingdomcollector.collection.views.addingcards;
-import cat.udl.hyperion.appmobils.kingdomcollector.game.views.GameActivity;
 import cat.udl.hyperion.appmobils.kingdomcollector.other.auth.LastLoginCallback;
 
 
@@ -54,13 +53,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         loadHighestScore();
 
 
         //Button Config.
         findViewById(R.id.button_config).setOnClickListener(view-> goToSettings());
-
 
         //Button Start.
         findViewById(R.id.btn_start).setOnClickListener(view -> setBtn_start());
@@ -111,29 +108,17 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void goToSettings() {
-        Intent intent = new Intent(this, Config.class);
-        startActivity(intent);
 
-    }
-
-    private void setBtn_actualizar() {
-        Intent intent = new Intent(this, addingcards.class);
-        startActivity(intent);
-    }
-
-    // Metodo para obtener las veces que el usuario ha ganado
     @Override
     protected void onStart() {
         super.onStart();
         userGameDataRef.addValueEventListener(gameDataListener);
-
     }
 
-    // Método para parar la música cuando la app está en segundo plano
     @Override
     protected void onPause() {
         super.onPause();
+        // Pausar la música
         if (mp != null) {
             mp.pause();
         }
@@ -167,22 +152,18 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, cls);
         startActivity(intent);
     }
-    public void setBtn_aboutus(){
-        startNewActivity(AboutUs.class);
-    }
-
-    public void setBtn_settings(){
-        startNewActivity(TermsAndConditions.class);
-    }
 
     public void setBtn_start(){
-        startNewActivity(GameActivity.class);
+        startNewActivity(PlayModeActivity.class);
     }
 
     public void setBtn_collection(){
         startNewActivity(CollectionActivity.class);
     }
 
+    private void goToSettings() {startNewActivity(Config.class);}
+
+    private void setBtn_actualizar() {startNewActivity(addingcards.class);}
 
 
 
@@ -254,17 +235,17 @@ public class MainActivity extends AppCompatActivity {
         public void onDataChange(DataSnapshot dataSnapshot) {
             if (dataSnapshot.exists()) {
                 Long count = dataSnapshot.getValue(Long.class);
-                // Actualizar el valor del TextView con el valor de "count"
-                //TextView winnerCountText = findViewById(R.id.winner_count_value);
+                //Actualizar el valor del TextView con el valor de "count"
+                TextView winnerCountText = findViewById(R.id.winner_count_value);
                 if (count != null) {
-                    //winnerCountText.setText(String.valueOf(count));
+                    winnerCountText.setText(String.valueOf(count));
                 } else {
-                    //winnerCountText.setText("0");
+                    winnerCountText.setText("0");
                 }
             } else {
-                // El nodo no existe o el usuario no ha ganado aún, puedes manejarlo de la forma que prefieras.
-                //TextView winnerCountText = findViewById(R.id.winner_count_value);
-                //winnerCountText.setText("0");
+                // El nodo no existe o el usuario no ha ganado aún.
+                TextView winnerCountText = findViewById(R.id.winner_count_value);
+                winnerCountText.setText("0");
             }
         }
 
@@ -277,8 +258,6 @@ public class MainActivity extends AppCompatActivity {
     // Método para obtener el score más alto
     private void loadHighestScore() {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("winner_count");
-
-        //TextView highestScoreText = findViewById(R.id.highestScoreText);
 
         reference.orderByValue().limitToLast(1).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

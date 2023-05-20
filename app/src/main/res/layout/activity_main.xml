@@ -12,9 +12,7 @@
         android:layout_height="match_parent"
         android:contentDescription="@string/background"
         android:scaleType="centerCrop"
-        android:src="@drawable/background_menu_principal"
-        tools:layout_editor_absoluteX="-191dp"
-        tools:layout_editor_absoluteY="0dp" />
+        android:src="@drawable/background_mainactivity" />
 
     <ImageButton
         android:id="@+id/btn_start"
@@ -31,16 +29,16 @@
 
     <Button
         android:id="@+id/btn_logout"
-        android:layout_width="39dp"
-        android:layout_height="40dp"
+        android:layout_width="55dp"
+        android:layout_height="52dp"
         android:background="@android:color/transparent"
         android:foreground="@drawable/exit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintHorizontal_bias="0.033"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.026" />
+        app:layout_constraintVertical_bias="0.013" />
 
     <Button
         android:id="@+id/btn_collection"
@@ -79,29 +77,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/gamename" />
+
     <Button
         android:id="@+id/actualizar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="8dp"
         android:text="@string/actualizar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button_config"
-        android:layout_width="49dp"
-        android:layout_height="45dp"
+        android:layout_width="59dp"
+        android:layout_height="56dp"
         android:layout_marginEnd="4dp"
         android:background="@android:color/transparent"
         android:foreground="@drawable/gear"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.956"
+        app:layout_constraintHorizontal_bias="0.959"
         app:layout_constraintStart_toEndOf="@+id/btn_logout"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.026" />
+        app:layout_constraintVertical_bias="0.006" />
 
     <ImageView
         android:id="@+id/balones_de_oro_fondo"
@@ -112,5 +111,59 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titulo_kingdom_collector"
         app:srcCompat="@drawable/balon_oro" />
+
+    <TextView
+        android:id="@+id/winner_count_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="148dp"
+        android:text="@string/victorias_usuario"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_collection"
+        app:layout_constraintEnd_toStartOf="@+id/btn_start"
+        app:layout_constraintHorizontal_bias="0.48"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_start" />
+
+    <TextView
+        android:id="@+id/world_record_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="160dp"
+        android:text="@string/world_record_title"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_collection"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_start" />
+
+    <TextView
+        android:id="@+id/winner_count_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/highestScoreText"
+        app:layout_constraintHorizontal_bias="0.084"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/world_record_title"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/highestScoreText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.177"
+        app:layout_constraintStart_toEndOf="@+id/btn_collection"
+        app:layout_constraintTop_toBottomOf="@+id/world_record_title"
+        app:layout_constraintVertical_bias="0.053" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

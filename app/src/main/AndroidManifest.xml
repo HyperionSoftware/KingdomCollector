@@ -15,8 +15,9 @@
         android:theme="@style/Theme.KingdomCollector"
         tools:targetApi="31">
         <activity
-            android:name=".choos_mode"
-            android:exported="false" />
+            android:name=".other.PlayModeActivity"
+            android:exported="false"
+            android:theme="@style/Theme.KingdomCollector.NoActionBar"/>
         <activity
             android:name=".other.Config"
             android:exported="false"
@@ -47,7 +48,6 @@
         <activity
             android:name=".other.TermsAndConditions"
             android:exported="false"
-            android:label="@string/title_activity_terms_and_conditions"
             android:theme="@style/Theme.KingdomCollector.NoActionBar" />
         <activity
             android:name=".other.InitialSplashScreen"
