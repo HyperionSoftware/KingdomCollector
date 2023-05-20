@@ -16,6 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Objects;
 import java.util.Random;
@@ -23,6 +24,7 @@ import java.util.Random;
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.fragments.WinnerFragment;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Card;
+import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Game;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.HumanPlayer;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.IAPlayer;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.Player;
@@ -41,6 +43,7 @@ public class GameController {
     private Player computerPlayer;
     private Player currentPlayer;
     private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
     private Handler handler;
     private Context context;
     private GameActivity gameActivity;
@@ -51,6 +54,7 @@ public class GameController {
         this.humanDeckViewModel = humanDeckViewModel;
         this.computerDeckViewModel = computerDeckViewModel;
         mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         this.humanPlayer = new HumanPlayer(user.getDisplayName());
         this.computerPlayer = new IAPlayer("Computer");
@@ -316,6 +320,17 @@ public class GameController {
                 }
             }
         });
+    }
+
+    public void createGame() {
+        String userId = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
+        Game game = new Game(userId);
+        db.collection("games").add(game)
+                .addOnSuccessListener(documentReference -> {
+                    game.setId(documentReference.getId());
+                    Log.d(TAG, "Game created with ID: " + documentReference.getId());
+                })
+                .addOnFailureListener(e -> Log.w(TAG, "Error creating game"));
     }
 
 }
