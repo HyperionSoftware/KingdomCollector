@@ -10,7 +10,7 @@
         android:id="@+id/background_menu_pp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:contentDescription="@string/background"
+        android:contentDescription="@string/background_menu_principal"
         android:scaleType="centerCrop"
         android:src="@drawable/background_mainactivity" />
 
@@ -76,7 +76,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/gamename" />
+        app:srcCompat="@drawable/gamename"
+        android:contentDescription="@string/title_kingdom_collector" />
 
     <Button
         android:id="@+id/actualizar"

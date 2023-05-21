@@ -52,6 +52,7 @@ public class GameController {
         this.computerDeckViewModel = computerDeckViewModel;
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
+        assert user != null;
         this.humanPlayer = new HumanPlayer(user.getDisplayName());
         this.computerPlayer = new IAPlayer("Computer");
         this.currentPlayer = humanPlayer;
@@ -86,11 +87,9 @@ public class GameController {
         if (isGameOver()) {
             Player winner = getWinner();
             if (winner != null) {
-                //TODO: DA1. Funcionar amb valors de strings.
-                Toast.makeText(context, "El ganador es " + winner.getName(), Toast.LENGTH_LONG).show();
+                Toast.makeText(context, context.getString(R.string.the_winner_is) + winner.getName(), Toast.LENGTH_LONG).show();
             } else {
-                //TODO: DA1. Funcionar amb valors de strings.
-                Toast.makeText(context, "Es un empate", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, context.getString(R.string.draw), Toast.LENGTH_SHORT).show();
             }
             return;
         }
@@ -98,8 +97,7 @@ public class GameController {
         int randomTime = getRandomTimeToPlay();
         if (player == humanPlayer) {
             if (!isHumanPlayerTurn()) {
-                //TODO: DA1. Funcionar amb valors de strings.
-                Toast.makeText(context, "No es tu turno.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, context.getString(R.string.not_turn), Toast.LENGTH_SHORT).show();
                 return;
             }
             Card selectedCard = humanDeckViewModel.getSelectedCard().getValue();
@@ -128,14 +126,13 @@ public class GameController {
                     updateGamePoints(); // Actualiza los puntos según las reglas del juego.
                     switchTurn(computerPlayer, humanPlayer);
                 }
-            }, randomTime*1000); // Random time between 1 and 3 seconds to play the computer.
+            }, randomTime* 1000L); // Random time between 1 and 3 seconds to play the computer.
         }
     }
 
     private int getRandomTimeToPlay() {
         Random random = new Random();
-        int valorRandom = random.nextInt(3)+1;
-        return valorRandom;
+        return random.nextInt(3)+1;
     }
 
     private Player getWinner() {
@@ -158,14 +155,12 @@ public class GameController {
         if (gameOver) {
             Player winner = getWinner();
             if (winner == humanPlayer) {
-                //TODO: DA1. Funcionar amb valors de strings.
                 showWinnerFragment(winner.getName());
                 incrementWinCount();
             } else if(winner == computerPlayer){
                 showWinnerFragment(winner.getName());
             }else {
-                //TODO: DA1. Funcionar amb valors de strings.
-                Toast.makeText(context, "Es un empate", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, context.getString(R.string.draw), Toast.LENGTH_LONG).show();
             }
         }
 
