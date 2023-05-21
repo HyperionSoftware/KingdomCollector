@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.game.adapters.CellAdapter;
@@ -23,7 +22,6 @@ public class BoardFragment extends Fragment {
     private GameController gameController;
     private FragmentBoardBinding binding;
     private CellAdapter cellAdapter;
-    private HumanPlayer humanPlayer;
 
     public static BoardFragment newInstance(GameController gameController) {
         BoardFragment fragment = new BoardFragment();
@@ -35,35 +33,30 @@ public class BoardFragment extends Fragment {
         this.gameController = gameController;
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        // Crear una instancia de BoardViewModel con el GameController
-        boardViewModel = new BoardViewModel(gameController);
-
-        // Agregar un observador para escuchar cambios en el BoardViewModel
-        boardViewModel.getBoardDataChanged().observe(this, aBoolean -> {
-            if (aBoolean != null && aBoolean) {
-                // Si hay cambios en el tablero, actualizar el RecyclerView
-                cellAdapter.notifyDataSetChanged();
-                // Restablecer el valor de boardDataChanged en el ViewModel
-                boardViewModel.setBoardDataChanged(false);
-            }
-        });
-
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         binding = FragmentBoardBinding.inflate(inflater, container, false);
-        binding.setBoardViewModel(boardViewModel);
-        humanPlayer = (HumanPlayer) gameController.getHumanPlayer();
+        binding.setLifecycleOwner(this);
+        HumanPlayer humanPlayer = (HumanPlayer) gameController.getHumanPlayer();
         cellAdapter = new CellAdapter(gameController, getViewLifecycleOwner(), humanPlayer);
         binding.recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
         binding.recyclerView.setAdapter(cellAdapter);
+
+        // Initialize BoardViewModel here
+        boardViewModel = new BoardViewModel(gameController);
+        binding.setBoardViewModel(boardViewModel);
+
+        // Observe LiveData here
+        boardViewModel.getBoardDataChanged().observe(getViewLifecycleOwner(), aBoolean -> {
+            if (aBoolean != null && aBoolean) {
+                // If there are changes on the board, update the RecyclerView
+                cellAdapter.notifyDataSetChanged();
+                // Reset the boardDataChanged value in the ViewModel
+                boardViewModel.setBoardDataChanged(false);
+            }
+        });
 
         return binding.getRoot();
     }
@@ -74,3 +67,4 @@ public class BoardFragment extends Fragment {
         binding = null;
     }
 }
+

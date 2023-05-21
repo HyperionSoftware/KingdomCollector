@@ -173,6 +173,11 @@ public class Card implements Parcelable {
         return isSelected;
     }
 
+    public int getMinValue() {
+        return Math.min(Math.min(powerArriba, powerAbajo), Math.min(powerIzquierda, powerDerecha));
+    }
+
+
     public void setSelected(boolean selected) {
         isSelected = selected;
     }

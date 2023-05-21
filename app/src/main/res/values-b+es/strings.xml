@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">KingdomCollector</string>
-    <string name="title_activity_terms_and_conditions">Términos y condiciones</string>
     <string name="large_text">
         "Hyperion Mobile App Términos y condiciones de uso"
 
@@ -43,14 +42,14 @@
          Si cambiamos estos Términos, se lo notificaremos a través de la Aplicación o por correo electrónico.
          Si no está de acuerdo con los Términos modificados, debe dejar de usar la Aplicación.
          Ley aplicable y jurisdicción Estos Términos se regirán e interpretarán de acuerdo con
-         con las leyes de [país donde está registrada la empresa Hyperion].
+         las leyes de [país donde está registrada la empresa Hyperion].
          Cualquier disputa que surja en relación con estos Términos estará sujeta a la exclusiva
          jurisdicción de los tribunales de [ciudad donde está registrada la empresa Hyperion].
          Al utilizar la Aplicación, acepta someterse a la jurisdicción exclusiva de los tribunales de
          [ciudad donde está registrada la empresa Hyperion] por cualquier disputa que surja en relación con
          estos términos.
 
-         Terminación Hyperion se reserva el derecho de cancelar su acceso a la Aplicación en
+         Terminación Hyperion se reserva el derecho de cancelar su acceso a la Aplicación
          en cualquier momento y sin previo aviso si incumple estos Términos.
 
          Disposición general Si alguna disposición de estos Términos se considera inválida o inaplicable,
@@ -68,42 +67,16 @@
          Gracias por utilizar la aplicación Hyperion."
  "
     </string>
-    <string name="action_settings">Configuacióm</string>
-    <string name="aboutPage">Sobre Nosotros</string>
+
     <string name="authors">Autores</string>
     <string name="version">Versión</string>
-    <string name="versionReal">1.0.0</string>
+    <string name="versionReal">7.0.0</string>
     <string name="Terms_Cond">Términos y condiciones</string>
-    <string name="btn_settings"><![CDATA[TerminosyCondiciones]]></string>
-    <string name="tablero_activity_title">Tablero</string>
-    <string name="bnt_start">JUGAR</string>
-    <string name="background" />
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hola blanco</string>
-    <string name="btn_00">0_0</string>
-    <string name="btn_01">0_1</string>
-    <string name="btn_02">0_2</string>
-    <string name="btn_10">1_0</string>
-    <string name="btn_11">1_1</string>
-    <string name="btn_12">1_2</string>
-    <string name="btn_20">2_0</string>
-    <string name="btn_21">2_1</string>
-    <string name="btn_22">2_2</string>
-    <string name="btn_c1">c1</string>
-    <string name="btn_c2">c2</string>
-    <string name="btn_c3">c3</string>
-    <string name="btn_c4">c4</string>
-    <string name="btn_c5">c5</string>
-    <string name="txt_score">Puntuación: </string>
-    <string name="txt_player_name">Nombre: </string>
-    <string name="txt_cards">Cartas:</string>
-    <string name="login_title">Iniciar sesión</string>
+    <string name="background_menu_principal">Fondo menú principal</string>
+    <string name="bnt_start">Botón para empezar</string>
     <string name="email_hint">Correo electrónico</string>
     <string name="password_hint">Contraseña</string>
     <string name="login_button">Iniciar sesión</string>
-    <string name="logout">Salir</string>
-    <string name="register">Registrarse</string>
     <string name="forgot_password">¿Has olvidado tu contraseña?</string>
     <string name="recoverpasswordButton">Recupera tu contraseña</string>
     <string name="putYourMailToRecover">Introduce tu correo electrónico para recuperar tu contraseña:</string>
@@ -111,15 +84,18 @@
     <string name="passwordRequired">La contraseña es necesaria.</string>
     <string name="verifyEmail">Verifica tu correo electrónico para iniciar sesión.</string>
     <string name="authFailed">La autenticación ha fallado.</string>
-    <string name="card_description">Card Description</string>
     <string name="world_record_title">World Record</string>
-    <string name="personal_record_title">Record personal</string>
     <string name="hopeyouenjoyaboutus">Esperamos que disfrute jugando tanto como nosotros disfrutamos creando este juego para usted.</string>
     <string name="Thankyouforplay">¡Gracias por jugar nuestro juego!</string>
     <string name="welcometoourgame">¡Bienvenido a nuestro juego! Somos un equipo de desarrolladores apasionados por crear experiencias divertidas y emocionantes para nuestros jugadores.</string>
     <string name="actualizar">actualizar</string>
-
-
     <string name="email_sended_confirm">Se ha enviado un correo de verificación a su cuenta de correo electrónico. Por favor, confirme su correo electrónico antes de iniciar sesión.</string>
+    <string name="logo_about_us">Logo sobre nosotros</string>
+    <string name="not_turn">No es tu turno</string>
+    <string name="draw">Empate</string>
+    <string name="the_winner_is">El ganador es</string>
+    <string name="title_kingdom_collector">Coleccionista del reino</string>
+
+
 
 </resources>
