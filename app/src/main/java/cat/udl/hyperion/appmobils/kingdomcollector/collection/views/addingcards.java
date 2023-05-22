@@ -186,6 +186,18 @@ public class addingcards extends AppCompatActivity {
 
 
         //Cartas del equipo UltimateMostoles:
+        addCardToDbAndManager("UltimateMostoles1", R.drawable.ultimate_lucca_medio,"Lucca", "Medio",2,5,5,4 );
+        addCardToDbAndManager("UltimateMostoles2", R.drawable.ultimate_nacho_portero,"Nacho", "Portero",3,7,8,7 );
+        addCardToDbAndManager("UltimateMostoles3", R.drawable.ultimate_zea_delantero,"Zea", "Delantero",6,10,6,4 );
+        addCardToDbAndManager("UltimateMostoles4", R.drawable.ultimate_ian_defensa,"Ian", "Defensa",6,6,7,7 );
+        addCardToDbAndManager("UltimateMostoles5", R.drawable.ultimate_iker_defensa,"Iker", "Defensa",8,2,8,7 );
+        addCardToDbAndManager("UltimateMostoles6", R.drawable.ultimate_llur_delantero,"Llur", "Delantero",7,6,9,6 );
+        addCardToDbAndManager("UltimateMostoles7", R.drawable.ultimate_alexi_medio ,"Alexi", "Medio",4,7,10,4 );
+        addCardToDbAndManager("UltimateMostoles8", R.drawable.ultimate_guti_defensa,"Guti", "Defensa",5,7,9,7 );
+        addCardToDbAndManager("UltimateMostoles9", R.drawable.ultimate_lu_portero,"Lu", "Portero",10,7,9,7 );
+        addCardToDbAndManager("UltimateMostoles10", R.drawable.ultimate_arche_medio,"Arche", "Medio",7,10,5,7 );
+        addCardToDbAndManager("UltimateMostoles11", R.drawable.ultimate_juanma_jugador,"Juanma", "Delantero",7,10,9,8 );
+        addCardToDbAndManager("UltimateMostoles12", R.drawable.ultimate_djmario_presidente,"DjMario", "Presidente",10,11,10,11 );
 
         //Cartas del equipo XBuyer:
 
