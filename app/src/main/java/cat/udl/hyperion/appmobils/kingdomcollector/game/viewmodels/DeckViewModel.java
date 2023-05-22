@@ -1,12 +1,13 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels;
 
 
-
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+
+import java.util.List;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Card;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Deck;
@@ -24,6 +25,14 @@ public class DeckViewModel extends ViewModel {
         // Si se hace un getInstance() de Deck, imlpementando el patrón Singleton, se puede hacer
         // deck.setValue(Deck.getInstance()), entonces las cartas seleccionadas son visibles en el game.
         deck.setValue(new Deck());
+        selectedCard = new MutableLiveData<>();
+    }
+
+    public DeckViewModel(List<Card> selectedCards){
+        Log.d("DeckViewModel", "Creando el DeckViewModel con las cartas seleccionadas del usuario.");
+        deck = new MutableLiveData<>();
+        // Pasamos selectedCards al constructor de Deck
+        deck.setValue(new Deck(selectedCards));
         selectedCard = new MutableLiveData<>();
     }
     public void initializeOwnerForCards(Player owner) {

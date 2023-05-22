@@ -6,11 +6,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import java.util.List;
+
+import cat.udl.hyperion.appmobils.kingdomcollector.R;
+import cat.udl.hyperion.appmobils.kingdomcollector.game.GameController;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.fragments.BoardFragment;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.fragments.DeckFragment;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.fragments.PlayerFragment;
-import cat.udl.hyperion.appmobils.kingdomcollector.R;
-import cat.udl.hyperion.appmobils.kingdomcollector.game.GameController;
+import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Card;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.HumanPlayer;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.IAPlayer;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.BoardViewModel;
@@ -24,7 +27,8 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         BoardViewModel boardViewModel = new BoardViewModel(gameController);
-        DeckViewModel humanDeckViewModel = new DeckViewModel();
+        List<Card> selectedCards = getIntent().getParcelableArrayListExtra("selectedCards");
+        DeckViewModel humanDeckViewModel = new DeckViewModel(selectedCards);
         DeckViewModel computerDeckViewModel = new DeckViewModel();
 
         gameController = new GameController(this, boardViewModel, humanDeckViewModel, computerDeckViewModel,this);

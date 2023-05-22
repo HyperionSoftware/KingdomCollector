@@ -1,41 +1,50 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.game;
 
-
+import android.content.Context;
 import android.os.Handler;
 import android.util.Log;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Transaction;
 
+import java.util.Objects;
 import java.util.Random;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.fragments.WinnerFragment;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Card;
-import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.BoardViewModel;
-import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.CellViewModel;
-import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.DeckViewModel;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.HumanPlayer;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.IAPlayer;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.Player;
+import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.BoardViewModel;
+import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.CellViewModel;
+import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.DeckViewModel;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.views.GameActivity;
-
-import android.widget.Toast;
-import android.content.Context;
 
 public class GameController {
     private static final String TAG = "GameController";
 
-    private BoardViewModel boardViewModel;
-    private DeckViewModel humanDeckViewModel;
-    private DeckViewModel computerDeckViewModel;
-    private Player humanPlayer;
-    private Player computerPlayer;
+    private final BoardViewModel boardViewModel;
+    private final DeckViewModel humanDeckViewModel;
+    private final DeckViewModel computerDeckViewModel;
+    private final Player humanPlayer;
+    private final Player computerPlayer;
     private Player currentPlayer;
+
     private FirebaseAuth mAuth;
-    private Handler handler;
-    private Context context;
-    private GameActivity gameActivity;
+    private final Handler handler;
+    private final Context context;
+    private final GameActivity gameActivity;
 
     public GameController(Context context, BoardViewModel boardViewModel, DeckViewModel humanDeckViewModel, DeckViewModel computerDeckViewModel, GameActivity gameActivity) {
         this.context = context;
@@ -44,6 +53,7 @@ public class GameController {
         this.computerDeckViewModel = computerDeckViewModel;
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
+        assert user != null;
         this.humanPlayer = new HumanPlayer(user.getDisplayName());
         this.computerPlayer = new IAPlayer("Computer");
         this.currentPlayer = humanPlayer;
@@ -75,28 +85,24 @@ public class GameController {
     }
 
     public void playCard(Player player, int row, int col) {
-
         if (isGameOver()) {
             Player winner = getWinner();
             if (winner != null) {
-                Toast.makeText(context, "El ganador es " + winner.getName(), Toast.LENGTH_LONG).show();
+                //TODO: DA1. Funcionar amb valors de strings.
+                Toast.makeText(context, context.getString(R.string.the_winner_is) + winner.getName(), Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(context, "Es un empate", Toast.LENGTH_LONG).show();
+                //TODO: DA1. Funcionar amb valors de strings.
+                Toast.makeText(context, context.getString(R.string.draw), Toast.LENGTH_LONG).show();
+
             }
             return;
         }
-        // TODO: Tasca Ricard (T3.2). Utilitza if(isGameOver) en algun lloc
-        // per poder fer que el joc acabi quan les condicions de fi de joc es compleixin:
-        // boardViewModel.isBoardFull() || humanDeckViewModel.isDeckEmpty() || computerDeckViewModel.isDeckEmpty();
-        // Quan les condicions de isGameOver es compleixin, s'ha de calcular el guanyador.
-        // TODO: Tasca Ricard (T3.1)
-        // Fer funció que miri els punts del computerPlayer vs els punts de HumanPlayer, guardar el Player que ha guanyat.
-        // funció de tipus: private Player getWinner(Player player1, Player player2)
         Log.d(TAG,"Playing the card to position ("+ row+","+col+").");
         int randomTime = getRandomTimeToPlay();
         if (player == humanPlayer) {
             if (!isHumanPlayerTurn()) {
-                Toast.makeText(context, "No es tu turno.", Toast.LENGTH_SHORT).show();
+                //TODO: DA1. Funcionar amb valors de strings.
+                Toast.makeText(context, context.getString(R.string.not_turn), Toast.LENGTH_SHORT).show();
                 return;
             }
             Card selectedCard = humanDeckViewModel.getSelectedCard().getValue();
@@ -125,14 +131,13 @@ public class GameController {
                     updateGamePoints(); // Actualiza los puntos según las reglas del juego.
                     switchTurn(computerPlayer, humanPlayer);
                 }
-            }, randomTime*1000); // Random time between 1 and 3 seconds to play the computer.
+            }, randomTime* 1000L); // Random time between 1 and 3 seconds to play the computer.
         }
     }
 
     private int getRandomTimeToPlay() {
         Random random = new Random();
-        int valorRandom = random.nextInt(3)+1;
-        return valorRandom;
+        return random.nextInt(3)+1;
     }
 
     private Player getWinner() {
@@ -154,11 +159,13 @@ public class GameController {
 
         if (gameOver) {
             Player winner = getWinner();
-            if (winner != null) {
-                Toast.makeText(context, "El ganador es " + winner.getName(), Toast.LENGTH_LONG).show();
+            if (winner == humanPlayer) {
                 showWinnerFragment(winner.getName());
-            } else {
-                Toast.makeText(context, "Es un empate", Toast.LENGTH_LONG).show();
+                incrementWinCount();
+            } else if(winner == computerPlayer){
+                showWinnerFragment(winner.getName());
+            }else {
+                Toast.makeText(context, context.getString(R.string.draw), Toast.LENGTH_LONG).show();
             }
         }
 
@@ -281,6 +288,34 @@ public class GameController {
                 .replace(R.id.boardFragment, winnerFragment)
                 .commit();
     }
+    public void incrementWinCount() {
+        String userId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+
+        DatabaseReference userGameDataRef = FirebaseDatabase.getInstance().getReference("winner_count").child(userId);
+
+        userGameDataRef.runTransaction(new Transaction.Handler() {
+            @NonNull
+            @Override
+            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                Long count = mutableData.getValue(Long.class);
+                if (count == null) {
+                    mutableData.setValue(1);
+                } else {
+                    mutableData.setValue(count + 1);
+                }
+
+                return Transaction.success(mutableData);
+            }
+
+            @Override
+            public void onComplete(@Nullable DatabaseError error, boolean committed, @Nullable DataSnapshot currentData) {
+                if (committed) {
+                    Log.d(TAG, "Transacción completada con éxito + 1 win");
+                } else {
+                    Log.e(TAG, "Error en la transacción", error.toException());
+                }
+            }
+        });
+    }
 
 }
-

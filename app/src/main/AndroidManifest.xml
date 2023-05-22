@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
 
     <application
         android:allowBackup="true"
@@ -15,14 +15,26 @@
         android:theme="@style/Theme.KingdomCollector"
         tools:targetApi="31">
         <activity
+            android:name=".other.PlayModeActivity"
+            android:exported="false"
+            android:theme="@style/Theme.KingdomCollector.NoActionBar"/>
+        <activity
+            android:name=".other.Config"
+            android:exported="false"
+            android:theme="@style/Theme.KingdomCollector.NoActionBar" />
+        <activity
+            android:name=".collection.views.addingcards"
+            android:exported="false"/>
+        <activity
+            android:name=".collection.views.CollectionActivity"
+            android:exported="false" />
+        <activity
             android:name=".other.auth.RecoverPassword"
             android:exported="false" />
         <activity
             android:name=".game.views.GameActivity"
-            android:exported="false" />
-        <activity
-            android:name=".collection.views.CardCollectionActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.KingdomCollector.NoActionBar"/>
         <activity
             android:name=".other.auth.RegisterActivity"
             android:exported="false" />
@@ -31,11 +43,11 @@
             android:exported="false" />
         <activity
             android:name=".other.AboutUs"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.KingdomCollector.NoActionBar" />
         <activity
             android:name=".other.TermsAndConditions"
             android:exported="false"
-            android:label="@string/title_activity_terms_and_conditions"
             android:theme="@style/Theme.KingdomCollector.NoActionBar" />
         <activity
             android:name=".other.InitialSplashScreen"

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".other.PlayModeActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/background_mainactivity"
+            android:scaleType="centerCrop"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#99000000"/>
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/back_to_main_menu"
+        android:layout_width="40dp"
+        android:layout_height="39dp"
+        android:background="@android:color/transparent"
+        android:foreground="@drawable/arow"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.043"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.028" />
+
+    <Button
+        android:id="@+id/btn_play_online"
+        android:layout_width="140dp"
+        android:layout_height="53dp"
+        android:background="@android:color/transparent"
+        android:foreground="@drawable/boton_online"
+        android:text="@string/btn_play_online"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.381" />
+
+    <Button
+        android:id="@+id/btn_play_computer"
+        android:layout_width="140dp"
+        android:layout_height="53dp"
+        android:background="@android:color/transparent"
+        android:foreground="@drawable/boton_ia"
+        android:text="@string/btn_play_local"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.532" />
+
+    <Button
+        android:id="@+id/btn_select_your_cards"
+        android:layout_width="238dp"
+        android:layout_height="52dp"
+        android:background="@android:color/transparent"
+        android:foreground="@drawable/boton_colecion"
+        android:text="@string/btn_select_your_cards"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_play_computer" />
+</androidx.constraintlayout.widget.ConstraintLayout>
