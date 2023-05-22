@@ -214,6 +214,7 @@ public class addingcards extends AppCompatActivity {
         addCardToDbAndManager("XBuyer12", R.drawable.xbuyer_buyer_presidente,"Hermanos Buyer", "Presidente",10,9,10,10 );
 
 
+        addCardToDbAndManager("PiqueJefeCreador", R.drawable.pique_presidente,"Pique", "Presidente",11,11,11,11 );
     }
     private void addCardToDbAndManager(final String id, final int drawable, final String name, final String role, final int powerArriba, final int powerIzquierda, final int powerAbajo, final int powerDerecha) {
         Executors.newSingleThreadExecutor().execute(new Runnable() {
