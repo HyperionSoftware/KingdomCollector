@@ -93,7 +93,18 @@ public class addingcards extends AppCompatActivity {
         addCardToDbAndManager("Jijantes12", R.drawable.jij_quero_medio,"Quero", "Medio",6,3,4,1 );
 
         //Cartas del equipo KuniSports:
-
+        addCardToDbAndManager("Kun1", R.drawable.kun_coro_11,"Coro", "Delantero",10,9,4,9 );
+        addCardToDbAndManager("Kun2", R.drawable.kun_guerrero_defensa,"Guerrero", "Defensa",6,9,4,5 );
+        addCardToDbAndManager("Kun3", R.drawable.kun_hidaldo_delantero,"Hidaldo", "Delantero",2,7,6,3 );
+        addCardToDbAndManager("Kun4", R.drawable.kun_joan_medio,"Joan", "Medio",6,9,8,5 );
+        addCardToDbAndManager("Kun5", R.drawable.kun_kun_aguero_presidente,"Kun Aguero", "Presidente",10,10,10,10 );
+        addCardToDbAndManager("Kun6", R.drawable.kun_lluc_delantero,"Lluc", "Delantero",7,4,4,4 );
+        addCardToDbAndManager("Kun7", R.drawable.kun_miki_defensa,"Miki", "Defensa",4,7,2,6 );
+        addCardToDbAndManager("Kun8", R.drawable.kun_nacho_defensa,"Nacho", "Defensa",7,5,3,2 );
+        addCardToDbAndManager("Kun9", R.drawable.kun_regerri_defensa,"Regerri", "Defensa",4,4,3,6 );
+        addCardToDbAndManager("Kun10", R.drawable.kun_rode_portero,"Rode", "Portero",10,9,8,9 );
+        addCardToDbAndManager("Kun11", R.drawable.kun_torrentbo_delantero,"Torrentbo", "Delantero",9,6,8,7 );
+        addCardToDbAndManager("Kun12", R.drawable.kun_victor_portero,"Victor", "Portero",6,5,7,3 );
 
 
         //Cartas del equipo LosTroncos:
