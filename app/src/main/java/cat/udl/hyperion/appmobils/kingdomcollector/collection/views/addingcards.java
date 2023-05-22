@@ -155,6 +155,20 @@ public class addingcards extends AppCompatActivity {
 
 
         //Cartas del equipo Rayo:
+        addCardToDbAndManager("Rayo1", R.drawable.rayo_alex_delantero,"Alex", "Delantero",6,7,3,6 );
+        addCardToDbAndManager("Rayo2", R.drawable.rayo_jonathan_medio,"Jonathan", "Medio",4,4,7,6 );
+        addCardToDbAndManager("Rayo3", R.drawable.rayo_biboum_delantero,"Biboum", "Delantero",6,5,3,5 );
+        addCardToDbAndManager("Rayo4", R.drawable.rayo_alejandro_defensa,"Alejandro", "Defensa",6,3,2,6 );
+        addCardToDbAndManager("Rayo5", R.drawable.rayo_dani_medio,"Dani", "Medio",4,4,2,4 );
+        addCardToDbAndManager("Rayo6", R.drawable.rayo_franky_medio,"Franky", "Medio",5,4,2,6 );
+        addCardToDbAndManager("Rayo7", R.drawable.rayo_reyes_defensa,"Reyes", "Defensa",5,3,3,6 );
+        addCardToDbAndManager("Rayo8", R.drawable.rayo_guillem_delantero,"Guillem", "Delantero",7,3,5,1 );
+        addCardToDbAndManager("Rayo9", R.drawable.rayo_canet_portero,"Canet", "Portero",7,3,1,5 );
+        addCardToDbAndManager("Rayo10", R.drawable.rayo_pelaz_medio,"Pelaz", "Medio",9,8,8,9 );
+        addCardToDbAndManager("Rayo11", R.drawable.rayo_polotelli_jugador,"Polotelli", "Delantero",2,8,7,2 );
+        addCardToDbAndManager("Rayo12", R.drawable.rayo_spursito_presidente,"Spursito", "Presidente",4,7,10,10 );
+
+
 
         //Cartas del equipo Sayans:
 
