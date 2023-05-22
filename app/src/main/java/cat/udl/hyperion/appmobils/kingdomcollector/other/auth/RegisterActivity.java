@@ -105,12 +105,12 @@ public class RegisterActivity extends AppCompatActivity {
                         user.updateProfile(profileUpdates)
                                 .addOnCompleteListener(task12 -> {
                                     if (task12.isSuccessful()) {
-                                        Log.d(myClassTag, "Perfil actualizado correctamente con el username.");
                                         assignRandomCardsToUser(user.getUid());
+                                        Log.d(myClassTag, "Perfil actualizado correctamente con el username.");
                                         finish();
                                     }
                                 });
-                        logout();
+                       // logout();
                     } else {
                         // El registro falló, mostrar un mensaje de error
                         Toast.makeText(RegisterActivity.this, R.string.error_register_failed, Toast.LENGTH_LONG).show();
@@ -125,18 +125,24 @@ public class RegisterActivity extends AppCompatActivity {
     }
     // Este es el nuevo método para asignar 5 cartas aleatorias al usuario
     private void assignRandomCardsToUser(String userId) {
+        Log.d(myClassTag, "assignRandomCardsToUser initiated for user: " + userId);
         db.collection("general_cards")
                 .get()
-
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         List<DocumentSnapshot> allCards = task.getResult().getDocuments();
+                        Log.d(myClassTag, "Total general cards fetched: " + allCards.size());
+
                         Collections.shuffle(allCards); // Mezcla las tarjetas
                         List<DocumentSnapshot> selectedCards = allCards.subList(0, 5); // Selecciona las primeras 5 tarjetas
+
+                        Log.d(myClassTag, "Cards selected for user " + userId + ": " + selectedCards.size());
+
                         // Continuación del método assignRandomCardsToUser
                         for (DocumentSnapshot card : selectedCards) {
                             Map<String, Object> cardData = card.getData();
                             if (cardData != null) {
+                                Log.d(myClassTag, "Adding card " + card.getId() + " to user: " + userId);
                                 db.collection("users/" + userId + "/user_cards")
                                         .document(card.getId())
                                         .set(cardData)
@@ -144,8 +150,11 @@ public class RegisterActivity extends AppCompatActivity {
                                         .addOnFailureListener(e -> Log.d(myClassTag, "Error adding card for user: " + userId, e));
                             }
                         }
+                    } else {
+                        Log.d(myClassTag, "Error fetching general cards for user: " + userId, task.getException());
                     }
                 });
     }
+
 
 }
