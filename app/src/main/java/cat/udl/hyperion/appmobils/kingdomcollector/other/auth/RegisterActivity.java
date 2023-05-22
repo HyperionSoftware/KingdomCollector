@@ -1,7 +1,6 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.other.auth;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
@@ -25,7 +24,6 @@ import java.util.Map;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
 import cat.udl.hyperion.appmobils.kingdomcollector.collection.db.AppDatabase;
-import cat.udl.hyperion.appmobils.kingdomcollector.collection.db.CardEntity;
 
 public class RegisterActivity extends AppCompatActivity {
     protected String myClassTag = this.getClass().getSimpleName();
@@ -66,11 +64,17 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         if (password.isEmpty()) {
-            editText_password.setError("Password is required");
+            editText_password.setError("La contraseña es requerida");
             Log.d(myClassTag, "Falta introducir la contraseña.");
             editText_password.requestFocus();
             return;
+        } else if (password.length() < 6) {
+            editText_password.setError("La contraseña debe tener al menos 6 caracteres");
+            Log.d(myClassTag, "La contraseña es demasiado corta.");
+            editText_password.requestFocus();
+            return;
         }
+
 
         if (username.isEmpty()) {
             editText_username.setError("Username is required");
@@ -109,9 +113,8 @@ public class RegisterActivity extends AppCompatActivity {
                         logout();
                     } else {
                         // El registro falló, mostrar un mensaje de error
-                        //TODO: DA1. Funcionar amb valors de strings.
-                        Toast.makeText(RegisterActivity.this, "No se pudo crear la cuenta. Por favor, inténtelo de nuevo más tarde.", Toast.LENGTH_LONG).show();
-                        Log.d(myClassTag, "Error al crear la cuenta.", task.getException());
+                        Toast.makeText(RegisterActivity.this, R.string.error_register_failed, Toast.LENGTH_LONG).show();
+                        Log.d(getClass().getSimpleName(), "Error al crear la cuenta.", task.getException());
                     }
                 });
     }
@@ -124,6 +127,7 @@ public class RegisterActivity extends AppCompatActivity {
     private void assignRandomCardsToUser(String userId) {
         db.collection("general_cards")
                 .get()
+
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         List<DocumentSnapshot> allCards = task.getResult().getDocuments();

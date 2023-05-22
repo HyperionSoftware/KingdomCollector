@@ -10,108 +10,49 @@
         android:id="@+id/background_menu_pp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:contentDescription="@string/background"
+        android:contentDescription="@string/background_menu_principal"
         android:scaleType="centerCrop"
-        android:src="@drawable/background_menu_principal"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-28dp" />
+        android:src="@drawable/background_mainactivity" />
 
     <ImageButton
         android:id="@+id/btn_start"
-        android:layout_width="179dp"
-        android:layout_height="103dp"
+        android:layout_width="221dp"
+        android:layout_height="124dp"
+        android:layout_marginTop="24dp"
         android:background="@mipmap/image_button_start_2"
         android:contentDescription="@string/bnt_start"
         app:layout_constraintBottom_toBottomOf="@+id/background_menu_pp"
-        app:layout_constraintEnd_toEndOf="@+id/background_menu_pp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/background_menu_pp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.485" />
-
-    <ImageButton
-        android:id="@+id/btn_settings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/action_settings"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.954"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023"
-        app:srcCompat="@android:drawable/ic_dialog_info" />
-
-    <Button
-        android:id="@+id/btn_terms"
-        android:layout_width="227dp"
-        android:layout_height="51dp"
-        android:scaleType="center"
-        android:text="@string/Terms_Cond"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/background_menu_pp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.974"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/background_menu_pp"
-        app:layout_constraintVertical_bias="0.954" />
+        app:layout_constraintVertical_bias="0.643" />
 
     <Button
         android:id="@+id/btn_logout"
-        android:layout_width="171dp"
-        android:layout_height="49dp"
-        android:text="@string/logout"
+        android:layout_width="55dp"
+        android:layout_height="52dp"
+        android:background="@android:color/transparent"
+        android:foreground="@drawable/exit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.066"
+        app:layout_constraintHorizontal_bias="0.033"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.952" />
+        app:layout_constraintVertical_bias="0.013" />
 
     <Button
         android:id="@+id/btn_collection"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="231dp"
+        android:layout_height="57dp"
+        android:background="@android:color/transparent"
+        android:foreground="@drawable/boton_albums"
         android:text="@string/btn_collection"
-        app:layout_constraintBottom_toTopOf="@+id/btn_logout"
+        app:layout_constraintBottom_toBottomOf="@+id/background_menu_pp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_start" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/world_record_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/world_record_title"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/world_record_value"
-        app:layout_constraintEnd_toEndOf="@+id/background_menu_pp"
-        app:layout_constraintStart_toStartOf="@+id/background_menu_pp"
-        app:layout_constraintTop_toBottomOf="@+id/btn_collection" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/world_record_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0"
-        android:textColor="@android:color/white"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/personal_record_title"
-        app:layout_constraintEnd_toEndOf="@+id/background_menu_pp"
-        app:layout_constraintStart_toStartOf="@+id/background_menu_pp"
-        app:layout_constraintTop_toBottomOf="@+id/world_record_title" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/personal_record_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/personal_record_title"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/personal_record_value"
-        app:layout_constraintEnd_toEndOf="@+id/background_menu_pp"
-        app:layout_constraintStart_toStartOf="@+id/background_menu_pp"
-        app:layout_constraintTop_toBottomOf="@+id/world_record_value" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/personal_record_value"
@@ -121,27 +62,109 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/btn_logout"
         app:layout_constraintEnd_toEndOf="@+id/background_menu_pp"
-        app:layout_constraintStart_toStartOf="@+id/background_menu_pp"
-        app:layout_constraintTop_toBottomOf="@+id/personal_record_title" />
+        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintStart_toStartOf="@+id/background_menu_pp" />
+
 
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/titulo_kingdom_collector"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_start"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/gamename" />
+        app:srcCompat="@drawable/gamename"
+        android:contentDescription="@string/title_kingdom_collector" />
+
     <Button
         android:id="@+id/actualizar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
-        android:text="@string/actualizar"
+        android:text="actualizar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_config"
+        android:layout_width="59dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="4dp"
+        android:background="@android:color/transparent"
+        android:foreground="@drawable/gear"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.959"
+        app:layout_constraintStart_toEndOf="@+id/btn_logout"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.006" />
+
+    <ImageView
+        android:id="@+id/balones_de_oro_fondo"
+        android:layout_width="137dp"
+        android:layout_height="41dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_start"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titulo_kingdom_collector"
+        app:srcCompat="@drawable/balon_oro" />
+
+    <TextView
+        android:id="@+id/winner_count_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="148dp"
+        android:text="@string/victorias_usuario"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_collection"
+        app:layout_constraintEnd_toStartOf="@+id/btn_start"
+        app:layout_constraintHorizontal_bias="0.48"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_start" />
+
+    <TextView
+        android:id="@+id/world_record_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="160dp"
+        android:text="@string/world_record_title"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_collection"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_start" />
+
+    <TextView
+        android:id="@+id/winner_count_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/highestScoreText"
+        app:layout_constraintHorizontal_bias="0.084"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/world_record_title"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/highestScoreText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.177"
+        app:layout_constraintStart_toEndOf="@+id/btn_collection"
+        app:layout_constraintTop_toBottomOf="@+id/world_record_title"
+        app:layout_constraintVertical_bias="0.053" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
