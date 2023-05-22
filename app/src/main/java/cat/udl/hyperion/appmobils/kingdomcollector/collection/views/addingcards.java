@@ -108,8 +108,24 @@ public class addingcards extends AppCompatActivity {
 
 
         //Cartas del equipo LosTroncos:
+        addCardToDbAndManager("Troncos1", R.drawable.troncos_arus_portero,"Arus", "Portero",5,7,4,5 );
+        addCardToDbAndManager("Troncos2", R.drawable.troncos_nuevo_medio,"Nuevo", "Medio",3,1,2,10 );
+        addCardToDbAndManager("Troncos3", R.drawable.troncos_dorkis_delantero,"Dorkis", "Delantero",6,3,7,2 );
+        addCardToDbAndManager("Troncos4", R.drawable.troncos_martinez_delantero,"Martinez", "Delantero",6,3,7,3 );
+        addCardToDbAndManager("Troncos5", R.drawable.troncos_molas_medio,"Molas", "Medio",4,7,2,4 );
+        addCardToDbAndManager("Troncos6", R.drawable.troncos_moel_medio,"Moel", "Medio",5,4,2,6 );
+        addCardToDbAndManager("Troncos7", R.drawable.troncos_molina_medio,"Molina", "Medio",6,2,2,2 );
+        addCardToDbAndManager("Troncos8", R.drawable.troncos_soriano_defensa,"Soriano", "Defensa",7,1,3,1 );
+        addCardToDbAndManager("Troncos9", R.drawable.troncos_lechuga_portero,"Lechuga", "Portero",2,7,2,1 );
+        addCardToDbAndManager("Troncos10", R.drawable.troncos_alvaro_delantero,"Alvaro", "Delantero",8,7,9,10 );
+        addCardToDbAndManager("Troncos11", R.drawable.troncos_planas_jugador,"Planas", "Delantero",7,6,9,8 );
+        addCardToDbAndManager("Troncos12", R.drawable.troncos_perxita_presidente,"Perxita", "Presidente",9,9,10,11 );
+
+
 
         //Cartas del equipo PIO:
+
+
 
         //Cartas del equipo Porcinos:
 
