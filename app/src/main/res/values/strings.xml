@@ -68,6 +68,38 @@
  "
     </string>
 
+    <string name="action_settings">Settings</string>
+    <string name="aboutPage">About us</string>
+    <string name="authors">Authors</string>
+    <string name="version">Version</string>
+    <string name="versionReal">1.0.0</string>
+    <string name="Terms_Cond">Terms and Cond</string>
+    <string name="btn_settings"><![CDATA[Term&Cond]]></string>
+    <string name="tablero_activity_title">activity_tablero</string>
+    <string name="bnt_start">START</string>
+    <string name="background" />
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="btn_00">0_0</string>
+    <string name="btn_01">0_1</string>
+    <string name="btn_02">0_2</string>
+    <string name="btn_10">1_0</string>
+    <string name="btn_11">1_1</string>
+    <string name="btn_12">1_2</string>
+    <string name="btn_20">2_0</string>
+    <string name="btn_21">2_1</string>
+    <string name="btn_22">2_2</string>
+    <string name="btn_c1">c1</string>
+    <string name="btn_c2">c2</string>
+    <string name="btn_c3">c3</string>
+    <string name="btn_c4">c4</string>
+    <string name="btn_c5">c5</string>
+
+    <string name="txt_score">Score:</string>
+    <string name="txt_player_name">Player name</string>
+    <string name="txt_cards">Cards:</string>
+    <string name="login_title">Login</string>
     <!-- About us-->
     <string name="str_joan_bonell_ruiz" translatable="false">Joan Bonell Ruiz</string>
     <string name="str_Carlos_Martinez_Gonzalez" translatable="false">Carlos Martínez González</string>
@@ -93,6 +125,23 @@
     <string name="passwordRequired">Password is required.</string>
     <string name="verifyEmail">Verify your mail to log in.</string>
     <string name="authFailed">Authentication failed.</string>
+
+    <string name="btn_collection" translatable="false">Collection</string>
+    <string name="card_type" translatable="false">Card Type</string>
+    <string name="world_record_title">World Record</string>
+    <string name="personal_record_title">Record personal</string>
+
+    <!-- activity_cardcollection -->
+    <string name="selected_cards_label" translatable="false">Selected Cards:</string>
+    <string name="confirm_selection" translatable="false">Confirm Team</string>
+    <string name="card_name" translatable="false">Card Name</string>
+    <string name="card_description">Card Description</string>
+
+    <!-- Ni flowers -->
+    <string name="hopeyouenjoyaboutus">We hope you enjoy playing as much as we enjoyed creating this game for you.</string>
+    <string name="Thankyouforplay">Thank you for playing our game!</string>
+    <string name="welcometoourgame">Welcome to our game! We are a team of developers passionate about creating fun and exciting experiences for our players.</string>
+    <string name="update">Update</string>
     <string name="email_sended_confirm">An email verification has been sent to your email account. Please confirm your email before logging in.</string>
     <string name="Terms_Cond">Terms and Cond</string>
 
@@ -110,10 +159,35 @@
     <string name="card_name" translatable="false">Card Name</string>
     <string name="card_type" translatable="false">Card Type</string>
 
-
     <!-- fragment_winner-->
     <string name="return_home" translatable="false">Return home</string>
     <string name="play_again" translatable="false">Return home</string>
+
+    <string name="email_sended_confirm">An email verification has been sent to your email account. Please confirm your email before logging in.</string>
+
+    <string name="card_type_president">President</string>
+    <string name="card_type_forward">Forward</string>
+    <string name="card_type_midfielder">Midfielder</string>
+    <string name="card_type_defender">Defender</string>
+
+    <string name="error_message">An error occurred while fetching the cards.</string>
+    <string name="winner_is">The winner is </string>
+    <string name="tie">It\'s a tie </string>
+    <string name="not_your_turn">It\'s not your turn.</string>
+    <string name="unauthenticated_user_error">Error: User not authenticated</string>
+    <string name="welcome">Welcome %1$s, your last login was: %2$s</string>
+    <string name="welcome_without_registration">Welcome %1$s, no previous login records found.</string>
+
+    <string name="recover_password_empty_email">Please enter your email</string>
+    <string name="recover_password_email_sent">Password reset email has been sent</string>
+    <string name="recover_password_email_failed">There was an error sending the password reset email</string>
+
+    <string name="error_empty_email">Email is required</string>
+    <string name="error_empty_password">Password is required</string>
+    <string name="error_empty_username">Username is required</string>
+    <string name="email_verification_sent">Email verification sent. Please check your email.</string>
+    <string name="error_register_failed">Failed to create account. Please try again later.</string>
+
 
     <!-- Play mode-->
     <string name="btn_play_online" translatable="false">Play online</string>

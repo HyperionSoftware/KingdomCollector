@@ -113,9 +113,8 @@ public class RegisterActivity extends AppCompatActivity {
                         logout();
                     } else {
                         // El registro falló, mostrar un mensaje de error
-                        //TODO: DA1. Funcionar amb valors de strings.
-                        Toast.makeText(RegisterActivity.this, "No se pudo crear la cuenta. Por favor, inténtelo de nuevo más tarde.", Toast.LENGTH_LONG).show();
-                        Log.d(myClassTag, "Error al crear la cuenta.", task.getException());
+                        Toast.makeText(RegisterActivity.this, R.string.error_register_failed, Toast.LENGTH_LONG).show();
+                        Log.d(getClass().getSimpleName(), "Error al crear la cuenta.", task.getException());
                     }
                 });
     }

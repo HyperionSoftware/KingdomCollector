@@ -48,12 +48,10 @@ public class RecoverPassword extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
-                                    //TODO: DA1. Funcionar amb valors de strings.
-                                    Toast.makeText(RecoverPassword.this, "Se ha enviado un correo electrónico para restablecer la contraseña", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(RecoverPassword.this, getString(R.string.recover_password_email_sent), Toast.LENGTH_SHORT).show();
                                     Log.d(myClassTag, "Enviado email con exito.");
                                 } else {
-                                    //TODO: DA1. Funcionar amb valors de strings.
-                                    Toast.makeText(RecoverPassword.this, "Ha habido un error al enviar el correo electrónico para restablecer la contraseña", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(RecoverPassword.this, getString(R.string.recover_password_email_failed), Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });

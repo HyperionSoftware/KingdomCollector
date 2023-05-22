@@ -34,16 +34,17 @@ import cat.udl.hyperion.appmobils.kingdomcollector.game.views.GameActivity;
 public class GameController {
     private static final String TAG = "GameController";
 
-    private BoardViewModel boardViewModel;
-    private DeckViewModel humanDeckViewModel;
-    private DeckViewModel computerDeckViewModel;
-    private Player humanPlayer;
-    private Player computerPlayer;
+    private final BoardViewModel boardViewModel;
+    private final DeckViewModel humanDeckViewModel;
+    private final DeckViewModel computerDeckViewModel;
+    private final Player humanPlayer;
+    private final Player computerPlayer;
     private Player currentPlayer;
-    private FirebaseAuth mAuth;
-    private Handler handler;
-    private Context context;
-    private GameActivity gameActivity;
+
+    //private FirebaseAuth mAuth;
+    private final Handler handler;
+    private final Context context;
+    private final GameActivity gameActivity;
 
     public GameController(Context context, BoardViewModel boardViewModel, DeckViewModel humanDeckViewModel, DeckViewModel computerDeckViewModel, GameActivity gameActivity) {
         this.context = context;
@@ -87,9 +88,12 @@ public class GameController {
         if (isGameOver()) {
             Player winner = getWinner();
             if (winner != null) {
-                Toast.makeText(context, context.getString(R.string.the_winner_is) + winner.getName(), Toast.LENGTH_LONG).show();
+                //TODO: DA1. Funcionar amb valors de strings.
+                Toast.makeText(context, context.getString(R.string.winner_is) + winner.getName(), Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(context, context.getString(R.string.draw), Toast.LENGTH_SHORT).show();
+                //TODO: DA1. Funcionar amb valors de strings.
+                Toast.makeText(context, context.getString(R.string.tie), Toast.LENGTH_LONG).show();
+
             }
             return;
         }
@@ -97,7 +101,8 @@ public class GameController {
         int randomTime = getRandomTimeToPlay();
         if (player == humanPlayer) {
             if (!isHumanPlayerTurn()) {
-                Toast.makeText(context, context.getString(R.string.not_turn), Toast.LENGTH_SHORT).show();
+                //TODO: DA1. Funcionar amb valors de strings.
+                Toast.makeText(context, context.getString(R.string.not_your_turn), Toast.LENGTH_SHORT).show();
                 return;
             }
             Card selectedCard = humanDeckViewModel.getSelectedCard().getValue();

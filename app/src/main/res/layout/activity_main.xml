@@ -83,9 +83,9 @@
         android:id="@+id/actualizar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="140dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/actualizar"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="actualizar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
