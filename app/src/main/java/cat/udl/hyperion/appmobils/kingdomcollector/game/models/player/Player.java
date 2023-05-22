@@ -1,5 +1,9 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.game.models.player;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
 import androidx.databinding.ObservableField;
 import androidx.lifecycle.MutableLiveData;
 
@@ -10,7 +14,7 @@ import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Card;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Deck;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.GameController;
 
-public abstract class Player implements Serializable {
+public abstract class Player implements Serializable, Parcelable {
     private String name;
     private ObservableField<Deck> deck;
     private MutableLiveData<Integer> points;
@@ -71,5 +75,39 @@ public abstract class Player implements Serializable {
     }
 
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeInt(points.getValue());
+        dest.writeParcelable(deck.get(), flags);
+    }
+    // Nuevo constructor para leer de un Parcel
+    protected Player(Parcel in) {
+        name = in.readString();
+        points = new MutableLiveData<>(in.readInt());
+        deck = new ObservableField<>(in.readParcelable(Deck.class.getClassLoader()));
+    }
+    // Creador Parcelable necesario
+    public static final Creator<Player> CREATOR = new Creator<Player>() {
+        @Override
+        public Player createFromParcel(Parcel in) {
+            return new Player(in) {
+                @Override
+                public void playTurn(GameController gameController) {
+                    // Implementación de playTurn va aquí. Puedes dejarla vacía si Player es una clase abstracta.
+                }
+            };
+        }
+
+        @Override
+        public Player[] newArray(int size) {
+            return new Player[size];
+        }
+    };
 
 }

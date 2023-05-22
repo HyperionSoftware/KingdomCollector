@@ -1,5 +1,8 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.game.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import androidx.annotation.NonNull;
 import androidx.databinding.ObservableField;
 import androidx.lifecycle.LiveData;
@@ -12,13 +15,10 @@ import androidx.room.PrimaryKey;
 import java.util.HashMap;
 import java.util.Map;
 
-
-import javax.annotation.Nonnull;
-
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.Player;
 
 @Entity(tableName = "cards")
-public class Card{
+public class Card implements Parcelable {
 
     @PrimaryKey
     @NonNull
@@ -32,7 +32,6 @@ public class Card{
     private int powerAbajo;
     private int powerDerecha;
     private boolean isSelected;
-
     @Ignore
     private ObservableField<Boolean> selected;
 
@@ -85,6 +84,7 @@ public class Card{
     public void setOwner(Player owner) {
         this.owner.setValue(owner);
     }
+
 
     public int getImageResource() {
         return imageUrl;
@@ -209,4 +209,59 @@ public class Card{
         return resultado;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeInt(imageUrl);
+        dest.writeString(name);
+        dest.writeString(type);
+        dest.writeInt(powerArriba);
+        dest.writeInt(powerIzquierda);
+        dest.writeInt(powerAbajo);
+        dest.writeInt(powerDerecha);
+        dest.writeByte((byte) (isSelected ? 1 : 0));  // If isSelected is true, write 1, otherwise write 0
+        // Check if owner is null before calling getValue()
+        if (owner != null && owner.getValue() != null) {
+            dest.writeParcelable(owner.getValue(), flags);
+        } else {
+            dest.writeParcelable(null, flags);
+        }
+    }
+    protected Card(Parcel in) {
+        id = in.readString();
+        imageUrl = in.readInt();
+        name = in.readString();
+        type = in.readString();
+        powerArriba = in.readInt();
+        powerIzquierda = in.readInt();
+        powerAbajo = in.readInt();
+        powerDerecha = in.readInt();
+        isSelected = in.readByte() != 0;  // isSelected is boolean; if it is true, then it is 1, otherwise it is 0
+        selected = new ObservableField<>(isSelected);
+
+        Player ownerPlayer = in.readParcelable(Player.class.getClassLoader());
+        if (ownerPlayer == null) {
+            owner = new MutableLiveData<>(null);
+        } else {
+            owner = new MutableLiveData<>(ownerPlayer);
+        }
+    }
+    // Creador Parcelable necesario
+    public static final Creator<Card> CREATOR = new Creator<Card>() {
+        @Override
+        public Card createFromParcel(Parcel in) {
+            return new Card(in);
+        }
+
+        @Override
+        public Card[] newArray(int size) {
+            return new Card[size];
+        }
+    };
 }

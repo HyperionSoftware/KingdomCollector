@@ -95,7 +95,12 @@
     <string name="draw">Empate</string>
     <string name="the_winner_is">El ganador es</string>
     <string name="title_kingdom_collector">Coleccionista del reino</string>
-
-
+    <string name="error_register_failed">El registro ha fallado</string>
+    <string name="recover_password_empty_email">Por favor, introduce tu correo electrónico</string>
+    <string name="recover_password_email_sent">Se ha enviado un correo electrónico para restablecer la contraseña</string>
+    <string name="recover_password_email_failed">Ha habido un error al enviar el correo electrónico para restablecer la contraseña</string>
+    <string name="error_usuario_no_autenticado">Error: Usuario no autenticado</string>
+    <string name="bienvenido">Bienvenido %1$s, tu último inicio de sesión fue: %2$s</string>
+    <string name="bienvenido_sin_registro">Bienvenido %1$s, no se encontraron registros de inicio de sesión anteriores.</string>
 
 </resources>

@@ -18,4 +18,7 @@ public interface CardDao {
 
     @Query("SELECT * FROM cards ORDER BY RANDOM() LIMIT :limit")
     LiveData<List<Card>> getRandomCards(int limit);
+
+    @Query("SELECT * FROM cards WHERE id = :id")
+    Card getCardById(String id);
 }

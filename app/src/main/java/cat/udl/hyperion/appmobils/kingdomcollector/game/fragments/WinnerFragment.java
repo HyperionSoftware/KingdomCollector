@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -44,8 +43,8 @@ public class WinnerFragment extends Fragment {
         String result = getArguments().getString(ARG_RESULT);
 
         // Mostrar el nombre del ganador y el resultado final
-        TextView tvResult = view.findViewById(R.id.tvResult);
-        tvResult.setText("El ganador es " + winnerName + ". Resultado final: " + result);
+       /* TextView tvResult = view.findViewById(R.id.tvResult);
+        tvResult.setText("El ganador es " + winnerName + ". Resultado final: " + result);*/
 
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();

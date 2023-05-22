@@ -1,20 +1,40 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.game.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
 import androidx.databinding.ObservableArrayList;
 
 import java.util.Collections;
+import java.util.List;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
 
 /**
  * Cada jugador tiene su Deck, que es una lista de cartas.
  */
-public class Deck {
+public class Deck implements Parcelable {
     private ObservableArrayList<Card> cards;
 
     public Deck(){
         initializeDeck();
     }
+
+    public Deck(List<Card> selectedCards){
+        initializeDeck(selectedCards);
+    }
+
+    public void initializeDeck(List<Card> selectedCards){
+        // Initialize deck with selected cards
+        cards = new ObservableArrayList<>();
+        cards.addAll(selectedCards);
+    }
+
+    public static Deck getInstance(List<Card> selectedCards) {
+        return new Deck(selectedCards);
+    }
+
 
 
     public void initializeDeck(){
@@ -48,9 +68,34 @@ public class Deck {
         return cards;
     }
 
-    /*public void notifyPropertyChanged(int fieldId) {
-        cards.notifyChange();
-    }*/
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    // Nuevo constructor para leer de un Parcel
+    protected Deck(Parcel in) {
+        cards = new ObservableArrayList<>();
+        in.readList(cards, Card.class.getClassLoader());
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeList(cards);
+    }
+
+    // Creador Parcelable necesario
+    public static final Creator<Deck> CREATOR = new Creator<Deck>() {
+        @Override
+        public Deck createFromParcel(Parcel in) {
+            return new Deck(in);
+        }
+
+        @Override
+        public Deck[] newArray(int size) {
+            return new Deck[size];
+        }
+    };
 
 
 }
