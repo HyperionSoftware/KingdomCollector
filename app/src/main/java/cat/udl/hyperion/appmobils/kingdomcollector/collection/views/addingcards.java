@@ -171,6 +171,19 @@ public class addingcards extends AppCompatActivity {
 
 
         //Cartas del equipo Sayans:
+        addCardToDbAndManager("Sayans1", R.drawable.sayans_fajardo_portero,"Fajardo", "Portero",3,6,3,8 );
+        addCardToDbAndManager("Sayans2", R.drawable.sayans_carbo_medio,"Carbo", "Medio",3,6,5,6 );
+        addCardToDbAndManager("Sayans3", R.drawable.sayans_david_delantero,"David", "Delantero",6,6,6,8 );
+        addCardToDbAndManager("Sayans4", R.drawable.sayans_feliu_medio,"Feliu", "Medio",5,5,3,8 );
+        addCardToDbAndManager("Sayans5", R.drawable.sayans_torres_defensa,"Torres", "Defensa",6,7,7,4 );
+        addCardToDbAndManager("Sayans6", R.drawable.sayans_valle_medio,"Valle", "Medio",5,7,5,3 );
+        addCardToDbAndManager("Sayans7", R.drawable.sayans_temo_medio,"Temo", "Medio",6,7,8,8 );
+        addCardToDbAndManager("Sayans8", R.drawable.sayans_campu_defensa,"Campu", "Defensa",6,7,3,5 );
+        addCardToDbAndManager("Sayans9", R.drawable.sayans_gio_delantero,"Gio", "Delantero",7,9,9,7 );
+        addCardToDbAndManager("Sayans10", R.drawable.sayans_briones_portero,"Briones", "Portero",10,9,9,9 );
+        addCardToDbAndManager("Sayans11", R.drawable.sayans_pol_jugador,"Pol", "Delantero",7,8,7,9 );
+        addCardToDbAndManager("Sayans12", R.drawable.sayans_thegrefg_presidente,"TheGrefg", "Presidente",10,11,11,9 );
+
 
         //Cartas del equipo UltimateMostoles:
 
