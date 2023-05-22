@@ -2,7 +2,6 @@ package cat.udl.hyperion.appmobils.kingdomcollector.collection.views;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 import android.os.Parcelable;
 import android.util.Log;
 
@@ -57,32 +56,20 @@ public class CollectionActivity extends AppCompatActivity {
         Executors.newSingleThreadExecutor().execute(new Runnable() {
             @Override
             public void run() {
-                List<Card> allCards;
-                try {
-                    allCards = db.cardDao().getAllCards();
-                } catch (Exception e) {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(CollectionActivity.this, R.string.error_message, Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    return;
-                }
-
+                List<Card> allCards = db.cardDao().getAllCards();
                 List<Card> presidenteCards = new ArrayList<>();
                 List<Card> delanteroCards = new ArrayList<>();
                 List<Card> medioCards = new ArrayList<>();
                 List<Card> defensaCards = new ArrayList<>();
 
                 for (Card card : allCards) {
-                    if (card.getType().equals(getString(R.string.card_type_president))) {
+                    if (card.getType().equals("Presidente")) {
                         presidenteCards.add(card);
-                    } else if (card.getType().equals(getString(R.string.card_type_forward))) {
+                    } else if (card.getType().equals("Delantero")) {
                         delanteroCards.add(card);
-                    } else if (card.getType().equals(getString(R.string.card_type_midfielder))) {
+                    } else if (card.getType().equals("Medio")) {
                         medioCards.add(card);
-                    } else if (card.getType().equals(getString(R.string.card_type_defender))) {
+                    } else if (card.getType().equals("Defensa")) {
                         defensaCards.add(card);
                     }
                 }
@@ -128,4 +115,3 @@ public class CollectionActivity extends AppCompatActivity {
         startActivity(intent);
     }
 }
-
