@@ -200,6 +200,19 @@ public class addingcards extends AppCompatActivity {
         addCardToDbAndManager("UltimateMostoles12", R.drawable.ultimate_djmario_presidente,"DjMario", "Presidente",10,11,10,11 );
 
         //Cartas del equipo XBuyer:
+        addCardToDbAndManager("XBuyer1", R.drawable.xbuyer_sep_portero,"Sep", "Portero",3,8,3,5 );
+        addCardToDbAndManager("XBuyer2", R.drawable.xbuyer_sierra_delantero,"Sierra", "Delantero",4,4,4,2 );
+        addCardToDbAndManager("XBuyer3", R.drawable.xbuyer_franc_medio,"Franc", "Medio",1,3,8,8 );
+        addCardToDbAndManager("XBuyer4", R.drawable.xbuyer_banuls_defensa,"Banuls", "Defensa",7,5,8,2 );
+        addCardToDbAndManager("XBuyer5", R.drawable.xbuyer_goran_medio,"Goran", "Medio",4,3,7,8 );
+        addCardToDbAndManager("XBuyer6", R.drawable.xbuyer_granero_delantero,"Granero", "Delantero",7,4,3,8 );
+        addCardToDbAndManager("XBuyer7", R.drawable.xbuyer_dani_defensa,"Dani", "Defensa",4,4,7,6 );
+        addCardToDbAndManager("XBuyer8", R.drawable.xbuyer_inaki_medio,"Iñaki", "Medio",5,6,7,3 );
+        addCardToDbAndManager("XBuyer9", R.drawable.xbuyer_poch_delantero,"Poch", "Delantero",4,8,8,9 );
+        addCardToDbAndManager("XBuyer10", R.drawable.xbuyer_capi_portero,"Capi", "Portero",9,8,8,10 );
+        addCardToDbAndManager("XBuyer11", R.drawable.xbuyer_castro_jugador,"Castro", "Delantero",7,4,7,2 );
+        addCardToDbAndManager("XBuyer12", R.drawable.xbuyer_buyer_presidente,"Hermanos Buyer", "Presidente",10,9,10,10 );
+
 
     }
     private void addCardToDbAndManager(final String id, final int drawable, final String name, final String role, final int powerArriba, final int powerIzquierda, final int powerAbajo, final int powerDerecha) {
