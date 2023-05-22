@@ -64,6 +64,38 @@ public class addingcards extends AppCompatActivity {
         addCardToDbAndManager("1k11", R.drawable.k_sauras_defensa,"Sauras", "Defensa",6,3,4,1 );
         addCardToDbAndManager("1k12", R.drawable.k_sorroche_delantero,"Sorroche", "Delantero",7,1,3,1 );
 
+        //Cartas del equipo Aniquiladores (12)
+        addCardToDbAndManager("Aniquiladores1", R.drawable.ani_andres_defensa,"Andres", "Defensa",5,3,5,2 );
+        addCardToDbAndManager("Aniquiladores2", R.drawable.ani_bernat_medio,"Bernat", "Medio",1,5,1,4 );
+        addCardToDbAndManager("Aniquiladores3", R.drawable.ani_daniel_portero,"Daniel", "Medio",7,7,6,6 );
+        addCardToDbAndManager("Aniquiladores4", R.drawable.ani_gilles_medio,"Gilles", "Medio",4,2,5,4 );
+        addCardToDbAndManager("Aniquiladores5", R.drawable.ani_glavaly_medio,"Glavaly", "Medio",3,7,1,2 );
+        addCardToDbAndManager("Aniquiladores6", R.drawable.ani_hernandez_11,"Hernandez", "Delantero",3,7,4,6 );
+        addCardToDbAndManager("Aniquiladores7", R.drawable.ani_jadir_defensa,"Jadir", "Defensa",6,7,6,2 );
+        addCardToDbAndManager("Aniquiladores8", R.drawable.ani_jorquera_defensa,"Jorquera", "Defensa",2,4,4,1 );
+        addCardToDbAndManager("Aniquiladores9", R.drawable.ani_juan_guarnizo_presidente,"Juan Guarnizo", "Presidente",10,10,9,9 );
+        addCardToDbAndManager("Aniquiladores10", R.drawable.ani_morales_portero,"Morales", "Portero",6,3,6,4 );
+        addCardToDbAndManager("Aniquiladores11", R.drawable.ani_pau_delantero,"Pau", "Delantero",6,2,1,1 );
+        addCardToDbAndManager("Aniquiladores12", R.drawable.ani_roger_medio,"Roger", "Medio",7,2,4,7 );
+
+        //Cartas del equipo Jijantes:
+
+        //Cartas del equipo KuniSports:
+
+        //Cartas del equipo LosTroncos:
+
+        //Cartas del equipo PIO:
+
+        //Cartas del equipo Porcinos:
+
+        //Cartas del equipo Rayo:
+
+        //Cartas del equipo Sayans:
+
+        //Cartas del equipo UltimateMostoles:
+
+        //Cartas del equipo XBuyer:
+
     }
     private void addCardToDbAndManager(final String id, final int drawable, final String name, final String role, final int powerArriba, final int powerIzquierda, final int powerAbajo, final int powerDerecha) {
         Executors.newSingleThreadExecutor().execute(new Runnable() {
