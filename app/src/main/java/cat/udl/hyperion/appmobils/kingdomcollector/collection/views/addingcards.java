@@ -175,6 +175,9 @@ public class addingcards extends AppCompatActivity {
                     cardManager.addCard(new FirestoreCard(id));
                     db.cardDao().insert(card);
                 }
+                else if (existingCard!=null){
+                    db.cardDao().getCardById(id).setImageResource(drawable);
+                }
             }
         });
     }
