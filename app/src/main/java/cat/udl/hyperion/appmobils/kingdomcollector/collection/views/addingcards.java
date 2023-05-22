@@ -79,8 +79,22 @@ public class addingcards extends AppCompatActivity {
         addCardToDbAndManager("Aniquiladores12", R.drawable.ani_roger_medio,"Roger", "Medio",7,2,4,7 );
 
         //Cartas del equipo Jijantes:
+        addCardToDbAndManager("Jijantes1", R.drawable.jij_alsina_medio,"Alsina", "Medio",7,1,3,1 );
+        addCardToDbAndManager("Jijantes2", R.drawable.jij_arnau_defensa,"Arnau", "Defensa",2,5,1,4 );
+        addCardToDbAndManager("Jijantes3", R.drawable.jij_dorado_delantero,"Dorado", "Delantero",3,5,1,2 );
+        addCardToDbAndManager("Jijantes4", R.drawable.jij_gerard_romero_presidente,"Gerard Romero", "Presidente",3,4,10,10 );
+        addCardToDbAndManager("Jijantes5", R.drawable.jij_golobart_jugador,"Golobart", "Delantero",2,6,2,1 );
+        addCardToDbAndManager("Jijantes6", R.drawable.jij_ivan_delantero,"Ivan", "Delantero",3,3,5,4 );
+        addCardToDbAndManager("Jijantes7", R.drawable.jij_jay_defensa,"Jay", "Defensa",5,4,3,3 );
+        addCardToDbAndManager("Jijantes8", R.drawable.jij_maca_medio,"Maca", "Medio",5,5,2,3 );
+        addCardToDbAndManager("Jijantes9", R.drawable.jij_mario_portero,"Mario", "Portero",4,2,7,4 );
+        addCardToDbAndManager("Jijantes10", R.drawable.jij_noel_defensa,"Noel", "Defensa",4,2,5,4 );
+        addCardToDbAndManager("Jijantes11", R.drawable.jij_pol_portero,"Pol", "Portero",6,3,2,2 );
+        addCardToDbAndManager("Jijantes12", R.drawable.jij_quero_medio,"Quero", "Medio",6,3,4,1 );
 
         //Cartas del equipo KuniSports:
+
+
 
         //Cartas del equipo LosTroncos:
 
