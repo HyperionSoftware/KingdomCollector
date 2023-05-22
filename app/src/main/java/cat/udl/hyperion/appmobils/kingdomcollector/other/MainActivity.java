@@ -22,9 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Objects;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
@@ -91,17 +89,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(String usuario_no_autenticado) {
                 //TODO: DA1. Funcionar amb valors de strings.
-                Toast.makeText(MainActivity.this, getString(R.string.unauthenticated_user_error) + usuario_no_autenticado, Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, getString(R.string.error_usuario_no_autenticado) + usuario_no_autenticado, Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onSuccess(String secondLastLogin) {
                 if (secondLastLogin != null) {
                     Log.d(myClassTag,"LastLogin:" + secondLastLogin);
-                    String welcomeMessage = String.format(getString(R.string.welcome), user.getDisplayName(), secondLastLogin);
+                    String welcomeMessage = String.format(getString(R.string.bienvenido), user.getDisplayName(), secondLastLogin);
                     Toast.makeText(MainActivity.this, welcomeMessage, Toast.LENGTH_SHORT).show();
                 } else {
-                    String welcomeNoRecordMessage = String.format(getString(R.string.welcome_without_registration), user.getDisplayName());
+                    String welcomeNoRecordMessage = String.format(getString(R.string.bienvenido_sin_registro), user.getDisplayName());
                     Toast.makeText(MainActivity.this, welcomeNoRecordMessage, Toast.LENGTH_SHORT).show();
                 }
             }
