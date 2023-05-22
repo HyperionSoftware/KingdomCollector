@@ -124,6 +124,18 @@ public class addingcards extends AppCompatActivity {
 
 
         //Cartas del equipo PIO:
+        addCardToDbAndManager("Pio1", R.drawable.pio_santiago_defensa,"Santiago", "Defensa",5,6,2,4 );
+        addCardToDbAndManager("Pio2", R.drawable.pio_ropero_medio,"Ropero", "Medio",1,7,4,5 );
+        addCardToDbAndManager("Pio3", R.drawable.pio_cokita_medio,"Cokita", "Medio",2,3,6,7 );
+        addCardToDbAndManager("Pio4", R.drawable.pio_adri_delantero,"Adri", "Delantero",9,2,8,4 );
+        addCardToDbAndManager("Pio5", R.drawable.pio_turner_defensa,"Turner", "Defensa",4,9,8,4 );
+        addCardToDbAndManager("Pio6", R.drawable.pio_juarez_medio,"Juarez", "Medio",7,8,6,7 );
+        addCardToDbAndManager("Pio7", R.drawable.pio_cabello_delantero,"Cabello", "Delantero",5,3,3,6 );
+        addCardToDbAndManager("Pio8", R.drawable.pio_pau_medio,"Pau", "Medio",5,3,7,2 );
+        addCardToDbAndManager("Pio9", R.drawable.pio_carlitos_defensa,"Carlitos", "Defensa",1,7,7,8 );
+        addCardToDbAndManager("Pio10", R.drawable.pio_jorge_portero,"Jorge", "Portero",10,8,2,7 );
+        addCardToDbAndManager("Pio11", R.drawable.pio_lopo_jugador,"Lopo", "Delantero",7,2,4,8 );
+        addCardToDbAndManager("Pio12", R.drawable.pio_rivers_presidente,"Rivers", "Presidente",10,4,10,9 );
 
 
 
