@@ -41,7 +41,7 @@ public class DeckFragment extends Fragment {
         binding.setLifecycleOwner(this);
 
         cardAdapter = new CardAdapter(deckViewModel.getDeck().getValue().getCards(), card -> deckViewModel.setSelectedCard(card));
-        binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,false));
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         binding.recyclerView.setAdapter(cardAdapter);
 
         deckViewModel.getDeck().observe(getViewLifecycleOwner(), deck -> {

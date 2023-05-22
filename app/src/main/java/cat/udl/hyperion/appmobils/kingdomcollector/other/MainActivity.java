@@ -1,10 +1,13 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.other;
 
+import static android.content.ContentValues.TAG;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -27,7 +30,6 @@ import java.util.Objects;
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
 import cat.udl.hyperion.appmobils.kingdomcollector.collection.views.CollectionActivity;
 import cat.udl.hyperion.appmobils.kingdomcollector.collection.views.addingcards;
-import cat.udl.hyperion.appmobils.kingdomcollector.game.views.GameActivity;
 import cat.udl.hyperion.appmobils.kingdomcollector.other.auth.LastLoginCallback;
 
 
@@ -39,23 +41,25 @@ public class MainActivity extends AppCompatActivity {
     private MediaPlayer mp;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference gameDataRef = database.getReference("game_data");
+    DatabaseReference gameDataRef = database.getReference("winner_count");
 
     String userId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
     DatabaseReference userGameDataRef = gameDataRef.child(userId);
+
+    // Nombre y puntuación máxima del usuario con más puntos.
+    private String highestScoringUserID;
+    private long highestScore;
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        loadHighestScore();
 
 
-        //Button Settings.
-        findViewById(R.id.btn_settings).setOnClickListener(view -> setBtn_aboutus());
-
-        //Button AboutUs.
-        findViewById(R.id.btn_terms).setOnClickListener(view -> setBtn_settings());
+        //Button Config.
+        findViewById(R.id.button_config).setOnClickListener(view-> goToSettings());
 
         //Button Start.
         findViewById(R.id.btn_start).setOnClickListener(view -> setBtn_start());
@@ -63,9 +67,14 @@ public class MainActivity extends AppCompatActivity {
         //Button Collection.
         findViewById(R.id.btn_collection).setOnClickListener(view -> setBtn_collection());
 
+
+        // Button Logout.
+        findViewById(R.id.btn_logout).setOnClickListener(v -> logout());
+
         //TODO: Borrar cuándo estén todas las cartas ya incluidas en firebase storage.
         //Button actualizar.
         findViewById(R.id.actualizar).setOnClickListener(view -> setBtn_actualizar());
+
 
         //Music
         mp = MediaPlayer.create(this,R.raw.check_it_out_now);
@@ -75,6 +84,8 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         assert user != null;
+
+        userGameDataRef.addValueEventListener(gameDataListener);
 
         getPenultimateLogin(new PenultimateLoginCallback() {
             @Override
@@ -96,7 +107,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.btn_logout).setOnClickListener(v -> logout());
 
     }
     @Override
@@ -106,15 +116,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void setBtn_actualizar() {
-        Intent intent = new Intent(this, addingcards.class);
-        startActivity(intent);
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        userGameDataRef.addValueEventListener(gameDataListener);
     }
 
-    // Método para parar la música cuando la app está en segundo plano
     @Override
     protected void onPause() {
         super.onPause();
+        // Pausar la música
         if (mp != null) {
             mp.pause();
         }
@@ -141,51 +153,29 @@ public class MainActivity extends AppCompatActivity {
     private void logout() {
         mAuth.signOut();
         finish();
-
     }
 
-    public void setBtn_aboutus(){
-        Intent intent = new Intent(this, AboutUs.class);
-        startActivity(intent);
-    }
 
-    public void setBtn_settings(){
-        Intent intent = new Intent(this, TermsAndConditions.class);
+    public void startNewActivity(Class<?> cls) {
+        Intent intent = new Intent(this, cls);
         startActivity(intent);
     }
 
     public void setBtn_start(){
-        Intent intent = new Intent(this, GameActivity.class);
-        startActivity(intent);
-
-        // Supongamos que la puntuación está almacenada en una variable llamada "puntuacion"
-        int puntuacion = 100;
-        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
-            String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-            // Guardar la puntuación en Firebase Realtime Database
-            DatabaseReference puntuacionesRef = FirebaseDatabase.getInstance().getReference("users/" + userId + "/puntuaciones");
-            String scoreId = puntuacionesRef.push().getKey();  // Generar un nuevo ID para la puntuación
-            if(scoreId != null) {
-                puntuacionesRef.child(scoreId).setValue(puntuacion)
-                        .addOnSuccessListener(aVoid -> Log.d(myClassTag, "Puntuación guardada en Firebase Realtime Database"))
-                        .addOnFailureListener(e -> Log.e(myClassTag, "Error al guardar la puntuación en Firebase Realtime Database", e));
-            } else {
-                // No se pudo generar un nuevo ID para la puntuación
-                Log.e(myClassTag, "Error al generar un nuevo ID para la puntuación");
-            }
-        } else {
-            // El usuario no está autenticado
-            Log.e(myClassTag, "Error al guardar la puntuación: Usuario no autenticado");
-        }
+        startNewActivity(PlayModeActivity.class);
     }
-
-
 
 
     public void setBtn_collection(){
-        Intent intent = new Intent(this, CollectionActivity.class);
-        startActivity(intent);
+        startNewActivity(CollectionActivity.class);
     }
+
+    private void goToSettings() {startNewActivity(Config.class);}
+
+    private void setBtn_actualizar() {startNewActivity(addingcards.class);}
+
+
+
     private void getLastLogin(LastLoginCallback callback) {
         FirebaseUser user = mAuth.getCurrentUser();
         if (user == null) {
@@ -253,9 +243,18 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
             if (dataSnapshot.exists()) {
-                long count = dataSnapshot.child("count").getValue(Long.class);
-                // Actualizar el valor del TextView con el valor de "count"
-                //personal_record_value.setText(String.valueOf(count));
+                Long count = dataSnapshot.getValue(Long.class);
+                //Actualizar el valor del TextView con el valor de "count"
+                TextView winnerCountText = findViewById(R.id.winner_count_value);
+                if (count != null) {
+                    winnerCountText.setText(String.valueOf(count));
+                } else {
+                    winnerCountText.setText("0");
+                }
+            } else {
+                // El nodo no existe o el usuario no ha ganado aún.
+                TextView winnerCountText = findViewById(R.id.winner_count_value);
+                winnerCountText.setText("0");
             }
         }
 
@@ -264,5 +263,30 @@ public class MainActivity extends AppCompatActivity {
             Log.w("MainActivity", "Error al leer los datos.", databaseError.toException());
         }
     };
+
+    // Método para obtener el score más alto
+    private void loadHighestScore() {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("winner_count");
+
+        reference.orderByValue().limitToLast(1).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    highestScoringUserID = snapshot.getKey();
+                    highestScore = snapshot.getValue(Long.class);
+                }
+
+                //highestScoreText.setText(String.valueOf(highestScore));
+                Log.w(TAG, "El score más alto es: " + highestScore);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Manejo del error.
+                Log.w(TAG, "Error al cargar el score más alto.", databaseError.toException());
+            }
+        });
+    }
+
 
 }

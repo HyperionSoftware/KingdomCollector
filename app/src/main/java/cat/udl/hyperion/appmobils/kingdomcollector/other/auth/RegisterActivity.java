@@ -64,11 +64,17 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         if (password.isEmpty()) {
-            editText_password.setError("Password is required");
+            editText_password.setError("La contraseña es requerida");
             Log.d(myClassTag, "Falta introducir la contraseña.");
             editText_password.requestFocus();
             return;
+        } else if (password.length() < 6) {
+            editText_password.setError("La contraseña debe tener al menos 6 caracteres");
+            Log.d(myClassTag, "La contraseña es demasiado corta.");
+            editText_password.requestFocus();
+            return;
         }
+
 
         if (username.isEmpty()) {
             editText_username.setError("Username is required");

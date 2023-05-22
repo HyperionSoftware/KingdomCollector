@@ -1,5 +1,6 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.game.fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,7 +21,7 @@ import cat.udl.hyperion.appmobils.kingdomcollector.other.MainActivity;
 public class WinnerFragment extends Fragment {
     private static final String ARG_WINNER_NAME = "winnerName";
     private static final String ARG_RESULT = "result";
-    private FirebaseAuth mAuth;
+
 
     public static WinnerFragment newInstance(String winnerName, String result) {
         WinnerFragment fragment = new WinnerFragment();
@@ -31,11 +32,13 @@ public class WinnerFragment extends Fragment {
         return fragment;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_winner, container, false);
 
         // Recuperar el nombre del ganador y el resultado final
+        assert getArguments() != null;
         String winnerName = getArguments().getString(ARG_WINNER_NAME);
         String result = getArguments().getString(ARG_RESULT);
 
@@ -44,16 +47,15 @@ public class WinnerFragment extends Fragment {
         tvResult.setText("El ganador es " + winnerName + ". Resultado final: " + result);*/
 
 
-        mAuth = FirebaseAuth.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         String userPlaying = user.getDisplayName();
         // Me aseguro que la imageView se vaya a mostrar you win o you lost dependiendo de si ha ganado o no el usuario. Gracias.
         ImageView imageView = view.findViewById(R.id.imageview_you_win);
         // Cambiamos esta imageView según el resultado de la partida:
-        if(winnerName.equalsIgnoreCase(userPlaying)){
+        if (winnerName.equalsIgnoreCase(userPlaying)) {
             imageView.setImageResource(R.drawable.image_win);
-        }
-        else{
+        } else {
             imageView.setImageResource(R.drawable.game_over);
         }
 
@@ -63,7 +65,7 @@ public class WinnerFragment extends Fragment {
 
         // Button para volver a jugar "play again"
         ImageButton btnPlayAgain = view.findViewById(R.id.btn_play_again);
-        btnPlayAgain.setOnClickListener(v-> playAgain());
+        btnPlayAgain.setOnClickListener(v -> playAgain());
         return view;
     }
 

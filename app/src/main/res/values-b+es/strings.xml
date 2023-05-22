@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">KingdomCollector</string>
-    <string name="title_activity_terms_and_conditions">Términos y condiciones</string>
     <string name="large_text">
         "Hyperion Mobile App Términos y condiciones de uso"
 
@@ -69,43 +68,24 @@
  "
     </string>
 
-    <string name="action_settings">Configuación</string>
-    <string name="aboutPage">Sobre Nosotros</string>
+   
     <string name="authors">Autores</string>
     <string name="version">Versión</string>
-    <string name="versionReal">1.0.0</string>
+    <string name="versionReal">7.0.0</string>
     <string name="Terms_Cond">Términos y condiciones</string>
     <string name="btn_settings"><![CDATA[TerminosyCondiciones]]></string>
     <string name="tablero_activity_title">Tablero</string>
     <string name="bnt_start">JUGAR</string>
     <string name="background" />
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hola blanco</string>
-    <string name="btn_00">0_0</string>
-    <string name="btn_01">0_1</string>
-    <string name="btn_02">0_2</string>
-    <string name="btn_10">1_0</string>
-    <string name="btn_11">1_1</string>
-    <string name="btn_12">1_2</string>
-    <string name="btn_20">2_0</string>
-    <string name="btn_21">2_1</string>
-    <string name="btn_22">2_2</string>
-    <string name="btn_c1">c1</string>
-    <string name="btn_c2">c2</string>
-    <string name="btn_c3">c3</string>
-    <string name="btn_c4">c4</string>
-    <string name="btn_c5">c5</string>
-
     <string name="txt_score">Puntuación: </string>
     <string name="txt_player_name">Nombre: </string>
     <string name="txt_cards">Cartas:</string>
     <string name="login_title">Iniciar sesión</string>
+    <string name="background_menu_principal">Fondo menú principal</string>
+    <string name="bnt_start">Botón para empezar</string>
     <string name="email_hint">Correo electrónico</string>
     <string name="password_hint">Contraseña</string>
     <string name="login_button">Iniciar sesión</string>
-    <string name="logout">Salir</string>
-    <string name="register">Registrarse</string>
     <string name="forgot_password">¿Has olvidado tu contraseña?</string>
     <string name="recoverpasswordButton">Recupera tu contraseña</string>
     <string name="putYourMailToRecover">Introduce tu correo electrónico para recuperar tu contraseña:</string>
@@ -129,12 +109,22 @@
     <string name="Thankyouforplay">¡Gracias por jugar nuestro juego!</string>
     <string name="welcometoourgame">¡Bienvenido a nuestro juego! Somos un equipo de desarrolladores apasionados por crear experiencias divertidas y emocionantes para nuestros jugadores.</string>
     <string name="update">Actualizar</string>
+    <string name="world_record_title">World Record</string>
+    <string name="hopeyouenjoyaboutus">Esperamos que disfrute jugando tanto como nosotros disfrutamos creando este juego para usted.</string>
+    <string name="Thankyouforplay">¡Gracias por jugar nuestro juego!</string>
+    <string name="welcometoourgame">¡Bienvenido a nuestro juego! Somos un equipo de desarrolladores apasionados por crear experiencias divertidas y emocionantes para nuestros jugadores.</string>
+    <string name="actualizar">actualizar</string>
+    <string name="email_sended_confirm">Se ha enviado un correo de verificación a su cuenta de correo electrónico. Por favor, confirme su correo electrónico antes de iniciar sesión.</string>
+    <string name="logo_about_us">Logo sobre nosotros</string>
+    <string name="not_turn">No es tu turno</string>
+    <string name="draw">Empate</string>
+    <string name="the_winner_is">El ganador es</string>
+    <string name="title_kingdom_collector">Coleccionista del reino</string>
 
     <!-- fragment_winner-->
     <string name="return_home" translatable="false">Return home</string>
     <string name="play_again" translatable="false">Return home</string>
 
-    <string name="email_sended_confirm">Se ha enviado un correo de verificación a su cuenta de correo electrónico. Por favor, confirme su correo electrónico antes de iniciar sesión.</string>
 
     <string name="card_type_president">Presidente</string>
     <string name="card_type_forward">Delantero</string>
