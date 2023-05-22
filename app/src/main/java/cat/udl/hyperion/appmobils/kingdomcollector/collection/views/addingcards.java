@@ -140,6 +140,19 @@ public class addingcards extends AppCompatActivity {
 
 
         //Cartas del equipo Porcinos:
+        addCardToDbAndManager("Porcinos1", R.drawable.porcinos_sergi_portero,"Sergi", "Portero",3,6,3,7 );
+        addCardToDbAndManager("Porcinos2", R.drawable.porcinos_lao_medio,"Lao", "Medio",3,3,5,4 );
+        addCardToDbAndManager("Porcinos3", R.drawable.porcinos_uri_delantero,"Uri", "Delantero",5,4,7,5 );
+        addCardToDbAndManager("Porcinos4", R.drawable.porcinos_blanco_delantero,"Blanco", "Delantero",3,6,3,6 );
+        addCardToDbAndManager("Porcinos5", R.drawable.porcinos_kiliam_delantero,"Kiliam", "Delantero",8,3,8,2 );
+        addCardToDbAndManager("Porcinos6", R.drawable.porcinos_carlitos_medio,"Carlitos", "Medio",2,5,1,3 );
+        addCardToDbAndManager("Porcinos7", R.drawable.porcinos_toti_medio,"Toti", "Medio",7,3,8,8 );
+        addCardToDbAndManager("Porcinos8", R.drawable.porcinos_david_defensa,"David", "Defensa",5,6,7,3 );
+        addCardToDbAndManager("Porcinos9", R.drawable.porcinos_cichero_defensa,"Cichero", "Defensa",8,4,7,6 );
+        addCardToDbAndManager("Porcinos10", R.drawable.porcinos_segovia_portero,"Segovia", "Portero",8,10,7,6 );
+        addCardToDbAndManager("Porcinos11", R.drawable.porcinos_espinosa_jugador,"Espinosa", "Delantero",8,4,3,6 );
+        addCardToDbAndManager("Porcinos12", R.drawable.porcinos_ibai_presidente,"Ibai", "Presidente",10,11,9,11 );
+
 
         //Cartas del equipo Rayo:
 
