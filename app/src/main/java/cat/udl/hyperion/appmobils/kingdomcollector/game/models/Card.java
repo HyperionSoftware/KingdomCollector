@@ -2,6 +2,7 @@ package cat.udl.hyperion.appmobils.kingdomcollector.game.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.ObservableField;
@@ -40,6 +41,7 @@ public class Card implements Parcelable {
 
 
     public Card(Map<String, Object> card) {
+        Log.d("Card", "Creating card from map: " + card.toString());
 
     }
 
@@ -185,6 +187,7 @@ public class Card implements Parcelable {
     public Map<String, Object> toMap() {
         // Crear un nuevo HashMap para almacenar los datos
         HashMap<String, Object> resultado = new HashMap<>();
+        Log.d("Card", "Card data as map: " + resultado.toString());
 
         // Agregar cada campo de la carta al mapa con su respectivo nombre de clave
         resultado.put("imageUrl", imageUrl);
@@ -244,6 +247,7 @@ public class Card implements Parcelable {
         powerDerecha = in.readInt();
         isSelected = in.readByte() != 0;  // isSelected is boolean; if it is true, then it is 1, otherwise it is 0
         selected = new ObservableField<>(isSelected);
+        Log.d("Card", "Creating card from parcel: " + in.toString());
 
         Player ownerPlayer = in.readParcelable(Player.class.getClassLoader());
         if (ownerPlayer == null) {

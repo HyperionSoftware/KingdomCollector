@@ -1,5 +1,7 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.game.models.player;
 
+import android.util.Log;
+
 import java.io.Serializable;
 import java.util.Random;
 
@@ -25,5 +27,6 @@ public class IAPlayer extends Player implements Serializable {
         gameController.getComputerDeckViewModel().setSelectedCard(gameController.getComputerDeckViewModel().getCardAtIndex(randomCardIndex));
 
         gameController.playCard(this, row, col);
+        Log.d("IAPlayer", "IA turn: Placed card at row " + row + ", col " + col);
     }
 }

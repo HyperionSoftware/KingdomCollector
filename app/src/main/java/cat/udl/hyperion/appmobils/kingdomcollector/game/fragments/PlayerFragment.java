@@ -1,6 +1,7 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.game.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,21 +55,25 @@ public class PlayerFragment extends Fragment {
         playerViewModel.getHumanPlayerName().observe(getViewLifecycleOwner(), name -> {
             binding.setPlayerViewModel(playerViewModel);
             binding.executePendingBindings();
+            Log.d("PlayerFragment", "Human player name changed: " + name);
         });
 
         playerViewModel.getHumanPlayerPoints().observe(getViewLifecycleOwner(), points -> {
             binding.setPlayerViewModel(playerViewModel);
             binding.executePendingBindings();
+            Log.d("PlayerFragment", "Human player points changed: " + points);
         });
 
         playerViewModel.getRobotPlayerName().observe(getViewLifecycleOwner(), name -> {
             binding.setPlayerViewModel(playerViewModel);
             binding.executePendingBindings();
+            Log.d("PlayerFragment", "Robot player name changed: " + name);
         });
 
         playerViewModel.getRobotPlayerPoints().observe(getViewLifecycleOwner(), points -> {
             binding.setPlayerViewModel(playerViewModel);
             binding.executePendingBindings();
+            Log.d("PlayerFragment", "Robot player points changed: " + points);
         });
 
         return binding.getRoot();

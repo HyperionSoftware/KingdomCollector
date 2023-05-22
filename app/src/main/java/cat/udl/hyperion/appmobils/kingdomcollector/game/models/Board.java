@@ -1,5 +1,7 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.game.models;
 
+import android.util.Log;
+
 import androidx.databinding.ObservableArrayMap;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -46,6 +48,7 @@ public class Board {
     }
 
     public void initializeBoard(){
+        Log.d("Board", "Initializing board...");
         board = new ObservableArrayMap<>();
         for(int i = 0; i < numRows; i++){
             ObservableArrayMap<String, Cell> row = new ObservableArrayMap<>();
@@ -54,13 +57,16 @@ public class Board {
             }
             board.put("row" + i, row);
         }
+        Log.d("Board", "Board initialized.");
     }
 
     public void placeCard(Card card, Cell cell){
+        Log.d("Board", "Placing card on cell: " + cell.getRow() + ", " + cell.getCol());
         String row = "row" + cell.getRow();
         String col = "cell" + cell.getCol();
         board.get(row).get(col).setCard(card);
         board.get(row).get(col).notifyPropertyChanged(0);
+        Log.d("Board", "Card placed.");
     }
 
     //public ObservableArrayMap<String, ObservableArrayMap<String, Cell>> getBoard() {

@@ -1,6 +1,7 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.collection.views;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -174,6 +175,7 @@ public class addingcards extends AppCompatActivity {
                     Card card = new Card(id, drawable, name, role, powerArriba, powerIzquierda, powerAbajo, powerDerecha);
                     cardManager.addCard(new FirestoreCard(id));
                     db.cardDao().insert(card);
+                    Log.d("addingcards", "Tarjeta agregada: " + card.getId());
                 }
             }
         });

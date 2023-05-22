@@ -1,6 +1,7 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.game.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +47,7 @@ public class DeckFragment extends Fragment {
 
         deckViewModel.getDeck().observe(getViewLifecycleOwner(), deck -> {
             cardAdapter.notifyDataSetChanged();
+            Log.d("DeckFragment", "Deck data changed");
         });
 
         return binding.getRoot();
