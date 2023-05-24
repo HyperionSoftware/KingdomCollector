@@ -121,4 +121,9 @@ public class DeckViewModel extends ViewModel {
         }
         return null;
     }
+
+    public void setCards(List<Card> selectedCards) {
+        Deck deck2 = new Deck(selectedCards);
+        deck.setValue(deck2);
+    }
 }

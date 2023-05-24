@@ -80,16 +80,6 @@
         android:contentDescription="@string/title_kingdom_collector" />
 
     <Button
-        android:id="@+id/actualizar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:text="actualizar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
         android:id="@+id/button_config"
         android:layout_width="59dp"
         android:layout_height="56dp"

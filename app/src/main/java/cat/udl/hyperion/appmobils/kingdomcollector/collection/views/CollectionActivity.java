@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,7 +18,6 @@ import com.google.android.gms.tasks.TaskCompletionSource;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,8 @@ import java.util.concurrent.Executors;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
 import cat.udl.hyperion.appmobils.kingdomcollector.collection.adapter.CardAdapter;
+import cat.udl.hyperion.appmobils.kingdomcollector.collection.admin.AddingCardsManager;
+import cat.udl.hyperion.appmobils.kingdomcollector.collection.admin.SharedPreferencesManager;
 import cat.udl.hyperion.appmobils.kingdomcollector.collection.db.AppDatabase;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Card;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.views.GameActivity;
@@ -42,14 +45,22 @@ public class CollectionActivity extends AppCompatActivity {
     private FirebaseFirestore firestore;
     private FirebaseAuth firebaseAuth;
     private List<String> userCardIds;
+    SharedPreferencesManager sharedPreferencesManager;
+    private ProgressBar loadingIndicator;
+
+    private AddingCardsManager addingCardsManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collection);
+        loadingIndicator = findViewById(R.id.loading_indicator);
+        addingCardsManager = new AddingCardsManager(this);
         firestore = FirebaseFirestore.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
         userCardIds = new ArrayList<>();
+        sharedPreferencesManager = new SharedPreferencesManager(this);
+        selectedCardsList = sharedPreferencesManager.getSelectedCards();
 
         db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "general-cards-local").build();
         //getUserCardIds();
@@ -62,9 +73,13 @@ public class CollectionActivity extends AppCompatActivity {
         selectedCardsRecyclerView = findViewById(R.id.your_team_recycler_view);
         LinearLayoutManager selectedLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         selectedCardsRecyclerView.setLayoutManager(selectedLayoutManager);
+        loadingIndicator.setVisibility(View.VISIBLE);
+
         getUserCardIds().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
+                loadingIndicator.setVisibility(View.GONE);
+
                 selectedCardsAdapter = new CardAdapter(selectedCardsList, selectedCardsList, userCardIds);
                 selectedCardsRecyclerView.setAdapter(selectedCardsAdapter);
                 getCardsFromDb();
@@ -162,23 +177,11 @@ public class CollectionActivity extends AppCompatActivity {
         return s;
     }
 
-    private void sendCardsToGame() {
-        if (selectedCardsList != null && !selectedCardsList.isEmpty()) {
-            Intent intent = new Intent(this, GameActivity.class);
-            intent.putParcelableArrayListExtra("selectedCards", (ArrayList<? extends Parcelable>) selectedCardsList);
-            startActivity(intent);
-
-            // Guardar las cartas seleccionadas en las SharedPreferences
-            Gson gson = new Gson();
-            String selectedCardsJson = gson.toJson(selectedCardsList);
-            getSharedPreferences("APP_PREFS", MODE_PRIVATE)
-                    .edit()
-                    .putString("selectedCards", selectedCardsJson)
-                    .apply();
-        } else {
-            Log.e("CollectionActivity", "selectedCardsList is null or empty. Cannot start GameActivity.");
-        }
+    private void sendCardsToGame(){
+        Intent intent = new Intent(this, GameActivity.class);
+        intent.putParcelableArrayListExtra("selectedCards", (ArrayList<? extends Parcelable>) selectedCardsList);
+        sharedPreferencesManager.storeSelectedCards(selectedCardsList);
+        startActivity(intent);
+        finish();
     }
-
-
 }

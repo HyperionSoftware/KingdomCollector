@@ -2,7 +2,6 @@ package cat.udl.hyperion.appmobils.kingdomcollector.game.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.ObservableField;
@@ -41,11 +40,12 @@ public class Card implements Parcelable {
 
 
     public Card(Map<String, Object> card) {
-
+        this.owner = new MutableLiveData<>(null);
+        // Assuming that you are going to assign the other properties here.
     }
 
     public Card(){
-
+        this.owner = new MutableLiveData<>(null);
     }
 
     /**
@@ -68,14 +68,8 @@ public class Card implements Parcelable {
         this.powerAbajo = powerAbajo;
         this.powerDerecha = powerDerecha;
         this.selected = new ObservableField<>(false);
-        if(owner == null){
-            this.owner = new MutableLiveData<>();
-        }
-        else{
-            this.owner.setValue(owner.getValue());
-        }
+        this.owner = new MutableLiveData<>(null);
     }
-
     public String getId() {
         return id;
     }
@@ -84,21 +78,12 @@ public class Card implements Parcelable {
         return owner;
     }
     public Player getOwner() {
-        if (owner != null) {
-            return owner.getValue();
-        } else {
-            return null; // O devuelve un objeto Player predeterminado o maneja el caso nulo según tus necesidades
-        }
+        return owner.getValue();
     }
-
 
     public void setOwner(Player owner) {
-        Log.d("setOwner", "owner is: " + (owner != null ? owner.getName() : "null"));
-        if (this.owner != null) {
-            this.owner.setValue(owner);
-        }
+        this.owner.setValue(owner);
     }
-
 
 
     public int getImageResource() {
@@ -115,11 +100,6 @@ public class Card implements Parcelable {
 
     public void setImageUrl(int imageUrl) {
         this.imageUrl = imageUrl;
-    }
-
-    public void setOwner(MutableLiveData<Player> owner) {
-        Log.d("setOwner", "owner is: " + (owner != null ? owner.getValue().getName() : "null"));
-        this.owner.setValue(owner.getValue());
     }
 
     public void setSelected(ObservableField<Boolean> selected) {
@@ -214,8 +194,6 @@ public class Card implements Parcelable {
 
         // Si la carta tiene un propietario, guardar el nombre del propietario
         // Aquí estamos asumiendo que la clase Player tiene un método getName() que devuelve el nombre del jugador
-        // Si la carta tiene un propietario, guardar el nombre del propietario
-        // Aquí estamos asumiendo que la clase Player tiene un método getName() que devuelve el nombre del jugador
         if (owner.getValue() != null) {
             resultado.put("owner", owner.getValue().getName());
         } else {
@@ -263,7 +241,6 @@ public class Card implements Parcelable {
         isSelected = in.readByte() != 0;  // isSelected is boolean; if it is true, then it is 1, otherwise it is 0
         selected = new ObservableField<>(isSelected);
 
-        // Read owner as Parcelable and set it to owner LiveData
         Player ownerPlayer = in.readParcelable(Player.class.getClassLoader());
         if (ownerPlayer == null) {
             owner = new MutableLiveData<>(null);

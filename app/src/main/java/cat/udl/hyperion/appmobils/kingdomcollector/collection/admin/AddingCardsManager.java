@@ -1,39 +1,22 @@
-package cat.udl.hyperion.appmobils.kingdomcollector.collection.views;
+package cat.udl.hyperion.appmobils.kingdomcollector.collection.admin;
 
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.content.Context;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
 import java.util.concurrent.Executors;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
-import cat.udl.hyperion.appmobils.kingdomcollector.collection.admin.CardManager;
-import cat.udl.hyperion.appmobils.kingdomcollector.collection.admin.FirestoreCard;
 import cat.udl.hyperion.appmobils.kingdomcollector.collection.db.AppDatabase;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Card;
 
-public class addingcards extends AppCompatActivity {
-
+public class AddingCardsManager {
     private CardManager cardManager;
     private AppDatabase db;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_addingcards);
-        cardManager = new CardManager();
-
-        Button refreshCardsButton = findViewById(R.id.button);
-        db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "general-cards-local").build();
-        refreshCardsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                addCards();
-            }
-        });
+    public AddingCardsManager(Context context){
+        db = Room.databaseBuilder(context, AppDatabase.class, "general-cards-local").build();
+        addCards();
     }
 
     private void addCards() {
@@ -215,7 +198,9 @@ public class addingcards extends AppCompatActivity {
 
 
         addCardToDbAndManager("PiqueJefeCreador", R.drawable.pique_presidente,"Pique", "Presidente",11,11,11,11 );
+
     }
+
     private void addCardToDbAndManager(final String id, final int drawable, final String name, final String role, final int powerArriba, final int powerIzquierda, final int powerAbajo, final int powerDerecha) {
         Executors.newSingleThreadExecutor().execute(new Runnable() {
             @Override
@@ -225,7 +210,7 @@ public class addingcards extends AppCompatActivity {
                 if (existingCard == null) {
                     // The card does not exist, so we can insert it
                     Card card = new Card(id, drawable, name, role, powerArriba, powerIzquierda, powerAbajo, powerDerecha);
-                    cardManager.addCard(new FirestoreCard(id));
+//                    cardManager.addCard(new FirestoreCard(id));
                     db.cardDao().insert(card);
                 }
                 else if (existingCard!=null){
@@ -234,6 +219,4 @@ public class addingcards extends AppCompatActivity {
             }
         });
     }
-
-
 }
