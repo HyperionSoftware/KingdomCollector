@@ -23,6 +23,7 @@ import java.util.concurrent.Executors;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
 import cat.udl.hyperion.appmobils.kingdomcollector.collection.adapter.CardAdapter;
+import cat.udl.hyperion.appmobils.kingdomcollector.collection.admin.SharedPreferencesManager;
 import cat.udl.hyperion.appmobils.kingdomcollector.collection.db.AppDatabase;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Card;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.views.GameActivity;
@@ -41,6 +42,7 @@ public class CollectionActivity extends AppCompatActivity {
     private FirebaseFirestore firestore;
     private FirebaseAuth firebaseAuth;
     private List<String> userCardIds;
+    SharedPreferencesManager sharedPreferencesManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,8 @@ public class CollectionActivity extends AppCompatActivity {
         firestore = FirebaseFirestore.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
         userCardIds = new ArrayList<>();
+        sharedPreferencesManager = new SharedPreferencesManager(this);
+        selectedCardsList = sharedPreferencesManager.getSelectedCards();
 
         db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "general-cards-local").build();
         //getUserCardIds();
@@ -164,6 +168,7 @@ public class CollectionActivity extends AppCompatActivity {
     private void sendCardsToGame(){
         Intent intent = new Intent(this, GameActivity.class);
         intent.putParcelableArrayListExtra("selectedCards", (ArrayList<? extends Parcelable>) selectedCardsList);
+        sharedPreferencesManager.storeSelectedCards(selectedCardsList);
         startActivity(intent);
     }
 }
