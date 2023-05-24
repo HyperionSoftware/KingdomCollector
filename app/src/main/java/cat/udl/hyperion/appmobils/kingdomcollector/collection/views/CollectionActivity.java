@@ -23,6 +23,7 @@ import java.util.concurrent.Executors;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
 import cat.udl.hyperion.appmobils.kingdomcollector.collection.adapter.CardAdapter;
+import cat.udl.hyperion.appmobils.kingdomcollector.collection.admin.AddingCardsManager;
 import cat.udl.hyperion.appmobils.kingdomcollector.collection.admin.SharedPreferencesManager;
 import cat.udl.hyperion.appmobils.kingdomcollector.collection.db.AppDatabase;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Card;
@@ -44,10 +45,13 @@ public class CollectionActivity extends AppCompatActivity {
     private List<String> userCardIds;
     SharedPreferencesManager sharedPreferencesManager;
 
+    private AddingCardsManager addingCardsManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collection);
+        addingCardsManager = new AddingCardsManager(this);
         firestore = FirebaseFirestore.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
         userCardIds = new ArrayList<>();
