@@ -27,7 +27,6 @@ import java.util.Objects;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
 import cat.udl.hyperion.appmobils.kingdomcollector.collection.views.CollectionActivity;
-import cat.udl.hyperion.appmobils.kingdomcollector.collection.views.addingcards;
 import cat.udl.hyperion.appmobils.kingdomcollector.other.auth.LastLoginCallback;
 
 
@@ -68,10 +67,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Button Logout.
         findViewById(R.id.btn_logout).setOnClickListener(v -> logout());
-
-        //TODO: Borrar cuándo estén todas las cartas ya incluidas en firebase storage.
-        //Button actualizar.
-        findViewById(R.id.actualizar).setOnClickListener(view -> setBtn_actualizar());
 
 
         //Music
@@ -170,7 +165,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void goToSettings() {startNewActivity(Config.class);}
 
-    private void setBtn_actualizar() {startNewActivity(addingcards.class);}
 
 
 
