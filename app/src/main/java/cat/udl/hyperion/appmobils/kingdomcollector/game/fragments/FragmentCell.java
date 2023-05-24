@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.databinding.DataBindingUtil;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,7 +45,9 @@ public class FragmentCell extends Fragment {
         cellViewModel.getImageResource().observe(getViewLifecycleOwner(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
+
                 binding.imageView.setImageResource(integer);
+                Log.d("FragmentCell", "Image resource changed: " + integer);
             }
         });
 
