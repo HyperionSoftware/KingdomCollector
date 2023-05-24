@@ -4,6 +4,8 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -18,9 +20,14 @@ import cat.udl.hyperion.appmobils.kingdomcollector.game.helpers.GlobalInfo;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Game;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.MultiplayerMatch;
 
+/**
+ * Esta clase es la encargada de obtener los datos de las partidas multijugador
+ */
+
 public class MultiplayerMatchesProvider {
 
     MultiplayerMatchesAdapter adapter;
+
     public List<MultiplayerMatch> getLaMevaLlista() {
         return laMevaLlista;
     }
@@ -28,13 +35,13 @@ public class MultiplayerMatchesProvider {
     List<MultiplayerMatch> laMevaLlista = new ArrayList<>();
 
     public MultiplayerMatchesProvider(){
-        laMevaLlista.add(new MultiplayerMatch("Carlos"));
+        // laMevaLlista.add(new MultiplayerMatch("Carlos")); // Comentamos esto ya que ahora se crea dinámicamente desde Firebase
     }
 
     public void getFromFirebase(){
         DatabaseReference myFirebaseDBGames = GlobalInfo.getIntance().getFirebaseGames();
         Query q = myFirebaseDBGames.orderByChild("status").equalTo(Game.MULTIPLAYER_STATUS_PENDING);
-        q.addListenerForSingleValueEvent(new ValueEventListener() {
+        q.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 refreshData(snapshot);
@@ -61,3 +68,4 @@ public class MultiplayerMatchesProvider {
         this.adapter = adapter;
     }
 }
+

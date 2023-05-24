@@ -1,6 +1,7 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.game.models;
 
-import cat.udl.hyperion.appmobils.kingdomcollector.game.GameController;
+
+
 
 public class Game {
 
@@ -12,8 +13,6 @@ public class Game {
     private Integer currentPlayerMultiplayer;
 
     Board board;
-
-    GameController gameController;
 
     public void init(){
         board = new Board();

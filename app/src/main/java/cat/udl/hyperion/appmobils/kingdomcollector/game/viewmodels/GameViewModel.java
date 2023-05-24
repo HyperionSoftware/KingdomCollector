@@ -1,8 +1,10 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels;
 
+import android.content.Context;
 import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
+import androidx.room.Room;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -11,7 +13,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,6 +21,7 @@ import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Board;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Game;
 
 public class GameViewModel {
+    private Context context;
 
     protected String myClassTag = this.getClass().getSimpleName();
 
@@ -37,6 +39,10 @@ public class GameViewModel {
         Game internalGame = new Game();
         internalGame.init();
         game.setValue(internalGame);
+    }
+
+    public void setContext(Context context){
+        this.context = context;
     }
 
     private void enableFirebaseDBv2() {
