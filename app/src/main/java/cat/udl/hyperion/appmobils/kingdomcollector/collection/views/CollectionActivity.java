@@ -170,5 +170,6 @@ public class CollectionActivity extends AppCompatActivity {
         intent.putParcelableArrayListExtra("selectedCards", (ArrayList<? extends Parcelable>) selectedCardsList);
         sharedPreferencesManager.storeSelectedCards(selectedCardsList);
         startActivity(intent);
+        finish();
     }
 }
