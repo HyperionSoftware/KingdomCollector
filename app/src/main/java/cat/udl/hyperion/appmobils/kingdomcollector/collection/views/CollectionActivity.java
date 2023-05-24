@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -44,6 +46,7 @@ public class CollectionActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private List<String> userCardIds;
     SharedPreferencesManager sharedPreferencesManager;
+    private ProgressBar loadingIndicator;
 
     private AddingCardsManager addingCardsManager;
 
@@ -51,6 +54,7 @@ public class CollectionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collection);
+        loadingIndicator = findViewById(R.id.loading_indicator);
         addingCardsManager = new AddingCardsManager(this);
         firestore = FirebaseFirestore.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
@@ -69,9 +73,13 @@ public class CollectionActivity extends AppCompatActivity {
         selectedCardsRecyclerView = findViewById(R.id.your_team_recycler_view);
         LinearLayoutManager selectedLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         selectedCardsRecyclerView.setLayoutManager(selectedLayoutManager);
+        loadingIndicator.setVisibility(View.VISIBLE);
+
         getUserCardIds().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
+                loadingIndicator.setVisibility(View.GONE);
+
                 selectedCardsAdapter = new CardAdapter(selectedCardsList, selectedCardsList, userCardIds);
                 selectedCardsRecyclerView.setAdapter(selectedCardsAdapter);
                 getCardsFromDb();
