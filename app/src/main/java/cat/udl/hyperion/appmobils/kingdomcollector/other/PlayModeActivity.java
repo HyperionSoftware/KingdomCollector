@@ -9,6 +9,7 @@ import android.os.Bundle;
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
 import cat.udl.hyperion.appmobils.kingdomcollector.collection.views.CollectionActivity;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.views.GameActivity;
+import cat.udl.hyperion.appmobils.kingdomcollector.game.views.MultiplayerGameSelector;
 
 public class PlayModeActivity extends AppCompatActivity {
 
@@ -43,7 +44,7 @@ public class PlayModeActivity extends AppCompatActivity {
 
     public void goToHome(){startNewActivity(MainActivity.class);}
 
-    public void playOnline(){startNewActivity(GameActivity.class);}
+    public void playOnline(){startNewActivity(MultiplayerGameSelector.class);}
 
     public void playLocal(){startNewActivity(GameActivity.class);}
 
