@@ -17,10 +17,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
+import cat.udl.hyperion.appmobils.kingdomcollector.collection.admin.SharedPreferencesManager;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.fragments.WinnerFragment;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Card;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.HumanPlayer;
@@ -45,8 +47,9 @@ public class GameController {
     private final Handler handler;
     private final Context context;
     private final GameActivity gameActivity;
+    private final SharedPreferencesManager sharedPreferencesManager;
 
-    public GameController(Context context, BoardViewModel boardViewModel, DeckViewModel humanDeckViewModel, DeckViewModel computerDeckViewModel, GameActivity gameActivity) {
+    public GameController(Context context, BoardViewModel boardViewModel, DeckViewModel humanDeckViewModel, DeckViewModel computerDeckViewModel, GameActivity gameActivity, SharedPreferencesManager sharedPreferencesManager) {
         this.context = context;
         this.boardViewModel = boardViewModel;
         this.humanDeckViewModel = humanDeckViewModel;
@@ -58,6 +61,9 @@ public class GameController {
         this.computerPlayer = new IAPlayer("Computer");
         this.currentPlayer = humanPlayer;
         this.gameActivity = gameActivity;
+        this.sharedPreferencesManager = sharedPreferencesManager;
+        List<Card> selectedCards = sharedPreferencesManager.getSelectedCards();
+        humanDeckViewModel.setCards(selectedCards);
 
 
         // Inicializar el propietario de las cartas en cada mazo

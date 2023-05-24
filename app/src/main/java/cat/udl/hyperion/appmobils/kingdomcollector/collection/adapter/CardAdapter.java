@@ -19,10 +19,16 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
     private List<Card> selectedCards;
     private OnClickListener onClickListener = null;
 
-    public CardAdapter(List<Card> cards, List<Card> selectedCards) {
+    // Cartas que tiene el usuario:
+    private List<String> userCardIds;
+
+
+    public CardAdapter(List<Card> cards, List<Card> selectedCards, List<String> userCardIds) {
         this.cards = cards;
         this.selectedCards = selectedCards;
+        this.userCardIds = userCardIds;
     }
+
 
     @Override
     public CardViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -35,38 +41,54 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
         Card card = cards.get(position);
         holder.bind(card);
 
-        // Aplicar efecto de selección a la tarjeta
-        if (isSelected(card)) {
-            holder.itemView.setAlpha(0.5f); // Establecer opacidad reducida para indicar selección
+        boolean cardOwned = userCardIds.contains(card.getId()) || false;
+
+        // Oscurecer la tarjeta si el usuario no la posee
+        if (!cardOwned) {
+            holder.itemView.setAlpha(0.5f);  // Ajusta este valor según el efecto de oscurecimiento deseado
         } else {
-            holder.itemView.setAlpha(1.0f); // Establecer opacidad normal para tarjetas no seleccionadas
+            // Si el usuario posee la tarjeta pero está seleccionada, oscurecerla aún más
+            if (isSelected(card)) {
+                holder.itemView.setAlpha(0.3f); // Establecer opacidad más reducida para indicar selección
+            } else {
+                holder.itemView.setAlpha(1.0f); // Establecer opacidad normal para tarjetas no seleccionadas que el usuario posee
+            }
         }
 
         // Agregar OnClickListener para manejar el evento de selección de la tarjeta
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Verificar si la tarjeta ya está seleccionada
-                if (isSelected(card)) {
-                    removeSelectedCard(card);
-                    notifyItemRemoved(selectedCards.indexOf(card));
-                } else {
-                    // Comprobar si el equipo ya tiene 5 cartas
-                    if (selectedCards.size() >= 5) {
-                        Toast.makeText(v.getContext(), "El equipo ya tiene 5 cartas. Desselecciona una carta para agregar otra.", Toast.LENGTH_LONG).show();
+                // Comprobar si la carta pertenece al usuario
+                if (cardOwned) {
+                    // Verificar si la tarjeta ya está seleccionada
+                    if (isSelected(card)) {
+                        removeSelectedCard(card);
+                        notifyItemRemoved(selectedCards.indexOf(card));
+                        holder.itemView.setAlpha(1.0f); // Volver a la opacidad normal una vez deseleccionada
                     } else {
-                        addSelectedCard(card);
-                        notifyItemInserted(selectedCards.size() - 1);
+                        // Comprobar si el equipo ya tiene 5 cartas
+                        if (selectedCards.size() >= 5) {
+                            Toast.makeText(v.getContext(), "El equipo ya tiene 5 cartas. Desselecciona una carta para agregar otra.", Toast.LENGTH_LONG).show();
+                        } else {
+                            addSelectedCard(card);
+                            notifyItemInserted(selectedCards.size() - 1);
+                            holder.itemView.setAlpha(0.3f); // Oscurecer la tarjeta seleccionada
+                        }
                     }
-                }
-                if (onClickListener != null) {
-                    onClickListener.onClick();
-                }
+                    if (onClickListener != null) {
+                        onClickListener.onClick();
+                    }
 
-                notifyDataSetChanged();
+                    notifyDataSetChanged();
+                } else {
+                    Toast.makeText(v.getContext(), "No posees esta carta.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
+
+
 
     @Override
     public int getItemCount() {
@@ -94,8 +116,9 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
     }
 
     private boolean isSelected(Card card) {
-        return selectedCards.contains(card);
+        return selectedCards != null && selectedCards.contains(card);
     }
+
 
     private void addSelectedCard(Card card) {
         selectedCards.add(card);

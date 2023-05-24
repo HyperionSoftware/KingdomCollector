@@ -155,13 +155,66 @@ public class addingcards extends AppCompatActivity {
 
 
         //Cartas del equipo Rayo:
+        addCardToDbAndManager("Rayo1", R.drawable.rayo_alex_delantero,"Alex", "Delantero",6,7,3,6 );
+        addCardToDbAndManager("Rayo2", R.drawable.rayo_jonathan_medio,"Jonathan", "Medio",4,4,7,6 );
+        addCardToDbAndManager("Rayo3", R.drawable.rayo_biboum_delantero,"Biboum", "Delantero",6,5,3,5 );
+        addCardToDbAndManager("Rayo4", R.drawable.rayo_alejandro_defensa,"Alejandro", "Defensa",6,3,2,6 );
+        addCardToDbAndManager("Rayo5", R.drawable.rayo_dani_medio,"Dani", "Medio",4,4,2,4 );
+        addCardToDbAndManager("Rayo6", R.drawable.rayo_franky_medio,"Franky", "Medio",5,4,2,6 );
+        addCardToDbAndManager("Rayo7", R.drawable.rayo_reyes_defensa,"Reyes", "Defensa",5,3,3,6 );
+        addCardToDbAndManager("Rayo8", R.drawable.rayo_guillem_delantero,"Guillem", "Delantero",7,3,5,1 );
+        addCardToDbAndManager("Rayo9", R.drawable.rayo_canet_portero,"Canet", "Portero",7,3,1,5 );
+        addCardToDbAndManager("Rayo10", R.drawable.rayo_pelaz_medio,"Pelaz", "Medio",9,8,8,9 );
+        addCardToDbAndManager("Rayo11", R.drawable.rayo_polotelli_jugador,"Polotelli", "Delantero",2,8,7,2 );
+        addCardToDbAndManager("Rayo12", R.drawable.rayo_spursito_presidente,"Spursito", "Presidente",4,7,10,10 );
+
+
 
         //Cartas del equipo Sayans:
+        addCardToDbAndManager("Sayans1", R.drawable.sayans_fajardo_portero,"Fajardo", "Portero",3,6,3,8 );
+        addCardToDbAndManager("Sayans2", R.drawable.sayans_carbo_medio,"Carbo", "Medio",3,6,5,6 );
+        addCardToDbAndManager("Sayans3", R.drawable.sayans_david_delantero,"David", "Delantero",6,6,6,8 );
+        addCardToDbAndManager("Sayans4", R.drawable.sayans_feliu_medio,"Feliu", "Medio",5,5,3,8 );
+        addCardToDbAndManager("Sayans5", R.drawable.sayans_torres_defensa,"Torres", "Defensa",6,7,7,4 );
+        addCardToDbAndManager("Sayans6", R.drawable.sayans_valle_medio,"Valle", "Medio",5,7,5,3 );
+        addCardToDbAndManager("Sayans7", R.drawable.sayans_temo_medio,"Temo", "Medio",6,7,8,8 );
+        addCardToDbAndManager("Sayans8", R.drawable.sayans_campu_defensa,"Campu", "Defensa",6,7,3,5 );
+        addCardToDbAndManager("Sayans9", R.drawable.sayans_gio_delantero,"Gio", "Delantero",7,9,9,7 );
+        addCardToDbAndManager("Sayans10", R.drawable.sayans_briones_portero,"Briones", "Portero",10,9,9,9 );
+        addCardToDbAndManager("Sayans11", R.drawable.sayans_pol_jugador,"Pol", "Delantero",7,8,7,9 );
+        addCardToDbAndManager("Sayans12", R.drawable.sayans_thegrefg_presidente,"TheGrefg", "Presidente",10,11,11,9 );
+
 
         //Cartas del equipo UltimateMostoles:
+        addCardToDbAndManager("UltimateMostoles1", R.drawable.ultimate_lucca_medio,"Lucca", "Medio",2,5,5,4 );
+        addCardToDbAndManager("UltimateMostoles2", R.drawable.ultimate_nacho_portero,"Nacho", "Portero",3,7,8,7 );
+        addCardToDbAndManager("UltimateMostoles3", R.drawable.ultimate_zea_delantero,"Zea", "Delantero",6,10,6,4 );
+        addCardToDbAndManager("UltimateMostoles4", R.drawable.ultimate_ian_defensa,"Ian", "Defensa",6,6,7,7 );
+        addCardToDbAndManager("UltimateMostoles5", R.drawable.ultimate_iker_defensa,"Iker", "Defensa",8,2,8,7 );
+        addCardToDbAndManager("UltimateMostoles6", R.drawable.ultimate_llur_delantero,"Llur", "Delantero",7,6,9,6 );
+        addCardToDbAndManager("UltimateMostoles7", R.drawable.ultimate_alexi_medio ,"Alexi", "Medio",4,7,10,4 );
+        addCardToDbAndManager("UltimateMostoles8", R.drawable.ultimate_guti_defensa,"Guti", "Defensa",5,7,9,7 );
+        addCardToDbAndManager("UltimateMostoles9", R.drawable.ultimate_lu_portero,"Lu", "Portero",10,7,9,7 );
+        addCardToDbAndManager("UltimateMostoles10", R.drawable.ultimate_arche_medio,"Arche", "Medio",7,10,5,7 );
+        addCardToDbAndManager("UltimateMostoles11", R.drawable.ultimate_juanma_jugador,"Juanma", "Delantero",7,10,9,8 );
+        addCardToDbAndManager("UltimateMostoles12", R.drawable.ultimate_djmario_presidente,"DjMario", "Presidente",10,11,10,11 );
 
         //Cartas del equipo XBuyer:
+        addCardToDbAndManager("XBuyer1", R.drawable.xbuyer_sep_portero,"Sep", "Portero",3,8,3,5 );
+        addCardToDbAndManager("XBuyer2", R.drawable.xbuyer_sierra_delantero,"Sierra", "Delantero",4,4,4,2 );
+        addCardToDbAndManager("XBuyer3", R.drawable.xbuyer_franc_medio,"Franc", "Medio",1,3,8,8 );
+        addCardToDbAndManager("XBuyer4", R.drawable.xbuyer_banuls_defensa,"Banuls", "Defensa",7,5,8,2 );
+        addCardToDbAndManager("XBuyer5", R.drawable.xbuyer_goran_medio,"Goran", "Medio",4,3,7,8 );
+        addCardToDbAndManager("XBuyer6", R.drawable.xbuyer_granero_delantero,"Granero", "Delantero",7,4,3,8 );
+        addCardToDbAndManager("XBuyer7", R.drawable.xbuyer_dani_defensa,"Dani", "Defensa",4,4,7,6 );
+        addCardToDbAndManager("XBuyer8", R.drawable.xbuyer_inaki_medio,"Iñaki", "Medio",5,6,7,3 );
+        addCardToDbAndManager("XBuyer9", R.drawable.xbuyer_poch_delantero,"Poch", "Delantero",4,8,8,9 );
+        addCardToDbAndManager("XBuyer10", R.drawable.xbuyer_capi_portero,"Capi", "Portero",9,8,8,10 );
+        addCardToDbAndManager("XBuyer11", R.drawable.xbuyer_castro_jugador,"Castro", "Delantero",7,4,7,2 );
+        addCardToDbAndManager("XBuyer12", R.drawable.xbuyer_buyer_presidente,"Hermanos Buyer", "Presidente",10,9,10,10 );
 
+
+        addCardToDbAndManager("PiqueJefeCreador", R.drawable.pique_presidente,"Pique", "Presidente",11,11,11,11 );
     }
     private void addCardToDbAndManager(final String id, final int drawable, final String name, final String role, final int powerArriba, final int powerIzquierda, final int powerAbajo, final int powerDerecha) {
         Executors.newSingleThreadExecutor().execute(new Runnable() {
@@ -174,6 +227,9 @@ public class addingcards extends AppCompatActivity {
                     Card card = new Card(id, drawable, name, role, powerArriba, powerIzquierda, powerAbajo, powerDerecha);
                     cardManager.addCard(new FirestoreCard(id));
                     db.cardDao().insert(card);
+                }
+                else if (existingCard!=null){
+                    db.cardDao().getCardById(id).setImageResource(drawable);
                 }
             }
         });
