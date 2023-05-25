@@ -20,13 +20,17 @@ import cat.udl.hyperion.appmobils.kingdomcollector.game.helpers.GlobalInfo;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Game;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.MultiplayerMatch;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.provider.MultiplayerMatchesProvider;
+import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.GameViewModel;
 
 public class MultiplayerGameSelector extends AppCompatActivity {
+
+    GameViewModel gameViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.multiplayer_game_selector);
+
 
         Button btnCreateMatch = findViewById(R.id.btn_create_match);
         btnCreateMatch.setOnClickListener(new View.OnClickListener() {
@@ -61,7 +65,7 @@ public class MultiplayerGameSelector extends AppCompatActivity {
 
         // Crea un nuevo objeto MultiplayerMatch con el nombre de usuario actual y el estado pendiente
         MultiplayerMatch newMatch = new MultiplayerMatch("Carlos"); // replace with actual user name
-        newMatch.setStatus(Game.MULTIPLAYER_STATUS_PENDING); // Assumes you have a setStatus method
+        newMatch.setStatus(Game.MULTIPLAYER_STATUS_PENDING);
 
         // Guarda la partida en Firebase
         myFirebaseDBGames.child(matchId).setValue(newMatch)

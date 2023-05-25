@@ -3,9 +3,13 @@ package cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels;
 import android.content.Context;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 import androidx.room.Room;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -19,21 +23,19 @@ import java.util.Map;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.helpers.GlobalInfo;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Board;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Game;
+import cat.udl.hyperion.appmobils.kingdomcollector.game.models.MultiplayerMatch;
 
-public class GameViewModel {
-    private Context context;
+public class GameViewModel extends ViewModel {
 
     protected String myClassTag = this.getClass().getSimpleName();
 
-
     private final MutableLiveData<Game> game = new MutableLiveData<>();
+    private Context context;
 
     private DatabaseReference myRef;
     private DatabaseReference myFirebaseDBReference;
 
     private Integer myMultiplayerPlayerType;
-
-
 
     public GameViewModel(){
         Game internalGame = new Game();
@@ -92,7 +94,6 @@ public class GameViewModel {
     public void multiplayerConnect(String gameKey) {
         DatabaseReference games = GlobalInfo.getIntance().getFirebaseGames();
 
-//        setting my config
         myMultiplayerPlayerType = Game.MULTIPLAYER_TYPE_CONNECT;
         myFirebaseDBReference = games.child(gameKey);
 

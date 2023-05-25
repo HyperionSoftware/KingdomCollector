@@ -27,7 +27,7 @@ public class MultiplayerMatchViewHolder extends RecyclerView.ViewHolder{
 
     private void jumpToGame() {
 
-        //
+
 
     }
 
