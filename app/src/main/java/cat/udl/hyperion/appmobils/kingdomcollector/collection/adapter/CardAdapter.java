@@ -1,7 +1,6 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.collection.adapter;
 
 import android.content.res.Resources;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,7 +49,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
         } else {
             // Si el usuario posee la tarjeta pero está seleccionada, oscurecerla aún más
             if (isSelected(card)) {
-                holder.itemView.setAlpha(0.3f); // Establecer opacidad más reducida para indicar selección
+                holder.itemView.setAlpha(0.7f); // Establecer opacidad más reducida para indicar selección
             } else {
                 holder.itemView.setAlpha(1.0f); // Establecer opacidad normal para tarjetas no seleccionadas que el usuario posee
             }
