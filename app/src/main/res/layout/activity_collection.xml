@@ -16,6 +16,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:text="Presidentes" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -27,6 +28,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:text="Delanteros" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -38,6 +40,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:text="Medios" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -49,6 +52,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:text="Defensas" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -60,6 +64,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:text="Tu equipo" />
 
         <androidx.recyclerview.widget.RecyclerView
