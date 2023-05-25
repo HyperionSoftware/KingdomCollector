@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 import java.util.List;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
+import cat.udl.hyperion.appmobils.kingdomcollector.collection.admin.SharedPreferencesManager;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.GameController;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.fragments.BoardFragment;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.fragments.DeckFragment;
@@ -21,17 +22,21 @@ import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.DeckViewModel
 
 public class GameActivity extends AppCompatActivity {
     private GameController gameController;
-
+    // Crear una instancia de SharedPreferencesManager
+    SharedPreferencesManager sharedPreferencesManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         BoardViewModel boardViewModel = new BoardViewModel(gameController);
-        List<Card> selectedCards = getIntent().getParcelableArrayListExtra("selectedCards");
+        sharedPreferencesManager = new SharedPreferencesManager(this);
+
+        List<Card> selectedCards;
+        selectedCards = sharedPreferencesManager.getSelectedCards();
         DeckViewModel humanDeckViewModel = new DeckViewModel(selectedCards);
         DeckViewModel computerDeckViewModel = new DeckViewModel();
 
-        gameController = new GameController(this, boardViewModel, humanDeckViewModel, computerDeckViewModel,this);
+        gameController = new GameController(this, boardViewModel, humanDeckViewModel, computerDeckViewModel,this,sharedPreferencesManager);
 
         PlayerFragment playerFragment = PlayerFragment.newInstance((HumanPlayer) gameController.getHumanPlayer(), (IAPlayer)gameController.getComputerPlayer());
         DeckFragment deckFragment = DeckFragment.newInstance(humanDeckViewModel);

@@ -41,12 +41,13 @@ public class Card implements Parcelable {
 
 
     public Card(Map<String, Object> card) {
+        this.owner = new MutableLiveData<>(null);
+        // Assuming that you are going to assign the other properties here.
         Log.d("Card", "Creating card from map: " + card.toString());
-
     }
 
     public Card(){
-
+        this.owner = new MutableLiveData<>(null);
     }
 
     /**
@@ -71,7 +72,6 @@ public class Card implements Parcelable {
         this.selected = new ObservableField<>(false);
         this.owner = new MutableLiveData<>(null);
     }
-
     public String getId() {
         return id;
     }
@@ -102,10 +102,6 @@ public class Card implements Parcelable {
 
     public void setImageUrl(int imageUrl) {
         this.imageUrl = imageUrl;
-    }
-
-    public void setOwner(MutableLiveData<Player> owner) {
-        this.owner = owner;
     }
 
     public void setSelected(ObservableField<Boolean> selected) {
