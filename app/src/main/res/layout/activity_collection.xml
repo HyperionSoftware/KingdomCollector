@@ -16,7 +16,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Presidentes" />
+            android:textStyle="bold"
+            android:text="@string/presidentes" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/presidente_recycler_view"
@@ -27,7 +28,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Delanteros" />
+            android:textStyle="bold"
+            android:text="@string/delanteros" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/delantero_recycler_view"
@@ -38,7 +40,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Medios" />
+            android:textStyle="bold"
+            android:text="@string/medios" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/medio_recycler_view"
@@ -49,7 +52,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Defensas" />
+            android:textStyle="bold"
+            android:text="@string/defensas" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/defensa_recycler_view"
@@ -60,7 +64,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tu equipo" />
+            android:textStyle="bold"
+            android:text="@string/tu_equipo" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/your_team_recycler_view"
@@ -74,7 +79,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/confirm_button_2"
-            android:text="Confirmar selección"
+            android:text="@string/confirmar_seleccion"
             />
 
 
