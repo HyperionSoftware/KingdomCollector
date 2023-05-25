@@ -13,8 +13,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
-import cat.udl.hyperion.appmobils.kingdomcollector.game.adapters.CardAdapter;
 import cat.udl.hyperion.appmobils.kingdomcollector.databinding.FragmentDeckBinding;
+import cat.udl.hyperion.appmobils.kingdomcollector.game.adapters.CardAdapter;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.DeckViewModel;
 
 public class DeckFragment extends Fragment {
@@ -28,6 +28,7 @@ public class DeckFragment extends Fragment {
         deckFragment.setDeckViewModel(humanDeckViewModel);
         return deckFragment;
     }
+
 
     public void setDeckViewModel(DeckViewModel deckViewModel) {
         this.deckViewModel = deckViewModel;

@@ -31,7 +31,7 @@ import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.Player;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.BoardViewModel;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.CellViewModel;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.DeckViewModel;
-import cat.udl.hyperion.appmobils.kingdomcollector.game.views.GameActivity;
+import cat.udl.hyperion.appmobils.kingdomcollector.game.views.GameActivityInterface;
 
 public class GameController {
     private static final String TAG = "GameController";
@@ -46,11 +46,12 @@ public class GameController {
     private FirebaseAuth mAuth;
     private final Handler handler;
     private final Context context;
-    private final GameActivity gameActivity;
     private final SharedPreferencesManager sharedPreferencesManager;
+    private GameActivityInterface gameActivityInterface;
 
-    public GameController(Context context, BoardViewModel boardViewModel, DeckViewModel humanDeckViewModel, DeckViewModel computerDeckViewModel, GameActivity gameActivity, SharedPreferencesManager sharedPreferencesManager) {
+    public GameController(Context context, BoardViewModel boardViewModel, DeckViewModel humanDeckViewModel, DeckViewModel computerDeckViewModel, GameActivityInterface gameActivityInterface, SharedPreferencesManager sharedPreferencesManager) {
         this.context = context;
+        this.gameActivityInterface = gameActivityInterface;
         this.boardViewModel = boardViewModel;
         this.humanDeckViewModel = humanDeckViewModel;
         this.computerDeckViewModel = computerDeckViewModel;
@@ -60,7 +61,6 @@ public class GameController {
         this.humanPlayer = new HumanPlayer(user.getDisplayName());
         this.computerPlayer = new IAPlayer("Computer");
         this.currentPlayer = humanPlayer;
-        this.gameActivity = gameActivity;
         this.sharedPreferencesManager = sharedPreferencesManager;
         List<Card> selectedCards = sharedPreferencesManager.getSelectedCards();
         humanDeckViewModel.setCards(selectedCards);
@@ -289,7 +289,7 @@ public class GameController {
         String result = humanPoints + "-" + computerPoints;
 
         WinnerFragment winnerFragment = WinnerFragment.newInstance(winnerName, result);
-        gameActivity.getSupportFragmentManager()
+        gameActivityInterface.getSupportManager()
                 .beginTransaction()
                 .replace(R.id.boardFragment, winnerFragment)
                 .commit();

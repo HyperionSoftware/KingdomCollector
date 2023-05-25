@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/campo_futbol_vertical"
+    tools:context=".game.views.GameOnlineActivity">
+
+    <FrameLayout
+        android:id="@+id/playerFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.7" />
+
+    <FrameLayout
+        android:id="@+id/boardFragment"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_weight="4" />
+
+    <FrameLayout
+        android:id="@+id/deckFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5" />
+
+    <!-- Botones para la funcionalidad en línea -->
+    <Button
+        android:id="@+id/createGameButton"
+        android:layout_below="@id/boardFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/create_game" />
+
+    <Button
+        android:id="@+id/joinGameButton"
+        android:layout_toRightOf="@id/createGameButton"
+        android:layout_below="@id/boardFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/join_game" />
+
+</LinearLayout>

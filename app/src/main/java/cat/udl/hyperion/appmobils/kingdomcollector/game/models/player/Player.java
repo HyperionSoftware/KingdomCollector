@@ -110,4 +110,12 @@ public abstract class Player implements Serializable, Parcelable {
         }
     };
 
+    public void setDeck(ObservableField<Deck> deck) {
+        this.deck = deck;
+    }
+
+    public void setPoints(MutableLiveData<Integer> points) {
+        this.points = points;
+    }
+
 }

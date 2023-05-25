@@ -46,6 +46,7 @@ public class DeckViewModel extends ViewModel {
     }
 
 
+
     public LiveData<Deck> getDeck() {
         Log.d("DeckViewModel", "Obteniendo el DeckViewModel...");
         return deck;

@@ -108,5 +108,7 @@
     <string name="presidentes">Presidentes</string>
     <string name="delanteros">Delanteros</string>
     <string name="confirmar_seleccion">Confirmar equipo</string>
+    <string name="create_game">Crear</string>
+    <string name="join_game">Unirse</string>
 
 </resources>

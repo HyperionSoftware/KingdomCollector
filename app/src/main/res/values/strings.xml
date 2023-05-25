@@ -138,6 +138,8 @@
     <string name="defensas">Defenses</string>
     <string name="tu_equipo">Your team</string>
     <string name="confirmar_seleccion">Confirm team</string>
+    <string name="create_game">Crear</string>
+    <string name="join_game">Unirse</string>
 
 
 </resources>

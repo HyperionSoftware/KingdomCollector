@@ -18,7 +18,8 @@ public class BoardViewModel extends ViewModel {
     private MutableLiveData<Board> board;
     private DeckViewModel deckViewModel;
     private static final String TAG = "BoardViewModel";
-    private MutableLiveData<Card> selectedCard = new MutableLiveData<>();
+
+   // private MutableLiveData<Card> selectedCard = new MutableLiveData<>();
 
     private MutableLiveData<List<Cell>> cells;
     private List<CellViewModel> cellViewModels;
@@ -27,13 +28,6 @@ public class BoardViewModel extends ViewModel {
 
 
 
-    public LiveData<Card> getSelectedCard(){
-        return deckViewModel.getSelectedCard();
-    }
-
-    public void setSelectedCard(Card card) {
-        selectedCard.setValue(card);
-    }
 
     public BoardViewModel(GameController gameController) {
         this.gameController = gameController;
@@ -85,7 +79,7 @@ public class BoardViewModel extends ViewModel {
         }
     }
 
-    public void playSelectedCard(int row, int col) {
+   /* public void playSelectedCard(int row, int col) {
         Card cardToPlay = deckViewModel.getSelectedCard().getValue();
         deckViewModel.setSelectedCard(null);
         if (cardToPlay != null) {
@@ -98,7 +92,7 @@ public class BoardViewModel extends ViewModel {
         } else {
             Log.d(TAG, "La carta seleccionada es null");
         }
-    }
+    }*/
 
     public DeckViewModel getDeckViewModel() {
         return deckViewModel;
