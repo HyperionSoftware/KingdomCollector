@@ -69,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
         // Button Logout.
         findViewById(R.id.btn_logout).setOnClickListener(v -> logout());
 
-
         //Music
         mp = MediaPlayer.create(this,R.raw.check_it_out_now);
         mp.start();
@@ -168,7 +167,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void goToSettings() {startNewActivity(Config.class);}
-
 
 
 
