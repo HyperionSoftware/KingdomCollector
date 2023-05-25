@@ -39,6 +39,7 @@ public class DeckViewModel extends ViewModel {
         Deck currentDeck = deck.getValue();
         if (currentDeck != null) {
             for (Card card : currentDeck.getCards()) {
+                Log.d("initializeOwnerForCards", "Owner name is: " + owner.getName());
                 card.setOwner(owner);
             }
         }
