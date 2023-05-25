@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,6 +25,7 @@ import java.util.concurrent.Executors;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
 import cat.udl.hyperion.appmobils.kingdomcollector.collection.adapter.CardAdapter;
+import cat.udl.hyperion.appmobils.kingdomcollector.collection.admin.AddingCardsManager;
 import cat.udl.hyperion.appmobils.kingdomcollector.collection.admin.SharedPreferencesManager;
 import cat.udl.hyperion.appmobils.kingdomcollector.collection.db.AppDatabase;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Card;
@@ -43,11 +46,16 @@ public class CollectionActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private List<String> userCardIds;
     SharedPreferencesManager sharedPreferencesManager;
+    private ProgressBar loadingIndicator;
+
+    private AddingCardsManager addingCardsManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collection);
+        loadingIndicator = findViewById(R.id.loading_indicator);
+        addingCardsManager = new AddingCardsManager(this);
         firestore = FirebaseFirestore.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
         userCardIds = new ArrayList<>();
@@ -65,9 +73,13 @@ public class CollectionActivity extends AppCompatActivity {
         selectedCardsRecyclerView = findViewById(R.id.your_team_recycler_view);
         LinearLayoutManager selectedLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         selectedCardsRecyclerView.setLayoutManager(selectedLayoutManager);
+        loadingIndicator.setVisibility(View.VISIBLE);
+
         getUserCardIds().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
+                loadingIndicator.setVisibility(View.GONE);
+
                 selectedCardsAdapter = new CardAdapter(selectedCardsList, selectedCardsList, userCardIds);
                 selectedCardsRecyclerView.setAdapter(selectedCardsAdapter);
                 getCardsFromDb();
@@ -169,7 +181,7 @@ public class CollectionActivity extends AppCompatActivity {
         Intent intent = new Intent(this, GameActivity.class);
         intent.putParcelableArrayListExtra("selectedCards", (ArrayList<? extends Parcelable>) selectedCardsList);
         sharedPreferencesManager.storeSelectedCards(selectedCardsList);
-        startActivity(intent);
+        //startActivity(intent);
         finish();
     }
 }

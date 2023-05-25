@@ -134,7 +134,7 @@ public class RegisterActivity extends AppCompatActivity {
                         Log.d(myClassTag, "Total general cards fetched: " + allCards.size());
 
                         Collections.shuffle(allCards); // Mezcla las tarjetas
-                        List<DocumentSnapshot> selectedCards = allCards.subList(0, 5); // Selecciona las primeras 5 tarjetas
+                        List<DocumentSnapshot> selectedCards = allCards.subList(0, 30); // Selecciona las primeras 5 tarjetas
 
                         Log.d(myClassTag, "Cards selected for user " + userId + ": " + selectedCards.size());
 
