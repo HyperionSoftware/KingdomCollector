@@ -181,7 +181,7 @@ public class CollectionActivity extends AppCompatActivity {
         Intent intent = new Intent(this, GameActivity.class);
         intent.putParcelableArrayListExtra("selectedCards", (ArrayList<? extends Parcelable>) selectedCardsList);
         sharedPreferencesManager.storeSelectedCards(selectedCardsList);
-        startActivity(intent);
+        //startActivity(intent);
         finish();
     }
 }
