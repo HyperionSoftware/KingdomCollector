@@ -36,7 +36,7 @@ import cat.udl.hyperion.appmobils.kingdomcollector.game.views.GameActivityInterf
 public class GameController {
     private static final String TAG = "GameController";
 
-    private final BoardViewModel boardViewModel;
+    private BoardViewModel boardViewModel;
     private final DeckViewModel humanDeckViewModel;
     private final DeckViewModel computerDeckViewModel;
     private final Player humanPlayer;
@@ -324,4 +324,11 @@ public class GameController {
         });
     }
 
+    public BoardViewModel getBoard() {
+        return boardViewModel;
+    }
+
+    public void setBoard(BoardViewModel board) {
+        this.boardViewModel = board;
+    }
 }

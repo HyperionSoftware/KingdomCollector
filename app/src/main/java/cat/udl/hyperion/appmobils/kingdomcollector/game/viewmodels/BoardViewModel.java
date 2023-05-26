@@ -151,5 +151,25 @@ public class BoardViewModel extends ViewModel {
     public void setBoardDataChanged(boolean changed) {
         this.boardDataChanged.setValue(changed);
     }
+
+    public List<Card> getCards() {
+        List<Card> cards = new ArrayList<>();
+        for (CellViewModel cellViewModel : cellViewModels) {
+            Card card = cellViewModel.getCard().getValue();
+            if (card != null) {
+                cards.add(card);
+            }
+        }
+        return cards;
+    }
+
+    public List<Cell> getCells() {
+        List<Cell> cellsList = new ArrayList<>();
+        for (CellViewModel cellViewModel : cellViewModels) {
+            cellsList.add(cellViewModel.getCell().getValue());
+        }
+        return cellsList;
+    }
+
 }
 
