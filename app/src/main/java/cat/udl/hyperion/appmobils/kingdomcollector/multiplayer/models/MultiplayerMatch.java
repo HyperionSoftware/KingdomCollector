@@ -1,4 +1,4 @@
-package cat.udl.hyperion.appmobils.kingdomcollector.game.models;
+package cat.udl.hyperion.appmobils.kingdomcollector.multiplayer.models;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.PlayerViewModel;
 

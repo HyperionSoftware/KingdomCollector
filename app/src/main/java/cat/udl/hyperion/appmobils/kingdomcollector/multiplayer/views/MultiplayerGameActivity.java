@@ -1,11 +1,11 @@
-package cat.udl.hyperion.appmobils.kingdomcollector.game.views;
+package cat.udl.hyperion.appmobils.kingdomcollector.multiplayer.views;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
-import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.GameViewModel;
+import cat.udl.hyperion.appmobils.kingdomcollector.multiplayer.viewmodel.GameViewModel;
 
 public class MultiplayerGameActivity extends AppCompatActivity {
 

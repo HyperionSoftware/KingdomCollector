@@ -1,4 +1,4 @@
-package cat.udl.hyperion.appmobils.kingdomcollector.game.helpers;
+package cat.udl.hyperion.appmobils.kingdomcollector.multiplayer.helpers;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;

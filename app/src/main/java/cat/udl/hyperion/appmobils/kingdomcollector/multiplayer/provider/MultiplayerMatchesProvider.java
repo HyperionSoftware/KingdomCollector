@@ -1,4 +1,4 @@
-package cat.udl.hyperion.appmobils.kingdomcollector.game.provider;
+package cat.udl.hyperion.appmobils.kingdomcollector.multiplayer.provider;
 
 import android.util.Log;
 
@@ -13,10 +13,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import cat.udl.hyperion.appmobils.kingdomcollector.game.adapters.MultiplayerMatchesAdapter;
-import cat.udl.hyperion.appmobils.kingdomcollector.game.helpers.GlobalInfo;
-import cat.udl.hyperion.appmobils.kingdomcollector.game.models.GameControllerOnline;
-import cat.udl.hyperion.appmobils.kingdomcollector.game.models.MultiplayerMatch;
+import cat.udl.hyperion.appmobils.kingdomcollector.multiplayer.adapters.MultiplayerMatchesAdapter;
+import cat.udl.hyperion.appmobils.kingdomcollector.multiplayer.helpers.GlobalInfo;
+import cat.udl.hyperion.appmobils.kingdomcollector.multiplayer.models.GameControllerOnline;
+import cat.udl.hyperion.appmobils.kingdomcollector.multiplayer.models.MultiplayerMatch;
 
 /**
  * Esta clase es la encargada de obtener los datos de las partidas multijugador

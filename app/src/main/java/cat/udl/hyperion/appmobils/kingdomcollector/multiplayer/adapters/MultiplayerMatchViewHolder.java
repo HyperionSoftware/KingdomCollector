@@ -1,7 +1,5 @@
-package cat.udl.hyperion.appmobils.kingdomcollector.game.adapters;
+package cat.udl.hyperion.appmobils.kingdomcollector.multiplayer.adapters;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 
@@ -9,7 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
-import cat.udl.hyperion.appmobils.kingdomcollector.game.models.MultiplayerMatch;
+import cat.udl.hyperion.appmobils.kingdomcollector.multiplayer.models.MultiplayerMatch;
 
 public class MultiplayerMatchViewHolder extends RecyclerView.ViewHolder{
 

@@ -1,10 +1,11 @@
-package cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels;
+package cat.udl.hyperion.appmobils.kingdomcollector.multiplayer.viewmodel;
 
 import android.content.Context;
 import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+import androidx.room.Room;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -15,10 +16,12 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
-import cat.udl.hyperion.appmobils.kingdomcollector.game.helpers.GlobalInfo;
+import cat.udl.hyperion.appmobils.kingdomcollector.multiplayer.helpers.GlobalInfo;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Board;
-import cat.udl.hyperion.appmobils.kingdomcollector.game.models.GameControllerOnline;
+import cat.udl.hyperion.appmobils.kingdomcollector.multiplayer.models.GameControllerOnline;
+import cat.udl.hyperion.appmobils.kingdomcollector.multiplayer.models.MemoryDatabase;
 
 public class GameViewModel extends ViewModel {
 
@@ -27,7 +30,7 @@ public class GameViewModel extends ViewModel {
     private final MutableLiveData<GameControllerOnline> game = new MutableLiveData<>();
     private Context context;
 
-    private DatabaseReference myRef;
+    //private DatabaseReference myRef; // para el chat entre jugadores.
     private DatabaseReference myFirebaseDBReference;
 
     private Integer myMultiplayerPlayerType;
@@ -68,6 +71,7 @@ public class GameViewModel extends ViewModel {
     public void multiplayerCreate() {
         DatabaseReference myFirebaseDBGames = GlobalInfo.getIntance().getFirebaseGames();
         String key = myFirebaseDBGames.push().getKey();
+        assert key != null;
         myFirebaseDBReference = myFirebaseDBGames.child(key);
         this.myMultiplayerPlayerType = GameControllerOnline.MULTIPLAYER_TYPE_CREATE;
 
@@ -77,7 +81,7 @@ public class GameViewModel extends ViewModel {
         data.put("turn", myMultiplayerPlayerType);
         myFirebaseDBReference.setValue(data);
 
-        game.getValue().setCurrentPlayerMultiplayer(myMultiplayerPlayerType);
+        Objects.requireNonNull(game.getValue()).setCurrentPlayerMultiplayer(myMultiplayerPlayerType);
 
         enableFirebaseDBv2();
         updateFirebaseDBv2();
@@ -110,4 +114,24 @@ public class GameViewModel extends ViewModel {
         }
 
     }
+    public void saveGameIntoDB(){
+        String dbName = "memory.db";
+        MemoryDatabase dbRoom = Room.databaseBuilder(context, MemoryDatabase.class, dbName).allowMainThreadQueries().build();
+        GameControllerOnline g = game.getValue();
+
+        g.id = dbRoom.gameDAO().insert(g);
+
+        String missatge = String.format("He guardat el meu joc amb id: %d", g.id );
+        Log.d(myClassTag, missatge);
+        dbRoom.close();
+    }
+
+    public void updateGameInDB(){
+        String dbName = "memory.db";
+        MemoryDatabase dbRoom = Room.databaseBuilder(context, MemoryDatabase.class, dbName).allowMainThreadQueries().build();
+        GameControllerOnline g = game.getValue();
+        dbRoom.gameDAO().update(g);
+        dbRoom.close();
+    }
 }
+

@@ -1,4 +1,4 @@
-package cat.udl.hyperion.appmobils.kingdomcollector.game.views;
+package cat.udl.hyperion.appmobils.kingdomcollector.multiplayer.views;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -15,12 +15,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
-import cat.udl.hyperion.appmobils.kingdomcollector.game.adapters.MultiplayerMatchesAdapter;
-import cat.udl.hyperion.appmobils.kingdomcollector.game.helpers.GlobalInfo;
-import cat.udl.hyperion.appmobils.kingdomcollector.game.models.GameControllerOnline;
-import cat.udl.hyperion.appmobils.kingdomcollector.game.models.MultiplayerMatch;
-import cat.udl.hyperion.appmobils.kingdomcollector.game.provider.MultiplayerMatchesProvider;
-import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.GameViewModel;
+import cat.udl.hyperion.appmobils.kingdomcollector.multiplayer.adapters.MultiplayerMatchesAdapter;
+import cat.udl.hyperion.appmobils.kingdomcollector.multiplayer.helpers.GlobalInfo;
+import cat.udl.hyperion.appmobils.kingdomcollector.multiplayer.models.GameControllerOnline;
+import cat.udl.hyperion.appmobils.kingdomcollector.multiplayer.models.MultiplayerMatch;
+import cat.udl.hyperion.appmobils.kingdomcollector.multiplayer.provider.MultiplayerMatchesProvider;
+import cat.udl.hyperion.appmobils.kingdomcollector.multiplayer.viewmodel.GameViewModel;
 
 public class MultiplayerGameSelector extends AppCompatActivity {
 
