@@ -3,13 +3,9 @@ package cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels;
 import android.content.Context;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-import androidx.room.Room;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,14 +18,13 @@ import java.util.Map;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.game.helpers.GlobalInfo;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Board;
-import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Game;
-import cat.udl.hyperion.appmobils.kingdomcollector.game.models.MultiplayerMatch;
+import cat.udl.hyperion.appmobils.kingdomcollector.game.models.GameControllerOnline;
 
 public class GameViewModel extends ViewModel {
 
     protected String myClassTag = this.getClass().getSimpleName();
 
-    private final MutableLiveData<Game> game = new MutableLiveData<>();
+    private final MutableLiveData<GameControllerOnline> game = new MutableLiveData<>();
     private Context context;
 
     private DatabaseReference myRef;
@@ -38,9 +33,9 @@ public class GameViewModel extends ViewModel {
     private Integer myMultiplayerPlayerType;
 
     public GameViewModel(){
-        Game internalGame = new Game();
-        internalGame.init();
-        game.setValue(internalGame);
+        GameControllerOnline internalGameControllerOnline = new GameControllerOnline();
+        internalGameControllerOnline.init();
+        game.setValue(internalGameControllerOnline);
     }
 
     public void setContext(Context context){
@@ -55,7 +50,7 @@ public class GameViewModel extends ViewModel {
                 // whenever data at this location is updated.
                 Board b = dataSnapshot.child("board").getValue(Board.class);
                 Integer multiplayerTurn = dataSnapshot.child("turn").getValue(Integer.class);
-                Game g = game.getValue();
+                GameControllerOnline g = game.getValue();
                 g.setBoard(b);
                 g.setCurrentPlayerMultiplayer(multiplayerTurn);
                 game.setValue(g);
@@ -74,10 +69,10 @@ public class GameViewModel extends ViewModel {
         DatabaseReference myFirebaseDBGames = GlobalInfo.getIntance().getFirebaseGames();
         String key = myFirebaseDBGames.push().getKey();
         myFirebaseDBReference = myFirebaseDBGames.child(key);
-        this.myMultiplayerPlayerType = Game.MULTIPLAYER_TYPE_CREATE;
+        this.myMultiplayerPlayerType = GameControllerOnline.MULTIPLAYER_TYPE_CREATE;
 
         Map<String, Object> data = new HashMap<>();
-        data.put("status", Game.MULTIPLAYER_STATUS_PENDING);
+        data.put("status", GameControllerOnline.MULTIPLAYER_STATUS_PENDING);
         data.put("board", null);
         data.put("turn", myMultiplayerPlayerType);
         myFirebaseDBReference.setValue(data);
@@ -94,12 +89,12 @@ public class GameViewModel extends ViewModel {
     public void multiplayerConnect(String gameKey) {
         DatabaseReference games = GlobalInfo.getIntance().getFirebaseGames();
 
-        myMultiplayerPlayerType = Game.MULTIPLAYER_TYPE_CONNECT;
+        myMultiplayerPlayerType = GameControllerOnline.MULTIPLAYER_TYPE_CONNECT;
         myFirebaseDBReference = games.child(gameKey);
 
-        myFirebaseDBReference.child("status").setValue(Game.MULTIPLAYER_STATUS_MATCHED);
+        myFirebaseDBReference.child("status").setValue(GameControllerOnline.MULTIPLAYER_STATUS_MATCHED);
         // TODO millora: idealment hauriem d'agafar el turn del Firebase
-        game.getValue().setCurrentPlayerMultiplayer(Game.MULTIPLAYER_TYPE_CREATE);
+        game.getValue().setCurrentPlayerMultiplayer(GameControllerOnline.MULTIPLAYER_TYPE_CREATE);
 
         enableFirebaseDBv2();
     }
@@ -109,7 +104,7 @@ public class GameViewModel extends ViewModel {
      */
     private void updateFirebaseDBv2() {
         if (myFirebaseDBReference != null){
-            Game g = game.getValue();
+            GameControllerOnline g = game.getValue();
             myFirebaseDBReference.child("board").setValue(g.getBoard());
             myFirebaseDBReference.child("turn").setValue(g.getCurrentPlayerMultiplayer());
         }

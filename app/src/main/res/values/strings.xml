@@ -120,7 +120,7 @@
     <string name="btn_play_local" translatable="false">play local</string>
     <string name="btn_select_your_cards" translatable="false">select your cards</string>
 
-    <!-- Game controller-->
+    <!-- GameControllerOnline controller-->
     <string name="not_turn">Its not your turn</string>
     <string name="draw">Draw</string>
     <string name="the_winner_is">The winner is</string>

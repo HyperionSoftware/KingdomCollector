@@ -1,6 +1,6 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.game.models;
 
-public class Game {
+public class GameControllerOnline {
 
     public static final int MULTIPLAYER_STATUS_PENDING = 1;
     public static final int MULTIPLAYER_STATUS_MATCHED = 2;

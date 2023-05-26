@@ -4,8 +4,6 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -17,7 +15,7 @@ import java.util.List;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.game.adapters.MultiplayerMatchesAdapter;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.helpers.GlobalInfo;
-import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Game;
+import cat.udl.hyperion.appmobils.kingdomcollector.game.models.GameControllerOnline;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.MultiplayerMatch;
 
 /**
@@ -40,7 +38,7 @@ public class MultiplayerMatchesProvider {
 
     public void getFromFirebase(){
         DatabaseReference myFirebaseDBGames = GlobalInfo.getIntance().getFirebaseGames();
-        Query q = myFirebaseDBGames.orderByChild("status").equalTo(Game.MULTIPLAYER_STATUS_PENDING);
+        Query q = myFirebaseDBGames.orderByChild("status").equalTo(GameControllerOnline.MULTIPLAYER_STATUS_PENDING);
         q.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
