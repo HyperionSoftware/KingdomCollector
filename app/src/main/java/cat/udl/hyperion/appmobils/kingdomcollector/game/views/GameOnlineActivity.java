@@ -36,6 +36,9 @@ public class GameOnlineActivity extends AppCompatActivity implements GameActivit
     private FirebaseDatabase database;
     private DatabaseReference boardRef;
 
+    //FirebaseDatabase database = FirebaseDatabase.getInstance();
+    //DatabaseReference gameDataRef = database.getReference("winner_count");
+
     // GameController
     private GameController gameController;
 
@@ -79,48 +82,73 @@ public class GameOnlineActivity extends AppCompatActivity implements GameActivit
     private void createGame() {
         // Crea un nuevo GameController para esta partida
         List<Card> selectedCards = sharedPreferencesManager.getSelectedCards();
+        Log.d("GameOnlineActivity", "selectedCards: " + selectedCards);
         gameController = new GameController(this, new BoardViewModel(gameController), new DeckViewModel(selectedCards), new DeckViewModel(), this, sharedPreferencesManager);
+        Log.d("GameOnlineActivity", "GameController created");
 
         // Genera un identificador único para esta partida
-        String gameId = database.getReference("games_online").push().getKey();
+        String gameId = database.getReference("games/").push().getKey();
+        Log.d("GameOnlineActivity", "GameId: " + gameId);
 
         // Añade el estado del tablero a la base de datos
-        boardRef = database.getReference("games_online/" + gameId);
+        // Añade el estado del tablero a la base de datos
+        boardRef = database.getReference("games/" + gameId);
         BoardData boardData = new BoardData(gameController.getBoard().getCards(), gameController.getBoard().getCells()); // create BoardData
-        Log.d("GameOnlineActivity", "Vamoh a enviar el boardData a firebase");
-        boardRef.setValue(boardData, new DatabaseReference.CompletionListener() {
-            @Override
-            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                if (databaseError != null) {
-                    System.out.println("Data could not be saved " + databaseError.getMessage());
-                } else {
-                    System.out.println("Data saved successfully.");
-                }
+        Log.d("GameOnlineActivity", "boardData created: " + boardData);
+
+        boardRef.setValue(boardData, (databaseError, databaseReference) -> {
+            if (databaseError != null) {
+                Log.d("GameOnlineActivity", "Data could not be saved" + databaseError.getMessage());
+            } else {
+                Log.d("GameOnlineActivity", "Data saved successfully");
             }
         });
-
 
         // Actualiza la interfaz de usuario para reflejar el estado de la partida.
         updateUI();
     }
 
     private void joinGame(String gameId) {
-        boardRef = database.getReference("games_online/" + gameId);
+        boardRef = database.getReference("games/" + gameId);
 
         // Descarga el estado del tablero
         boardRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                BoardData boardData = snapshot.getValue(BoardData.class); // get BoardData
-                gameController.setBoard(boardData.toBoardViewModel(gameController)); // convert BoardData to BoardViewModel
-                updateUI();
+                BoardData boardData = snapshot.getValue(BoardData.class);
+                if (boardData != null) {
+                    Log.d("GameOnlineActivity", "Data read successfully: " + boardData);
+                    BoardViewModel boardViewModel = boardData.toBoardViewModel(gameController);
+
+                    // Comprobar si los datos se guardaron correctamente
+                    // Esto implica comparar los datos leídos con los datos originales.
+                    // Dado que esto es dependiente de la aplicación, te dejo un ejemplo genérico:
+                    boolean dataSavedCorrectly = true;
+                    for (int i = 0; i < boardData.getCards().size(); i++) {
+                        if (!boardData.getCards().get(i).equals(gameController.getBoard().getCards().get(i))) {
+                            dataSavedCorrectly = false;
+                            break;
+                        }
+                    }
+
+                    if (dataSavedCorrectly) {
+                        Log.d("GameOnlineActivity", "Data saved correctly");
+                    } else {
+                        Log.d("GameOnlineActivity", "Data not saved correctly");
+                    }
+
+                } else {
+                    Log.d("GameOnlineActivity", "No data found in database");
+                }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                // Manejar el error
+                // Log the error message for debugging purposes
+                Log.d("GameOnlineActivity", "DatabaseError: " + error.getMessage());
             }
         });
+
     }
 
     @Override

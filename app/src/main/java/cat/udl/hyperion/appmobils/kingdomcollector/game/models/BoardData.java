@@ -10,6 +10,9 @@ public class BoardData {
     private List<Card> cards;
     private List<Cell> cells;
 
+    public BoardData(){
+
+    }
     // Constructor, getters y setters...
     public BoardData(List<Card> cards, List<Cell> cells){
         this.cards = cards;

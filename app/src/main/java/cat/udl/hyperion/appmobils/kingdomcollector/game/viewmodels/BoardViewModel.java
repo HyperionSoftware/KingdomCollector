@@ -9,10 +9,10 @@ import androidx.lifecycle.ViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
+import cat.udl.hyperion.appmobils.kingdomcollector.game.GameController;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Board;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Card;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Cell;
-import cat.udl.hyperion.appmobils.kingdomcollector.game.GameController;
 
 public class BoardViewModel extends ViewModel {
     private MutableLiveData<Board> board;
@@ -26,6 +26,9 @@ public class BoardViewModel extends ViewModel {
     private GameController gameController;
     private MutableLiveData<Boolean> boardDataChanged;
 
+    public BoardViewModel(){
+
+    }
 
 
 
