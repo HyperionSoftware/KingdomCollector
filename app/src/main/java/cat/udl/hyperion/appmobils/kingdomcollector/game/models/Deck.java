@@ -36,6 +36,9 @@ public class Deck implements Parcelable {
     }
 
 
+    public void setCards(ObservableArrayList<Card> cards) {
+        this.cards = cards;
+    }
 
     public void initializeDeck(){
         //TODO: Fer que initializeDeck agafi únicament les 5 cartes seleccionades de Collection.

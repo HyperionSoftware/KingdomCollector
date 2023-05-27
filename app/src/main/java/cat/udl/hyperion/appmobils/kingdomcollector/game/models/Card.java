@@ -232,6 +232,15 @@ public class Card implements Parcelable {
             dest.writeParcelable(null, flags);
         }
     }
+
+    public ObservableField<Boolean> getSelected() {
+        return selected;
+    }
+
+    public void setOwner(MutableLiveData<Player> owner) {
+        this.owner = owner;
+    }
+
     protected Card(Parcel in) {
         id = in.readString();
         imageUrl = in.readInt();

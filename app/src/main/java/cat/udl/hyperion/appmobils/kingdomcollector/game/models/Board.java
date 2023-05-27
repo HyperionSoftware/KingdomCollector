@@ -13,6 +13,18 @@ public class Board {
     private static final int numRows = 3;
     private static final int numCols = 3;
 
+    public static int getNumCols() {
+        return numCols;
+    }
+
+    public static int getNumRows() {
+        return numRows;
+    }
+
+    public void setBoard(ObservableArrayMap<String, ObservableArrayMap<String, Cell>> board) {
+        this.board = board;
+    }
+
     public void saveToFirebase() {
         // Obtén una instancia de la base de datos de Firebase
         FirebaseDatabase database = FirebaseDatabase.getInstance();

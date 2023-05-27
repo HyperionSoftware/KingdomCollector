@@ -9,31 +9,28 @@ import androidx.lifecycle.ViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
+import cat.udl.hyperion.appmobils.kingdomcollector.game.GameController;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Board;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Card;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Cell;
-import cat.udl.hyperion.appmobils.kingdomcollector.game.GameController;
 
 public class BoardViewModel extends ViewModel {
     private MutableLiveData<Board> board;
     private DeckViewModel deckViewModel;
     private static final String TAG = "BoardViewModel";
-    private MutableLiveData<Card> selectedCard = new MutableLiveData<>();
+
+   // private MutableLiveData<Card> selectedCard = new MutableLiveData<>();
 
     private MutableLiveData<List<Cell>> cells;
     private List<CellViewModel> cellViewModels;
     private GameController gameController;
     private MutableLiveData<Boolean> boardDataChanged;
 
+    public BoardViewModel(){
 
-
-    public LiveData<Card> getSelectedCard(){
-        return deckViewModel.getSelectedCard();
     }
 
-    public void setSelectedCard(Card card) {
-        selectedCard.setValue(card);
-    }
+
 
     public BoardViewModel(GameController gameController) {
         this.gameController = gameController;
@@ -85,7 +82,7 @@ public class BoardViewModel extends ViewModel {
         }
     }
 
-    public void playSelectedCard(int row, int col) {
+   /* public void playSelectedCard(int row, int col) {
         Card cardToPlay = deckViewModel.getSelectedCard().getValue();
         deckViewModel.setSelectedCard(null);
         if (cardToPlay != null) {
@@ -98,7 +95,7 @@ public class BoardViewModel extends ViewModel {
         } else {
             Log.d(TAG, "La carta seleccionada es null");
         }
-    }
+    }*/
 
     public DeckViewModel getDeckViewModel() {
         return deckViewModel;
@@ -157,5 +154,25 @@ public class BoardViewModel extends ViewModel {
     public void setBoardDataChanged(boolean changed) {
         this.boardDataChanged.setValue(changed);
     }
+
+    public List<Card> getCards() {
+        List<Card> cards = new ArrayList<>();
+        for (CellViewModel cellViewModel : cellViewModels) {
+            Card card = cellViewModel.getCard().getValue();
+            if (card != null) {
+                cards.add(card);
+            }
+        }
+        return cards;
+    }
+
+    public List<Cell> getCells() {
+        List<Cell> cellsList = new ArrayList<>();
+        for (CellViewModel cellViewModel : cellViewModels) {
+            cellsList.add(cellViewModel.getCell().getValue());
+        }
+        return cellsList;
+    }
+
 }
 
