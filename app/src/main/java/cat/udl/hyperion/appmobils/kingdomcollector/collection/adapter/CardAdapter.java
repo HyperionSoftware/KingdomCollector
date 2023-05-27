@@ -45,13 +45,13 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
 
         // Oscurecer la tarjeta si el usuario no la posee
         if (!cardOwned) {
-            holder.itemView.setAlpha(0.5f);  // Ajusta este valor según el efecto de oscurecimiento deseado
+            holder.itemView.setAlpha(0.2f);  // Ajusta este valor según el efecto de oscurecimiento deseado
         } else {
             // Si el usuario posee la tarjeta pero está seleccionada, oscurecerla aún más
             if (isSelected(card)) {
-                holder.itemView.setAlpha(0.7f); // Establecer opacidad más reducida para indicar selección
+                holder.itemView.setAlpha(1.0f); // Establecer opacidad más reducida para indicar selección
             } else {
-                holder.itemView.setAlpha(1.0f); // Establecer opacidad normal para tarjetas no seleccionadas que el usuario posee
+                holder.itemView.setAlpha(0.6f); // Establecer opacidad normal para tarjetas no seleccionadas que el usuario posee
             }
         }
 
