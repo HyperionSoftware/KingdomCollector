@@ -2,7 +2,7 @@
 
 #Taula de reavaluació
 
-![image](https://github.com/HyperionSoftware/KingdomCollector/assets/100761163/4ef272ca-d4c9-41cc-96d0-3a37e2ccfd21)
+![image](https://github.com/HyperionSoftware/KingdomCollector/assets/100761163/84893ff9-a385-4037-a435-9b3275aa5134)
 
 ## Authors
 
