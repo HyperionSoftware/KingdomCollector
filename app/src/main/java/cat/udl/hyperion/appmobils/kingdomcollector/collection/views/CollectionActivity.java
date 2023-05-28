@@ -1,5 +1,6 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.collection.views;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -30,7 +31,7 @@ import cat.udl.hyperion.appmobils.kingdomcollector.collection.admin.SharedPrefer
 import cat.udl.hyperion.appmobils.kingdomcollector.collection.db.AppDatabase;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Card;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.views.GameActivity;
-
+import cat.udl.hyperion.appmobils.kingdomcollector.other.MainActivity;
 
 
 public class CollectionActivity extends AppCompatActivity {
@@ -50,6 +51,7 @@ public class CollectionActivity extends AppCompatActivity {
 
     private AddingCardsManager addingCardsManager;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +63,13 @@ public class CollectionActivity extends AppCompatActivity {
         userCardIds = new ArrayList<>();
         sharedPreferencesManager = new SharedPreferencesManager(this);
         selectedCardsList = sharedPreferencesManager.getSelectedCards();
+
+        // Botón para volver a la pantalla principal:
+        findViewById(R.id.return_home).setOnClickListener(v -> {
+            Intent intent = new Intent(CollectionActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        });
 
         db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "general-cards-local").build();
         //getUserCardIds();
