@@ -63,4 +63,10 @@ public class Cell {
             this.card.set(new Card((Map<String, Object>) map.get("card")));
         }
     }
+
+    public boolean hasCard() {
+        if(this.getCard()!=null){
+            return true;
+        } else return false;
+    }
 }
