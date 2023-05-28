@@ -111,4 +111,8 @@
     <string name="create_game">Crear</string>
     <string name="join_game">Unirse</string>
 
+    <string name="create_game_room">Crear partida</string>
+    <string name="user">Usuario:</string>
+    <string name="MatchesList">Partidas disponibles</string>
+    <string name="btn_create_match">Crear partida</string>
 </resources>

@@ -21,50 +21,63 @@
             android:theme="@style/Theme.KingdomCollector.NoActionBar" />
         <activity
             android:name=".other.PlayModeActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.KingdomCollector.NoActionBar"/>
+        <activity
+            android:name=".multiplayer.views.MultiplayerGameSelector"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.KingdomCollector.NoActionBar" />
         <activity
             android:name=".other.Config"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.KingdomCollector.NoActionBar" />
+        <activity
+            android:name=".collection.views.addingcards"
+            android:screenOrientation="portrait"
+            android:exported="false"/>
         <activity
             android:name=".collection.views.CollectionActivity"
-            android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.KingdomCollector.NoActionBar" />
+            android:exported="false" />
         <activity
             android:name=".other.auth.RecoverPassword"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:exported="false" />
         <activity
             android:name=".game.views.GameActivity"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.KingdomCollector.NoActionBar" />
         <activity
             android:name=".other.auth.RegisterActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:exported="false" />
         <activity
             android:name=".other.auth.LoginActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:exported="false" />
         <activity
             android:name=".other.AboutUs"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.KingdomCollector.NoActionBar" />
         <activity
             android:name=".other.TermsAndConditions"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.KingdomCollector.NoActionBar" />
         <activity
             android:name=".other.InitialSplashScreen"
-            android:exported="true"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -73,6 +86,7 @@
         </activity>
         <activity
             android:name=".other.MainActivity"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.KingdomCollector.NoActionBar" />
