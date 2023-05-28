@@ -136,6 +136,14 @@
     <string name="user">User:</string>
     <string name="MatchesList">Available matches</string>
     <string name="btn_create_match">Create match</string>
+    <string name="presidentes">Presidents</string>
+    <string name="delanteros">Forwards</string>
+    <string name="medios">Midfield</string>
+    <string name="defensas">Defenses</string>
+    <string name="tu_equipo">Your team</string>
+    <string name="confirmar_seleccion">Confirm team</string>
+    <string name="create_game">Crear</string>
+    <string name="join_game">Unirse</string>
 
 
 </resources>

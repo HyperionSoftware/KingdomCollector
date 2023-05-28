@@ -1,6 +1,7 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.game.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +13,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
-import cat.udl.hyperion.appmobils.kingdomcollector.game.adapters.CardAdapter;
 import cat.udl.hyperion.appmobils.kingdomcollector.databinding.FragmentDeckBinding;
+import cat.udl.hyperion.appmobils.kingdomcollector.game.adapters.CardAdapter;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.DeckViewModel;
 
 public class DeckFragment extends Fragment {
@@ -27,6 +28,7 @@ public class DeckFragment extends Fragment {
         deckFragment.setDeckViewModel(humanDeckViewModel);
         return deckFragment;
     }
+
 
     public void setDeckViewModel(DeckViewModel deckViewModel) {
         this.deckViewModel = deckViewModel;
@@ -46,6 +48,7 @@ public class DeckFragment extends Fragment {
 
         deckViewModel.getDeck().observe(getViewLifecycleOwner(), deck -> {
             cardAdapter.notifyDataSetChanged();
+            Log.d("DeckFragment", "Deck data changed");
         });
 
         return binding.getRoot();

@@ -3,6 +3,7 @@ package cat.udl.hyperion.appmobils.kingdomcollector.game.fragments;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,12 +71,14 @@ public class WinnerFragment extends Fragment {
     }
 
     private void playAgain() {
+        Log.d("WinnerFragment", "Click en el botón Play Again");
         Intent intent = new Intent(getActivity(), GameActivity.class);
         getActivity().finish();  // Finaliza la actividad actual
         startActivity(intent);  // Inicia una nueva instancia de GameActivity
     }
 
     private void goToHome() {
+        Log.d("WinnerFragment", "Click en el botón Go to Home");
         Intent intent = new Intent(getActivity(), MainActivity.class);
         getActivity().finish();
         startActivity(intent);

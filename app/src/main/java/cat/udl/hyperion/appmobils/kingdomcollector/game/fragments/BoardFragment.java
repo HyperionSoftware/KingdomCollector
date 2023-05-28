@@ -1,6 +1,7 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.game.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,6 +56,7 @@ public class BoardFragment extends Fragment {
                 cellAdapter.notifyDataSetChanged();
                 // Reset the boardDataChanged value in the ViewModel
                 boardViewModel.setBoardDataChanged(false);
+                Log.d("BoardFragment", "Board data changed");
             }
         });
 

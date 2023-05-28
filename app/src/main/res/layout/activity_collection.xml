@@ -1,28 +1,65 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:background="@drawable/background_principal_dos">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:background="#80000000"
+        android:gravity="center_vertical"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/return_home"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:src="@drawable/baseline_home_24" />
+
+        <ImageView
+            android:id="@+id/my_album"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:src="@drawable/my_album_titulo"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="35dp"
+        android:fillViewport="true">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Presidentes" />
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:text="@string/presidentes" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/presidente_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:orientation="horizontal" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/presidente_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:orientation="horizontal" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Delanteros" />
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:text="@string/delanteros" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/delantero_recycler_view"
@@ -33,7 +70,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Medios" />
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:text="@string/medios" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/medio_recycler_view"
@@ -44,7 +83,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Defensas" />
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:text="@string/defensas" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/defensa_recycler_view"
@@ -55,23 +96,35 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tu equipo" />
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:text="@string/tu_equipo" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/your_team_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="150dp"
+            android:background="@drawable/recycler_border"
+            android:padding="10dp"
             android:orientation="horizontal" >
 
         </androidx.recyclerview.widget.RecyclerView>
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/confirm_button_2"
-            android:text="Confirmar selección"
-            />
+            <ImageButton
+                android:id="@+id/confirm_button_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_confirmar_equipo"
+                android:layout_margin="8dp"
+                android:text="@string/confirmar_seleccion" />
 
 
     </LinearLayout>
-</ScrollView>
+    </ScrollView>
+    <ProgressBar
+        android:id="@+id/loading_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
+</FrameLayout>

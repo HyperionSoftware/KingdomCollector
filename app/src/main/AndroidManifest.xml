@@ -15,6 +15,11 @@
         android:theme="@style/Theme.KingdomCollector"
         tools:targetApi="31">
         <activity
+            android:name=".game.views.GameOnlineActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.KingdomCollector.NoActionBar" />
+        <activity
             android:name=".other.PlayModeActivity"
             android:screenOrientation="portrait"
             android:exported="false"
@@ -23,11 +28,13 @@
             android:name=".multiplayer.views.MultiplayerGameSelector"
             android:screenOrientation="portrait"
             android:exported="false"
-            android:theme="@style/Theme.KingdomCollector.NoActionBar"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.KingdomCollector.NoActionBar" />
         <activity
             android:name=".other.Config"
             android:screenOrientation="portrait"
             android:exported="false"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.KingdomCollector.NoActionBar" />
         <activity
             android:name=".collection.views.addingcards"
@@ -45,7 +52,8 @@
             android:name=".game.views.GameActivity"
             android:screenOrientation="portrait"
             android:exported="false"
-            android:theme="@style/Theme.KingdomCollector.NoActionBar"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.KingdomCollector.NoActionBar" />
         <activity
             android:name=".other.auth.RegisterActivity"
             android:screenOrientation="portrait"
@@ -58,11 +66,13 @@
             android:name=".other.AboutUs"
             android:screenOrientation="portrait"
             android:exported="false"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.KingdomCollector.NoActionBar" />
         <activity
             android:name=".other.TermsAndConditions"
             android:screenOrientation="portrait"
             android:exported="false"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.KingdomCollector.NoActionBar" />
         <activity
             android:name=".other.InitialSplashScreen"
@@ -78,6 +88,7 @@
             android:name=".other.MainActivity"
             android:screenOrientation="portrait"
             android:exported="false"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.KingdomCollector.NoActionBar" />
     </application>
 
