@@ -37,17 +37,22 @@ public class GameController {
     private static final String TAG = "GameController";
 
     private BoardViewModel boardViewModel;
-    private final DeckViewModel humanDeckViewModel;
-    private final DeckViewModel computerDeckViewModel;
-    private final Player humanPlayer;
-    private final Player computerPlayer;
+    private DeckViewModel humanDeckViewModel;
+    private DeckViewModel computerDeckViewModel;
+    private Player humanPlayer;
+    private Player computerPlayer;
     private Player currentPlayer;
 
     private FirebaseAuth mAuth;
-    private final Handler handler;
-    private final Context context;
-    private final SharedPreferencesManager sharedPreferencesManager;
+    private Handler handler;
+    private Context context;
+    private SharedPreferencesManager sharedPreferencesManager;
     private GameActivityInterface gameActivityInterface;
+
+
+    public GameController(){
+
+    }
 
     public GameController(Context context, BoardViewModel boardViewModel, DeckViewModel humanDeckViewModel, DeckViewModel computerDeckViewModel, GameActivityInterface gameActivityInterface, SharedPreferencesManager sharedPreferencesManager) {
         this.context = context;
