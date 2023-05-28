@@ -331,4 +331,8 @@ public class GameController {
     public void setBoard(BoardViewModel board) {
         this.boardViewModel = board;
     }
+
+    public void setBoardViewModel(BoardViewModel toBoardViewModel) {
+        this.boardViewModel = toBoardViewModel;
+    }
 }

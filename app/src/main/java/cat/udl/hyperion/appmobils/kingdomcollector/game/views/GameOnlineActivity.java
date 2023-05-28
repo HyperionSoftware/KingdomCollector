@@ -118,11 +118,14 @@ public class GameOnlineActivity extends AppCompatActivity implements GameActivit
                 BoardData boardData = snapshot.getValue(BoardData.class);
                 if (boardData != null) {
                     Log.d("GameOnlineActivity", "Data read successfully: " + boardData);
-                    BoardViewModel boardViewModel = boardData.toBoardViewModel(gameController);
 
-                    // Comprobar si los datos se guardaron correctamente
-                    // Esto implica comparar los datos leídos con los datos originales.
-                    // Dado que esto es dependiente de la aplicación, te dejo un ejemplo genérico:
+                    // Recreate gameController with the fetched boardData
+                    gameController = new GameController(GameOnlineActivity.this, null, new DeckViewModel(boardData.getCards()), new DeckViewModel(), GameOnlineActivity.this, sharedPreferencesManager);
+
+                    // Luego establece el BoardViewModel real
+                    gameController.setBoardViewModel(boardData.toBoardViewModel(gameController));
+
+                    // Verify if data was saved correctly
                     boolean dataSavedCorrectly = true;
                     for (int i = 0; i < boardData.getCards().size(); i++) {
                         if (!boardData.getCards().get(i).equals(gameController.getBoard().getCards().get(i))) {
@@ -136,6 +139,8 @@ public class GameOnlineActivity extends AppCompatActivity implements GameActivit
                     } else {
                         Log.d("GameOnlineActivity", "Data not saved correctly");
                     }
+                    // Actualiza la interfaz de usuario para reflejar el estado de la partida.
+                    updateUI();
 
                 } else {
                     Log.d("GameOnlineActivity", "No data found in database");
@@ -150,6 +155,7 @@ public class GameOnlineActivity extends AppCompatActivity implements GameActivit
         });
 
     }
+
 
     @Override
     public void updateUI() {
