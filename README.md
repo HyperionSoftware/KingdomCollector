@@ -1,7 +1,8 @@
 # KingdomCollector
 
-Taula de reavaluació
-![image](https://github.com/HyperionSoftware/KingdomCollector/assets/100761163/4e2b27d5-a140-44b9-8695-cc1b6a18eaa6)
+#Taula de reavaluació
+
+![image](https://github.com/HyperionSoftware/KingdomCollector/assets/100761163/4ef272ca-d4c9-41cc-96d0-3a37e2ccfd21)
 
 ## Authors
 
