@@ -4,14 +4,22 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Toast;
+
+import java.util.List;
 
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
+import cat.udl.hyperion.appmobils.kingdomcollector.collection.admin.SharedPreferencesManager;
 import cat.udl.hyperion.appmobils.kingdomcollector.collection.views.CollectionActivity;
+import cat.udl.hyperion.appmobils.kingdomcollector.game.models.Card;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.views.GameActivity;
 
 public class PlayModeActivity extends AppCompatActivity {
 
+    SharedPreferencesManager sharedPreferencesManager;
+    private List<Card> selectedCardsList;
 
 
     @SuppressLint("MissingInflatedId")
@@ -43,7 +51,17 @@ public class PlayModeActivity extends AppCompatActivity {
 
     public void goToHome(){startNewActivity(MainActivity.class);}
 
-    public void playOnline(){startNewActivity(GameActivity.class);}
+    public void playOnline(){
+        selectedCardsList = sharedPreferencesManager.getSelectedCards();
+        sharedPreferencesManager.storeSelectedCards(selectedCardsList);
+
+        if(sharedPreferencesManager.getSelectedCards().size() == 5){
+            startNewActivity(GameActivity.class);
+        }else {
+            Toast.makeText(this, "Debes tener cartas seleccionadas", Toast.LENGTH_SHORT).show();
+            return;
+        }
+    }
 
     public void playLocal(){startNewActivity(GameActivity.class);}
 

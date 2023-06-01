@@ -7,6 +7,7 @@ import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -187,10 +188,17 @@ public class CollectionActivity extends AppCompatActivity {
     }
 
     private void sendCardsToGame(){
-        Intent intent = new Intent(this, GameActivity.class);
-        intent.putParcelableArrayListExtra("selectedCards", (ArrayList<? extends Parcelable>) selectedCardsList);
-        sharedPreferencesManager.storeSelectedCards(selectedCardsList);
-        //startActivity(intent);
-        finish();
+
+        if (selectedCardsList.size() != 5) {
+            Toast.makeText(this, "Debes seleccionar 5 cartas", Toast.LENGTH_SHORT).show();
+            return;
+        }else {
+
+            Intent intent = new Intent(this, GameActivity.class);
+            intent.putParcelableArrayListExtra("selectedCards", (ArrayList<? extends Parcelable>) selectedCardsList);
+            sharedPreferencesManager.storeSelectedCards(selectedCardsList);
+            //startActivity(intent);
+            finish();
+        }
     }
 }
