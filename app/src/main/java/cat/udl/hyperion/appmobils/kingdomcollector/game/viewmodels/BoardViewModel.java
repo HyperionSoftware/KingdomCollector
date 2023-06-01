@@ -79,11 +79,17 @@ public class BoardViewModel extends ViewModel {
 
     public CellViewModel getCellViewModelAt(int row, int col) {
         if (cellViewModels != null) {
-            return cellViewModels.get(row * 3 + col);
+            int index = row * 3 + col;
+            if (index >= 0 && index < cellViewModels.size()) {
+                return cellViewModels.get(index);
+            } else {
+                throw new IndexOutOfBoundsException("Invalid row or column");
+            }
         } else {
             throw new IllegalStateException("CellViewModels list is not initialized");
         }
     }
+
 
     public void playSelectedCard(int row, int col) {
         Card cardToPlay = deckViewModel.getSelectedCard().getValue();
@@ -156,6 +162,17 @@ public class BoardViewModel extends ViewModel {
 
     public void setBoardDataChanged(boolean changed) {
         this.boardDataChanged.setValue(changed);
+    }
+
+    public boolean isValid(int newRow, int newCol) {
+        if(this.board.getValue().isEmpty(newRow,newCol)){
+            return true;
+        } else return false;
+    }
+
+    public Cell getCell(int newRow, int newCol) {
+        Cell cell = this.getCellViewModelAt(newRow, newCol).getCell().getValue();
+        return cell;
     }
 }
 

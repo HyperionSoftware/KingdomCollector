@@ -89,8 +89,12 @@ public class Board {
     public boolean isEmpty(int row, int col) {
         String rowKey = "row" + row;
         String colKey = "cell" + col;
+        if (board.get(rowKey) == null || board.get(rowKey).get(colKey) == null) {
+            return true;
+        }
         return board.get(rowKey).get(colKey).getCard() == null;
     }
+
 
     public void setCardAt(int row, int col, Card card) {
         String rowKey = "row" + row;

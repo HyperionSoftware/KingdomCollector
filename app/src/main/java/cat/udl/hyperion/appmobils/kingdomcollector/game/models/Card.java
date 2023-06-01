@@ -264,4 +264,22 @@ public class Card implements Parcelable {
             return new Card[size];
         }
     };
+
+    public boolean canConquer(Card adjacentCard) {
+        if(this.powerArriba>adjacentCard.powerAbajo){
+            return true;
+        }
+        else if(this.powerAbajo> adjacentCard.powerArriba){
+            return true;
+        }
+        else if(this.powerIzquierda > adjacentCard.powerDerecha){
+            return true;
+        }
+        else if(this.powerDerecha > adjacentCard.powerIzquierda){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }
