@@ -1,23 +1,21 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.multiplayer.models;
 
-import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.PlayerViewModel;
+
 
 public class MultiplayerMatch {
-
     private String userCreator;
-    private PlayerViewModel userplayer;
+    private String userJoiner;
     private int status = 1;
 
     public MultiplayerMatch() {
         // Firebase necesita un constructor vacío
     }
 
-    public MultiplayerMatch(String user){
-        this.userCreator = user;
+    public MultiplayerMatch(String userCreator){
+        this.userCreator = userCreator;
     }
 
     public String getUserCreator() {
-        //userCreator = userplayer.getHumanPlayerName().getValue();
         return userCreator;
     }
 
@@ -25,12 +23,12 @@ public class MultiplayerMatch {
         this.userCreator = userCreator;
     }
 
-    public PlayerViewModel getUserplayer() {
-        return userplayer;
+    public String getUserJoiner() {
+        return userJoiner;
     }
 
-    public void setUserplayer(PlayerViewModel userplayer) {
-        this.userplayer = userplayer;
+    public void setUserJoiner(String userJoiner) {
+        this.userJoiner = userJoiner;
     }
 
     public int getStatus() {

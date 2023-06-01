@@ -1,4 +1,6 @@
-package cat.udl.hyperion.appmobils.kingdomcollector.game.views;
+package cat.udl.hyperion.appmobils.kingdomcollector.multiplayer.views;
+
+import static android.content.ContentValues.TAG;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +18,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
@@ -32,6 +36,7 @@ import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.HumanPlaye
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.IAPlayer;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.BoardViewModel;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.DeckViewModel;
+import cat.udl.hyperion.appmobils.kingdomcollector.multiplayer.models.MultiplayerMatch;
 
 public class GameOnlineActivity extends AppCompatActivity implements GameActivityInterface {
     // Firebase
@@ -165,9 +170,6 @@ public class GameOnlineActivity extends AppCompatActivity implements GameActivit
             }
         });
     }
-
-
-
 
     @Override
     public void updateUI() {

@@ -31,7 +31,7 @@ import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.Player;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.BoardViewModel;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.CellViewModel;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.DeckViewModel;
-import cat.udl.hyperion.appmobils.kingdomcollector.game.views.GameActivityInterface;
+import cat.udl.hyperion.appmobils.kingdomcollector.multiplayer.views.GameActivityInterface;
 
 public class GameController {
     private static final String TAG = "GameController";

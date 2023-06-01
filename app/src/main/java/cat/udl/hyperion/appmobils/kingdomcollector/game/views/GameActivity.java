@@ -16,6 +16,7 @@ import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.HumanPlaye
 import cat.udl.hyperion.appmobils.kingdomcollector.game.models.player.IAPlayer;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.BoardViewModel;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.DeckViewModel;
+import cat.udl.hyperion.appmobils.kingdomcollector.multiplayer.views.GameActivityInterface;
 
 public class GameActivity extends AppCompatActivity implements GameActivityInterface {
     private GameController gameController;

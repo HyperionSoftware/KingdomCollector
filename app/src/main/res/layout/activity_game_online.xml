@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/campo_futbol_vertical"
-    tools:context=".game.views.GameOnlineActivity">
+    tools:context=".multiplayer.views.GameOnlineActivity">
 
     <FrameLayout
         android:id="@+id/playerFragment"
