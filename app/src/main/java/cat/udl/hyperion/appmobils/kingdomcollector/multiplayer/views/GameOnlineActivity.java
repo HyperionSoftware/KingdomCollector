@@ -66,30 +66,21 @@ public class GameOnlineActivity extends AppCompatActivity implements GameActivit
         firebaseUser = firebaseAuth.getCurrentUser();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_online);
-
-        // Inicia FirebaseDatabase
-        database = FirebaseDatabase.getInstance("https://hyperion-843ad-default-rtdb.firebaseio.com/");
-
         sharedPreferencesManager = new SharedPreferencesManager(this);
+        List<Card> selectedCards = sharedPreferencesManager.getSelectedCards();
 
-        // Configura los botones
-        createGameButton = (Button) findViewById(R.id.createGameButton);
-        joinGameButton = (Button) findViewById(R.id.joinGameButton);
+        // HAce una instancia de GameController pero sin DeckViewModel computerDeckViewModel.
+        gameController = GameController.getInstance(
+                this,
+                new BoardViewModel(gameController),
+                new DeckViewModel(selectedCards),
+                this,
+                sharedPreferencesManager
+        );
 
-        createGameButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                createGame();
-            }
-        });
+        updateUI();
 
-        joinGameButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String gameId = "exampleGameId";
-                joinGame(gameId);
-            }
-        });
+
     }
 
     private void createGame() {
@@ -173,14 +164,14 @@ public class GameOnlineActivity extends AppCompatActivity implements GameActivit
 
     @Override
     public void updateUI() {
-        if (gameController != null) {
+        /*if (gameController != null) {
             createGameButton.setVisibility(View.GONE);
-            joinGameButton.setVisibility(View.GONE);
+            joinGameButton.setVisibility(View.GONE);*/
 
-            PlayerFragment playerFragment = PlayerFragment.newInstance(
+            /*PlayerFragment playerFragment = PlayerFragment.newInstance(
                     (HumanPlayer) gameController.getHumanPlayer(),
                     (IAPlayer) gameController.getComputerPlayer()
-            );
+            );*/
 
             DeckFragment deckFragment = DeckFragment.newInstance(gameController.getHumanDeckViewModel());
 
@@ -189,15 +180,15 @@ public class GameOnlineActivity extends AppCompatActivity implements GameActivit
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-            fragmentTransaction.replace(R.id.playerFragment, playerFragment);
+            //fragmentTransaction.replace(R.id.playerFragment, playerFragment);
             fragmentTransaction.replace(R.id.deckFragment, deckFragment);
             fragmentTransaction.replace(R.id.boardFragment, boardFragment);
 
             fragmentTransaction.commit();
-        } else {
+        /*} else {
             createGameButton.setVisibility(View.VISIBLE);
             joinGameButton.setVisibility(View.VISIBLE);
-        }
+        }*/
     }
     @Override
     public FragmentManager getSupportManager() {

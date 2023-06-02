@@ -39,7 +39,7 @@ public class BoardFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         binding = FragmentBoardBinding.inflate(inflater, container, false);
-        binding.setLifecycleOwner(this);
+        binding.setLifecycleOwner(getViewLifecycleOwner());
         HumanPlayer humanPlayer = (HumanPlayer) gameController.getHumanPlayer();
         cellAdapter = new CellAdapter(gameController, getViewLifecycleOwner(), humanPlayer);
         binding.recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));

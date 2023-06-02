@@ -49,7 +49,7 @@ public class PlayerFragment extends Fragment {
         // Pasar los objetos HumanPlayer y RobotPlayer al constructor de PlayerViewModel
         playerViewModel = new PlayerViewModel(humanPlayer, robotPlayer);
         binding.setPlayerViewModel(playerViewModel);
-        binding.setLifecycleOwner(this);
+        binding.setLifecycleOwner(getViewLifecycleOwner());
 
         // Observar y actualizar la vista cuando los datos del ViewModel cambien
         playerViewModel.getHumanPlayerName().observe(getViewLifecycleOwner(), name -> {

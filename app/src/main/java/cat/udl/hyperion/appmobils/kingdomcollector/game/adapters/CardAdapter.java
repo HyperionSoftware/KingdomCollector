@@ -5,6 +5,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ObservableArrayList;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -43,6 +44,10 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
     @Override
     public int getItemCount() {
         return cards != null ? cards.size() : 0;
+    }
+
+    public void setCards(ObservableArrayList<Card> cards) {
+        this.cards = cards;
     }
 
     public static class CardViewHolder extends RecyclerView.ViewHolder {

@@ -48,9 +48,11 @@ public class GameController {
     private Context context;
     private SharedPreferencesManager sharedPreferencesManager;
     private GameActivityInterface gameActivityInterface;
+    private static GameController instance;
 
 
-    public GameController(){
+
+    public GameController(Context context, BoardViewModel boardViewModel, DeckViewModel humanDeckViewModel, GameActivityInterface gameActivityInterface, SharedPreferencesManager sharedPreferencesManager){
 
     }
 
@@ -78,6 +80,19 @@ public class GameController {
         handler = new Handler();
 
     }
+
+    public static GameController getInstance(Context context, BoardViewModel boardViewModel, DeckViewModel humanDeckViewModel, GameActivityInterface gameActivityInterface, SharedPreferencesManager sharedPreferencesManager) {
+        if (instance == null) {
+            synchronized (GameController.class) {
+                if (instance == null) {
+                    instance = new GameController(context, boardViewModel, humanDeckViewModel, gameActivityInterface, sharedPreferencesManager);
+                }
+            }
+        }
+        return instance;
+    }
+
+
 
     public Player getHumanPlayer() {
         return humanPlayer;

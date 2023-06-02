@@ -12,6 +12,8 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import java.util.ArrayList;
+
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
 import cat.udl.hyperion.appmobils.kingdomcollector.databinding.FragmentDeckBinding;
 import cat.udl.hyperion.appmobils.kingdomcollector.game.adapters.CardAdapter;
@@ -40,15 +42,18 @@ public class DeckFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_deck, container, false);
 
         binding.setDeckViewModel(deckViewModel);
-        binding.setLifecycleOwner(this);
+        binding.setLifecycleOwner(getViewLifecycleOwner());
 
-        cardAdapter = new CardAdapter(deckViewModel.getDeck().getValue().getCards(), card -> deckViewModel.setSelectedCard(card));
+        cardAdapter = new CardAdapter(new ArrayList<>(), card -> deckViewModel.setSelectedCard(card));
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         binding.recyclerView.setAdapter(cardAdapter);
 
         deckViewModel.getDeck().observe(getViewLifecycleOwner(), deck -> {
-            cardAdapter.notifyDataSetChanged();
-            Log.d("DeckFragment", "Deck data changed");
+            if (deck != null) {
+                cardAdapter.setCards(deck.getCards());
+                cardAdapter.notifyDataSetChanged();
+                Log.d("DeckFragment", "Deck data changed");
+            }
         });
 
         return binding.getRoot();

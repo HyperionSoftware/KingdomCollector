@@ -7,9 +7,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
+import cat.udl.hyperion.appmobils.kingdomcollector.multiplayer.helpers.GlobalInfo;
 import cat.udl.hyperion.appmobils.kingdomcollector.multiplayer.models.MultiplayerMatch;
-import cat.udl.hyperion.appmobils.kingdomcollector.multiplayer.viewmodel.GameViewModel;
 import cat.udl.hyperion.appmobils.kingdomcollector.multiplayer.views.GameOnlineActivity;
 import cat.udl.hyperion.appmobils.kingdomcollector.multiplayer.views.MultiplayerGameSelector;
 
@@ -28,13 +33,17 @@ public class MultiplayerMatchViewHolder extends RecyclerView.ViewHolder{
     }
 
     private void jumpToGame() {
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String userName = user.getDisplayName();
         //GameOnlineActivity gameOnlineActivity = new GameOnlineActivity();
         //gameOnlineActivity.joinGame( username.getText().toString(), String.valueOf(itemView.getContext()));
         MultiplayerGameSelector multiplayerGameSelector = new MultiplayerGameSelector();
-        multiplayerGameSelector.joinGamecarlos( username.getText().toString(), String.valueOf(itemView.getContext()));
+        multiplayerGameSelector.joinGamecarlos( username.getText().toString(), userName);
 
         Intent intent = new Intent(itemView.getContext(), GameOnlineActivity.class);
-        intent.putExtra("username", username.getText().toString());
+        intent.putExtra("username", username.getText().toString()); // el que crea la partida no puede hacer match con el mismo, se puede quitar.
+        intent.putExtra( "userCreator", username.getText().toString());
         itemView.getContext().startActivity(intent);
 
     }

@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,16 +23,21 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
 
+import java.util.Map;
+
 import cat.udl.hyperion.appmobils.kingdomcollector.R;
+import cat.udl.hyperion.appmobils.kingdomcollector.game.GameController;
+import cat.udl.hyperion.appmobils.kingdomcollector.game.viewmodels.BoardViewModel;
 import cat.udl.hyperion.appmobils.kingdomcollector.multiplayer.adapters.MultiplayerMatchesAdapter;
 import cat.udl.hyperion.appmobils.kingdomcollector.multiplayer.helpers.GlobalInfo;
 import cat.udl.hyperion.appmobils.kingdomcollector.multiplayer.models.GameControllerOnline;
 import cat.udl.hyperion.appmobils.kingdomcollector.multiplayer.models.MultiplayerMatch;
 import cat.udl.hyperion.appmobils.kingdomcollector.multiplayer.provider.MultiplayerMatchesProvider;
-import cat.udl.hyperion.appmobils.kingdomcollector.multiplayer.viewmodel.GameViewModel;
 
 public class MultiplayerGameSelector extends AppCompatActivity {
 
+
+    private GameController gameController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,13 +72,19 @@ public class MultiplayerGameSelector extends AppCompatActivity {
     private void createNewMatch() {
 
         DatabaseReference myFirebaseDBGames = GlobalInfo.getIntance().getFirebaseGames();
+        FirebaseUser userCreator = FirebaseAuth.getInstance().getCurrentUser();
+
+        BoardViewModel boardViewModel = gameController.getBoardViewModel();
+        //Map<String, Object> boardData = boardViewModel.toMap();
+
 
         // Genera un ID único para la partida
         String matchId = myFirebaseDBGames.push().getKey();
 
         // Crea un nuevo objeto MultiplayerMatch con el nombre de usuario actual y el estado pendiente
-        MultiplayerMatch newMatch = new MultiplayerMatch("Carlos"); // replace with actual user name
+        MultiplayerMatch newMatch = new MultiplayerMatch(userCreator.getDisplayName()); // replace with actual user name
         newMatch.setStatus(GameControllerOnline.MULTIPLAYER_STATUS_PENDING);
+        //newMatch.setBoardData(boardData);
 
         // Guarda la partida en Firebase
         myFirebaseDBGames.child(matchId).setValue(newMatch)

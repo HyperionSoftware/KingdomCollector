@@ -1,9 +1,21 @@
 package cat.udl.hyperion.appmobils.kingdomcollector.multiplayer.models;
 
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MultiplayerMatch {
+
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+
     private String userCreator;
+
+    {
+        assert user != null;
+        userCreator = user.getDisplayName();
+    }
+
     private String userJoiner;
     private int status = 1;
 

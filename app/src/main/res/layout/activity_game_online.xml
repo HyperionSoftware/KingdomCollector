@@ -25,20 +25,5 @@
         android:layout_height="0dp"
         android:layout_weight="1.5" />
 
-    <!-- Botones para la funcionalidad en línea -->
-    <Button
-        android:id="@+id/createGameButton"
-        android:layout_below="@id/boardFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/create_game" />
-
-    <Button
-        android:id="@+id/joinGameButton"
-        android:layout_toRightOf="@id/createGameButton"
-        android:layout_below="@id/boardFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/join_game" />
 
 </LinearLayout>
