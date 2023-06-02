@@ -38,13 +38,16 @@ public class MainActivity extends AppCompatActivity {
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference gameDataRef = database.getReference("winner_count");
+    DatabaseReference gameDataRefball = database.getReference("gold_ball_count");
 
     String userId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
     DatabaseReference userGameDataRef = gameDataRef.child(userId);
+    DatabaseReference userGameDataRefball = gameDataRefball.child(userId);
 
     // Nombre y puntuación máxima del usuario con más puntos.
     private String highestScoringUserID;
     private long highestScore;
+    private long highestGoldBallCount;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -81,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         userGameDataRef.addValueEventListener(gameDataListener);
+        userGameDataRefball.addValueEventListener(gameDataListenerball);
 
         getPenultimateLogin(new PenultimateLoginCallback() {
             @Override
@@ -103,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         loadHighestScore();
+        loadHighestGoldBallCount();
 
     }
     @Override
@@ -117,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         userGameDataRef.addValueEventListener(gameDataListener);
+        userGameDataRefball.addValueEventListener(gameDataListenerball);
     }
 
     @Override
@@ -240,8 +246,10 @@ public class MainActivity extends AppCompatActivity {
                 Long count = dataSnapshot.getValue(Long.class);
                 //Actualizar el valor del TextView con el valor de "count"
                 TextView winnerCountText = findViewById(R.id.winner_count_value);
+
                 if (count != null) {
                     winnerCountText.setText(String.valueOf(count));
+
                 } else {
                     winnerCountText.setText("0");
                 }
@@ -249,6 +257,31 @@ public class MainActivity extends AppCompatActivity {
                 // El nodo no existe o el usuario no ha ganado aún.
                 TextView winnerCountText = findViewById(R.id.winner_count_value);
                 winnerCountText.setText("0");
+            }
+        }
+
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
+            Log.w("MainActivity", "Error al leer los datos.", databaseError.toException());
+        }
+    };
+
+    ValueEventListener gameDataListenerball = new ValueEventListener() {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+            if (dataSnapshot.exists()) {
+                Long count = dataSnapshot.getValue(Long.class);
+                //Actualizar el valor del TextView con el valor de "count"
+                TextView goldBallCountText = findViewById(R.id.highestGoldBallCountText);
+                if (count != null) {
+                    goldBallCountText.setText(String.valueOf(count));
+                } else {
+                    goldBallCountText.setText("0");
+                }
+            } else {
+                // El nodo no existe o el usuario no ha ganado aún.
+                TextView goldBallCountText = findViewById(R.id.highestGoldBallCountText);
+                goldBallCountText.setText("0");
             }
         }
 
@@ -287,6 +320,37 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void loadHighestGoldBallCount() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) {
+            Log.e("MainActivity", "User not authenticated");
+            return;
+        }
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        Query query = databaseReference.child("gold_ball_count").orderByValue().limitToLast(1);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
+                        highestScoringUserID = childSnapshot.getKey();
+                        Long goldBallCount = childSnapshot.getValue(Long.class);
+                        highestGoldBallCount = goldBallCount != null ? goldBallCount : 0;
+                    }
+                    TextView highestGoldBallCountText = findViewById(R.id.highestGoldBallCountText);
+                    highestGoldBallCountText.setText(String.valueOf(highestGoldBallCount));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("MainActivity", "Error while loading highest gold ball count", error.toException());
+            }
+        });
+    }
+
 
 
 

@@ -103,45 +103,33 @@
         app:layout_constraintTop_toBottomOf="@+id/titulo_kingdom_collector"
         app:srcCompat="@drawable/balon_oro" />
 
-    <TextView
+    <ImageView
         android:id="@+id/winner_count_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="29dp"
         android:layout_marginBottom="148dp"
+        android:src="@drawable/victories"
         android:text="@string/victorias_usuario"
         android:textColor="@android:color/white"
-        android:textSize="18sp"
+        android:textSize="25sp"
         app:layout_constraintBottom_toTopOf="@+id/btn_collection"
-        app:layout_constraintEnd_toStartOf="@+id/btn_start"
-        app:layout_constraintHorizontal_bias="0.48"
-
+        app:layout_constraintEnd_toStartOf="@+id/balones_de_oro_fondo"
+        app:layout_constraintHorizontal_bias="0.285"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btn_start" />
-
-    <TextView
-        android:id="@+id/world_record_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="160dp"
-        android:text="@string/world_record_title"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_collection"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btn_start" />
+        app:layout_constraintTop_toTopOf="@+id/btn_start"
+        app:layout_constraintVertical_bias="0.444" />
 
     <TextView
         android:id="@+id/winner_count_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/white"
-        android:textSize="30sp"
+        android:textSize="35sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/highestScoreText"
-        app:layout_constraintHorizontal_bias="0.084"
+        app:layout_constraintHorizontal_bias="0.102"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/world_record_title"
+        app:layout_constraintTop_toBottomOf="@+id/winner_count_title"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -152,9 +140,19 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.177"
+        app:layout_constraintHorizontal_bias="0.433"
         app:layout_constraintStart_toEndOf="@+id/btn_collection"
-        app:layout_constraintTop_toBottomOf="@+id/world_record_title"
-        app:layout_constraintVertical_bias="0.053" />
+        app:layout_constraintTop_toTopOf="@+id/btn_start"
+        app:layout_constraintVertical_bias="0.43" />
+
+    <TextView
+        android:id="@+id/highestGoldBallCountText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/balones_de_oro_fondo"
+        app:layout_constraintEnd_toEndOf="@+id/balones_de_oro_fondo"
+        app:layout_constraintStart_toStartOf="@+id/balones_de_oro_fondo"
+        app:layout_constraintTop_toTopOf="@+id/balones_de_oro_fondo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

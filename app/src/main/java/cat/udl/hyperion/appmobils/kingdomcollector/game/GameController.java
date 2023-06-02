@@ -168,6 +168,7 @@ public class GameController {
             if (winner == humanPlayer) {
                 showWinnerFragment(winner.getName());
                 incrementWinCount();
+                incrementGoldBallCount();
             } else if(winner == computerPlayer){
                 showWinnerFragment(winner.getName());
             }else {
@@ -323,5 +324,36 @@ public class GameController {
             }
         });
     }
+
+    public void incrementGoldBallCount() {
+        String userId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+
+        DatabaseReference userGameDataRef = FirebaseDatabase.getInstance().getReference("gold_ball_count").child(userId);
+
+        userGameDataRef.runTransaction(new Transaction.Handler() {
+            @NonNull
+            @Override
+            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                Long count = mutableData.getValue(Long.class);
+                if (count == null) {
+                    mutableData.setValue(10);
+                } else {
+                    mutableData.setValue(count + 10);
+                }
+
+                return Transaction.success(mutableData);
+            }
+
+            @Override
+            public void onComplete(@Nullable DatabaseError error, boolean committed, @Nullable DataSnapshot currentData) {
+                if (committed) {
+                    Log.d(TAG, "Transacción completada con éxito + 10 gold balls");
+                } else {
+                    Log.e(TAG, "Error en la transacción", error.toException());
+                }
+            }
+        });
+    }
+
 
 }
